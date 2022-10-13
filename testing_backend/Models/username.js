@@ -9,6 +9,9 @@ let usernameSchema = new Schema(
         isVerified: {
             type: Boolean,
         },
+        profile_pic_url: {
+
+        },
         media_count: {
             type: Number,
         },
@@ -16,6 +19,12 @@ let usernameSchema = new Schema(
             type: Number,
         },
         following_count: {
+            type: Number,
+        },
+        total_igtv_videos: {
+            type: Number,
+        },
+        total_clips_count: {
             type: Number,
         },
         category: {

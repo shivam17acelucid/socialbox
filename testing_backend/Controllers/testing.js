@@ -19,7 +19,7 @@ exports.hashtag = (req, res, next) => {
         method: 'GET',
         headers: TAG_API_HEADER,
         mode: 'cors'
-    }).then((res) => res.json())
+    }).then((response) => response.json())
         .then((data) => {
             let abc = data['data']['hashtag']['edge_hashtag_to_media']['edges'];
             let arr = [];
@@ -71,8 +71,8 @@ exports.userID = (req, res, next) => {
     }
     let arr = [];
     User.find(filter)
-        .then((res) => {
-            res.forEach((item) => {
+        .then((response) => {
+            response.forEach((item) => {
                 arr.push(item.ownerID)
             })
             arr.forEach((item) => {
@@ -81,12 +81,15 @@ exports.userID = (req, res, next) => {
                     method: 'GET',
                     headers: URLENCODED_HEADER,
                     mode: 'cors'
-                }).then((res) => res.json())
+                }).then((response) => response.json())
                     .then((data) => {
                         console.log(data.user)
                         Username.insertMany([data.user])
                             .then((result) => {
-                                console.log(result)
+                                res.status(200).json({
+                                    success: 'true',
+                                    data: result
+                                })
                             })
                             .catch((err) => {
                                 console.log(err)

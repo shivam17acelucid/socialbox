@@ -28,53 +28,23 @@ exports.hashtag = (req, res, next) => {
             abc.forEach(element => {
                 arr.push({ ownerID: element.node.owner.id });
             });
-            User.insertMany(arr)
-                .then((result) => {
-                    res.json({
-                        success: 'true',
-                        result
-                    })
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+            // User.insertMany(arr)
+            //     .then((result) => {
+            //         res.json({
+            //             success: 'true',
+            //             result
+            //         })
+            //     })
+            //     .catch((err) => {
+            //         console.log(err)
+            //     })
             if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
-                let max_id = [];
                 let id_array = [];
-                max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
-                const second_url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id['0']}`;
-                // while (max_id.length) {
-                //     // console.log(second_url)
-                //     fetch(second_url, {
-                //         method: 'GET',
-                //         headers: TAG_API_HEADER,
-                //         mode: 'cors'
-                //     }).then((response) => response.json())
-                //         .then((data) => {
-                //             let ids = data['data']['hashtag']['edge_hashtag_to_media']['edges'];
-                //             ids.forEach(element => {
-                //                 id_array.push({ ownerID: element.node.owner.id })
-                //                 console.log(id_array)
-                //             })
-                //             User.insertMany(id_array)
-                //                 .then((result) => {
-                //                     res.json({
-                //                         success: 'true',
-                //                         result
-                //                     })
-                //                 })
-                //                 .catch((err) => {
-                //                     console.log(err)
-                //                 })
-                //             if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
-                //                 max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
-                //                 max_id.splice(0, 1, data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor)
-                //                 console.log(max_id)
-                //             }
-                //         })
-                // }
+                let max_id = data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor;
+                let second_url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id}`;
+                console.log(second_url)
                 {
-                    max_id.length > 0 ?
+                    max_id ?
                         fetch(second_url, {
                             method: 'GET',
                             headers: TAG_API_HEADER,
@@ -85,20 +55,20 @@ exports.hashtag = (req, res, next) => {
                                 ids.forEach(element => {
                                     id_array.push({ ownerID: element.node.owner.id })
                                 })
-                                User.insertMany(id_array)
-                                    .then((result) => {
-                                        res.json({
-                                            success: 'true',
-                                            result
-                                        })
-                                    })
-                                    .catch((err) => {
-                                        console.log(err)
-                                    })
+                                // User.insertMany(id_array)
+                                //     .then((result) => {
+                                //         res.json({
+                                //             success: 'true',
+                                //             result
+                                //         })
+                                //     })
+                                //     .catch((err) => {
+                                //         console.log(err)
+                                //     })
                                 if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
-                                    max_id.splice(0, 1, data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor)
-                                    // max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
+                                    max_id = data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor;
                                     console.log(max_id)
+                                    console.log(second_url)
                                 }
                             })
                         : null

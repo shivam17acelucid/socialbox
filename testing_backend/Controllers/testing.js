@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const User = require('../models/user');
+const axios = require('axios');
 const Username = require('../Models/username');
 const URLENCODED_HEADER = {
     'Accept': 'application/json',
@@ -12,6 +13,7 @@ const TAG_API_HEADER = {
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
 }
+
 exports.hashtag = (req, res, next) => {
     let { tagname } = req.body;
     const url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}`;
@@ -36,6 +38,72 @@ exports.hashtag = (req, res, next) => {
                 .catch((err) => {
                     console.log(err)
                 })
+            if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
+                let max_id = [];
+                let id_array = [];
+                max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
+                const second_url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id['0']}`;
+                // while (max_id.length) {
+                //     // console.log(second_url)
+                //     fetch(second_url, {
+                //         method: 'GET',
+                //         headers: TAG_API_HEADER,
+                //         mode: 'cors'
+                //     }).then((response) => response.json())
+                //         .then((data) => {
+                //             let ids = data['data']['hashtag']['edge_hashtag_to_media']['edges'];
+                //             ids.forEach(element => {
+                //                 id_array.push({ ownerID: element.node.owner.id })
+                //                 console.log(id_array)
+                //             })
+                //             User.insertMany(id_array)
+                //                 .then((result) => {
+                //                     res.json({
+                //                         success: 'true',
+                //                         result
+                //                     })
+                //                 })
+                //                 .catch((err) => {
+                //                     console.log(err)
+                //                 })
+                //             if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
+                //                 max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
+                //                 max_id.splice(0, 1, data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor)
+                //                 console.log(max_id)
+                //             }
+                //         })
+                // }
+                {
+                    max_id.length > 0 ?
+                        fetch(second_url, {
+                            method: 'GET',
+                            headers: TAG_API_HEADER,
+                            mode: 'cors'
+                        }).then((response) => response.json())
+                            .then((data) => {
+                                let ids = data['data']['hashtag']['edge_hashtag_to_media']['edges'];
+                                ids.forEach(element => {
+                                    id_array.push({ ownerID: element.node.owner.id })
+                                })
+                                User.insertMany(id_array)
+                                    .then((result) => {
+                                        res.json({
+                                            success: 'true',
+                                            result
+                                        })
+                                    })
+                                    .catch((err) => {
+                                        console.log(err)
+                                    })
+                                if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
+                                    max_id.splice(0, 1, data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor)
+                                    // max_id.push(data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor);
+                                    console.log(max_id)
+                                }
+                            })
+                        : null
+                }
+            }
         });
 }
 
@@ -50,18 +118,31 @@ exports.username = (req, res, next) => {
         .then((data) => res.json(data));
 }
 
-exports.topsearch = (req, res, next) => {
+exports.topsearch = async (req, res, next) => {
     let { query } = req.body;
     const url = `https://www.instagram.com/web/search/topsearch?query=${query}`;
     fetch(url, {
         method: 'GET',
         headers: URLENCODED_HEADER,
-        mode: 'cors',
-        redirect: 'follow',
-        follow: 20,
+        // redirect: 'follow',
+        // follow: 20,
     }).then((res) => res.json())
         .then((data) => res.json(data));
 }
+// exports.topsearch = (req, res) => {
+//     const id = req.query.id;
+//     const url = `https://www.instagram.com/web/search/topsearch?query=${id}`;
+//     const response = axios.get(url, {
+//         headers: URLENCODED_HEADER
+//     })
+//         .then((data) => {
+//             console.log(data)
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+
+// }
 
 exports.userID = (req, res, next) => {
     let { ownerID } = req.query;
@@ -101,4 +182,38 @@ exports.userID = (req, res, next) => {
             console.log(err)
         })
     // let { ownerId } = req.body;
+}
+
+exports.profile = (req, res, next) => {
+    Username.find()
+        .then((response) => {
+            let each_object = response;
+            let bigAccount = [];
+            let arr = [];
+            each_object.forEach((item) => {
+                arr.push({ follower_count: item.follower_count, username: item.username });
+            })
+            {
+                arr.forEach(item => {
+                    item.follower_count > '10000' ?
+                        bigAccount.push(item)
+                        : null
+                })
+                bigAccount.forEach((item) => {
+                    console.log(item.username)
+                    // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
+                    // fetch(url, {
+                    //     method: 'GET',
+                    //     headers: URLENCODED_HEADER,
+                    // }).then((response) => response.json())
+                    //     .then((data) => {
+                    //         res.json(data)
+                    //         console.log(data)
+                    //     });
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }

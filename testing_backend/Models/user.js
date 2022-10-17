@@ -4,7 +4,7 @@ let userSchema = new Schema(
   {
     ownerID: {
       type: String,
-      // unique: true,
+      unique: true,
     }
   },
   {

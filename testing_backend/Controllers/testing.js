@@ -1,12 +1,12 @@
 const fetch = require('node-fetch');
 const User = require('../models/user');
-const axios = require('axios');
 const Username = require('../Models/username');
+const ProfileData = require('../Models/profile_data')
 const URLENCODED_HEADER = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
-    'Cookie': 'sessionid=55174935431:7Ykalju35sgFpv:11:AYfuxayu4UAofW7KVeeuEF-sf5NBNTwj5T5s8H7_1Q'
+    'Cookie': 'sessionid=55174935431:VtUPI8cPL5nRcU:5:AYdggW9XiSkfzEXq3SKEtq1P5RiSICkV6Ein9YuOaQ'
 }
 const TAG_API_HEADER = {
     'Accept': 'application/json',
@@ -33,10 +33,10 @@ exports.hashtag = (req, res, next) => {
                 })
                 User.insertMany(id_array)
                     .then((result) => {
-                        // res.json({
-                        //     success: 'true',
-                        //     result
-                        // })
+                        res.json({
+                            success: 'true',
+                            result
+                        })
                     })
                     .catch((err) => {
                         console.log(err)
@@ -46,6 +46,8 @@ exports.hashtag = (req, res, next) => {
                     let url_change = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id}`;
                     fetchuntilEnd_cursor_empty(url_change);
                 }
+
+                ids = id_array = [];
             })
     }
     fetch(url, {
@@ -75,6 +77,7 @@ exports.hashtag = (req, res, next) => {
                 second_url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id}`;
                 fetchuntilEnd_cursor_empty(second_url);
             }
+            abc = arr = [];
         });
 }
 
@@ -132,6 +135,7 @@ exports.userID = (req, res, next) => {
                 fetch(url, {
                     method: 'GET',
                     headers: URLENCODED_HEADER,
+                    // headers: TAG_API_HEADER,
                     mode: 'cors'
                 }).then((response) => response.json())
                     .then((data) => {
@@ -152,7 +156,6 @@ exports.userID = (req, res, next) => {
         .catch((err) => {
             console.log(err)
         })
-    // let { ownerId } = req.body;
 }
 
 exports.profile = (req, res, next) => {
@@ -171,16 +174,25 @@ exports.profile = (req, res, next) => {
                         : null
                 })
                 bigAccount.forEach((item) => {
-                    console.log(item.username)
-                    // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
-                    // fetch(url, {
-                    //     method: 'GET',
-                    //     headers: URLENCODED_HEADER,
-                    // }).then((response) => response.json())
-                    //     .then((data) => {
-                    //         res.json(data)
-                    //         console.log(data)
-                    //     });
+                    const url = `https://i.instagram.com/api/v1/users/web_profile_info?username=${item.username}`;
+                    fetch(url, {
+                        method: 'GET',
+                        headers: TAG_API_HEADER,
+                        mode: 'cors',
+                    }).then((response) => response.json())
+                        .then((data) => {
+                            console.log(data)
+                            // ProfileData.insertMany([data])
+                            //     .then((result) => {
+                            //         res.json({
+                            //             success: 'true',
+                            //             result
+                            //         })
+                            //     })
+                            //     .catch((err) => {
+                            //         console.log(err)
+                            //     })
+                        });
                 })
             }
         })

@@ -6,26 +6,23 @@ let profileDataSchema = new Schema(
             type: String,
             unique: true,
         },
-        isVerified: {
+        full_name: {
+            type: String,
+        },
+        is_verified: {
             type: Boolean,
         },
-        profile_pic_url: {
-
+        profile_pic_url_hd: {
+            type: String,
         },
-        media_count: {
-            type: Number,
+        external_url: {
+            type: String,
         },
-        follower_count: {
-            type: Number,
+        edge_followed_by: {
+            type: Object,
         },
-        following_count: {
-            type: Number,
-        },
-        total_igtv_videos: {
-            type: Number,
-        },
-        total_clips_count: {
-            type: Number,
+        edge_follow: {
+            type: Object,
         },
         category: {
             type: String,
@@ -42,11 +39,41 @@ let profileDataSchema = new Schema(
         public_phone_number: {
             type: Number,
         },
-        is_business: {
+        is_business_account: {
             type: Boolean,
         },
         whatsapp_number: {
             type: Number,
+        },
+        business_contact_method: {
+            type: String,
+        },
+        business_email: {
+            type: String,
+        },
+        business_phone_number: {
+            type: String,
+        },
+        business_category_name: {
+            type: String,
+        },
+        overall_category_name: {
+            type: String,
+        },
+        category_enum: {
+            type: String,
+        },
+        edge_felix_video_timeline: {
+            type: Object,
+        },
+        edge_owner_to_timeline_media: {
+            type: Object,
+        },
+        edge_saved_media: {
+            type: Object,
+        },
+        edge_media_collections: {
+            type: Object,
         },
     },
     {

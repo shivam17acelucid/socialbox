@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
 const User = require('../models/user');
 const Username = require('../Models/username');
-const ProfileData = require('../Models/profile_data')
+const ProfileData = require('../Models/profile_data');
+const axios = require('axios')
 const URLENCODED_HEADER = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
-    'Cookie': 'sessionid=55174935431:VtUPI8cPL5nRcU:5:AYdggW9XiSkfzEXq3SKEtq1P5RiSICkV6Ein9YuOaQ'
+    // 'Cookie': 'sessionid=55174935431:x8JvcGYu82tJ6d:28:AYfI627ANegNpG_tFchbkKqtxROQAlXVXdeR9Xi4Sg',
+    'Cookie': 'sessionid=4254722113:8jQkarLtt6Z1wj:27:AYdZDexKTjHFIqPlMKx-vfND1fPhT1vP3FfU8Fii1g',
 }
 const TAG_API_HEADER = {
     'Accept': 'application/json',
@@ -84,12 +86,17 @@ exports.hashtag = (req, res, next) => {
 exports.username = (req, res, next) => {
     let { username } = req.body;
     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${username}`;
-    fetch(url, {
+    axios.get(url, {
         method: 'GET',
         headers: URLENCODED_HEADER,
         mode: 'cors'
-    }).then((res) => res.json())
-        .then((data) => res.json(data));
+    }).then((response) => {
+        res.status(200).json({
+            success: true,
+            data: response.data
+        });
+        console.log(response.data)
+    })
 }
 
 exports.topsearch = async (req, res, next) => {
@@ -103,20 +110,6 @@ exports.topsearch = async (req, res, next) => {
     }).then((res) => res.json())
         .then((data) => res.json(data));
 }
-// exports.topsearch = (req, res) => {
-//     const id = req.query.id;
-//     const url = `https://www.instagram.com/web/search/topsearch?query=${id}`;
-//     const response = axios.get(url, {
-//         headers: URLENCODED_HEADER
-//     })
-//         .then((data) => {
-//             console.log(data)
-//         })
-//         .catch((err) => {
-//             console.log(err)
-//         })
-
-// }
 
 exports.userID = (req, res, next) => {
     let { ownerID } = req.query;
@@ -161,40 +154,45 @@ exports.userID = (req, res, next) => {
 exports.profile = (req, res, next) => {
     Username.find()
         .then((response) => {
-            let each_object = response;
             let bigAccount = [];
             let arr = [];
-            each_object.forEach((item) => {
+            response.forEach((item) => {
                 arr.push({ follower_count: item.follower_count, username: item.username });
             })
             {
                 arr.forEach(item => {
-                    item.follower_count > '10000' ?
+                    item.follower_count > '2000000' ?
                         bigAccount.push(item)
                         : null
                 })
+                console.log(bigAccount)
                 bigAccount.forEach((item) => {
-                    const url = `https://i.instagram.com/api/v1/users/web_profile_info?username=${item.username}`;
-                    fetch(url, {
-                        method: 'GET',
-                        headers: TAG_API_HEADER,
-                        mode: 'cors',
-                    }).then((response) => response.json())
-                        .then((data) => {
-                            console.log(data)
-                            // ProfileData.insertMany([data])
-                            //     .then((result) => {
-                            //         res.json({
-                            //             success: 'true',
-                            //             result
-                            //         })
-                            //     })
-                            //     .catch((err) => {
-                            //         console.log(err)
-                            //     })
-                        });
+                const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
+                axios.get(url, {
+                    method: 'GET',
+                    headers: URLENCODED_HEADER,
+                    mode: 'cors',
+                })
+                    .then((response) => {
+                        // res.status(200).json({
+                        //     success: true,
+                        //     data: response.data
+                        // });
+                        console.log([response.data['data']['user']])
+                         ProfileData.insertMany([response.data['data']['user']])
+                                .then((result) => {
+                                    res.json({
+                                        success: 'true',
+                                        result
+                                    })
+                                })
+                                .catch((err) => {
+                                    console.log(err)
+                                })
+                    })
                 })
             }
+
         })
         .catch((err) => {
             console.log(err)

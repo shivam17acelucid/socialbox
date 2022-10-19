@@ -10,7 +10,7 @@ let usernameSchema = new Schema(
             type: Boolean,
         },
         profile_pic_url: {
-
+            type: String,
         },
         media_count: {
             type: Number,

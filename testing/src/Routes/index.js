@@ -15,7 +15,7 @@ function RouteF () {
             >
                 <Routes>
                     <Route path="/" element={<Welcome />} />
-                    <Route path="/influencerslist" element={InfluencersList} />
+                    <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                 </Routes>
             </Suspense>
         </div>

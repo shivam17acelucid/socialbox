@@ -5,7 +5,6 @@ import './welcome.scss';
 
 function Welcome() {
     const [inputField, setInputField] = useState('');
-    const [influencersData, setInfluencersData] = useState([]);
 
     let navigate = useNavigate();
 
@@ -14,16 +13,7 @@ function Welcome() {
     }
 
     const searchInfluencers = () => {
-        let data = inputField;
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField=${data}`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        setInfluencersData(res)
-                    })
-            })
-        navigate("/influencerslist", { replace: true });
+        navigate(`/influencerslist/${inputField}`);
     }
 
     return (

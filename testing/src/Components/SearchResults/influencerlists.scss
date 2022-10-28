@@ -1,0 +1,50 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0px;
+    background-color: RGB(240 253 250);
+
+    .subcontainer {
+        padding: 5rem 8rem 0 7rem;;
+    }
+
+    .topbar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+        background: rgb(241, 244, 248);
+        margin-bottom: 1rem;
+
+        .topbar_header {
+            margin: 1rem;
+        }
+    }
+
+    .searched_results {
+        .content_container {
+            .grid_container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: space-between;
+                align-items: center;
+
+                background: rgb(241, 244, 248);
+
+                .grid_item {
+                    margin: 1rem;
+                    width: 2rem;
+                }
+            }
+        }
+    }
+}

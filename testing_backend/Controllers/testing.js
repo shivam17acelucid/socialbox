@@ -260,3 +260,26 @@ exports.influencer_list = (req, res, next) => {
             })
         })
 }
+
+exports.influencer_search = (req, res, next) => {
+    var filter = {}
+    let { inputField } = req.query;
+    if (inputField != null) {
+        filter = { $or: [{ full_name: { $regex: inputField, $options: 'i' } }, { username: { $regex: inputField, $options: 'i' } }, { category_enum: { $regex: inputField, $options: 'i' } }] }
+    }
+    let flag = [];
+
+    ProfileData.find(filter)
+        .then((data) => {
+            flag.push(data)
+            if (flag[0].length > 0) {
+                res.json(data)
+            }
+            else {
+                ProfileData.find()
+                    .then((data) => {
+                        res.json(data)
+                    })
+            }
+        })
+}

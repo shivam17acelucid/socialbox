@@ -2,13 +2,15 @@ const fetch = require('node-fetch');
 const User = require('../models/user');
 const Username = require('../Models/username');
 const ProfileData = require('../Models/profile_data');
+const Testing = require('../Models/testing')
 const axios = require('axios');
 const { downloadcsv } = require('./downloadcsv');
 const URLENCODED_HEADER = {
     'Accept': 'application/json',
+    // 'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
-    // 'Cookie': 'sessionid='
+    'Cookie': 'sessionid=55174935431:oUkeyOkjSTHOai:11:AYcCQRGAQW0_XSTcjaz7XHUgRoXj6weyCzi_8MCzew'
 }
 const TAG_API_HEADER = {
     'Accept': 'application/json',
@@ -83,26 +85,26 @@ exports.hashtag = (req, res, next) => {
         });
 }
 
-exports.topsearch = async (req, res, next) => {
-    let { query } = req.body;
-    const url = `https://www.instagram.com/web/search/topsearch?query=${query}`;
-    axios.get(url, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
-            'Cookie': 'sessionid=55174935431:oUkeyOkjSTHOai:11:AYcCQRGAQW0_XSTcjaz7XHUgRoXj6weyCzi_8MCzew',
-            // 'Cookie': 'sessionid=4254722113:8jQkarLtt6Z1wj:27:AYdZDexKTjHFIqPlMKx-vfND1fPhT1vP3FfU8Fii1g',   //working
-            // 'Cookie': 'sessionid=1606001920:gScv2hwUIuRb82:21:AYevLdDnNu06Sv5fsj-r-Pm5NYjUL8ZNfHSGrPv3UQ',
-        },
-    }).then((res) => {
-        // res.json()
-        console.log(response)
-    })
-    // .then((data) => res.json(data));
+// exports.topsearch = async (req, res, next) => {
+//     let { query } = req.body;
+//     const url = `https://www.instagram.com/web/search/topsearch?query=${query}`;
+//     axios.get(url, {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
+//             'Cookie': 'sessionid=55174935431:oUkeyOkjSTHOai:11:AYcCQRGAQW0_XSTcjaz7XHUgRoXj6weyCzi_8MCzew',
+//             // 'Cookie': 'sessionid=4254722113:8jQkarLtt6Z1wj:27:AYdZDexKTjHFIqPlMKx-vfND1fPhT1vP3FfU8Fii1g',   //working
+//             // 'Cookie': 'sessionid=1606001920:gScv2hwUIuRb82:21:AYevLdDnNu06Sv5fsj-r-Pm5NYjUL8ZNfHSGrPv3UQ',
+//         },
+//     }).then((res) => {
+//         // res.json()
+//         console.log(response)
+//     })
+//     // .then((data) => res.json(data));
 
-}
+// }
 
 exports.userID = (req, res, next) => {
     let { ownerID } = req.query;
@@ -154,12 +156,12 @@ exports.profile = (req, res, next) => {
             })
             {
                 arr.forEach(item => {
-                    item.follower_count > '10000' ?
+                    item.follower_count > '2700000' ?
                         bigAccount.push(item)
                         : null
                 })
-                console.log(bigAccount)
                 bigAccount.forEach((item) => {
+                    console.log(item.username)
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     axios.get(url, {
                         method: 'GET',
@@ -167,12 +169,10 @@ exports.profile = (req, res, next) => {
                         mode: 'cors',
                     })
                         .then((response) => {
-                            console.log(response.data)
-                            // res.status(200).json({
-                            //     success: true,
-                            //     data: response.data
-                            // });
-                            console.log([response.data['data']['user']])
+                            res.status(200).json({
+                                success: true,
+                                data: response.data
+                            });
                             ProfileData.insertMany([response.data['data']['user']])
                                 .then((result) => {
                                     // res.json({
@@ -283,3 +283,28 @@ exports.influencer_search = (req, res, next) => {
             }
         })
 }
+
+// exports.testinnng = (req, res) => {
+//     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=thesocialbox`;
+//     axios.get(url, {
+//         method: 'GET',
+//         headers: URLENCODED_HEADER,
+//         mode: 'cors',
+//     })
+//         .then((response) => {
+//             res.status(200).json({
+//                 success: true,
+//                 data: response.data
+//             });
+//             Testing.insertMany([response.data['data']['user']])
+//                 .then((result) => {
+//                     // res.json({
+//                     //     success: 'true',
+//                     //     result: response.data['data']['user']
+//                     // })
+//                 })
+//                 .catch((err) => {
+//                     console.log(err)
+//                 })
+//         })
+// }

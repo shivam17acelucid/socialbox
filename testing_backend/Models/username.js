@@ -36,6 +36,9 @@ let usernameSchema = new Schema(
         contact_phone_number: {
             type: Number,
         },
+        public_phone_country_code: {
+            type: Number
+        },
         public_email: {
             type: String,
         },

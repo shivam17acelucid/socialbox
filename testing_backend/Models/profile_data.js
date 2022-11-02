@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let profileDataSchema = new Schema(
     {
+        profile_pic_url_hd: {
+            type: String,
+        },
         username: {
             type: String,
             unique: true,
@@ -11,9 +14,6 @@ let profileDataSchema = new Schema(
         },
         is_verified: {
             type: Boolean,
-        },
-        profile_pic_url_hd: {
-            type: String,
         },
         external_url: {
             type: String,

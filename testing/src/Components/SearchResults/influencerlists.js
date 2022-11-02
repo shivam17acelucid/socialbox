@@ -67,6 +67,26 @@ const InfluencersList = () => {
         navigate(`/profile/${data.username}`)
     }
 
+    const calculateAverageLikeComment = () => {
+        let avg_likes_comment = 0;
+        let result_array = [];
+        let noOfPosts = [];
+        influencersData.forEach((data) => {
+            avg_likes_comment = 0;
+            noOfPosts = data.edge_owner_to_timeline_media.edges;
+
+            let gggg = []; // TODO: will remove later
+            noOfPosts.forEach((item, index) => {
+                avg_likes_comment += item.node.edge_media_to_comment.count;
+                gggg.push(item.node.edge_media_to_comment.count + '' + data.username);
+            });
+
+            console.log('============>', gggg); // TODO: will remove later
+            result_array.push({ avg_likes_comment, username: data.username })
+        });
+        console.log(result_array)
+    }
+
     // const handleRequestSort = (event, property) => {
     //     const isAsc = orderBy === property && order === 'asc';
     //     setOrder(isAsc ? 'desc' : 'asc');
@@ -110,7 +130,7 @@ const InfluencersList = () => {
         <div className="search_container">
             <div className="subcontainer">
                 <div className="filter_bar">
-                    <Button variant="outlined">Followers</Button>
+                    <Button variant="outlined" onClick={calculateAverageLikeComment}>Followers</Button>
                     <Button variant="outlined">Category</Button>
                     <Button variant="outlined">Name</Button>
                     <Button variant="outlined">location</Button>
@@ -150,7 +170,7 @@ const InfluencersList = () => {
                                     ).map((data) => (
                                         <StyledTableRow key={data.username}>
                                             <StyledTableCell component="th" scope="row" onClick={() => redirectProfile(data)}>
-                                                <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='small' />
+                                                <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' />
                                                 {data.username}
                                                 <div>({data.full_name})</div>
                                             </StyledTableCell>

@@ -12,6 +12,16 @@ html {
     .subcontainer {
         padding: 6.5rem 4rem 2rem 12rem;
 
+        .filter_bar {
+            display: flex;
+
+            .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
         .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
             background-color: RGB(240 253 250);
             color: rgba(0, 0, 0, 0.87);

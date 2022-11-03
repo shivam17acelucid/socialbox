@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import NFormatter from "../../Common/NumberFormatter/numFormatter";
 import './influencerlists.scss';
-
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -23,6 +23,8 @@ const InfluencersList = () => {
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('Followers');
+    // const [averageLikesComment, setAverageLikesComment] = useState([]);
+    // const [engagementRate, setEngagementRate] = useState([]);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -30,6 +32,7 @@ const InfluencersList = () => {
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+    // let encodedNumber = 0;
 
     const handleChangeRowsPerPage = (event) => {
         console.log(event.target.value)
@@ -44,7 +47,6 @@ const InfluencersList = () => {
                 data.json()
                     .then((res) => {
                         setInfluencersData(res)
-                        console.log(res)
                     })
             })
             .catch((err) => {
@@ -67,21 +69,39 @@ const InfluencersList = () => {
         navigate(`/profile/${data.username}`)
     }
 
-    const calculateAverageLikeComment = () => {
-        let avg_likes_comment = 0;
-        let result_array = [];
-        let noOfPosts = [];
-        influencersData.forEach((data) => {
-            console.log(data)
-            avg_likes_comment = 0;
-            noOfPosts = data.edge_owner_to_timeline_media.edges;
-            noOfPosts.forEach((item, index) => {
-                avg_likes_comment += item.node.edge_media_to_comment.count;
-            });
-            result_array.push({ avg_likes_comment, username: data.username })
-        });
-        // console.log(result_array)
-    }
+    // const calculateAverageLikeComment = () => {
+
+    //     let avg_likes_comment = 0;
+    //     let engagementRate = 0;
+    //     let result_array = [];
+    //     let er_array = [];
+    //     let noOfPosts = [];
+    //     influencersData.forEach((data) => {
+    //         avg_likes_comment = 0;
+    //         noOfPosts = data.edge_owner_to_timeline_media.edges;
+    //         noOfPosts.forEach((item) => {
+    //             avg_likes_comment += Math.trunc(item.node.edge_liked_by.count + item.node.edge_media_to_comment.count / 12);
+    //             engagementRate = NFormatter(Math.trunc(data.edge_followed_by.count / avg_likes_comment))
+    //             // avg_likes_comment = NFormatter(avg_likes_comment);
+    //             // noOfPosts = [
+    //             //     ...noOfPosts,
+    //             //     { avg_likes_comment, username: data.username }
+    //             // ]
+    //             setInfluencersData(...influencersData, [
+    //                 {
+    //                     custom_field: { avg_likes_comment, username: data.username }
+    //                 }
+    //             ]);
+    //         });
+    //         result_array.push({ avg_likes_comment, username: data.username })
+    //         er_array.push({ engagementRate, username: data.username })
+    //         setAverageLikesComment(result_array)
+    //         setEngagementRate(er_array)
+    //     });
+    //     // console.log(result_array)
+    //     // console.log(er_array)
+    //     console.log(influencersData)
+    // }
 
     // const handleRequestSort = (event, property) => {
     //     const isAsc = orderBy === property && order === 'asc';
@@ -97,9 +117,34 @@ const InfluencersList = () => {
     //     };
     // }
 
+    const calculateAverageLikeComment = () => {
+        let avg_likes_comment = 0;
+        let engagementRate = 0;
+        let noOfPosts = [];
+        influencersData.forEach((data) => {
+            avg_likes_comment = 0;
+            noOfPosts = data.edge_owner_to_timeline_media.edges;
+            noOfPosts.forEach((item) => {
+                avg_likes_comment += Math.trunc(item.node.edge_liked_by.count + item.node.edge_media_to_comment.count / 12);
+                engagementRate = NFormatter(Math.trunc(data.edge_followed_by.count / avg_likes_comment))
+            });
+            noOfPosts.push({ avg: avg_likes_comment, er: engagementRate })
+        });
+    }
+
     useEffect(() => {
         fetchProfiles();
     }, []);
+
+    useEffect(() => {
+        calculateAverageLikeComment();
+    }, [influencersData]);
+
+    // useEffect(() => {
+    //     influencersData.map((data) => {
+    //         console.log(data.edge_owner_to_timeline_media['edges'][data.edge_owner_to_timeline_media['edges'].length - 1].avg)
+    //     }, [])
+    // })
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -164,15 +209,18 @@ const InfluencersList = () => {
                                             influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         : influencersData
                                     ).map((data) => (
-                                        <StyledTableRow key={data.username}>
+                                        // console.log(data.edge_owner_to_timeline_media['edges'][data.edge_owner_to_timeline_media['edges'].length - 1].avg)
+                                        < StyledTableRow key={data.username} >
                                             <StyledTableCell component="th" scope="row" onClick={() => redirectProfile(data)}>
                                                 <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' />
                                                 {data.username}
                                                 <div>({data.full_name})</div>
                                             </StyledTableCell>
-                                            <StyledTableCell align="center" sortDirection={orderBy === data.id ? order : false}>{data.edge_followed_by.count}</StyledTableCell>
-                                            <StyledTableCell align="center">Progress</StyledTableCell>
-                                            <StyledTableCell align="center">Progress</StyledTableCell>
+                                            <StyledTableCell align="center" sortDirection={orderBy === data.id ? order : false}>{NFormatter(data.edge_followed_by.count)}</StyledTableCell>
+                                            <StyledTableCell align="center">
+                                                {data.edge_owner_to_timeline_media['edges'][data.edge_owner_to_timeline_media['edges'].length - 1].er}
+                                            </StyledTableCell>
+                                            <StyledTableCell align="center">{data.edge_owner_to_timeline_media['edges'][data.edge_owner_to_timeline_media['edges'].length - 1].avg}</StyledTableCell>
                                             <StyledTableCell align="center">Progress</StyledTableCell>
                                             <StyledTableCell align="center">{data.category_enum}</StyledTableCell>
                                         </StyledTableRow>
@@ -251,7 +299,7 @@ const InfluencersList = () => {
             }
             {/* </div> */}
             {/* </div>  */}
-        </div>
+        </div >
     )
 }
 

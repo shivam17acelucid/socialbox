@@ -72,19 +72,15 @@ const InfluencersList = () => {
         let result_array = [];
         let noOfPosts = [];
         influencersData.forEach((data) => {
+            console.log(data)
             avg_likes_comment = 0;
             noOfPosts = data.edge_owner_to_timeline_media.edges;
-
-            let gggg = []; // TODO: will remove later
             noOfPosts.forEach((item, index) => {
                 avg_likes_comment += item.node.edge_media_to_comment.count;
-                gggg.push(item.node.edge_media_to_comment.count + '' + data.username);
             });
-
-            console.log('============>', gggg); // TODO: will remove later
             result_array.push({ avg_likes_comment, username: data.username })
         });
-        console.log(result_array)
+        // console.log(result_array)
     }
 
     // const handleRequestSort = (event, property) => {

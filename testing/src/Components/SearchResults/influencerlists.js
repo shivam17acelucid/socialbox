@@ -13,6 +13,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
+import { Modal, ModalBody, ModalHeader, FormGroup, Input } from "reactstrap";
 
 const InfluencersList = () => {
 
@@ -21,7 +22,11 @@ const InfluencersList = () => {
     const [rowsPerPage, setRowsPerPage] = useState(6);
     const [showVerifiedInfluencers, setShowVerifiedInfluencers] = useState(false);
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
-    const [testing, setTesting] = useState([]);
+    const [isOpen, setOpen] = useState(false);
+    const [category, setCategory] = useState('');
+    const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
+    const [categoryFilterApplied, setCategoryFilterApplied] = useState(false)
+
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -31,7 +36,6 @@ const InfluencersList = () => {
     };
 
     const handleChangeRowsPerPage = (event) => {
-        console.log(event.target.value)
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -66,31 +70,24 @@ const InfluencersList = () => {
         navigate(`/profile/${data.username}`)
     }
 
-    const calculateAverageLikeComment = () => {
-        let avg_likes_comment = 0;
-        let engagementRate = 0;
-        let noOfPosts = [];
-        let array = [];
-        influencersData.forEach((data) => {
-            avg_likes_comment = 0;
-            noOfPosts = data.edge_owner_to_timeline_media.edges;
-            noOfPosts.forEach((item) => {
-                avg_likes_comment += Math.trunc(item.node.edge_liked_by.count + item.node.edge_media_to_comment.count / 12);
-                engagementRate = NFormatter(Math.trunc(data.edge_followed_by.count / avg_likes_comment))
-            });
-            noOfPosts.unshift({ avg: avg_likes_comment, er: engagementRate })
-            array.push(data)
-            setTesting(array)
-        });
+    const filterCategory = () => {
+        setCategoryFilterApplied(true)
+        const url = `http://localhost:4000/getinfluencerdata?category=${category}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        setCategoryBasedInfluencers(res)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     useEffect(() => {
         fetchProfiles();
     }, []);
-
-    useEffect(() => {
-        calculateAverageLikeComment();
-    }, [influencersData]);
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -112,15 +109,51 @@ const InfluencersList = () => {
         },
     }));
 
+    const openFollowersModal = () => {
+    }
+
+    const openCategoryModal = () => {
+        const data = isOpen ? false : true;
+        setOpen(data)
+    }
+
+    const openLocationModal = () => {
+
+    }
 
     return (
         <div className="search_container">
             <div className="subcontainer">
                 <div className="filter_bar">
-                    <Button variant="outlined" onClick={calculateAverageLikeComment}>Followers</Button>
-                    <Button variant="outlined">Category</Button>
-                    <Button variant="outlined">Name</Button>
-                    <Button variant="outlined">location</Button>
+                    <Button variant="outlined" onClick={openFollowersModal}>Followers</Button>
+                    <Button variant="outlined" onClick={openCategoryModal}>Category</Button>
+                    <Modal
+                        isOpen={isOpen}
+                    >
+                        <ModalHeader>
+                            Select Followers Range
+                        </ModalHeader>
+                        <ModalBody>
+                            <form onSubmit={(e) => e.preventDefault()}>
+                                <FormGroup className="mb-4">
+                                    <Input
+                                        placeholder="Category"
+                                        className="w-50"
+                                        type="text"
+                                        value={category}
+                                        onChange={(e) => { setCategory(e.target.value) }}
+                                    />
+                                    <Button
+                                        color="primary"
+                                        onClick={filterCategory}
+                                    >
+                                        Filter
+                                    </Button>
+                                </FormGroup>
+                            </form>
+                        </ModalBody>
+                    </Modal>
+                    <Button variant="outlined" onClick={openLocationModal}>location</Button>
                     <Button variant="outlined" onClick={showVerified}>Registered influencers</Button>
                 </div>
                 <div className="table_content">
@@ -131,7 +164,9 @@ const InfluencersList = () => {
                                     <StyledTableCell>Instagram Profiles</StyledTableCell>
                                     <StyledTableCell align="center">Followers</StyledTableCell>
                                     <StyledTableCell align="center">Engagement Rate</StyledTableCell>
-                                    <StyledTableCell align="center">Average Like & Comment</StyledTableCell>
+                                    <StyledTableCell align="center">Average Like</StyledTableCell>
+                                    <StyledTableCell align="center">Average Comment</StyledTableCell>
+                                    <StyledTableCell align="center">Average Reach</StyledTableCell>
                                     <StyledTableCell align="center">City</StyledTableCell>
                                     <StyledTableCell align="center">Category</StyledTableCell>
                                 </TableRow>
@@ -140,28 +175,41 @@ const InfluencersList = () => {
                                 {
                                     (rowsPerPage > 0
                                         ?
-                                        showVerifiedInfluencers === true
-                                            ?
-                                            verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        categoryFilterApplied === true ?
+                                            categoryBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             :
-                                            testing.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                        : testing
-                                    ).map((data) => (
-                                        < StyledTableRow key={data.username} >
-                                            <StyledTableCell component="th" scope="row" onClick={() => redirectProfile(data)}>
-                                                <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' />
-                                                {data.username}
-                                                <div>({data.full_name})</div>
-                                            </StyledTableCell>
-                                            <StyledTableCell align="center">{NFormatter(data.edge_followed_by.count)}</StyledTableCell>
-                                            <StyledTableCell align="center">
-                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="center">{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg)}</StyledTableCell>
-                                            <StyledTableCell align="center">Progress</StyledTableCell>
-                                            <StyledTableCell align="center">{data.category_enum}</StyledTableCell>
-                                        </StyledTableRow>
-                                    ))
+                                            showVerifiedInfluencers === true ?
+                                                verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                :
+                                                influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        : influencersData
+                                    )
+                                        .map((data) => (
+                                            < StyledTableRow key={data.username} >
+                                                <StyledTableCell component="th" scope="row" onClick={() => redirectProfile(data)}>
+                                                    {/* <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' /> */}
+                                                    {data.username}
+                                                    <div>({data.full_name})</div>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">
+                                                    {NFormatter(data.edge_followed_by.count)}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">
+                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">
+                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">
+                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">
+                                                    {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="center">{data.city_name}</StyledTableCell>
+                                                <StyledTableCell align="center">{data.category_enum}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))
                                 }
                             </TableBody>
                             <TableFooter>
@@ -169,7 +217,7 @@ const InfluencersList = () => {
                                     <TablePagination
                                         rowsPerPageOptions={[6, 12, { label: 'All', value: -1 }]}
                                         colSpan={3}
-                                        count={showVerifiedInfluencers === true ? verifiedInfluencers.length : testing.length}
+                                        count={showVerifiedInfluencers === true ? verifiedInfluencers.length : categoryFilterApplied === true ? categoryBasedInfluencers.length : influencersData.length}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         SelectProps={{

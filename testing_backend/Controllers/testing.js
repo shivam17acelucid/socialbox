@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const User = require('../models/user');
 const Username = require('../Models/username');
 const ProfileData = require('../Models/profile_data');
+const InfluencersData = require('../Models/influencer_details');
 const Testing = require('../Models/testing')
 const axios = require('axios');
 const { downloadcsv } = require('./downloadcsv');
@@ -237,27 +238,18 @@ exports.username = (req, res, next) => {
 // }
 
 exports.influencer_list = (req, res, next) => {
-    let { username, followers, category, name } = req.query;
+    let { followers, category } = req.query;
     let filter = {};
-    if (username != null) {
-        filter.username = new RegExp(username, 'i');
-    }
-    if (name != null) {
-        filter.full_name = new RegExp(name, 'i');
-    }
     if (followers != null) {
         filter = { edge_followed_by: { count: parseInt(followers) } }
     }
     if (category != null) {
         filter.category_enum = new RegExp(category, 'i');
     }
-    ProfileData.find(filter)
+    InfluencersData.find(filter)
         .then((data) => {
             console.log(filter)
-            res.json({
-                success: 'true',
-                data
-            })
+            res.json(data)
         })
 }
 
@@ -269,14 +261,14 @@ exports.influencer_search = (req, res, next) => {
     }
     let flag = [];
 
-    ProfileData.find(filter)
+    InfluencersData.find(filter)
         .then((data) => {
             flag.push(data)
             if (flag[0].length > 0) {
                 res.json(data)
             }
             else {
-                ProfileData.find()
+                InfluencersData.find()
                     .then((data) => {
                         res.json(data)
                     })
@@ -308,3 +300,63 @@ exports.influencer_search = (req, res, next) => {
 //                 })
 //         })
 // }
+
+exports.getOwnerIdResponse = (req, res) => {
+    Username.find({ follower_count: { $gte: 5000 } })
+        .then((data) => {
+            res.status(200).json(data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+exports.getInfluencersDetails = (req, res) => {
+    ProfileData.find()
+        .then((result) => {
+            let avg_likes = 0;
+            let avg_comment = 0;
+            let engagementRate = 0;
+            let noOfPosts = [];
+            let array = [];
+            let city_name = '';
+            result.forEach((data) => {
+                let edges = data.edge_felix_video_timeline.edges;
+                let averageReelView = 0;
+                edges.forEach((res) => {
+                    averageReelView += Math.trunc(res.node.video_view_count / 12);
+                })
+                avg_likes = 0;
+                avg_comment = 0;
+                noOfPosts = data.edge_owner_to_timeline_media.edges;
+                noOfPosts.forEach((item) => {
+                    avg_likes += Math.trunc(item.node.edge_liked_by.count / 12);
+                    avg_comment += Math.trunc(item.node.edge_media_to_comment.count / 12);
+                    engagementRate = Math.trunc((data.edge_followed_by.count / (avg_likes + avg_comment)) / 100)
+                });
+                noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
+                edges.unshift({ averageReelView: averageReelView })
+                array.push(data)
+            })
+            array.forEach((item) => {
+                Username.find({ follower_count: { $gte: 5000 } })
+                    .then((result) => {
+                        result.forEach((data) => {
+                            if (data.username.includes(item.username)) {
+                                city_name = data.city_name;
+                            }
+                        })
+                        item.city_name = city_name;
+                        InfluencersData.insertMany([item])
+                            .then((result) => {
+                                res.json({
+                                    result
+                                })
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+                    })
+            })
+        })
+}

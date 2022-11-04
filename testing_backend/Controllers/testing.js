@@ -238,13 +238,13 @@ exports.username = (req, res, next) => {
 // }
 
 exports.influencer_list = (req, res, next) => {
-    let { followers, category } = req.query;
+    let { category, location } = req.query;
     let filter = {};
-    if (followers != null) {
-        filter = { edge_followed_by: { count: parseInt(followers) } }
-    }
     if (category != null) {
         filter.category_enum = new RegExp(category, 'i');
+    }
+    if (location != null) {
+        filter.city_name = new RegExp(location, 'i');
     }
     InfluencersData.find(filter)
         .then((data) => {
@@ -301,13 +301,23 @@ exports.influencer_search = (req, res, next) => {
 //         })
 // }
 
-exports.getOwnerIdResponse = (req, res) => {
-    Username.find({ follower_count: { $gte: 5000 } })
+exports.filteredInfluencersData = (req, res) => {
+    let { minFollowers, maxFollowers } = req.query;
+    let filter = [];
+    let array = [];
+    if (minFollowers != 0 && maxFollowers != 0) {
+    }
+    InfluencersData.find()
         .then((data) => {
-            res.status(200).json(data)
-        })
-        .catch((err) => {
-            console.log(err)
+            array.push(data)
+            array.forEach((data) => {
+                data.forEach((response) => {
+                    if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
+                        filter.push(response)
+                    }
+                })
+                res.json(filter)
+            })
         })
 }
 

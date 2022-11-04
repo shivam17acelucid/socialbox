@@ -26,11 +26,16 @@ const InfluencersList = () => {
     const [category, setCategory] = useState('');
     const [location, setLocation] = useState('');
     const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
-    const [categoryFilterApplied, setCategoryFilterApplied] = useState(false)
     const [locationBasedInfluencers, setLocationBasedInfluencers] = useState([]);
+    const [followersRangeBasedInfluencers, setFollowersRangeBasedInfluencers] = useState([]);
+    const [categoryFilterApplied, setCategoryFilterApplied] = useState(false)
     const [locationFilterApplied, setLocationFilterApplied] = useState(false)
+    const [followersFilterApplied, setFollowersFilterApplied] = useState(false)
     const [categoryModalClicked, setCategoryModalClicked] = useState(false);
-    const [locationModalClicked, setLocationModalClicked] = useState(false)
+    const [locationModalClicked, setLocationModalClicked] = useState(false);
+    const [followersModalClicked, setFollowersModalClicked] = useState(false);
+    const [minRange, setMinrange] = useState(0);
+    const [maxRange, setMaxRange] = useState(0);
 
 
     let { inputField } = useParams();
@@ -90,6 +95,21 @@ const InfluencersList = () => {
             })
     }
 
+    const filterByFollowersRange = () => {
+        setFollowersFilterApplied(true);
+        const url = `http://localhost:4000/getfilteredData?minFollowers=${minRange}&maxFollowers=${maxRange}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        setFollowersRangeBasedInfluencers(res)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     const filterLocation = () => {
         setLocationFilterApplied(true)
         const url = `http://localhost:4000/getinfluencerdata?location=${location}`;
@@ -139,6 +159,12 @@ const InfluencersList = () => {
         const data = isOpen ? false : true;
         setOpen(data)
         setLocationModalClicked(true);
+    }
+
+    const openFollowersModal = () => {
+        const data = isOpen ? false : true;
+        setOpen(data)
+        setFollowersModalClicked(true);
     }
 
     return (
@@ -201,6 +227,39 @@ const InfluencersList = () => {
                             </form>
                         </ModalBody>
                     </Modal>
+                    <Modal
+                        isOpen={isOpen}
+                    >
+                        <ModalHeader>
+                            Select Followers Range
+                        </ModalHeader>
+                        <ModalBody>
+                            <form onSubmit={(e) => e.preventDefault()}>
+                                <FormGroup className="mb-4">
+                                    <Input
+                                        placeholder="MinRange"
+                                        className="w-50"
+                                        type="text"
+                                        value={minRange}
+                                        onChange={(e) => { setMinrange(e.target.value) }}
+                                    />
+                                    <Input
+                                        placeholder="MaxRange"
+                                        className="w-50"
+                                        type="text"
+                                        value={maxRange}
+                                        onChange={(e) => { setMaxRange(e.target.value) }}
+                                    />
+                                    <Button
+                                        color="primary"
+                                        onClick={filterByFollowersRange}
+                                    >
+                                        Filter
+                                    </Button>
+                                </FormGroup>
+                            </form>
+                        </ModalBody>
+                    </Modal>
                 </div>
                 <div className="table_content">
                     <TableContainer component={Paper}>
@@ -221,16 +280,19 @@ const InfluencersList = () => {
                                 {
                                     (rowsPerPage > 0
                                         ?
-                                        locationFilterApplied === true ?
-                                            locationBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        followersFilterApplied === true ?
+                                            followersRangeBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                             :
-                                            categoryFilterApplied === true ?
-                                                categoryBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            locationFilterApplied === true ?
+                                                locationBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                 :
-                                                showVerifiedInfluencers === true ?
-                                                    verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                categoryFilterApplied === true ?
+                                                    categoryBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     :
-                                                    influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                    showVerifiedInfluencers === true ?
+                                                        verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                        :
+                                                        influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         : influencersData
                                     )
                                         .map((data) => (
@@ -266,7 +328,7 @@ const InfluencersList = () => {
                                     <TablePagination
                                         rowsPerPageOptions={[6, 12, { label: 'All', value: -1 }]}
                                         colSpan={3}
-                                        count={showVerifiedInfluencers === true ? verifiedInfluencers.length : locationFilterApplied === true ? locationBasedInfluencers.length : categoryFilterApplied === true ? categoryBasedInfluencers.length : influencersData.length}
+                                        count={showVerifiedInfluencers === true ? verifiedInfluencers.length : locationFilterApplied === true ? locationBasedInfluencers.length : categoryFilterApplied === true ? categoryBasedInfluencers.length : followersFilterApplied === true ? followersRangeBasedInfluencers.length : influencersData.length}
                                         rowsPerPage={rowsPerPage}
                                         page={page}
                                         SelectProps={{

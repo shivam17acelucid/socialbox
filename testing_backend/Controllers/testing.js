@@ -342,7 +342,8 @@ exports.getInfluencersDetails = (req, res) => {
                 noOfPosts.forEach((item) => {
                     avg_likes += Math.trunc(item.node.edge_liked_by.count / 12);
                     avg_comment += Math.trunc(item.node.edge_media_to_comment.count / 12);
-                    engagementRate = Math.trunc((data.edge_followed_by.count / (avg_likes + avg_comment)) / 100)
+                    engagementRate = (data.edge_followed_by.count / (avg_likes + avg_comment)) / 100;
+                    engagementRate = Math.round(engagementRate * 100) / 100
                 });
                 noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
                 edges.unshift({ averageReelView: averageReelView })

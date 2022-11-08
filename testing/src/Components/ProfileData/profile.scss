@@ -1,0 +1,72 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile_container {
+    height: 100vh;
+    margin: 0px;
+    background-color: #ffe3e3;
+
+    .profile_header {
+        padding: 5rem 8rem;
+        display: flex;
+
+        .profile_pic {
+            height: 5rem;
+            width: 5rem;
+        }
+
+        .profile_basic_info {
+            margin-left: 5rem;
+
+            .profile_username {
+                padding-bottom: 2rem;
+            }
+
+            .profile_name {
+                padding-bottom: 2rem;
+            }
+        }
+    }
+
+    .profile_info_bar {
+        .profile_info_bar_collection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 5rem;
+            padding-right: 5rem;
+
+            .addList_div {
+                width: 200px;
+                max-height: 350px;
+                position: absolute;
+                z-index: 4;
+                padding-bottom: 8px;
+                top: initial;
+                padding-top: 0px;
+
+                .addList_option {
+                    max-height: 342px;
+                    display: flex;
+                    flex-direction: column;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    padding: 4px;
+                    border-radius: 8px;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: var(--box-shadow-primary);
+                }
+            }
+        }
+    }
+
+    .profile_posts {
+        margin-top: 5rem;
+        text-align: center;
+    }
+
+}

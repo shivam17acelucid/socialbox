@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { Modal, ModalBody, ModalHeader, FormGroup, Input } from "reactstrap";
+import moment from "moment";
 
 const InfluencersList = () => {
 
@@ -41,7 +42,8 @@ const InfluencersList = () => {
     const [brandName, setBrandName] = useState('');
     const [listData, setListData] = useState([]);
     const [isMouseHovering, setIsMouseHovering] = useState(false)
-
+    const [addToListTableClicked, setAddToListTableClicked] = useState(false);
+    const [listInfluencerDetails, setListInfluencerDetails] = useState([]);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -130,9 +132,28 @@ const InfluencersList = () => {
             })
     }
 
+    const getListData = () => {
+        const url = `http://localhost:4000/getListData`;
+        fetch(url, {
+            headers: {
+                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYyMTA2YjA0MzAwMjI1NTRmODliYWEiLCJ1c2VyIjp7Il9pZCI6IjYzNjIxMDZiMDQzMDAyMjU1NGY4OWJhYSIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFpOLjlVQnUuS2J2bUlNRC56d056c2VlVDd1UDhmNlE5MFBjMEk1T2RhajBqcG9jNlpyNzdXIiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDJUMDY6Mzc6NTcuMjc4WiIsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1dRaU9pSTJNell5TVRBMllqQTBNekF3TWpJMU5UUm1PRGxpWVdFaUxDSjFjMlZ5Y3lJNmV5SmxiV0ZwYkNJNkluTm9hWFpoYlVCbmJXRnBiQzVqYjIwaUxDSndZWE56ZDI5eVpDSTZJakV5TXpRMU5qYzRJaXdpY205c1pTSTZJblZ6WlhJaUxDSnpkR0YwZFhNaU9uUnlkV1VzSW1OeVpXRjBaV1JCZENJNklqSXdNakl0TVRFdE1ESlVNRFk2TXpjNk5UY3VNamM0V2lJc0lsOXBaQ0k2SWpZek5qSXhNRFppTURRek1EQXlNalUxTkdZNE9XSmhZU0o5TENKcFlYUWlPakUyTmpjek56RXhNVFVzSW1WNGNDSTZNVFkyTnpRMU56VXhOWDAueXhVTTRVaF9uQmdKalRHSlV2VWo3STBLYU4xTi1GNVJieEdDVG9aOUxVTSIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMDJUMDY6Mzc6NTcuMjc4WiIsIl9fdiI6MH0sImlhdCI6MTY2Nzc5OTc3MCwiZXhwIjoxNjY3OTcyNTcwfQ.xLzyqHdePA-dp3ildXtamCqu8DTyjhNZRsWqDX6Ds7k'
+            }
+        })
+            .then((data) => {
+                data.json()
+                    .then((result) => {
+                        setListData(result)
+                    })
+            })
+    }
+
     useEffect(() => {
         fetchProfiles();
+        getListData();
     }, []);
+
+
+
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -177,23 +198,57 @@ const InfluencersList = () => {
         setNewPlanClicked(data);
     }
 
-    const handleMouseHover = (data) => {
+    const handleMouseHover = (index) => {
+        console.log(index)
         setIsMouseHovering(true)
     }
 
     const handleCreateList = (listName, brandName) => {
-        const updatedListArray = [...listData, { listName, brandName }]
-        setListData(updatedListArray)
+        const url = `http://localhost:4000/createList`
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ 'listName': listName, 'brandName': brandName }),
+            headers: {
+                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYyMTA2YjA0MzAwMjI1NTRmODliYWEiLCJ1c2VyIjp7Il9pZCI6IjYzNjIxMDZiMDQzMDAyMjU1NGY4OWJhYSIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFpOLjlVQnUuS2J2bUlNRC56d056c2VlVDd1UDhmNlE5MFBjMEk1T2RhajBqcG9jNlpyNzdXIiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDJUMDY6Mzc6NTcuMjc4WiIsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1dRaU9pSTJNell5TVRBMllqQTBNekF3TWpJMU5UUm1PRGxpWVdFaUxDSjFjMlZ5Y3lJNmV5SmxiV0ZwYkNJNkluTm9hWFpoYlVCbmJXRnBiQzVqYjIwaUxDSndZWE56ZDI5eVpDSTZJakV5TXpRMU5qYzRJaXdpY205c1pTSTZJblZ6WlhJaUxDSnpkR0YwZFhNaU9uUnlkV1VzSW1OeVpXRjBaV1JCZENJNklqSXdNakl0TVRFdE1ESlVNRFk2TXpjNk5UY3VNamM0V2lJc0lsOXBaQ0k2SWpZek5qSXhNRFppTURRek1EQXlNalUxTkdZNE9XSmhZU0o5TENKcFlYUWlPakUyTmpjek56RXhNVFVzSW1WNGNDSTZNVFkyTnpRMU56VXhOWDAueXhVTTRVaF9uQmdKalRHSlV2VWo3STBLYU4xTi1GNVJieEdDVG9aOUxVTSIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMDdUMDk6Mzk6MjUuODM0WiIsIl9fdiI6MiwibGlzdCI6W3sibGlzdE5hbWUiOiJzcG9ydCIsImJyYW5kTmFtZSI6ImFkaWRhcyIsImNyZWF0ZWRBVCI6IjIwMjItMTEtMDdUMDg6MDg6MTguOTM1WiIsIl9pZCI6IjYzNjhiY2ZhZjYzYjZkOTYwYWEyN2JmMCJ9LHsibGlzdE5hbWUiOiJhY3RvciIsImJyYW5kTmFtZSI6ImJlaW5naHVtYW4iLCJjcmVhdGVkQVQiOiIyMDIyLTExLTA3VDA4OjA4OjE4LjkzNVoiLCJfaWQiOiI2MzY4YmQyM2Y2M2I2ZDk2MGFhMjdiZjMifSx7Imxpc3ROYW1lIjoidGVzdGluZyIsImJyYW5kTmFtZSI6Im1hdGgiLCJjcmVhdGVkQVQiOiIyMDIyLTExLTA3VDA4OjI2OjQwLjMxNFoiLCJfaWQiOiI2MzY4YzE5ZmFkZjc1NzA3Y2I5NGI1ODkifSx7Imxpc3ROYW1lIjoiZHNmc2RxIiwiYnJhbmROYW1lIjoic2RmcyIsImNyZWF0ZWRBVCI6IjIwMjItMTEtMDdUMDk6MzQ6NTEuNTI4WiIsIl9pZCI6IjYzNjhkMjRkNTVhNmEyNjU0MTY2MThjZCJ9XX0sImlhdCI6MTY2NzgxNDI0OCwiZXhwIjoxNjY3OTg3MDQ4fQ.s4Jsoyiad_Hj2uOFr6PyfHSdBAsp99MstwqIth4LBh4'
+            }
+        })
+        .then((res) => { res.json() })
+        .then((data) => {
+            console.log(data)
+            setListInfluencerDetails(data)
+        })
         setNewPlanClicked(false);
+    }
+
+    const handleAddToListTable = (e) => {
+        console.log(e)
+        const toggle = addToListTableClicked ? false : true;
+        setAddToListTableClicked(toggle);
+    }
+
+    const handleListClick = (item) => {
+    }
+
+    const addInfluencerToList = (data, item) => {
+        const url = `http://localhost:4000/addInfluencersToList?list=${item.listName}&username=${data.username}`
+        fetch((url), {
+            method: 'POST',
+            headers: {
+                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYyMTA2YjA0MzAwMjI1NTRmODliYWEiLCJ1c2VyIjp7Il9pZCI6IjYzNjIxMDZiMDQzMDAyMjU1NGY4OWJhYSIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFpOLjlVQnUuS2J2bUlNRC56d056c2VlVDd1UDhmNlE5MFBjMEk1T2RhajBqcG9jNlpyNzdXIiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDJUMDY6Mzc6NTcuMjc4WiIsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1dRaU9pSTJNell5TVRBMllqQTBNekF3TWpJMU5UUm1PRGxpWVdFaUxDSjFjMlZ5Y3lJNmV5SmxiV0ZwYkNJNkluTm9hWFpoYlVCbmJXRnBiQzVqYjIwaUxDSndZWE56ZDI5eVpDSTZJakV5TXpRMU5qYzRJaXdpY205c1pTSTZJblZ6WlhJaUxDSnpkR0YwZFhNaU9uUnlkV1VzSW1OeVpXRjBaV1JCZENJNklqSXdNakl0TVRFdE1ESlVNRFk2TXpjNk5UY3VNamM0V2lJc0lsOXBaQ0k2SWpZek5qSXhNRFppTURRek1EQXlNalUxTkdZNE9XSmhZU0o5TENKcFlYUWlPakUyTmpjek56RXhNVFVzSW1WNGNDSTZNVFkyTnpRMU56VXhOWDAueXhVTTRVaF9uQmdKalRHSlV2VWo3STBLYU4xTi1GNVJieEdDVG9aOUxVTSIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMDJUMDY6Mzc6NTcuMjc4WiIsIl9fdiI6MH0sImlhdCI6MTY2Nzc5OTc3MCwiZXhwIjoxNjY3OTcyNTcwfQ.xLzyqHdePA-dp3ildXtamCqu8DTyjhNZRsWqDX6Ds7k'
+            }
+        })
+            .then((data) => { data.json() })
+            .then((res) => {
+                console.log(res)
+                // setListInfluencerDetails(res)
+            })
     }
 
     const customModalStyles = {
         overlay: { zIndex: 5 }
     }
 
-    useEffect(() => {
-        console.log(listData)
-    }, [listData])
+    
 
     return (
         <div className="search_container">
@@ -296,6 +351,7 @@ const InfluencersList = () => {
                                             <StyledTableCell align="center">Average Reach</StyledTableCell>
                                             <StyledTableCell align="center">City</StyledTableCell>
                                             <StyledTableCell align="center">Category</StyledTableCell>
+                                            <StyledTableCell align="center"></StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -317,10 +373,10 @@ const InfluencersList = () => {
                                                                 influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                 : influencersData
                                             )
-                                                .map((data) => (
+                                                .map((data, index) => (
                                                     <>
-                                                        < StyledTableRow key={data.username} onMouseEnter={() => handleMouseHover(data)} onMouseLeave={() => { setIsMouseHovering(false) }} hover={true}>
-                                                            <StyledTableCell component="th" scope="row" onClick={() => redirectProfile(data)} >
+                                                        < StyledTableRow key={index} onMouseEnter={() => handleMouseHover(index)} onMouseLeave={() => { setIsMouseHovering(false) }} hover={true}>
+                                                            <StyledTableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
                                                                 {/* <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' /> */}
                                                                 {data.username}
                                                                 <div>({data.full_name})</div>
@@ -342,16 +398,29 @@ const InfluencersList = () => {
                                                             </StyledTableCell>
                                                             <StyledTableCell align="center">{data.city_name}</StyledTableCell>
                                                             <StyledTableCell align="center">{data.category_enum}</StyledTableCell>
+                                                            <StyledTableCell key={index}>{isMouseHovering ? (
+                                                                <>
+                                                                    <Button id={data.id}>Cost</Button>
+                                                                    <Button id={data.id} onClick={() => { handleAddToListTable(data) }}>Add To List</Button>
+                                                                    {addToListTableClicked === true ?
+                                                                        <section className="addList_section">
+                                                                            <div className="addList_option">
+                                                                                <div>To New List</div>
+                                                                                <div>Recently Created Lists</div>
+                                                                                {listData.map((item) =>
+                                                                                    <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                        {item.listName}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+                                                                        </section> : null}
+                                                                    <Button onClick={() => redirectProfile(data)} id={data.id} >Profile</Button>
+                                                                </>
+                                                            )
+                                                                : null
+                                                            }</StyledTableCell>
                                                         </StyledTableRow>
-                                                        {isMouseHovering ? (
-                                                            <>
-                                                                <Button>Cost</Button>
-                                                                <Button>Add To List</Button>
-                                                                <Button onClick={() => redirectProfile(data)}>Profile</Button>
-                                                            </>
-                                                        )
-                                                            : null
-                                                        }
+
                                                     </>
                                                 ))
                                         }
@@ -397,13 +466,22 @@ const InfluencersList = () => {
                                         null
                                 }
                             </div>
-                            <div>
-                                {/* {
-                                    listData.map((item) =>
-                                        item.listName
-                                    )
-                                } */}
-                            </div>
+                        </div>
+                        <div className="list_content">
+                            {
+                                listData.map((item) =>
+                                    <div className="list_content_inner" onClick={() => { handleListClick(item) }}>
+                                        <div className="list_head">
+                                            {item.listName}
+                                            {/* {'item.influencersCount'} */}
+                                        </div>
+                                        <div className="list_footer">
+                                            <span>{item.brandName}</span>
+                                            <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

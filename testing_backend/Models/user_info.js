@@ -4,7 +4,6 @@ let userinfoSchema = new Schema(
   {
     name: {
       type: String,
-
       maxlength: 50,
       trim: true,
     },
@@ -12,7 +11,7 @@ let userinfoSchema = new Schema(
       type: String,
       trim: true,
       lowercase: true,
-      index:true, unique:true,sparse:true,
+      index: true, unique: true, sparse: true,
     },
     password: {
       type: String,
@@ -42,9 +41,15 @@ let userinfoSchema = new Schema(
       trim: true,
       // unique:true,
     },
-  date:{
-    type:Date,
-  },
+    list: [{
+      listName: String,
+      brandName: String,
+      influencersData: Array,
+      createdAT: { type: Date, default: Date.now(), index: { expiresIn: 300 } }
+    }],
+    date: {
+      type: Date,
+    },
     image: {
       type: String,
     },

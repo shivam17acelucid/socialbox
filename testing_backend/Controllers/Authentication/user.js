@@ -1,4 +1,4 @@
-const UserInfo = require("../../models/user_info");
+const UserInfo = require("../../Models/user_info");
 const bcrypt = require("bcrypt");
 const emailRegxp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;

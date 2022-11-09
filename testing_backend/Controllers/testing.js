@@ -439,7 +439,6 @@ exports.getListData = (req, res) => {
 }
 
 exports.addInfluencersToList = (req, res) => {
-    var listInfluencersData = [];
     if (req.headers["x-access-token"]) {
         const token = req.headers["x-access-token"];
         const { userId, exp } = jwt.verify(token, process.env.TOKEN);
@@ -458,6 +457,37 @@ exports.addInfluencersToList = (req, res) => {
                                 listInfluencersData = item.influencersData.push(result[0])
                                 res.json(item.influencersData)
                                 data.save();
+                            })
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    } else {
+        return res.status(401).json({
+            error: "You need to be logged in to access this route",
+        });
+    }
+}
+
+exports.showInfluencersInList = (req, res) => {
+    if (req.headers["x-access-token"]) {
+        const token = req.headers["x-access-token"];
+        const { userId, exp } = jwt.verify(token, process.env.TOKEN);
+        // If token has expired
+        if (exp < Date.now().valueOf() / 1000) {
+            return res.status(401).json({
+                error: "JWT token has expired, please login to obtain a new one",
+            });
+        }
+        UserInfo.findById(userId)
+            .then((data) => {
+                data.list.forEach((item) => {
+                    if (item.listName === req.query.list) {
+                        UserInfo.find({ listName: req.query.list })
+                            .then((result) => {
+                                res.status(200).json({ influencers_count: item.influencersData.length, data: item })
                             })
                     }
                 })

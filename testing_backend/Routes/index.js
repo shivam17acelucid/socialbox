@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList } = require('../Controllers/testing');
+const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
@@ -22,6 +22,7 @@ router.get('/getrelatedinfluencers', influencer_search)
 router.post('/createList', createList)
 router.get('/getListData', getListData)
 router.post('/addInfluencersToList', addInfluencersToList)
+router.get('/showInfluencersList', showInfluencersInList);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 module.exports = router;

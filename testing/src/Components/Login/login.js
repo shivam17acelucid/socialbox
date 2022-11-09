@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import './login.scss';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
+import show from '../../../src/Assets/Images/show.png';
 
 
 function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
     const navigate = useNavigate();
 
     const handleLogin = () => {
+        let id = 0;
         const url = 'http://localhost:4000/login';
         fetch((url), {
             method: 'POST',
@@ -27,9 +30,16 @@ function Login() {
                     console.log(errors)
                 }
                 else {
-                    navigate(`/dashboard`);
+                    navigate(`/welcome`);
+                    localStorage.setItem(id, data._id)
+                    console.log(localStorage.getItem(id))
                 }
             })
+    }
+
+    const showPassword = () => {
+        const data = passwordVisible ? false : true;
+        setPasswordVisible(data)
     }
 
 
@@ -53,12 +63,14 @@ function Login() {
                         />
                         <label className="form_label">Password</label>
                         <input
-                            type='password'
+                            type={passwordVisible === true ? 'text' : 'password'}
                             placeholder="Password"
                             className='form_input_address'
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }}
+
                         />
+                        <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} />
                         <span className="form_forgot_text">Forgot Password</span>
                         <Button onClick={handleLogin}><span className="form_login_btn">Login</span></Button>
                     </form>

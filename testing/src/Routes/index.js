@@ -16,7 +16,7 @@ function RouteF() {
                 </div>}
             >
                 <Routes>
-                    <Route path="/" element={<Welcome />} />
+                    <Route path="/welcome" element={<Welcome />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                     <Route path="/profile/:profilename" element={<ProfileData />} />

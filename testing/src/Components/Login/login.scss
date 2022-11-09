@@ -11,5 +11,107 @@ html {
     height: 100%;
     margin: 0px;
     background-color: #FFF;
-    
+
+    .login_header {
+        padding-top: 3rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        height: 5rem;
+    }
+
+    .login_body {
+        display: flex;
+
+        .login_video {
+            width: 50rem;
+        }
+
+        .login_form {
+
+            .login_form_header {
+                padding-top: 13rem;
+                height: 5rem;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 48px;
+                line-height: 135%;
+                color: #000000;
+            }
+
+            .login_form_content {
+                display: flex;
+                flex-direction: column;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+
+                .form_label {
+                    height: 2rem;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #636363;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                }
+
+                .form_input_address {
+                    box-sizing: border-box;
+                    width: 34.5rem;
+                    height: 5rem;
+                    background: #FFFFFF;
+                    border: 1.5px solid #CDCDCD;
+                    border-radius: 15px;
+                    text-align: center;
+                }
+
+                .form_forgot_text {
+                    width: 170px;
+                    height: 30px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #B80000;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1rem 3rem;
+                    width: 35rem;
+                    height: 5rem;
+                    background: #0014C6;
+                    border-radius: 15px;
+                    margin-top: 1rem;
+                }
+
+                .form_login_btn {
+                    width: 68px;
+                    height: 30px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 30px;
+                    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+            }
+
+            .signup_link {
+                text-align: center;
+            }
+        }
+    }
+
 }

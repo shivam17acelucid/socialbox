@@ -154,9 +154,9 @@ const InfluencersList = () => {
         getListData();
     }, []);
 
-    // useEffect(() => {
-    //     getListData();
-    // }, []);
+    useEffect(() => {
+        getListData();
+    }, [newPlanClicked]);
 
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -208,26 +208,22 @@ const InfluencersList = () => {
     }
 
     const handleCreateList = (listName, brandName) => {
-        let data = { brandName, listName };
-        console.log(JSON.stringify(data))
-        const url = 'http://localhost:4000/createList'
-        // fetch((url), {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-        //     }
-        // })
+        const url = `http://localhost:4000/createList/636b76dbb7e2e8b0511d215d`
+        fetch((url), {
+            method: 'POST',
+            body: JSON.stringify({ listName, brandName }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
             .then((res) => { res.json() })
             .then((data) => {
-                console.log(data)
                 setListInfluencerDetails(data)
             })
         setNewPlanClicked(false);
     }
 
     const handleAddToListTable = (e) => {
-        console.log(e)
         const toggle = addToListTableClicked ? false : true;
         setAddToListTableClicked(toggle);
     }
@@ -422,7 +418,7 @@ const InfluencersList = () => {
                                                                     {addToListTableClicked === true ?
                                                                         <section className="addList_section">
                                                                             <div className="addList_option">
-                                                                                <div>To New List</div>
+                                                                                <div onClick={() => setNewPlanClicked(true)}>To New List</div>
                                                                                 <div>Recently Created Lists</div>
                                                                                 {listData.map((item) =>
                                                                                     <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>

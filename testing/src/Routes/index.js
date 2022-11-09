@@ -4,6 +4,7 @@ import "./routes.scss";
 const Welcome = React.lazy(() => import("../Components/Welcome/welcome"));
 const InfluencersList = React.lazy(() => import("../Components/SearchResults/influencerlists"));
 const ProfileData = React.lazy(() => import("../Components/ProfileData/profile"));
+const Login = React.lazy(() => import("../Components/Login/login"));
 
 function RouteF() {
 
@@ -16,6 +17,7 @@ function RouteF() {
             >
                 <Routes>
                     <Route path="/" element={<Welcome />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                     <Route path="/profile/:profilename" element={<ProfileData />} />
                 </Routes>

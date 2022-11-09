@@ -28,7 +28,7 @@ function Welcome() {
                     <div className="input_container">
                         <input
                             type='text'
-                            className="input"
+                            className="input_box"
                             placeholder="Type Names, Usernames, Category"
                             value={inputField}
                             onChange={handleInputChange}

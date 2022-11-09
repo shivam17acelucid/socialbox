@@ -19,7 +19,7 @@ router.get('/getfilteredData', filteredInfluencersData);
 router.get('/getprofiledata', profile)
 router.get('/getinfluencerdata', influencer_list)
 router.get('/getrelatedinfluencers', influencer_search)
-router.post('/createList', createList)
+router.post('/createList/:id', createList)
 router.get('/getListData', getListData)
 router.post('/addInfluencersToList', addInfluencersToList)
 router.get('/showInfluencersList', showInfluencersInList);

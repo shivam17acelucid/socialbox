@@ -386,17 +386,8 @@ exports.createList = (req, res) => {
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
     }
-    if (req.headers["x-access-token"]) {
-        const token = req.headers["x-access-token"];
-        const { userId, exp } = jwt.verify(token, process.env.TOKEN);
-        // If token has expired
-        if (exp < Date.now().valueOf() / 1000) {
-            return res.status(401).json({
-                error: "JWT token has expired, please login to obtain a new one",
-            });
-        }
-        UserInfo.findByIdAndUpdate(userId, { $addToSet: { list: { listName, brandName } } }
-        ).then((data) => {
+    UserInfo.findByIdAndUpdate(req.params.id, { $addToSet: { list: { listName: listName, brandName: brandName } } })
+        .then((data) => {
             if (!data)
                 return res.status(401).json({
                     error: "You need to be logged in to access this route",
@@ -405,11 +396,6 @@ exports.createList = (req, res) => {
                 res.json(data)
             }
         });
-    } else {
-        return res.status(401).json({
-            error: "You need to be logged in to access this route",
-        });
-    }
 }
 
 exports.getListData = (req, res) => {

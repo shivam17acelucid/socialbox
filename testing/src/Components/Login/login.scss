@@ -86,6 +86,7 @@ html {
                     color: #B80000;
                     padding-top: 1rem;
                     padding-bottom: 1rem;
+                    margin-left: 25rem;
                 }
 
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
@@ -117,7 +118,8 @@ html {
             }
 
             .signup_link {
-                text-align: center;
+                display: flex;
+                justify-content: center;
             }
         }
     }

@@ -37,10 +37,11 @@ html {
         height: 2rem;
         width: 20rem;
         background: #FFFFFF;
-        box-shadow: 0px 15px 40px RGB(108 108 108 / 15%);
+        box-shadow: 0px 15px 40px rgba(108, 108, 108, 0.15);
         border-radius: 40px;
         border: none;
         height: 44px;
+        text-align: center;
     }
 
     .input_button {

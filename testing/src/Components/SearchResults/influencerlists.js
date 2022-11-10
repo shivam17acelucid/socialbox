@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NFormatter from "../../Common/NumberFormatter/numFormatter";
 import './influencerlists.scss';
+import Navbar from "../../Common/Sidebar/sidebar";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -267,6 +268,7 @@ const InfluencersList = () => {
         <div className="search_container">
             <div className="subcontainer">
                 <div className="sidebar">
+                    <Navbar />
                 </div>
                 <div className="search_content_list_panel">
                     <div className="middle_pane">
@@ -274,7 +276,7 @@ const InfluencersList = () => {
                             <Button variant="outlined" onClick={openFollowersModal}>Followers</Button>
                             <Button variant="outlined" onClick={openCategoryModal}>Category</Button>
                             <Button variant="outlined" onClick={openLocationModal}>location</Button>
-                            <Button variant="outlined" onClick={showVerified}>Registered influencers</Button>
+                            <Button variant="outlined" onClick={showVerified}>{showVerifiedInfluencers === true ? 'Back' : 'Registered influencers'}</Button>
                             <Modal
                                 isOpen={isOpen}
                                 backdropClassName="h-100 w-100"
@@ -514,6 +516,9 @@ const InfluencersList = () => {
                                                 <div className="list_footer">
                                                     <span>{item.brandName}</span>
                                                     <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
+                                                </div>
+                                                <div className="list_footer_btn">
+                                                    <Button><span className="btn_text">View List</span></Button>
                                                 </div>
                                             </div>
                                         )

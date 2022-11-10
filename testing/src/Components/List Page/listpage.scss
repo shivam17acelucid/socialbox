@@ -1,0 +1,269 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.list_container {
+    display: flex;
+    height: 100%;
+    margin: 0px;
+    background-color: #FFF;
+
+    .lists_content {
+        display: flex;
+        padding-left: 3rem;
+
+        .middle_pane_lists {
+            width: calc(100% - 18rem);
+            padding-top: 2rem;
+            margin-right: 1rem;
+
+            .list_headers {
+                display: flex;
+                align-items: center;
+
+                .input_search {
+                    width: 55rem;
+                    height: 70px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 15px 40px rgba(108, 108, 108, 0.15);
+                    border: none;
+                    border-radius: 40px;
+                    text-align: center;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #A3A3A3;
+                }
+
+                .button_list {
+                    margin-left: 1rem;
+                    box-sizing: border-box;
+                    width: 8rem;
+                    height: 4rem;
+                    background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
+                    border: 2px solid #0014C6;
+                    border-radius: 20px;
+                }
+
+                .list_toggler {
+                    margin-left: 10rem;
+                }
+            }
+
+            .middle_pane_content {
+                padding-top: 3rem;
+                padding-left: 2rem;
+
+                .categorised_inf {
+                    .categorised_heading {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 36px;
+                        height: 36px;
+                        color: #000000;
+                    }
+
+                    .categorised_btn {
+                        margin-top: 3rem;
+
+                        .button_list {
+                            box-sizing: border-box;
+                            width: 10rem;
+                            height: 3rem;
+                            background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
+                            border: 2px solid #0014C6;
+                            border-radius: 20px;
+                            margin-bottom: 1rem;
+                            margin-right: 1rem;
+                        }
+
+                        span {
+                            width: 4rem;
+                            height: 30px;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 30px;
+                            color: #0014C6;
+                        }
+                    }
+                }
+
+                .influencers_basket {
+                    box-sizing: border-box;
+                    width: 16rem;
+                    height: 16rem;
+                    border: 2px solid #0014C6;
+                    border-radius: 20px;
+
+                    .influencers_image {
+                        box-sizing: border-box;
+                        width: 41px;
+                        height: 41px;
+                        margin-left: 1rem;
+                        border: 2px solid #FFFFFF;
+                        border-radius: 400px;
+                    }
+
+                    .influencers_category_header {
+                        width: 15rem;
+                        height: 4rem;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 135%;
+                        color: #000000;
+                        text-align: center;
+                    }
+
+                    .basket_p {
+                        width: 15rem;
+                        height: 4rem;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 139%;
+                        color: #888888;
+                        text-align: center;
+                    }
+
+                    .influencers_footer_btn {
+                        width: 14rem;
+                        height: 51px;
+                        background: #0014C6;
+                        border-radius: 15px;
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 10px;
+                        margin-left: 1rem;
+                    }
+
+                    span {
+                        height: 21px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 21px;
+                        color: #FFFFFF;
+                        flex: none;
+                        order: 0;
+                        flex-grow: 0;
+                    }
+                }
+            }
+        }
+
+        .recent_searches {
+            max-width: 300px;
+            width: 100%;
+            box-shadow: 0px 0 4px 0 #edecf4;
+            z-index: 1 !important;
+
+            .list_toggler {}
+
+            .recent_searches_content {
+                .recent_header {
+                    padding-top: 7rem;
+                    margin-left: 1.5rem;
+                    width: 230px;
+                    height: 3rem;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 2rem;
+                    line-height: 3rem;
+                    color: #000000;
+                }
+
+                .recent_search_box {
+                    margin-left: 1.5rem;
+                    width: 240px;
+                    height: 185px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 30px rgba(1, 28, 231, 0.1);
+                    border-radius: 20px;
+
+                    .recent_box_flex {
+                        display: flex;
+                        padding-left: 2rem;
+                        padding-top: 1rem;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .inf_img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 200px;
+                        }
+
+                        .influencers_name {
+                            width: 175px;
+                            height: 24px;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 24px;
+                            color: #1C1C1C;
+                            margin-left: 1rem;
+                        }
+                    }
+
+                    .category {
+                        height: 22px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        padding-left: 3rem;
+                    }
+
+                    .profile_btn {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 2rem;
+                    }
+
+                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        height: 44px;
+                        background: #0014C6;
+                        border-radius: 15px;
+                        width: 200px !important;
+                    }
+
+                    span {
+                        height: 21px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 21px;
+                        color: #FFFFFF;
+                        flex: none;
+                        order: 0;
+                        flex-grow: 0;
+                    }
+                }
+            }
+        }
+
+
+    }
+}

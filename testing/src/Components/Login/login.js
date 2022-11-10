@@ -14,7 +14,6 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        let id = 0;
         const url = 'http://localhost:4000/login';
         fetch((url), {
             method: 'POST',
@@ -31,8 +30,8 @@ function Login() {
                 }
                 else {
                     navigate(`/welcome`);
-                    localStorage.setItem(id, data._id)
-                    console.log(localStorage.getItem(id))
+                    localStorage.setItem('id', data._id)
+                    console.log(localStorage.getItem('id'))
                 }
             })
     }

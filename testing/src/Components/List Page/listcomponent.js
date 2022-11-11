@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import Navbar from '../../Common/Sidebar/sidebar';
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 import './listpage.scss';
 
 
 function Lists() {
 
     const [inputField, setInputField] = useState('');
+    let navigate = useNavigate();
+
+    const searchInfluencers = () => {
+        navigate(`/influencerslist/${inputField}`);
+    }
 
     return (
         <>
@@ -16,7 +22,7 @@ function Lists() {
                     <div className='middle_pane_lists'>
                         <div className='list_headers'>
                             <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' />
-                            <Button className='button_list'>Search</Button>
+                            <Button className='button_list' onClick={searchInfluencers}>Search</Button>
                         </div>
                         <div className='middle_pane_content'>
                             <div className='categorised_inf'>

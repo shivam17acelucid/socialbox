@@ -5,22 +5,58 @@ const axios = require('axios');
 const jwt = require("jsonwebtoken");
 
 exports.comapreInfluencers = (req, res) => {
-    let { influencer1name, influencer2name, influencer3name } = req.body;
-    let errors = [];
-    if (!influencer1name) {
-        errors.push('Minimum 2 Influencers Name Required to Compare');
+    let { influencer1name, influencer2name, influencer3name } = req.query;
+    let filter = [];
+
+    if (influencer1name) {
+        filter = [
+            { username: new RegExp(influencer1name, 'i') },
+        ]
+    }
+    if (influencer2name) {
+        filter = [
+            { username: new RegExp(influencer2name, 'i') },
+        ]
+    }
+    if (influencer3name) {
+        filter = [
+            { username: new RegExp(influencer3name, 'i') },
+        ]
     }
 
-    if (!influencer2name) {
-        errors.push('Minimum 2 Influencers Name Required');
+    if (influencer1name && influencer2name) {
+        filter = [
+            { username: new RegExp(influencer1name, 'i') },
+            { username: new RegExp(influencer2name, 'i') },
+        ]
     }
 
-    if (errors.length > 0) {
-        return res.status(422).json({ errors: errors });
+    if (influencer1name && influencer3name) {
+        filter = [
+            { username: new RegExp(influencer1name, 'i') },
+            { username: new RegExp(influencer3name, 'i') },
+        ]
     }
 
-    InfluencersData.find({ $or: [{ username: influencer1name }, { username: influencer2name }, { username: influencer3name }] })
+    if (influencer2name && influencer3name) {
+        filter = [
+            { username: new RegExp(influencer2name, 'i') },
+            { username: new RegExp(influencer3name, 'i') },
+        ]
+    }
+
+    if (influencer1name && influencer2name && influencer3name) {
+        filter = [
+            { username: new RegExp(influencer1name, 'i') },
+            { username: new RegExp(influencer2name, 'i') },
+            { username: new RegExp(influencer3name, 'i') },
+        ]
+    }
+
+    // InfluencersData.find({ $and: [filter] })
+    InfluencersData.find({ $or: filter })
         .then((data) => {
+            console.log(filter)
             res.json(data)
         })
-}   
+}  

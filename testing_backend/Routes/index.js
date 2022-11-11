@@ -4,6 +4,7 @@ const { hashtag, username, topsearch, userID, profile, influencer_list, influenc
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
+const { compareInfluencers, comapreInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 
 
 router.post("/signup", signup);
@@ -23,6 +24,7 @@ router.post('/createList/:id', createList)
 router.get('/getListData', getListData)
 router.post('/addInfluencersToList', addInfluencersToList)
 router.get('/showInfluencersList', showInfluencersInList);
+router.get('/compareInfluencers', comapreInfluencers);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 module.exports = router;

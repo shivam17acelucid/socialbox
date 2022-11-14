@@ -12,6 +12,8 @@ const ProfileData = () => {
 
     let { profilename } = useParams();
 
+    const userId = localStorage.getItem('id')
+
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${profilename}`;
         fetch(url)
@@ -29,12 +31,8 @@ const ProfileData = () => {
     const handleAddList = () => {
         const data = addToListClicked ? false : true;
         setAddToListClicked(data);
-        const url = `http://localhost:4000/getListData`
-        fetch(url, {
-            headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-            }
-        })
+        const url = `http://localhost:4000/getListData/${userId}`
+        fetch(url)
             .then((data) => {
                 data.json()
                     .then((result) => {
@@ -44,12 +42,9 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://localhost:4000/addInfluencersToList?list=${data.listName}&username=${value.username}`
+        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${data.listName}&username=${value.username}`
         fetch((url), {
             method: 'POST',
-            headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-            }
         })
             .then((data) => { data.json() })
             .then((res) => {

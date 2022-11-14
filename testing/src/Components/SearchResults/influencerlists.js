@@ -51,6 +51,8 @@ const InfluencersList = () => {
     let { inputField } = useParams();
     let navigate = useNavigate();
 
+    const userId = localStorage.getItem('id');
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -136,12 +138,8 @@ const InfluencersList = () => {
     }
 
     const getListData = () => {
-        const url = `http://localhost:4000/getListData`;
-        fetch(url, {
-            headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-            }
-        })
+        const url = `http://localhost:4000/getListData/${userId}`;
+        fetch(url)
             .then((data) => {
                 data.json()
                     .then((result) => {
@@ -231,13 +229,8 @@ const InfluencersList = () => {
 
     const handleListClick = (item) => {
         setListClicked(true);
-        const url = `http://localhost:4000/showInfluencersList?list=${item.listName}`
-        fetch((url), {
-            headers: {
-                method: 'GET',
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-            }
-        })
+        const url = `http://localhost:4000/showInfluencersList/${userId}?list=${item.listName}`
+        fetch((url))
             .then((data) => data.json())
             .then((response) => {
                 setListInfluencersData([response])
@@ -245,12 +238,9 @@ const InfluencersList = () => {
     }
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://localhost:4000/addInfluencersToList?list=${item.listName}&username=${data.username}`
+        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
-            headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzZiNzZkYmI3ZTJlOGIwNTExZDIxNWQiLCJ1c2VyIjp7Il9pZCI6IjYzNmI3NmRiYjdlMmU4YjA1MTFkMjE1ZCIsImVtYWlsIjoic2hpdmFtQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJE5hVU1jTjk3bHlqaDR1UW9sWnZJMU92UlpXZGFNUnViSWdGUFliL3RoYjN3OXJieFFuNGs2Iiwicm9sZSI6InVzZXIiLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTEtMDlUMDg6MTA6NTkuMDMxWiIsImxpc3QiOltdLCJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVNXUWlPaUkyTXpaaU56WmtZbUkzWlRKbE9HSXdOVEV4WkRJeE5XUWlMQ0oxYzJWeWN5STZleUpsYldGcGJDSTZJbk5vYVhaaGJVQm5iV0ZwYkM1amIyMGlMQ0p3WVhOemQyOXlaQ0k2SWpFeU16UTFOamM0SWl3aWNtOXNaU0k2SW5WelpYSWlMQ0p6ZEdGMGRYTWlPblJ5ZFdVc0ltTnlaV0YwWldSQmRDSTZJakl3TWpJdE1URXRNRGxVTURnNk1UQTZOVGt1TURNeFdpSXNJbDlwWkNJNklqWXpObUkzTm1SaVlqZGxNbVU0WWpBMU1URmtNakUxWkNJc0lteHBjM1FpT2x0ZGZTd2lhV0YwSWpveE5qWTNPVGczTVRZekxDSmxlSEFpT2pFMk5qZ3dOek0xTmpOOS5XRzZTWEtCaHV5bUYtN0pGbGt5QkZhUHFBZ0kxbzRUVmlsaUlMbHMxTDl3IiwidXBkYXRlZEF0IjoiMjAyMi0xMS0wOVQwODoxMDo1OS4wMzFaIiwiX192IjowfSwiaWF0IjoxNjY3OTg3MTc0LCJleHAiOjE2NjgxNTk5NzR9.EzTUQD_eAvvMNURWLr3gXy74cDIaOdQKbYKVilS3txE'
-            }
         })
             .then((data) => { data.json() })
             .then((res) => {

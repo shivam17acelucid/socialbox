@@ -5,6 +5,7 @@ const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers, comapreInfluencers } = require('../Controllers/Comparison/compareinfluencers');
+const { createCategorizedBasket } = require('../Controllers/Baskets/index');
 
 
 router.post("/signup", signup);
@@ -25,6 +26,7 @@ router.get('/getListData/:id', getListData)
 router.post('/addInfluencersToList/:id', addInfluencersToList)
 router.get('/showInfluencersList/:id', showInfluencersInList);
 router.get('/compareInfluencers', comapreInfluencers);
+router.post('/createCategorizedBasket', createCategorizedBasket);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 module.exports = router;

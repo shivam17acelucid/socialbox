@@ -5,12 +5,5 @@ exports.roles = (function () {
 
   ac.grant("admin")
     .extend("customer")
-    .readAny("profile")
-    .readOwn("profile")
-    .updateOwn("profile")
-    .updateAny("profile")
-    .deleteAny("profile")
-
-    .createAny("profile");
   return ac;
 })();

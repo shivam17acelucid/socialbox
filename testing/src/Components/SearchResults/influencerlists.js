@@ -207,7 +207,7 @@ const InfluencersList = () => {
     }
 
     const handleCreateList = (listName, brandName) => {
-        const url = `http://localhost:4000/createList/636b76dbb7e2e8b0511d215d`
+        const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName, brandName }),

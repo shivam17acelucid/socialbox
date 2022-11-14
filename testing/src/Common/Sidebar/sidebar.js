@@ -14,7 +14,7 @@ function Navbar() {
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className={sidebar ? 'nav-menu' : 'nav-menu-active'}>
                 <nav>
-                    <div className="navbar">
+                    <div className={sidebar ? 'navbar-inactive' : 'navbar'} >
                         <Link to='#' className='menu-bars'>
                             <FaIcons.FaBars onClick={showSidebar} />
                         </Link>
@@ -41,8 +41,8 @@ function Navbar() {
                         }
                     </ul>
                 </nav>
-            </div>
-        </IconContext.Provider>
+            </div >
+        </IconContext.Provider >
     )
 }
 export default Navbar;

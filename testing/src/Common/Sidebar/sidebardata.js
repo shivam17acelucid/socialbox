@@ -11,12 +11,6 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: 'Search',
-        path: '/lists',
-        icon: <AiIcons.AiOutlineSearch />,
-        cName: 'nav-text'
-    },
-    {
         title: 'Compare',
         path: '/compare',
         icon: <MdIcons.MdCompare />,

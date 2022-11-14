@@ -20,3 +20,15 @@ exports.createCategorizedBasket = (req, res) => {
         })
 
 }
+
+exports.showCategorizedBasket = (req, res) => {
+    CategorizedBasket.find()
+        .then((data) => {
+            if (!data) {
+                res.json("No Basket Present")
+            }
+            else {
+                res.json(data)
+            }
+        })
+}

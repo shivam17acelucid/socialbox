@@ -34,7 +34,7 @@ exports.signup = (req, res, next) => {
           { userId: users._id, users },
           process.env.TOKEN,
           {
-            expiresIn: "1d",
+            expiresIn: "7d",
           }
         );
         users.token = token;
@@ -103,7 +103,7 @@ exports.login = (req, res, next) => {
               { userId: user._id, user },
               process.env.TOKEN,
               {
-                expiresIn: "2d",
+                expiresIn: "3d",
               }
             );
             user.token = token;

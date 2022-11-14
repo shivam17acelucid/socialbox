@@ -23,8 +23,6 @@ exports.grantAccess = function (action, resource) {
           });
         else {
           req.user = data;
-          // console.log("==>", user);
-          console.log(user.role);
           const permission = roles.can(user.role)[action](resource);
           if (!permission.granted) {
             return res.status(401).json({
@@ -39,7 +37,6 @@ exports.grantAccess = function (action, resource) {
       return res.status(401).json({
         error: "You need to be logged in to access this route",
       });
-      next();
     }
   };
 };

@@ -21,9 +21,9 @@ router.get('/getprofiledata', profile)
 router.get('/getinfluencerdata', influencer_list)
 router.get('/getrelatedinfluencers', influencer_search)
 router.post('/createList/:id', createList)
-router.get('/getListData', getListData)
-router.post('/addInfluencersToList', addInfluencersToList)
-router.get('/showInfluencersList', showInfluencersInList);
+router.get('/getListData/:id', getListData)
+router.post('/addInfluencersToList/:id', addInfluencersToList)
+router.get('/showInfluencersList/:id', showInfluencersInList);
 router.get('/compareInfluencers', comapreInfluencers);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);

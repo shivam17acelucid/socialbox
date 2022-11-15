@@ -24,6 +24,10 @@ function Lists() {
             })
     }
 
+    const handleRedirectToBasket = (item) => {
+        navigate(`/basketInfluencers/${item.categoryName}`)
+    }
+
     useEffect(() => {
         fetchBasketsName();
     }, []);
@@ -54,13 +58,13 @@ function Lists() {
                                             x
                                         </div>
                                         <div className='influencers_category_header'>
-                                            Top 20 {item.categoryName} Influencers Bundle
+                                            Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
                                         </div>
                                         <div className='basket_p'>
                                             Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
                                         </div>
                                         <div className='influencers_footer_btn'>
-                                            <Button><span>Buy Now</span></Button>
+                                            <Button onClick={() => handleRedirectToBasket(item)}><span>Buy Now</span></Button>
                                         </div>
                                     </div>
                                 )}

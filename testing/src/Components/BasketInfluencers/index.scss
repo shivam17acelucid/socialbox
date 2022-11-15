@@ -1,0 +1,62 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.basket_influencers_container {
+
+    display: flex;
+    height: 100%;
+    margin: 0px;
+    background-color: #FFF;
+
+    .basket_influencers_container_content {
+        display: flex;
+        padding-left: 1rem;
+
+        .middle_pane_lists {
+            padding-top: 2rem;
+            flex: 1;
+
+            .list_headers {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                .input_search {
+                    width: 55rem;
+                    height: 70px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 15px 40px rgba(108, 108, 108, 0.15);
+                    border: none;
+                    border-radius: 40px;
+                    text-align: center;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #A3A3A3;
+                }
+
+                .button_list {
+                    margin-left: 1rem;
+                    box-sizing: border-box;
+                    width: 8rem;
+                    height: 4rem;
+                    background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
+                    border: 2px solid #0014C6;
+                    border-radius: 20px;
+                }
+
+                .list_toggler {
+                    margin-left: 10rem;
+                }
+            }
+        }
+    }
+}

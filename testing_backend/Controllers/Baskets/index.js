@@ -35,23 +35,28 @@ exports.showCategorizedBasket = (req, res) => {
 }
 
 exports.addInfluencersToBasket = (req, res) => {
-    let { username, categoryName } = req.query;
+    let { username, categoryName } = req.body;
     if (!username) {
         res.json("Username Not Given")
     }
     else {
-        CategorizedBasket.find({ categoryName })
+        InfluencersData.find({ username: username })
             .then((data) => {
                 if (data) {
-                    InfluencersData.find({ username: username })
+                    CategorizedBasket.findOne({ categoryName: categoryName })
                         .then((response) => {
-                            data.basket = response;
-                            res.json({response,data})
-                            data.save();
+                            if (response) {
+                                response.basket.push(data[0]);
+                                res.json(response)
+                                response.save();
+                            }
+                            else {
+                                res.json("Category Not Found")
+                            }
                         })
                 }
                 else {
-                    res.json("Category Not found")
+                    res.json("User Not found")
                 }
             })
     }

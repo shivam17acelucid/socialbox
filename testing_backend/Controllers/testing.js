@@ -6,7 +6,6 @@ const InfluencersData = require('../Models/influencer_details');
 const UserInfo = require('../Models/user_info');
 const Testing = require('../Models/testing')
 const axios = require('axios');
-const jwt = require("jsonwebtoken");
 
 const URLENCODED_HEADER = {
     'Accept': 'application/json',

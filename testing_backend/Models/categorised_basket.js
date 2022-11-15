@@ -6,10 +6,9 @@ let categorisedBasketSchema = new Schema(
             type: String,
             unique: true,
         },
-        basket: [{
-            influencersData: Array,
-            createdAT: { type: Date, default: Date.now() }
-        }],
+        basket: {
+            type: Array,
+        },
     },
     {
         timestamps: true,

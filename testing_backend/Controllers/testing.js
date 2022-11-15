@@ -417,7 +417,7 @@ exports.addInfluencersToList = (req, res) => {
                 if (item.listName === req.query.list) {
                     InfluencersData.find({ username: req.query.username })
                         .then((result) => {
-                            listInfluencersData = item.influencersData.push(result[0])
+                           let listInfluencersData = item.influencersData.push(result[0])
                             res.json(item.influencersData)
                             data.save();
                         })

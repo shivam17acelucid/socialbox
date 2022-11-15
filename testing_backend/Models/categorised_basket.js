@@ -8,7 +8,7 @@ let categorisedBasketSchema = new Schema(
         },
         basket: [{
             influencersData: Array,
-            createdAT: { type: Date, default: Date.now(), index: { expiresIn: 300 } }
+            createdAT: { type: Date, default: Date.now() }
         }],
     },
     {

@@ -1,4 +1,5 @@
 const CategorizedBasket = require('../../Models/categorised_basket');
+const InfluencersData = require('../../Models/influencer_details');
 
 exports.createCategorizedBasket = (req, res) => {
     let { categoryName } = req.body;
@@ -31,4 +32,27 @@ exports.showCategorizedBasket = (req, res) => {
                 res.json(data)
             }
         })
+}
+
+exports.addInfluencersToBasket = (req, res) => {
+    let { username, categoryName } = req.query;
+    if (!username) {
+        res.json("Username Not Given")
+    }
+    else {
+        CategorizedBasket.find({ categoryName })
+            .then((data) => {
+                if (data) {
+                    InfluencersData.find({ username: username })
+                        .then((response) => {
+                            data.basket = response;
+                            res.json({response,data})
+                            data.save();
+                        })
+                }
+                else {
+                    res.json("Category Not found")
+                }
+            })
+    }
 }

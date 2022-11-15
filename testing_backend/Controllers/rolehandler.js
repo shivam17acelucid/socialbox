@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const UserInfo = require("../Models/user_info");
 const { roles } = require("../roles");
 
 exports.grantAccess = function (action, resource) {
@@ -13,17 +13,14 @@ exports.grantAccess = function (action, resource) {
           error: "JWT token has expired, please login to obtain a new one",
         });
       }
-      let user;
-      User.findById(userId).then((data) => {
-        user = data;
-        console.log(user)
-        if (!user)
+      UserInfo.findById(userId).then((data) => {
+        if (!data)
           return res.status(401).json({
             error: "You need to be logged in to access this route",
           });
         else {
-          req.user = data;
-          const permission = roles.can(user.role)[action](resource);
+          req.data = data;
+          const permission = roles.can(data.role)[action](resource);
           if (!permission.granted) {
             return res.status(401).json({
               error: "You don't have enough permission to perform this action",

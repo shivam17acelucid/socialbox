@@ -4,7 +4,7 @@ const UserInfo = require('../../Models/user_info');
 const axios = require('axios');
 const jwt = require("jsonwebtoken");
 
-exports.comapreInfluencers = (req, res) => {
+exports.compareInfluencers = (req, res) => {
     let { influencer1name, influencer2name, influencer3name } = req.query;
     let filter = [];
 

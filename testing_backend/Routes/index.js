@@ -4,8 +4,9 @@ const { hashtag, username, topsearch, userID, profile, influencer_list, influenc
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
-const { compareInfluencers, comapreInfluencers } = require('../Controllers/Comparison/compareinfluencers');
-const { createCategorizedBasket, showCategorizedBasket } = require('../Controllers/Baskets/index');
+const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
+const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket } = require('../Controllers/Baskets/index');
+const rolehandler = require("../controllers/rolehandler");
 
 
 router.post("/signup", signup);
@@ -25,9 +26,10 @@ router.post('/createList/:id', createList)
 router.get('/getListData/:id', getListData)
 router.post('/addInfluencersToList/:id', addInfluencersToList)
 router.get('/showInfluencersList/:id', showInfluencersInList);
-router.get('/compareInfluencers', comapreInfluencers);
-router.post('/createCategorizedBasket', createCategorizedBasket);
-router.post('/showCategorizedBasket', showCategorizedBasket);
+router.get('/compareInfluencers', compareInfluencers);
+router.post('/createCategorizedBasket', rolehandler.grantAccess("create", "categorizedInfluencers"), createCategorizedBasket);
+router.post('/addInfluencersToBasket', rolehandler.grantAccess("update", "categorizedInfluencers"), addInfluencersToBasket);
+router.get('/showCategorizedBasket', showCategorizedBasket);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 module.exports = router;

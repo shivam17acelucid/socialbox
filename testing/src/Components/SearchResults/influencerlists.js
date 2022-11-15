@@ -384,7 +384,7 @@ const InfluencersList = () => {
                                                             <StyledTableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
                                                                 {/* <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' /> */}
                                                                 {data.username}
-                                                                <div>({data.full_name})</div>
+                                                                <div>{data.full_name}</div>
                                                             </StyledTableCell>
                                                             <StyledTableCell align="center">
                                                                 {NFormatter(data.edge_followed_by.count)}

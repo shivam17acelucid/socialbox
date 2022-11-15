@@ -15,16 +15,17 @@ html {
 
     .lists_content {
         display: flex;
-        padding-left: 3rem;
+        padding-left: 1rem;
+        width: calc(100% - 15rem);
+        flex: 1;
 
         .middle_pane_lists {
-            width: calc(100% - 18rem);
             padding-top: 2rem;
-            margin-right: 1rem;
 
             .list_headers {
                 display: flex;
                 align-items: center;
+                justify-content: flex-start;
 
                 .input_search {
                     width: 55rem;
@@ -60,6 +61,9 @@ html {
             .middle_pane_content {
                 padding-top: 3rem;
                 padding-left: 2rem;
+                overflow-y: scroll;
+                height: 78vh;
+
 
                 .categorised_inf {
                     .categorised_heading {
@@ -100,168 +104,179 @@ html {
                 }
 
                 .influencers_basket {
-                    box-sizing: border-box;
-                    width: 16rem;
-                    height: 16rem;
-                    border: 2px solid #0014C6;
-                    border-radius: 20px;
+                    display: flex;
+                    flex-wrap: wrap;
 
-                    .influencers_image {
+                    .influencers_basket_box {
+
                         box-sizing: border-box;
-                        width: 41px;
-                        height: 41px;
-                        margin-left: 1rem;
-                        border: 2px solid #FFFFFF;
-                        border-radius: 400px;
-                    }
+                        width: 16rem;
+                        height: 16rem;
+                        border: 2px solid #0014C6;
+                        border-radius: 20px;
+                        margin-right: 1.5rem;
+                        margin-top: 1.25rem;
 
-                    .influencers_category_header {
-                        width: 15rem;
-                        height: 4rem;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 24px;
-                        line-height: 135%;
-                        color: #000000;
-                        text-align: center;
-                    }
-
-                    .basket_p {
-                        width: 15rem;
-                        height: 4rem;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 16px;
-                        line-height: 139%;
-                        color: #888888;
-                        text-align: center;
-                    }
-
-                    .influencers_footer_btn {
-                        width: 14rem;
-                        height: 51px;
-                        background: #0014C6;
-                        border-radius: 15px;
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 10px;
-                        margin-left: 1rem;
-                    }
-
-                    span {
-                        height: 21px;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 14px;
-                        line-height: 21px;
-                        color: #FFFFFF;
-                        flex: none;
-                        order: 0;
-                        flex-grow: 0;
-                    }
-                }
-            }
-        }
-
-        .recent_searches {
-            max-width: 300px;
-            width: 100%;
-            box-shadow: 0px 0 4px 0 #edecf4;
-            z-index: 1 !important;
-
-            .recent_searches_content {
-                .recent_header {
-                    padding-top: 7rem;
-                    margin-left: 1.5rem;
-                    width: 230px;
-                    height: 3rem;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 2rem;
-                    line-height: 3rem;
-                    color: #000000;
-                }
-
-                .recent_search_box {
-                    margin-left: 1.5rem;
-                    width: 240px;
-                    height: 185px;
-                    background: #FFFFFF;
-                    box-shadow: 0px 0px 30px rgba(1, 28, 231, 0.1);
-                    border-radius: 20px;
-
-                    .recent_box_flex {
-                        display: flex;
-                        padding-left: 2rem;
-                        padding-top: 1rem;
-                        justify-content: space-between;
-                        align-items: center;
-
-                        .inf_img {
-                            width: 40px;
-                            height: 40px;
-                            border-radius: 200px;
+                        .influencers_image {
+                            box-sizing: border-box;
+                            width: 41px;
+                            height: 41px;
+                            margin-left: 1rem;
+                            border: 2px solid #FFFFFF;
+                            border-radius: 400px;
+                            background: black;
+                            margin-top: 10px;
                         }
 
-                        .influencers_name {
-                            width: 175px;
-                            height: 24px;
+                        .influencers_category_header {
+                            width: 15rem;
+                            height: 4rem;
                             font-family: 'Poppins';
                             font-style: normal;
                             font-weight: 600;
+                            font-size: 24px;
+                            line-height: 135%;
+                            color: #000000;
+                            text-align: center;
+                        }
+
+                        .basket_p {
+                            width: 15rem;
+                            height: 4rem;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 500;
                             font-size: 16px;
-                            line-height: 24px;
-                            color: #1C1C1C;
+                            line-height: 139%;
+                            color: #888888;
+                            text-align: center;
+                        }
+
+                        .influencers_footer_btn {
+                            width: 14rem;
+                            height: 51px;
+                            background: #0014C6;
+                            border-radius: 15px;
+                            display: flex;
+                            justify-content: center;
+                            margin-top: 10px;
                             margin-left: 1rem;
                         }
-                    }
 
-                    .category {
-                        height: 22px;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 16px;
-                        padding-left: 3rem;
-                    }
-
-                    .profile_btn {
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 2rem;
-                    }
-
-                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        height: 44px;
-                        background: #0014C6;
-                        border-radius: 15px;
-                        width: 200px !important;
-                    }
-
-                    span {
-                        height: 21px;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 14px;
-                        line-height: 21px;
-                        color: #FFFFFF;
-                        flex: none;
-                        order: 0;
-                        flex-grow: 0;
+                        span {
+                            height: 21px;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 21px;
+                            color: #FFFFFF;
+                            flex: none;
+                            order: 0;
+                            flex-grow: 0;
+                        }
                     }
                 }
             }
         }
 
 
+
+    }
+
+    .recent_searches {
+        width: 100%;
+        box-shadow: 0px 0 4px 0 #edecf4;
+        z-index: 1 !important;
+        max-width: 280px;
+
+        .recent_searches_content {
+            .recent_header {
+                padding-top: 7rem;
+                margin-left: 1.5rem;
+                width: 230px;
+                height: 3rem;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 2rem;
+                line-height: 3rem;
+                color: #000000;
+            }
+
+            .recent_search_box {
+                margin-left: 1.5rem;
+                width: 240px;
+                height: 185px;
+                background: #FFFFFF;
+                box-shadow: 0px 0px 30px rgba(1, 28, 231, 0.1);
+                border-radius: 20px;
+
+                .recent_box_flex {
+                    display: flex;
+                    padding-left: 2rem;
+                    padding-top: 1rem;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .inf_img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 200px;
+                    }
+
+                    .influencers_name {
+                        width: 175px;
+                        height: 24px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #1C1C1C;
+                        margin-left: 1rem;
+                    }
+                }
+
+                .category {
+                    height: 22px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 16px;
+                    padding-left: 3rem;
+                }
+
+                .profile_btn {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 2rem;
+                }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    height: 44px;
+                    background: #0014C6;
+                    border-radius: 15px;
+                    width: 200px !important;
+                }
+
+                span {
+                    height: 21px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: #FFFFFF;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                }
+            }
+        }
     }
 }

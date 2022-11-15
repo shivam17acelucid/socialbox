@@ -17,10 +17,10 @@ html {
         display: flex;
         padding-left: 1rem;
         width: calc(100% - 15rem);
-        flex: 1;
 
         .middle_pane_lists {
             padding-top: 2rem;
+            flex: 1;
 
             .list_headers {
                 display: flex;

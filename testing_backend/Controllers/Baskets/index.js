@@ -29,6 +29,9 @@ exports.showCategorizedBasket = (req, res) => {
                 res.json("No Basket Present")
             }
             else {
+                data.forEach((item) => {
+                    item.basketInfluencersCount = item.basket.length
+                })
                 res.json(data)
             }
         })
@@ -60,4 +63,13 @@ exports.addInfluencersToBasket = (req, res) => {
                 }
             })
     }
+}
+
+exports.showBasketInfluencers = (req, res) => {
+    let { categoryName } = req.query;
+
+    CategorizedBasket.find({ categoryName })
+        .then((data) => {
+            res.json(data)
+        })
 }

@@ -6,6 +6,9 @@ let categorisedBasketSchema = new Schema(
             type: String,
             unique: true,
         },
+        basketInfluencersCount: {
+            type: Number,
+        },
         basket: {
             type: Array,
         },

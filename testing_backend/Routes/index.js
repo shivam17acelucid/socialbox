@@ -6,6 +6,7 @@ const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers } = require('../Controllers/Baskets/index');
+const {compareCategorizedBaskets} = require('../Controllers/Comparison/comparelists')
 const rolehandler = require("../controllers/rolehandler");
 
 
@@ -27,6 +28,7 @@ router.get('/getListData/:id', getListData)
 router.post('/addInfluencersToList/:id', addInfluencersToList)
 router.get('/showInfluencersList/:id', showInfluencersInList);
 router.get('/compareInfluencers', compareInfluencers);
+router.get('/compareCategorizedBaskets', compareCategorizedBaskets);
 router.post('/createCategorizedBasket', rolehandler.grantAccess("create", "categorizedInfluencers"), createCategorizedBasket);
 router.post('/addInfluencersToBasket', rolehandler.grantAccess("update", "categorizedInfluencers"), addInfluencersToBasket);
 router.get('/showCategorizedBasket', showCategorizedBasket);

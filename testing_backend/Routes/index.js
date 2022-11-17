@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList } = require('../Controllers/testing');
+const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers } = require('../Controllers/Baskets/index');
-const {compareCategorizedBaskets} = require('../Controllers/Comparison/comparelists')
+const { compareCategorizedBaskets } = require('../Controllers/Comparison/comparelists')
 const rolehandler = require("../controllers/rolehandler");
 
 
@@ -23,6 +23,7 @@ router.get('/getfilteredData', filteredInfluencersData);
 router.get('/getprofiledata', profile)
 router.get('/getinfluencerdata', influencer_list)
 router.get('/getrelatedinfluencers', influencer_search)
+router.get('/getErFilteredInfluencersData', filteredByErInfluencersData)
 router.post('/createList/:id', createList)
 router.get('/getListData/:id', getListData)
 router.post('/addInfluencersToList/:id', addInfluencersToList)

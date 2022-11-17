@@ -321,6 +321,25 @@ exports.filteredInfluencersData = (req, res) => {
             })
         })
 }
+exports.filteredByErInfluencersData = (req, res) => {
+    let { minEr, maxEr } = req.query;
+    let filter = [];
+    let array = [];
+    if (minEr != 0 && maxEr != 0) {
+    }
+    InfluencersData.find()
+        .then((data) => {
+            array.push(data)
+            array.forEach((data) => {
+                data.forEach((response) => {
+                    if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                        filter.push(response)
+                    }
+                })
+                res.json(filter)
+            })
+        })
+}
 
 exports.getInfluencersDetails = (req, res) => {
     ProfileData.find()

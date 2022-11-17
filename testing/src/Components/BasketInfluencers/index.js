@@ -27,6 +27,9 @@ function BasketInfluencers() {
     const [listData, setListData] = useState([]);
     const [newPlanClicked, setNewPlanClicked] = useState(false);
     const [rowClickedData, setRowClickedData] = useState('');
+    const [isfilterFollowerClicked, setIsFilterFollowerClicked] = useState(false);
+    const [isfilterCategoryClicked, setIsFilterCategoryClicked] = useState(false);
+    const [isfilterErClicked, setIsFilterErClicked] = useState(false);
     const [filterFollowerClicked, setFilterFollowerClicked] = useState(false);
     const [filterCategoryClicked, setFilterCategoryClicked] = useState(false);
     const [filterErClicked, setFilterErClicked] = useState(false);
@@ -78,12 +81,12 @@ function BasketInfluencers() {
     }
 
     const handleFollowerFilterClicked = () => {
-        setFilterFollowerClicked(value => !value)
+        setIsFilterFollowerClicked(value => !value)
     };
 
-    const handleCategoryFilterClicked = () => setFilterCategoryClicked(value => !value);
+    const handleCategoryFilterClicked = () => setIsFilterCategoryClicked(value => !value);
 
-    const handleErFilterClicked = () => setFilterErClicked(value => !value);
+    const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
 
     const addInfluencerToList = (data, item) => {
         const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
@@ -127,7 +130,8 @@ function BasketInfluencers() {
     }
 
     const filterByErRange = () => {
-        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${minErRange}&maxEr=${maxErRange}`;
+        setFilterErClicked(true);
+        const url = `http://localhost:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -159,13 +163,14 @@ function BasketInfluencers() {
                         Top {categoryName} Influencers
                     </div>
                     <div className="filter_bar">
-                        <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {filterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {filterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {filterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                         {
-                            filterErClicked === true ?
+                            isfilterErClicked === true ?
                                 <section className="modal_section">
                                     <div className="modal_option">
+                                        <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
                                         <div>Select Engagement Rate Range</div>
                                         <Input
                                             placeholder="MinRange"
@@ -190,9 +195,10 @@ function BasketInfluencers() {
                                     </div>
                                 </section>
                                 :
-                                filterCategoryClicked === true ?
+                                isfilterCategoryClicked === true ?
                                     <section className="modal_section">
                                         <div className="modal_option">
+                                            <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
                                             <div>Add Category</div>
                                             <Input
                                                 placeholder="Category"
@@ -210,9 +216,10 @@ function BasketInfluencers() {
                                         </div>
                                     </section>
                                     :
-                                    filterFollowerClicked === true ?
+                                    isfilterFollowerClicked === true ?
                                         <section className="modal_section">
                                             <div className="modal_option">
+                                                <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
                                                 <div>Select Followers</div>
                                                 <Input
                                                     placeholder="MinRange"
@@ -256,63 +263,71 @@ function BasketInfluencers() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {influencersData.map((item, index) =>
-                                        <>
-                                            {
-                                                item.basket.map((data) =>
-                                                    < TableRow>
-                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
-                                                            {data.full_name}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_followed_by.count)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                                        </TableCell>
-                                                        <TableCell align="center">{data.city_name}</TableCell>
-                                                        <TableCell key={index} >
-                                                            <>
-                                                                <Button><span>Cost</span></Button>
-                                                                <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
-                                                                {addToListTableClicked === true ?
-                                                                    [data].map((item) =>
-                                                                        item.username == rowClickedData ?
-                                                                            <section className="addList_section" id={data.id}>
-                                                                                <div className="addList_option">
-                                                                                    <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
-                                                                                    <div>Recently Created Lists</div>
-                                                                                    {listData.map((item) =>
-                                                                                        <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                            {item.listName}
+                                    {
+                                        (filterErClicked === true ?
+                                            erBasedInfluencers :
+                                            filterCategoryClicked === true ?
+                                                categoryBasedInfluencers :
+                                                filterFollowerClicked === true ?
+                                                    followersRangeBasedInfluencers :
+                                                    influencersData)
+                                            .map((item, index) =>
+                                                <>
+                                                    {
+                                                        item.basket.map((data) =>
+                                                            < TableRow>
+                                                                <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                                    {data.full_name}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {NFormatter(data.edge_followed_by.count)}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                                </TableCell>
+                                                                <TableCell align="center">
+                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                                </TableCell>
+                                                                <TableCell align="center">{data.city_name}</TableCell>
+                                                                <TableCell key={index} >
+                                                                    <>
+                                                                        <Button><span>Cost</span></Button>
+                                                                        <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
+                                                                        {addToListTableClicked === true ?
+                                                                            [data].map((item) =>
+                                                                                item.username == rowClickedData ?
+                                                                                    <section className="addList_section" id={data.id}>
+                                                                                        <div className="addList_option">
+                                                                                            <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
+                                                                                            <div>Recently Created Lists</div>
+                                                                                            {listData.map((item) =>
+                                                                                                <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                    {item.listName}
+                                                                                                </div>
+                                                                                            )}
                                                                                         </div>
-                                                                                    )}
-                                                                                </div>
-                                                                            </section>
-                                                                            : null
-                                                                    )
+                                                                                    </section>
+                                                                                    : null
+                                                                            )
 
-                                                                    : null}
-                                                                <Button><span>Compare</span></Button>
-                                                            </>
-                                                        </TableCell>
-                                                    </TableRow>
-                                                )
-                                            }
-                                        </>
-                                    )
+                                                                            : null}
+                                                                        <Button><span>Compare</span></Button>
+                                                                    </>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        )
+                                                    }
+                                                </>
+                                            )
                                     }
                                 </TableBody>
                                 {/* <TableFooter>

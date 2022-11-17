@@ -84,30 +84,34 @@ html {
                 }
 
                 .modal_section {
-                    width: 200px;
-                    max-height: 350px;
                     position: absolute;
                     z-index: 4;
-                    padding-bottom: 8px;
-                    top: initial;
-                    padding-top: 0px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    padding: 1rem 1.5rem;
+                    width: 24rem;
+                    border-radius: 0.5rem;
 
                     .modal_option {
+                        padding: 2rem;
                         max-height: 342px;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        padding: 4px;
                         border-radius: 8px;
                         background-color: #f6f6f6;
                         box-shadow: var(--box-shadow-primary);
                         cursor: pointer;
 
-                        .section_dropdown_header {
+                        .close_btn {
                             display: flex;
-                            align-content: center;
-                            align-items: center;
-                            justify-content: space-between;
+                            justify-content: flex-end;
+                        }
+
+                        input {
+                            margin: 12px;
                         }
                     }
                 }

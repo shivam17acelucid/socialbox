@@ -500,7 +500,6 @@ const InfluencersList = () => {
                                             <div className="list_content_inner" onClick={() => { handleListClick(item) }}>
                                                 <div className="list_head">
                                                     {item.listName}
-                                                    {/* {'item.influencersCount'} */}
                                                 </div>
                                                 <div className="list_footer">
                                                     <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>

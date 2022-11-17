@@ -14,6 +14,10 @@ import TablePagination from '@mui/material/TablePagination';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
 import { useNavigate, useParams } from "react-router-dom";
 import { MdAdd } from 'react-icons/md';
+import { AiFillCaretDown } from 'react-icons/ai';
+import { MdOutlineArrowDropUp } from 'react-icons/md';
+import { Input } from 'reactstrap';
+
 
 function BasketInfluencers() {
 
@@ -23,6 +27,17 @@ function BasketInfluencers() {
     const [listData, setListData] = useState([]);
     const [newPlanClicked, setNewPlanClicked] = useState(false);
     const [rowClickedData, setRowClickedData] = useState('');
+    const [filterFollowerClicked, setFilterFollowerClicked] = useState(false);
+    const [filterCategoryClicked, setFilterCategoryClicked] = useState(false);
+    const [filterErClicked, setFilterErClicked] = useState(false);
+    const [minRange, setMinrange] = useState();
+    const [maxRange, setMaxRange] = useState();
+    const [category, setCategory] = useState('');
+    const [minErRange, setMinErrange] = useState();
+    const [maxErRange, setMaxErRange] = useState();
+    const [followersRangeBasedInfluencers, setFollowersRangeBasedInfluencers] = useState([]);
+    const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
+    const [erBasedInfluencers, setErBasedInfluencers] = useState([]);
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
@@ -62,6 +77,14 @@ function BasketInfluencers() {
         setAddToListTableClicked(toggle);
     }
 
+    const handleFollowerFilterClicked = () => {
+        setFilterFollowerClicked(value => !value)
+    };
+
+    const handleCategoryFilterClicked = () => setFilterCategoryClicked(value => !value);
+
+    const handleErFilterClicked = () => setFilterErClicked(value => !value);
+
     const addInfluencerToList = (data, item) => {
         const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
@@ -73,10 +96,55 @@ function BasketInfluencers() {
             })
     }
 
+    const filterByFollowersRange = () => {
+        setFilterFollowerClicked(true);
+        const url = `http://localhost:4000/getfilteredData?minFollowers=${minRange}&maxFollowers=${maxRange}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        setFollowersRangeBasedInfluencers(res)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const filterCategory = () => {
+        setFilterCategoryClicked(true)
+        const url = `http://localhost:4000/getinfluencerdata?category=${category}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        setCategoryBasedInfluencers(res)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const filterByErRange = () => {
+        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${minErRange}&maxEr=${maxErRange}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        setErBasedInfluencers(res)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     useEffect(() => {
         fetchInfluencers();
         getListData();
     }, []);
+
 
     return (
         <div className='basket_influencers_container'>
@@ -84,11 +152,92 @@ function BasketInfluencers() {
             <div className='basket_influencers_container_content'>
                 <div className='middle_pane_lists'>
                     <div className='list_headers'>
-                        <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' />
+                        <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder={categoryName} className='input_search' />
                         <Button className='button_list' onClick={searchInfluencers}>Search</Button>
                     </div>
                     <div className='list_category_header'>
                         Top {categoryName} Influencers
+                    </div>
+                    <div className="filter_bar">
+                        <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {filterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {filterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {filterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        {
+                            filterErClicked === true ?
+                                <section className="modal_section">
+                                    <div className="modal_option">
+                                        <div>Select Engagement Rate Range</div>
+                                        <Input
+                                            placeholder="MinRange"
+                                            className="w-50"
+                                            type="text"
+                                            value={minErRange}
+                                            onChange={(e) => { setMinErrange(e.target.value) }}
+                                        />
+                                        <Input
+                                            placeholder="MaxRange"
+                                            className="w-50"
+                                            type="text"
+                                            value={maxErRange}
+                                            onChange={(e) => { setMaxErRange(e.target.value) }}
+                                        />
+                                        <Button
+                                            color="primary"
+                                            onClick={filterByErRange}
+                                        >
+                                            Filter
+                                        </Button>
+                                    </div>
+                                </section>
+                                :
+                                filterCategoryClicked === true ?
+                                    <section className="modal_section">
+                                        <div className="modal_option">
+                                            <div>Add Category</div>
+                                            <Input
+                                                placeholder="Category"
+                                                className="w-50"
+                                                type="text"
+                                                value={category}
+                                                onChange={(e) => { setCategory(e.target.value) }}
+                                            />
+                                            <Button
+                                                color="primary"
+                                                onClick={filterCategory}
+                                            >
+                                                Filter
+                                            </Button>
+                                        </div>
+                                    </section>
+                                    :
+                                    filterFollowerClicked === true ?
+                                        <section className="modal_section">
+                                            <div className="modal_option">
+                                                <div>Select Followers</div>
+                                                <Input
+                                                    placeholder="MinRange"
+                                                    className="w-50"
+                                                    type="text"
+                                                    value={minRange}
+                                                    onChange={(e) => { setMinrange(e.target.value) }}
+                                                />
+                                                <Input
+                                                    placeholder="MaxRange"
+                                                    className="w-50"
+                                                    type="text"
+                                                    value={maxRange}
+                                                    onChange={(e) => { setMaxRange(e.target.value) }}
+                                                />
+                                                <Button
+                                                    color="primary"
+                                                    onClick={filterByFollowersRange}
+                                                >
+                                                    Filter
+                                                </Button>
+                                            </div>
+                                        </section>
+                                        : null
+                        }
                     </div>
                     <div className='list_category_data'>
                         <TableContainer component={Paper}>
@@ -136,6 +285,7 @@ function BasketInfluencers() {
                                                         <TableCell align="center">{data.city_name}</TableCell>
                                                         <TableCell key={index} >
                                                             <>
+                                                                <Button><span>Cost</span></Button>
                                                                 <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
                                                                 {addToListTableClicked === true ?
                                                                     [data].map((item) =>
@@ -151,11 +301,11 @@ function BasketInfluencers() {
                                                                                     )}
                                                                                 </div>
                                                                             </section>
-                                                                            :
-                                                                            console.log("galat")
+                                                                            : null
                                                                     )
 
                                                                     : null}
+                                                                <Button><span>Compare</span></Button>
                                                             </>
                                                         </TableCell>
                                                     </TableRow>

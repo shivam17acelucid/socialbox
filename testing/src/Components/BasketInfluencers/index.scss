@@ -17,7 +17,6 @@ html {
     .basket_influencers_container_content {
         display: flex;
         padding-left: 1rem;
-        width: calc(100% - 30rem);
 
         .middle_pane_lists {
             padding-top: 2rem;
@@ -63,13 +62,58 @@ html {
                 font-size: 24px;
                 line-height: 36px;
                 color: #000000;
-                padding-top: 3rem;
+                padding-top: 1rem;
                 padding-left: 1rem;
             }
 
+            .filter_bar {
+                display: flex;
+                padding-top: 1rem;
+
+                .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                    background-color: #0014C6;
+                    color: #fff;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+
+                }
+
+                .modal_section {
+                    width: 200px;
+                    max-height: 350px;
+                    position: absolute;
+                    z-index: 4;
+                    padding-bottom: 8px;
+                    top: initial;
+                    padding-top: 0px;
+
+                    .modal_option {
+                        max-height: 342px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 4px;
+                        border-radius: 8px;
+                        background-color: #f6f6f6;
+                        box-shadow: var(--box-shadow-primary);
+                        cursor: pointer;
+
+                        .section_dropdown_header {
+                            display: flex;
+                            align-content: center;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+            }
+
             .list_category_data {
-                overflow-y: scroll;
-                height: 70vh;
 
                 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
                     background-color: #fff;
@@ -81,7 +125,7 @@ html {
                     overflow-x: auto;
 
                     .css-xn82ks-MuiTable-root {
-                        width: calc(100% - 10rem);
+                        width: calc(100% - 2rem);
 
                         .css-y8ay40-MuiTableCell-root {
                             height: 30px;
@@ -124,10 +168,13 @@ html {
                         }
 
                         .css-1ex1afd-MuiTableCell-root {
+                            display: flex;
+                            align-items: center;
                             text-decoration-line: none;
 
                             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                                 background: #0014C6;
+                                margin-right: 10px;
 
                                 span {
                                     font-family: 'Poppins';
@@ -138,6 +185,8 @@ html {
                                     display: flex;
                                     align-items: center;
                                     width: max-content;
+                                    padding: 0;
+                                    margin: 0;
                                 }
                             }
                         }
@@ -152,6 +201,7 @@ html {
                     padding-bottom: 8px;
                     top: initial;
                     padding-top: 0px;
+                    right: 12px;
 
                     .addList_option {
                         max-height: 342px;

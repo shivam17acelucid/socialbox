@@ -184,97 +184,108 @@ html {
 
     }
 
-    .recent_searches {
+    .list_bar {
         width: 100%;
         box-shadow: 0px 0 4px 0 #edecf4;
         z-index: 1 !important;
         max-width: 280px;
 
-        .recent_searches_content {
-            .recent_header {
-                padding-top: 7rem;
-                margin-left: 1.5rem;
-                width: 230px;
-                height: 3rem;
-                font-family: 'Poppins';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 2rem;
-                line-height: 3rem;
-                color: #000000;
-            }
+        .headers {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 2rem;
 
-            .recent_search_box {
-                margin-left: 1.5rem;
-                width: 240px;
-                height: 185px;
-                background: #FFFFFF;
-                box-shadow: 0px 0px 30px rgba(1, 28, 231, 0.1);
-                border-radius: 20px;
-
-                .recent_box_flex {
-                    display: flex;
-                    padding-left: 2rem;
-                    padding-top: 1rem;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .inf_img {
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 200px;
-                    }
-
-                    .influencers_name {
-                        width: 175px;
-                        height: 24px;
-                        font-family: 'Poppins';
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 24px;
-                        color: #1C1C1C;
-                        margin-left: 1rem;
-                    }
-                }
-
-                .category {
-                    height: 22px;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 16px;
-                    padding-left: 3rem;
-                }
-
-                .profile_btn {
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 2rem;
-                }
-
-                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    height: 44px;
-                    background: #0014C6;
-                    border-radius: 15px;
-                    width: 200px !important;
-                }
-
-                span {
-                    height: 21px;
+            .add_btn {
+                .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                    width: -webkit-fill-available;
+                    margin-top: 1rem;
+                    background-color: #0014C6;
+                    color: #fff;
                     font-family: 'Poppins';
                     font-style: normal;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: #FFFFFF;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
+                }
+            }
+        }
+
+        .list_clicked_data {
+            padding: 2rem;
+
+            .list_clicked_headers {
+                margin-top: 2rem;
+            }
+        }
+
+        .list_content {
+            padding-top: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            .list_content_inner {
+                margin-top: 1rem;
+                height: auto;
+                border-radius: 8px;
+                padding: 12px;
+                cursor: pointer;
+                background-color: rgb(255, 255, 255);
+                display: flex;
+                flex-direction: column;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                box-sizing: border-box;
+                border-radius: 20px;
+                background: #FFFFFF;
+                box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
+                border-radius: 20px;
+
+                .list_head {
+                    font-size: 16px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    gap: 8px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #1C1C1C;
+                }
+
+                .list_footer {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    margin-top: 1rem;
+                }
+
+                .list_footer_btn {
+                    margin-top: 1rem;
+
+                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                        width: -webkit-fill-available;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 15px 50px;
+                        height: 44px;
+                        background: #0014C6;
+                        border-radius: 15px;
+
+                        .btn_text {
+                            width: 89px;
+                            height: 21px;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 21px;
+                            color: #FFFFFF;
+                        }
+                    }
                 }
             }
         }

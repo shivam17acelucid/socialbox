@@ -3,13 +3,24 @@ import Navbar from '../../Common/Sidebar/sidebar';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import './listpage.scss';
+import { Input } from 'reactstrap';
+import moment from "moment";
 
 
 function Lists() {
 
     const [inputField, setInputField] = useState('');
     const [basketData, setBasketData] = useState([]);
+    const [listClicked, setListClicked] = useState(false);
+    const [listInfluencersData, setListInfluencersData] = useState([]);
+    const [listInfluencerDetails, setListInfluencerDetails] = useState([]);
+    const [newPlanClicked, setNewPlanClicked] = useState(false);
+    const [listName, setListName] = useState('');
+    const [listData, setListData] = useState([]);
+
     let navigate = useNavigate();
+    const userId = localStorage.getItem('id');
+
 
     const searchInfluencers = () => {
         navigate(`/influencerslist/${inputField}`);
@@ -28,9 +39,56 @@ function Lists() {
         navigate(`/basketInfluencers/${item.categoryName}`)
     }
 
+    const handleCreateList = (listName) => {
+        const url = `http://localhost:4000/createList/${userId}`
+        fetch((url), {
+            method: 'POST',
+            body: JSON.stringify({ listName }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => { res.json() })
+            .then((data) => {
+                setListInfluencerDetails(data)
+            })
+        setNewPlanClicked(false);
+    }
+
+    const handleAddPlan = () => {
+        const data = newPlanClicked ? false : true;
+        setNewPlanClicked(data);
+    }
+
+    const handleListClick = (item) => {
+        setListClicked(true);
+        const url = `http://localhost:4000/showInfluencersList/${userId}?list=${item.listName}`
+        fetch((url))
+            .then((data) => data.json())
+            .then((response) => {
+                setListInfluencersData([response])
+            })
+    }
+
+    const getListData = () => {
+        const url = `http://localhost:4000/getListData/${userId}`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((result) => {
+                        setListData(result)
+                    })
+            })
+    }
+
     useEffect(() => {
         fetchBasketsName();
+        getListData();
     }, []);
+
+    useEffect(() => {
+        getListData();
+    }, [newPlanClicked]);
 
     return (
         <>
@@ -74,32 +132,68 @@ function Lists() {
 
                     </div>
                 </div>
-                <div className='recent_searches'>
-                    <div className='list_toggler'>
-                        shop
-                        Hey User^
-                    </div>
-                    <div className='recent_searches_content'>
-                        <div className='recent_header'>
-                            Recent Searches
-                        </div>
-                        <div className='recent_search_box'>
-                            <div className='recent_box_flex'>
-                                <div className='inf_img'>
-                                    xyz
+                <div className="list_bar">
+                    {listClicked === true ?
+                        listInfluencersData.map((item) =>
+                            <div className="list_clicked_data" >
+                                <div onClick={() => setListClicked(false)}>back</div>
+                                <div className="list_name">{item.data.listName}</div>
+                                <div className="list_clicked_headers">
+                                    Total Influencers {item.influencers_count}
                                 </div>
-                                <div className='influencers_name'>
-                                    UserName
+                                <div>
+                                    {
+                                        item.data.influencersData.map((response) =>
+                                            <div className="list_clicked_influencers" >
+                                                <img src={response.profile_pic_hd_url} />
+                                                {response.full_name}
+                                                DeleteButton
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
-                            <div className='category'>
-                                sport xyz model
+                        )
+                        :
+                        <>
+                            <div className="headers">
+                                <span>
+                                    Kindly select a plan from the list below to start adding influencers!
+                                    <div>👇</div>
+                                </span>
+                                <div className="add_btn">
+                                    <Button variant="outlined" onClick={handleAddPlan}>New List</Button>
+                                    {
+                                        newPlanClicked ?
+                                            <>
+                                                <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
+                                                <Button variant="outlined" onClick={() => { handleCreateList(listName) }}>Create List</Button>
+                                            </> :
+                                            null
+                                    }
+                                </div>
                             </div>
-                            <div className='profile_btn'>
-                                <Button><span>View Profile</span></Button>
+                            <div className="list_content">
+                                {
+                                    listData.map((item) =>
+                                        <div className="list_content_inner" onClick={() => { handleListClick(item) }}>
+                                            <div className="list_head">
+                                                {item.listName}
+                                                {/* {'item.influencersCount'} */}
+                                            </div>
+                                            <div className="list_footer">
+                                                <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
+                                            </div>
+                                            <div className="list_footer_btn">
+                                                <Button><span className="btn_text">View List</span></Button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             </div>
-                        </div>
-                    </div>
+                        </>
+                    }
+
                 </div>
             </div>
         </>

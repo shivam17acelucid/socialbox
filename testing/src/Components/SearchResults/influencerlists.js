@@ -206,11 +206,11 @@ const InfluencersList = () => {
         setIsMouseHovering(true)
     }
 
-    const handleCreateList = (listName, brandName) => {
+    const handleCreateList = (listName) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName, brandName }),
+            body: JSON.stringify({ listName }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -488,8 +488,7 @@ const InfluencersList = () => {
                                             newPlanClicked ?
                                                 <>
                                                     <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
-                                                    <Input type="text" placeholder="Brand Name" value={brandName} onChange={(e) => { setBrandName(e.target.value) }} />
-                                                    <Button variant="outlined" onClick={() => { handleCreateList(listName, brandName) }}>Create List</Button>
+                                                    <Button variant="outlined" onClick={() => { handleCreateList(listName) }}>Create List</Button>
                                                 </> :
                                                 null
                                         }
@@ -504,7 +503,6 @@ const InfluencersList = () => {
                                                     {/* {'item.influencersCount'} */}
                                                 </div>
                                                 <div className="list_footer">
-                                                    <span>{item.brandName}</span>
                                                     <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
                                                 </div>
                                                 <div className="list_footer_btn">

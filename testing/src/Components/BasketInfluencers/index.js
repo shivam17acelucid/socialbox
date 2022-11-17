@@ -115,7 +115,9 @@ function BasketInfluencers() {
                                                         <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
                                                             {data.full_name}
                                                         </TableCell>
-                                                        <TableCell align="center">{data.category_enum}</TableCell>
+                                                        <TableCell align="center">
+                                                            {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
+                                                        </TableCell>
                                                         <TableCell align="center">
                                                             {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
                                                         </TableCell>

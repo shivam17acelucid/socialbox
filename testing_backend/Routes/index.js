@@ -5,7 +5,7 @@ const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
-const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers } = require('../Controllers/Baskets/index');
+const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets } = require('../Controllers/Comparison/comparelists')
 const rolehandler = require("../controllers/rolehandler");
 
@@ -34,6 +34,9 @@ router.post('/createCategorizedBasket', rolehandler.grantAccess("create", "categ
 router.post('/addInfluencersToBasket', rolehandler.grantAccess("update", "categorizedInfluencers"), addInfluencersToBasket);
 router.get('/showCategorizedBasket', showCategorizedBasket);
 router.get('/showBasketInfluencers', showBasketInfluencers);
+router.get('/filtered_basket_list', filtered_basket_list);
+router.get('/followersfilteredBasketData', followersfilteredBasketData);
+router.get('/erfilteredBasketData', erfilteredBasketData);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 module.exports = router;

@@ -374,18 +374,15 @@ exports.getInfluencersDetails = (req, res) => {
 }
 
 exports.createList = (req, res) => {
-    let { listName, brandName } = req.body;
+    let { listName } = req.body;
     let errors = [];
     if (!listName) {
         errors.push('Please Fill ListName')
     }
-    if (!brandName) {
-        errors.push('Please Fill BrandName')
-    }
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
     }
-    UserInfo.findByIdAndUpdate(req.params.id, { $addToSet: { list: { listName: listName, brandName: brandName } } })
+    UserInfo.findByIdAndUpdate(req.params.id, { $addToSet: { list: { listName: listName } } })
         .then((data) => {
             if (!data)
                 return res.status(401).json({
@@ -416,7 +413,7 @@ exports.addInfluencersToList = (req, res) => {
                 if (item.listName === req.query.list) {
                     InfluencersData.find({ username: req.query.username })
                         .then((result) => {
-                           let listInfluencersData = item.influencersData.push(result[0])
+                            let listInfluencersData = item.influencersData.push(result[0])
                             res.json(item.influencersData)
                             data.save();
                         })

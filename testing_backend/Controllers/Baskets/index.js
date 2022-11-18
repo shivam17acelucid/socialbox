@@ -70,7 +70,7 @@ exports.showBasketInfluencers = (req, res) => {
 
     CategorizedBasket.find({ categoryName })
         .then((data) => {
-            res.json(data)
+            res.json(data[0].basket)
         })
 }
 

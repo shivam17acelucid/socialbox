@@ -17,42 +17,13 @@ html {
     .basket_influencers_container_content {
         display: flex;
         padding-left: 1rem;
+        flex: 1;
+        width: calc(100% - 25rem);
 
         .middle_pane_lists {
             padding-top: 2rem;
             flex: 1;
-
-            .list_headers {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-
-                .input_search {
-                    width: 55rem;
-                    height: 70px;
-                    background: #FFFFFF;
-                    box-shadow: 0px 15px 40px rgba(108, 108, 108, 0.15);
-                    border: none;
-                    border-radius: 40px;
-                    text-align: center;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 20px;
-                    line-height: 30px;
-                    color: #A3A3A3;
-                }
-
-                .button_list {
-                    margin-left: 1rem;
-                    box-sizing: border-box;
-                    width: 8rem;
-                    height: 4rem;
-                    background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
-                    border: 2px solid #0014C6;
-                    border-radius: 20px;
-                }
-            }
+            width: calc(100% - 25rem);
 
             .list_category_header {
                 height: 3rem;
@@ -204,8 +175,7 @@ html {
                     z-index: 4;
                     padding-bottom: 8px;
                     top: initial;
-                    padding-top: 0px;
-                    right: 12px;
+                    padding-top: 10rem;
 
                     .addList_option {
                         max-height: 342px;
@@ -226,6 +196,77 @@ html {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.side_influencers_bundle {
+    width: 100%;
+    box-shadow: 0px 0 4px 0 #edecf4;
+    z-index: 1 !important;
+    max-width: 240px;
+    overflow-y: scroll;
+    height: 100vh;
+
+    .side_list_css {
+        padding: 5rem 1rem 0;
+
+        .sidebar_header {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #E95950;
+            transform: matrix(1, 0.01, 0, 1, 0, 0);
+            justify-content: center;
+        }
+
+        .bundle_box {
+            background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
+            box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
+            border-radius: 20px;
+            transform: matrix(1, 0.01, 0, 1, 0, 0);
+            margin: 2rem 0;
+            padding: 1rem;
+
+            .influencers_image {
+                box-sizing: border-box;
+                width: 2rem;
+                height: 2rem;
+                border: 2px solid #FFFFFF;
+                border-radius: 400px;
+                background: black;
+            }
+
+            .bundle_title {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 30px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #1C1C1C;
+                transform: matrix(1, 0.01, 0, 1, 0, 0);
+            }
+
+            .bundle_btn {
+                box-sizing: border-box;
+                height: 29.37px;
+                background: #FFFFFF;
+                border-radius: 10px;
+                width: 5rem;
+                text-align: center;
+                margin-left: 2rem;
+                margin-top: 8px;
+                cursor: pointer;
+                ;
             }
         }
     }

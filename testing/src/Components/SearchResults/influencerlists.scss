@@ -22,11 +22,13 @@ html {
 
         .search_content_list_panel {
             display: flex;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 100vh;
 
             .middle_pane {
                 padding-left: 1rem;
                 padding-right: 0.2rem;
-                width: calc(100% - 18rem);
                 flex: 1;
 
                 .filter_bar {
@@ -45,6 +47,39 @@ html {
                         font-size: 14px;
                         line-height: 21px;
                     }
+
+                    .modal_section {
+                        position: absolute;
+                        z-index: 4;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: white;
+                        padding: 1rem 1.5rem;
+                        width: 24rem;
+                        border-radius: 0.5rem;
+
+                        .modal_option {
+                            padding: 2rem;
+                            max-height: 342px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            border-radius: 8px;
+                            background-color: #f6f6f6;
+                            box-shadow: var(--box-shadow-primary);
+                            cursor: pointer;
+
+                            .close_btn {
+                                display: flex;
+                                justify-content: flex-end;
+                            }
+
+                            input {
+                                margin: 12px;
+                            }
+                        }
+                    }
                 }
 
                 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
@@ -58,11 +93,26 @@ html {
                 }
 
                 .table_content {
-                    overflow-y: scroll;
-                    overflow-x: hidden;
                     height: 87vh;
 
                     .table_container {
+
+                        .css-1q1u3t4-MuiTableRow-root {
+                            background-color: #FFF !important;
+                        }
+
+                        .css-y8ay40-MuiTableCell-root,
+                        .css-dwuj3p-MuiTableCell-root {
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 800;
+                            font-size: 20px;
+                            line-height: 30px;
+                            background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        }
 
                         .css-67bhig-MuiTableCell-root.MuiTableCell-head {
                             background: #fff;
@@ -73,6 +123,27 @@ html {
                             font-size: 20px;
                             line-height: 30px;
                             height: 30px;
+                        }
+
+                        .css-1ex1afd-MuiTableCell-root {
+                            background-color: #FFF !important;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 20px;
+                            line-height: 30px;
+                            color: #414141;
+                        }
+
+                        .css-1yhpg23-MuiTableCell-root {
+                            background-color: #FFF !important;
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 30px;
+                            color: #414141;
+
                         }
 
                         .css-86ysqi-MuiTableCell-root.MuiTableCell-head {
@@ -86,18 +157,13 @@ html {
                             height: 30px;
                         }
 
-                        .css-1enotpu-MuiTableRow-root:nth-of-type(odd) {
-                            background-color: #fff;
-                        }
 
                         .css-132a6sb-MuiTableCell-root.MuiTableCell-body {
-                            font-size: 14px;
-                            background-color: #fff;
+                            display: flex;
                         }
 
-                        .css-1dydcym-MuiTableCell-root.MuiTableCell-body {
-                            font-size: 14px;
-                            background-color: #fff;
+                        .btn_display {
+                            display: flex;
                         }
 
                         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
@@ -109,132 +175,34 @@ html {
                             font-size: 14px;
                             line-height: 21px;
                             margin: 2px;
+                            width: max-content;
                         }
 
                         .addList_section {
-                            width: 190px;
                             max-height: 350px;
                             position: absolute;
                             z-index: 4;
                             padding-bottom: 8px;
                             top: initial;
-                            padding-top: 0px;
+                            padding-top: 30px;
+                            right: 30px;
 
                             .addList_option {
                                 max-height: 342px;
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: space-between;
-                                padding: 4px;
+                                padding: 10px;
                                 border-radius: 8px;
-                                background-color: white;
+                                background-color: #f6f6f6;
                                 box-shadow: var(--box-shadow-primary);
-                            }
-                        }
-                    }
-                }
-            }
+                                cursor: pointer;
 
-            .list_bar {
-                width: 100%;
-                box-shadow: 0px 0 4px 0 #edecf4;
-                z-index: 1 !important;
-                max-width: 280px;
-
-                .headers {
-                    padding-left: 2rem;
-                    padding-right: 2rem;
-                    padding-top: 2rem;
-
-                    .add_btn {
-                        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-                            width: -webkit-fill-available;
-                            margin-top: 1rem;
-                            background-color: #0014C6;
-                            color: #fff;
-                            font-family: 'Poppins';
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 14px;
-                            line-height: 21px;
-                        }
-                    }
-                }
-
-                .list_clicked_data {
-                    padding: 2rem;
-
-                    .list_clicked_headers {
-                        margin-top: 2rem;
-                    }
-                }
-
-                .list_content {
-                    padding-top: 1rem;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-
-                    .list_content_inner {
-                        margin-top: 1rem;
-                        height: auto;
-                        border-radius: 8px;
-                        padding: 12px;
-                        cursor: pointer;
-                        background-color: rgb(255, 255, 255);
-                        display: flex;
-                        flex-direction: column;
-                        -webkit-box-pack: justify;
-                        justify-content: space-between;
-                        box-sizing: border-box;
-                        border-radius: 20px;
-                        background: #FFFFFF;
-                        box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
-                        border-radius: 20px;
-
-                        .list_head {
-                            font-size: 16px;
-                            display: flex;
-                            -webkit-box-align: center;
-                            align-items: center;
-                            gap: 8px;
-                            font-family: 'Poppins';
-                            font-style: normal;
-                            font-weight: 600;
-                            font-size: 16px;
-                            line-height: 24px;
-                            color: #1C1C1C;
-                        }
-
-                        .list_footer {
-                            display: flex;
-                            -webkit-box-align: center;
-                            align-items: center;
-                            -webkit-box-pack: justify;
-                            justify-content: space-between;
-                            margin-top: 1rem;
-                        }
-
-                        .list_footer_btn {
-                            margin-top: 1rem;
-
-                            .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                                width: -webkit-fill-available;
-                                justify-content: center;
-                                align-items: center;
-                                padding: 15px 50px;
-                                height: 44px;
-                                background: #0014C6;
-                                border-radius: 15px;
-
-                                .btn_text {
-                                    width: 89px;
-                                    height: 21px;
-                                    font-family: 'Poppins';
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    font-size: 14px;
-                                    line-height: 21px;
-                                    color: #FFFFFF;
+                                .section_dropdown_header {
+                                    display: flex;
+                                    align-content: center;
+                                    align-items: center;
+                                    justify-content: space-between;
                                 }
                             }
                         }

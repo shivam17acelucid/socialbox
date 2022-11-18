@@ -9,8 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
 import { useNavigate, useParams } from "react-router-dom";
 import { MdAdd } from 'react-icons/md';
@@ -41,14 +39,12 @@ function BasketInfluencers() {
     const [followersRangeBasedInfluencers, setFollowersRangeBasedInfluencers] = useState([]);
     const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
     const [erBasedInfluencers, setErBasedInfluencers] = useState([]);
+    const [basketData, setBasketData] = useState([]);
+    const [changeBasket, setChangeBasket] = useState(false);
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
     const userId = localStorage.getItem('id');
-
-    const searchInfluencers = () => {
-        navigate(`/influencerslist/${inputField}`);
-    }
 
     const fetchInfluencers = () => {
         const url = `http://localhost:4000/showBasketInfluencers?categoryName=${categoryName}`;
@@ -101,7 +97,8 @@ function BasketInfluencers() {
 
     const filterByFollowersRange = () => {
         setFilterFollowerClicked(true);
-        const url = `http://localhost:4000/getfilteredData?minFollowers=${minRange}&maxFollowers=${maxRange}`;
+        setIsFilterFollowerClicked(false);
+        const url = `http://localhost:4000/followersfilteredBasketData?minFollowers=${minRange}&maxFollowers=${maxRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -116,7 +113,8 @@ function BasketInfluencers() {
 
     const filterCategory = () => {
         setFilterCategoryClicked(true)
-        const url = `http://localhost:4000/getinfluencerdata?category=${category}`;
+        setIsFilterCategoryClicked(false);
+        const url = `http://localhost:4000/filtered_basket_list?listName=${categoryName}&category=${category}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -131,6 +129,7 @@ function BasketInfluencers() {
 
     const filterByErRange = () => {
         setFilterErClicked(true);
+        setIsFilterErClicked(false);
         const url = `http://localhost:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
@@ -144,9 +143,30 @@ function BasketInfluencers() {
             })
     }
 
+    const fetchBasketsName = () => {
+        const url = `http://localhost:4000/showCategorizedBasket`;
+        fetch(url)
+            .then((res) => res.json())
+            .then((response) => {
+                setBasketData(response)
+            })
+    }
+
+    const handleRedirectToBasket = (item) => {
+        setChangeBasket((prev) => !prev);
+        navigate(`/basketInfluencers/${item.categoryName}`);
+    }
+
     useEffect(() => {
         fetchInfluencers();
         getListData();
+        fetchBasketsName();
+    }, [changeBasket]);
+
+    useEffect(() => {
+        fetchInfluencers();
+        getListData();
+        fetchBasketsName();
     }, []);
 
 
@@ -155,10 +175,6 @@ function BasketInfluencers() {
             <Navbar />
             <div className='basket_influencers_container_content'>
                 <div className='middle_pane_lists'>
-                    <div className='list_headers'>
-                        <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder={categoryName} className='input_search' />
-                        <Button className='button_list' onClick={searchInfluencers}>Search</Button>
-                    </div>
                     <div className='list_category_header'>
                         Top {categoryName} Influencers
                     </div>
@@ -271,87 +287,83 @@ function BasketInfluencers() {
                                                 filterFollowerClicked === true ?
                                                     followersRangeBasedInfluencers :
                                                     influencersData)
-                                            .map((item, index) =>
+                                            .map((data, index) =>
                                                 <>
-                                                    {
-                                                        item.basket.map((data) =>
-                                                            < TableRow>
-                                                                <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
-                                                                    {data.full_name}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {NFormatter(data.edge_followed_by.count)}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
-                                                                </TableCell>
-                                                                <TableCell align="center">
-                                                                    {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                                                </TableCell>
-                                                                <TableCell align="center">{data.city_name}</TableCell>
-                                                                <TableCell key={index} >
-                                                                    <>
-                                                                        <Button><span>Cost</span></Button>
-                                                                        <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
-                                                                        {addToListTableClicked === true ?
-                                                                            [data].map((item) =>
-                                                                                item.username == rowClickedData ?
-                                                                                    <section className="addList_section" id={data.id}>
-                                                                                        <div className="addList_option">
-                                                                                            <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
-                                                                                            <div>Recently Created Lists</div>
-                                                                                            {listData.map((item) =>
-                                                                                                <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                                    {item.listName}
-                                                                                                </div>
-                                                                                            )}
+                                                    < TableRow>
+                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                            {data.full_name}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_followed_by.count)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                        </TableCell>
+                                                        <TableCell align="center">{data.city_name}</TableCell>
+                                                        <TableCell key={index} >
+                                                            <>
+                                                                <Button><span>Cost</span></Button>
+                                                                <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
+                                                                {addToListTableClicked === true ?
+                                                                    [data].map((item) =>
+                                                                        item.username == rowClickedData ?
+                                                                            <section className="addList_section" id={data.id}>
+                                                                                <div className="addList_option">
+                                                                                    <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
+                                                                                    <div>Recently Created Lists</div>
+                                                                                    {listData.map((item) =>
+                                                                                        <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                            {item.listName}
                                                                                         </div>
-                                                                                    </section>
-                                                                                    : null
-                                                                            )
+                                                                                    )}
+                                                                                </div>
+                                                                            </section>
+                                                                            : null
+                                                                    )
 
-                                                                            : null}
-                                                                        <Button><span>Compare</span></Button>
-                                                                    </>
-                                                                </TableCell>
-                                                            </TableRow>
-                                                        )
-                                                    }
+                                                                    : null}
+                                                                <Button><span>Compare</span></Button>
+                                                            </>
+                                                        </TableCell>
+                                                    </TableRow>
                                                 </>
                                             )
                                     }
                                 </TableBody>
-                                {/* <TableFooter>
-                                    <TableRow>
-                                        <TablePagination
-                                        // rowsPerPageOptions={[8, 16, { label: 'All', value: -1 }]}
-                                        // colSpan={3}
-                                        // count={showVerifiedInfluencers === true ? verifiedInfluencers.length : locationFilterApplied === true ? locationBasedInfluencers.length : categoryFilterApplied === true ? categoryBasedInfluencers.length : followersFilterApplied === true ? followersRangeBasedInfluencers.length : influencersData.length}
-                                        // rowsPerPage={rowsPerPage}
-                                        // page={page}
-                                        // SelectProps={{
-                                        //     inputProps: {
-                                        //         'aria-label': 'Results per page',
-                                        //     },
-                                        //     native: true,
-                                        // }}
-                                        // onPageChange={handleChangePage}
-                                        // onRowsPerPageChange={handleChangeRowsPerPage}
-                                        />
-                                    </TableRow>
-                                </TableFooter> */}
                             </Table>
                         </TableContainer>
                     </div>
+                </div>
+            </div>
+            <div className='side_influencers_bundle'>
+                <div className='side_list_css'>
+                    <div className='sidebar_header'>
+                        Top Bundles
+                    </div>
+                    {
+                        basketData.map((item) =>
+                            <div className='bundle_box'>
+                                <div className='influencers_image'>
+                                    x
+                                </div>
+                                <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                            </div>
+
+                        )
+                    }
                 </div>
             </div>
         </div>

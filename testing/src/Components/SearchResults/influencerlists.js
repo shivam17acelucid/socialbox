@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import NFormatter from "../../Common/NumberFormatter/numFormatter";
 import './influencerlists.scss';
 import Navbar from "../../Common/Sidebar/sidebar";
-import { styled } from '@mui/material/styles';
+import { } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -14,7 +14,10 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
-import { Modal, ModalBody, ModalHeader, FormGroup, Input } from "reactstrap";
+import { Input } from "reactstrap";
+import { MdAdd } from 'react-icons/md';
+import { AiFillCaretDown } from 'react-icons/ai';
+import { MdOutlineArrowDropUp } from 'react-icons/md';
 import moment from "moment";
 
 const InfluencersList = () => {
@@ -24,29 +27,30 @@ const InfluencersList = () => {
     const [rowsPerPage, setRowsPerPage] = useState(8);
     const [showVerifiedInfluencers, setShowVerifiedInfluencers] = useState(false);
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
-    const [isOpen, setOpen] = useState(false);
+    const [er, setEr] = useState('');
     const [category, setCategory] = useState('');
-    const [location, setLocation] = useState('');
+    const [minErRange, setMinErrange] = useState();
+    const [maxErRange, setMaxErRange] = useState();
     const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
-    const [locationBasedInfluencers, setLocationBasedInfluencers] = useState([]);
+    const [erBasedInfluencers, setErBasedInfluencers] = useState([]);
     const [followersRangeBasedInfluencers, setFollowersRangeBasedInfluencers] = useState([]);
-    const [categoryFilterApplied, setCategoryFilterApplied] = useState(false)
-    const [locationFilterApplied, setLocationFilterApplied] = useState(false)
-    const [followersFilterApplied, setFollowersFilterApplied] = useState(false)
-    const [categoryModalClicked, setCategoryModalClicked] = useState(false);
-    const [locationModalClicked, setLocationModalClicked] = useState(false);
-    const [followersModalClicked, setFollowersModalClicked] = useState(false);
+    const [isfilterFollowerClicked, setIsFilterFollowerClicked] = useState(false);
+    const [isfilterCategoryClicked, setIsFilterCategoryClicked] = useState(false);
+    const [isfilterErClicked, setIsFilterErClicked] = useState(false);
+    const [filterFollowerClicked, setFilterFollowerClicked] = useState(false);
+    const [filterCategoryClicked, setFilterCategoryClicked] = useState(false);
+    const [filterErClicked, setFilterErClicked] = useState(false);
     const [minRange, setMinrange] = useState();
     const [maxRange, setMaxRange] = useState();
     const [newPlanClicked, setNewPlanClicked] = useState(false);
-    const [listName, setListName] = useState('');
-    const [brandName, setBrandName] = useState('');
+    // const [listName, setListName] = useState('');
+    // const [brandName, setBrandName] = useState('');
     const [listData, setListData] = useState([]);
-    const [isMouseHovering, setIsMouseHovering] = useState(false)
     const [addToListTableClicked, setAddToListTableClicked] = useState(false);
     const [listInfluencerDetails, setListInfluencerDetails] = useState([]);
     const [listClicked, setListClicked] = useState(false);
     const [listInfluencersData, setListInfluencersData] = useState([]);
+    const [rowClickedData, setRowClickedData] = useState('');
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -92,8 +96,17 @@ const InfluencersList = () => {
         navigate(`/profile/${data.username}`)
     }
 
+    const handleFollowerFilterClicked = () => {
+        setIsFilterFollowerClicked(value => !value)
+    };
+
+    const handleCategoryFilterClicked = () => setIsFilterCategoryClicked(value => !value);
+
+    const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
+
     const filterCategory = () => {
-        setCategoryFilterApplied(true)
+        setFilterCategoryClicked(true)
+        setIsFilterCategoryClicked(false);
         const url = `http://localhost:4000/getinfluencerdata?category=${category}`;
         fetch(url)
             .then((data) => {
@@ -108,7 +121,8 @@ const InfluencersList = () => {
     }
 
     const filterByFollowersRange = () => {
-        setFollowersFilterApplied(true);
+        setFilterFollowerClicked(true);
+        setIsFilterFollowerClicked(false);
         const url = `http://localhost:4000/getfilteredData?minFollowers=${minRange}&maxFollowers=${maxRange}`;
         fetch(url)
             .then((data) => {
@@ -122,14 +136,15 @@ const InfluencersList = () => {
             })
     }
 
-    const filterLocation = () => {
-        setLocationFilterApplied(true)
-        const url = `http://localhost:4000/getinfluencerdata?location=${location}`;
+    const filterByErRange = () => {
+        setFilterErClicked(true);
+        setIsFilterErClicked(false);
+        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${minErRange}&maxEr=${maxErRange}`;
         fetch(url)
             .then((data) => {
                 data.json()
                     .then((res) => {
-                        setLocationBasedInfluencers(res)
+                        setErBasedInfluencers(res)
                     })
             })
             .catch((err) => {
@@ -158,53 +173,11 @@ const InfluencersList = () => {
     }, [newPlanClicked]);
 
 
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
-            color: theme.palette.common.white,
-        },
-        [`&.${tableCellClasses.body}`]: {
-            fontSize: 14,
-        },
-    }));
-
-    const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-        // hide last border
-        '&:last-child td, &:last-child th': {
-            border: 0,
-        },
-    }));
-
-    const openCategoryModal = () => {
-        const data = isOpen ? false : true;
-        setOpen(data)
-        setCategoryModalClicked(true);
-    }
-
-    const openLocationModal = () => {
-        const data = isOpen ? false : true;
-        setOpen(data)
-        setLocationModalClicked(true);
-    }
-
-    const openFollowersModal = () => {
-        const data = isOpen ? false : true;
-        setOpen(data)
-        setFollowersModalClicked(true);
-    }
-
     const handleAddPlan = () => {
         const data = newPlanClicked ? false : true;
         setNewPlanClicked(data);
     }
 
-    const handleMouseHover = (index) => {
-        console.log(index)
-        setIsMouseHovering(true)
-    }
 
     const handleCreateList = (listName) => {
         const url = `http://localhost:4000/createList/${userId}`
@@ -223,6 +196,7 @@ const InfluencersList = () => {
     }
 
     const handleAddToListTable = (e) => {
+        setRowClickedData(e.username)
         const toggle = addToListTableClicked ? false : true;
         setAddToListTableClicked(toggle);
     }
@@ -248,11 +222,6 @@ const InfluencersList = () => {
             })
     }
 
-    const customModalStyles = {
-        overlay: { zIndex: 5 }
-    }
-
-
 
     return (
         <div className="search_container">
@@ -263,113 +232,117 @@ const InfluencersList = () => {
                 <div className="search_content_list_panel">
                     <div className="middle_pane">
                         <div className="filter_bar">
-                            <Button variant="outlined" onClick={openFollowersModal}>Followers</Button>
-                            <Button variant="outlined" onClick={openCategoryModal}>Category</Button>
-                            <Button variant="outlined" onClick={openLocationModal}>location</Button>
+                            <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                            <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                            <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                             <Button variant="outlined" onClick={showVerified}>{showVerifiedInfluencers === true ? 'Back' : 'Registered influencers'}</Button>
-                            <Modal
-                                isOpen={isOpen}
-                                backdropClassName="h-100 w-100"
-                                style={customModalStyles}
-                            >
-                                <ModalHeader>
-                                    {locationModalClicked === true ?
-                                        <span>Select Location</span> :
-                                        categoryModalClicked === true ?
-                                            <span>Select Category</span> :
-                                            followersModalClicked === true ?
-                                                <span>Select Followers Range</span> : ''}
-                                </ModalHeader>
-                                <ModalBody>
-                                    <form onSubmit={(e) => e.preventDefault()}>
-                                        <FormGroup className="mb-4">
-                                            {categoryModalClicked === true ?
-                                                <>
+                            {
+                                isfilterErClicked === true ?
+                                    <section className="modal_section">
+                                        <div className="modal_option">
+                                            <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
+                                            <div>Select Engagement Rate Range</div>
+                                            <Input
+                                                placeholder="MinRange"
+                                                className="w-50"
+                                                type="text"
+                                                value={minErRange}
+                                                onChange={(e) => { setMinErrange(e.target.value) }}
+                                            />
+                                            <Input
+                                                placeholder="MaxRange"
+                                                className="w-50"
+                                                type="text"
+                                                value={maxErRange}
+                                                onChange={(e) => { setMaxErRange(e.target.value) }}
+                                            />
+                                            <Button
+                                                color="primary"
+                                                onClick={filterByErRange}
+                                            >
+                                                Filter
+                                            </Button>
+                                        </div>
+                                    </section>
+                                    :
+                                    isfilterCategoryClicked === true ?
+                                        <section className="modal_section">
+                                            <div className="modal_option">
+                                                <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
+                                                <div>Add Category</div>
+                                                <Input
+                                                    placeholder="Category"
+                                                    className="w-50"
+                                                    type="text"
+                                                    value={category}
+                                                    onChange={(e) => { setCategory(e.target.value) }}
+                                                />
+                                                <Button
+                                                    color="primary"
+                                                    onClick={filterCategory}
+                                                >
+                                                    Filter
+                                                </Button>
+                                            </div>
+                                        </section>
+                                        :
+                                        isfilterFollowerClicked === true ?
+                                            <section className="modal_section">
+                                                <div className="modal_option">
+                                                    <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
+                                                    <div>Select Followers</div>
                                                     <Input
-                                                        placeholder="Category"
+                                                        placeholder="MinRange"
                                                         className="w-50"
                                                         type="text"
-                                                        value={category}
-                                                        onChange={(e) => { setCategory(e.target.value) }}
+                                                        value={minRange}
+                                                        onChange={(e) => { setMinrange(e.target.value) }}
+                                                    />
+                                                    <Input
+                                                        placeholder="MaxRange"
+                                                        className="w-50"
+                                                        type="text"
+                                                        value={maxRange}
+                                                        onChange={(e) => { setMaxRange(e.target.value) }}
                                                     />
                                                     <Button
                                                         color="primary"
-                                                        onClick={filterCategory}
+                                                        onClick={filterByFollowersRange}
                                                     >
                                                         Filter
                                                     </Button>
-                                                </> :
-                                                locationModalClicked === true ?
-                                                    <>
-                                                        <Input
-                                                            placeholder="Location"
-                                                            className="w-50"
-                                                            type="text"
-                                                            value={location}
-                                                            onChange={(e) => { setLocation(e.target.value) }}
-                                                        />
-                                                        <Button
-                                                            color="primary"
-                                                            onClick={filterLocation}
-                                                        >
-                                                            Filter
-                                                        </Button>
-                                                    </> :
-                                                    followersModalClicked === true ?
-                                                        <>
-                                                            <Input
-                                                                placeholder="MinRange"
-                                                                className="w-50"
-                                                                type="text"
-                                                                value={minRange}
-                                                                onChange={(e) => { setMinrange(e.target.value) }}
-                                                            />
-                                                            <Input
-                                                                placeholder="MaxRange"
-                                                                className="w-50"
-                                                                type="text"
-                                                                value={maxRange}
-                                                                onChange={(e) => { setMaxRange(e.target.value) }}
-                                                            />
-                                                            <Button
-                                                                color="primary"
-                                                                onClick={filterByFollowersRange}
-                                                            >
-                                                                Filter
-                                                            </Button>
-                                                        </> : ''}
-                                        </FormGroup>
-                                    </form>
-                                </ModalBody>
-                            </Modal>
+                                                </div>
+                                            </section>
+                                            : null
+                            }
                         </div>
                         <div className="table_content">
                             <TableContainer component={Paper}>
                                 <Table stickyHeader className="table_container" >
                                     <TableHead>
                                         <TableRow>
-                                            <StyledTableCell>Instagram Profiles</StyledTableCell>
-                                            <StyledTableCell align="center">Followers</StyledTableCell>
-                                            <StyledTableCell align="center">Engagement Rate</StyledTableCell>
-                                            <StyledTableCell align="center">Average Like</StyledTableCell>
-                                            <StyledTableCell align="center">Average Comment</StyledTableCell>
-                                            <StyledTableCell align="center">Average Reach</StyledTableCell>
-                                            <StyledTableCell align="center">City</StyledTableCell>
-                                            <StyledTableCell align="center">Category</StyledTableCell>
-                                            <StyledTableCell align="center"></StyledTableCell>
+                                            <TableCell>Instagram Profiles</TableCell>
+                                            <TableCell align="center">Followers</TableCell>
+                                            <TableCell align="center">Engagement</TableCell>
+                                            <TableCell align="center">Avg Like</TableCell>
+                                            <TableCell align="center">Avg Comment</TableCell>
+                                            <TableCell align="center">Avg Reach</TableCell>
+                                            <TableCell align="center">City</TableCell>
+                                            <TableCell align="center">Category</TableCell>
+                                            <TableCell align="center"></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {
                                             (rowsPerPage > 0
                                                 ?
-                                                followersFilterApplied === true ?
+                                                filterFollowerClicked === true ?
                                                     followersRangeBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     :
-                                                    locationFilterApplied === true ?
-                                                        locationBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                    filterErClicked === true ?
+                                                        erBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                         :
-                                                        categoryFilterApplied === true ?
+                                                        filterCategoryClicked === true ?
                                                             categoryBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                             :
                                                             showVerifiedInfluencers === true ?
@@ -380,51 +353,53 @@ const InfluencersList = () => {
                                             )
                                                 .map((data, index) => (
                                                     <>
-                                                        < StyledTableRow key={index} onMouseEnter={() => handleMouseHover(index)} onMouseLeave={() => { setIsMouseHovering(false) }} hover={true}>
-                                                            <StyledTableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
-                                                                {/* <img crossOrigin="anonymous" src={data.profile_pic_url_hd} alt='' /> */}
-                                                                {data.username}
+                                                        < TableRow key={index} >
+                                                            <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
                                                                 <div>{data.full_name}</div>
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">
+                                                            </TableCell>
+                                                            <TableCell align="center">
                                                                 {NFormatter(data.edge_followed_by.count)}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">
+                                                            </TableCell>
+                                                            <TableCell align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">
+                                                            </TableCell>
+                                                            <TableCell align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">
+                                                            </TableCell>
+                                                            <TableCell align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">
+                                                            </TableCell>
+                                                            <TableCell align="center">
                                                                 {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="center">{data.city_name}</StyledTableCell>
-                                                            <StyledTableCell align="center">{data.category_enum}</StyledTableCell>
-                                                            <StyledTableCell key={index}>{isMouseHovering ? (
-                                                                <>
+                                                            </TableCell>
+                                                            <TableCell align="center">{data.city_name}</TableCell>
+                                                            <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
+                                                            <TableCell key={index}>
+                                                                <div className="btn_display">
                                                                     <Button id={data.id}>Cost</Button>
                                                                     <Button id={data.id} onClick={() => { handleAddToListTable(data) }}>Add To List</Button>
                                                                     {addToListTableClicked === true ?
-                                                                        <section className="addList_section">
-                                                                            <div className="addList_option">
-                                                                                <div onClick={() => setNewPlanClicked(true)}>To New List</div>
-                                                                                <div>Recently Created Lists</div>
-                                                                                {listData.map((item) =>
-                                                                                    <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                        {item.listName}
+                                                                        [data].map((item) =>
+                                                                            item.username == rowClickedData ?
+                                                                                <section className="addList_section" id={data.id}>
+                                                                                    <div className="addList_option">
+                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
+                                                                                        <div>Recently Created Lists</div>
+                                                                                        {listData.map((item) =>
+                                                                                            <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                {item.listName}
+                                                                                            </div>
+                                                                                        )}
                                                                                     </div>
-                                                                                )}
-                                                                            </div>
-                                                                        </section> : null}
-                                                                    <Button onClick={() => redirectProfile(data)} id={data.id} >Profile</Button>
-                                                                </>
-                                                            )
-                                                                : null
-                                                            }</StyledTableCell>
-                                                        </StyledTableRow>
+                                                                                </section>
+                                                                                : null
+                                                                        )
+
+                                                                        : null}
+                                                                    <Button id={data.id} >Compare</Button>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRow>
 
                                                     </>
                                                 ))
@@ -435,7 +410,7 @@ const InfluencersList = () => {
                                             <TablePagination
                                                 rowsPerPageOptions={[8, 16, { label: 'All', value: -1 }]}
                                                 colSpan={3}
-                                                count={showVerifiedInfluencers === true ? verifiedInfluencers.length : locationFilterApplied === true ? locationBasedInfluencers.length : categoryFilterApplied === true ? categoryBasedInfluencers.length : followersFilterApplied === true ? followersRangeBasedInfluencers.length : influencersData.length}
+                                                count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterErClicked === true ? erBasedInfluencers.length : filterCategoryClicked === true ? categoryBasedInfluencers.length : filterFollowerClicked === true ? followersRangeBasedInfluencers.length : influencersData.length}
                                                 rowsPerPage={rowsPerPage}
                                                 page={page}
                                                 SelectProps={{
@@ -452,68 +427,6 @@ const InfluencersList = () => {
                                 </Table>
                             </TableContainer>
                         </div>
-                    </div>
-                    <div className="list_bar">
-                        {listClicked === true ?
-                            listInfluencersData.map((item) =>
-                                <div className="list_clicked_data" >
-                                    <div onClick={() => setListClicked(false)}>back</div>
-                                    <div className="list_name">{item.data.listName}</div>
-                                    <div className="list_clicked_headers">
-                                        Total Influencers {item.influencers_count}
-                                    </div>
-                                    <div>
-                                        {
-                                            item.data.influencersData.map((response) =>
-                                                <div className="list_clicked_influencers" >
-                                                    <img src={response.profile_pic_hd_url} />
-                                                    {response.full_name}
-                                                    DeleteButton
-                                                </div>
-                                            )
-                                        }
-                                    </div>
-                                </div>
-                            )
-                            :
-                            <>
-                                <div className="headers">
-                                    <span>
-                                        Kindly select a plan from the list below to start adding influencers!
-                                        <div>👇</div>
-                                    </span>
-                                    <div className="add_btn">
-                                        <Button variant="outlined" onClick={handleAddPlan}>New List</Button>
-                                        {
-                                            newPlanClicked ?
-                                                <>
-                                                    <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
-                                                    <Button variant="outlined" onClick={() => { handleCreateList(listName) }}>Create List</Button>
-                                                </> :
-                                                null
-                                        }
-                                    </div>
-                                </div>
-                                <div className="list_content">
-                                    {
-                                        listData.map((item) =>
-                                            <div className="list_content_inner" onClick={() => { handleListClick(item) }}>
-                                                <div className="list_head">
-                                                    {item.listName}
-                                                </div>
-                                                <div className="list_footer">
-                                                    <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
-                                                </div>
-                                                <div className="list_footer_btn">
-                                                    <Button><span className="btn_text">View List</span></Button>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            </>
-                        }
-
                     </div>
                 </div>
             </div>

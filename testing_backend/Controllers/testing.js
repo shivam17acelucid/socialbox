@@ -393,7 +393,7 @@ exports.getInfluencersDetails = (req, res) => {
 }
 
 exports.createList = (req, res) => {
-    let { listName } = req.body;
+    let { listName, reel, staticPost, video, story, swipeStory, igtv } = req.body;
     let errors = [];
     if (!listName) {
         errors.push('Please Fill ListName')

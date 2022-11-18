@@ -43,7 +43,7 @@ let userinfoSchema = new Schema(
     },
     list: [{
       listName: String,
-      brandName: String,
+      deliverables: Array,
       influencersData: Array,
       createdAT: { type: Date, default: Date.now(), index: { expiresIn: 300 } }
     }],

@@ -8,6 +8,7 @@ const Lists = React.lazy(() => import("../Components/List Page/listcomponent"));
 const BasketInfluencers = React.lazy(() => import("../Components/BasketInfluencers/index"));
 const Compare = React.lazy(() => import("../Components/Compare/compare"));
 const Calculator = React.lazy(() => import("../Components/Calculator/calculator"));
+const UserLists = React.lazy(() => import("../Components/UserLists/lists"));
 
 function RouteF() {
 
@@ -26,6 +27,7 @@ function RouteF() {
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                     <Route path="/basketInfluencers/:categoryName" element={<BasketInfluencers />} />
+                    <Route path="/userLists/:listname" element={<UserLists />} />
                     <Route path="/profile/:profilename" element={<ProfileData />} />
                 </Routes>
             </Suspense>

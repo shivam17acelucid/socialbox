@@ -3,8 +3,9 @@ import Navbar from '../../Common/Sidebar/sidebar';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import './listpage.scss';
-import { Input } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import moment from "moment";
+import { MdOutlineAddBox } from "react-icons/md";
 
 
 function Lists() {
@@ -60,15 +61,10 @@ function Lists() {
         setNewPlanClicked(data);
     }
 
-    const handleListClick = (item) => {
-        setListClicked(true);
-        const url = `http://localhost:4000/showInfluencersList/${userId}?list=${item.listName}`
-        fetch((url))
-            .then((data) => data.json())
-            .then((response) => {
-                setListInfluencersData([response])
-            })
+    const handleRedirectToList = (item) => {
+        navigate(`/userLists/${item.listName}`)
     }
+
 
     const getListData = () => {
         const url = `http://localhost:4000/getListData/${userId}`;
@@ -162,11 +158,14 @@ function Lists() {
                                     <div>👇</div>
                                 </span>
                                 <div className="add_btn">
-                                    <Button variant="outlined" onClick={handleAddPlan}>New List</Button>
+                                    <Button variant="outlined" onClick={handleAddPlan}> <MdOutlineAddBox />New List</Button>
                                     {
                                         newPlanClicked ?
                                             <>
+                                                <Label>Name of List</Label>
                                                 <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
+                                                <Label>Deliverables</Label>
+                                                <Input type="text" placeholder="Enter Deliverables" />
                                                 <Button variant="outlined" onClick={() => { handleCreateList(listName) }}>Create List</Button>
                                             </> :
                                             null
@@ -176,7 +175,7 @@ function Lists() {
                             <div className="list_content">
                                 {
                                     listData.map((item) =>
-                                        <div className="list_content_inner" onClick={() => { handleListClick(item) }}>
+                                        <div className="list_content_inner" onClick={() => { handleRedirectToList(item) }}>
                                             <div className="list_head">
                                                 {item.listName}
                                                 {item.influencersCount}

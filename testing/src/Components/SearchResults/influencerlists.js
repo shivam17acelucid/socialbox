@@ -220,6 +220,7 @@ const InfluencersList = () => {
             .then((res) => {
                 console.log(res)
             })
+        setAddToListTableClicked(false)
     }
 
 

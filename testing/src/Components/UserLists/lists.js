@@ -78,7 +78,7 @@ function UserLists() {
                             {/* <hr></hr> */}
                             <div className='table_content'>
                                 <TableContainer component={Paper}>
-                                    <Table stickyHeader className="table_container" >
+                                    <Table className="table_container" >
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Name</TableCell>

@@ -12,4 +12,162 @@ html {
     height: 100%;
     margin: 0px;
     background-color: #FFF;
+
+
+    .users_list_pane {
+        flex: 1;
+
+        .user_list_header {
+            display: flex;
+            align-items: center;
+
+            .list_count {
+                padding-top: 2rem;
+                padding-left: 2rem;
+
+                .list_name {
+                    background: linear-gradient(180deg, #FFA300 0%, #E95950 100%);
+                    border-radius: 15px;
+                    height: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #fff;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 36px;
+                }
+
+                .list_inf_count {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 36px;
+                    display: flex;
+                    align-items: center;
+                    background: linear-gradient(180deg, #FFA300 0%, #E95950 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+            }
+
+            .deliverables_count {
+                margin-left: 30rem;
+                display: flex;
+                padding-top: 1rem;
+
+                .deliverables_title {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 36px;
+                    display: flex;
+                    align-items: center;
+                    background: linear-gradient(180deg, #FFA300 0%, #E95950 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+
+                .deliverables_values {
+                    margin-left: 1rem;
+
+                    .deliverables_fields_value {
+                        background: #FFFFFF;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        border: 1px solid #E95950;
+                        display: flex;
+                        justify-content: space-between;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 24px;
+                        display: flex;
+                        align-items: center;
+                        color: #000000;
+
+
+                        span {
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 20px;
+                            display: flex;
+                            align-items: center;
+                            color: #000000;
+                            padding: 0;
+                            margin: 1px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .table_content {
+            margin-left: 1rem;
+            margin-top: 12px;
+            margin-right: 12px;
+
+            .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+                overflow-y: scroll;
+                height: 70vh;
+
+                .css-y8ay40-MuiTableCell-root {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 20px;
+                    background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+
+                .css-1ex1afd-MuiTableCell-root {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+                    align-items: center;
+                    color: #000000;
+                }
+
+
+                .css-1yhpg23-MuiTableCell-root {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+                    align-items: center;
+                    color: #000000;
+                }
+
+                .css-dwuj3p-MuiTableCell-root {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 18px;
+                    background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+            }
+        }
+    }
+
+    .right_pane {
+        width: 100%;
+        box-shadow: 0px 0 4px 0 #edecf4;
+        z-index: 1 !important;
+        max-width: 280px;
+    }
 }

@@ -392,22 +392,41 @@ exports.getInfluencersDetails = (req, res) => {
         })
 }
 
-exports.createList = (req, res) => {
+exports.createList = (req, res, next) => {
     let { listName, reel, staticPost, video, story, swipeStory, igtv } = req.body;
     let errors = [];
+    let error1 = [];
+    let response = [];
     if (!listName) {
-        errors.push('Please Fill ListName')
+        errors.push('Please fill list name');
+        return res.status(422).json({ errors: errors });
     }
+
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
     }
-    UserInfo.findByIdAndUpdate(req.params.id, { $addToSet: { list: { listName: listName } } })
+
+    UserInfo.findByIdAndUpdate(req.params.id)
         .then((data) => {
-            if (!data)
+            if (!data) {
                 return res.status(401).json({
                     error: "You need to be logged in to access this route",
                 });
+            }
+
+            data.list.forEach((item) => {
+                if (item.listName === listName) {
+                    error1.push(item.listName)
+
+                }
+            });
+
+            if (error1.length > 0) {
+                return res.json("List name Already Present")
+            }
             else {
+                data.list.push({ listName: listName, deliverables: [{ reel: reel }, { staticPost: staticPost }, { video: video }, { story: story }, { swipeStory: swipeStory }, { igtv: igtv }] })
+                data.save();
                 res.json(data)
             }
         });
@@ -445,16 +464,16 @@ exports.addInfluencersToList = (req, res) => {
 }
 
 exports.showInfluencersInList = (req, res) => {
+    let response = [];
     UserInfo.findById(req.params.id)
         .then((data) => {
             data.list.forEach((item) => {
                 if (item.listName === req.query.list) {
-                    UserInfo.find({ listName: req.query.list })
-                        .then((result) => {
-                            res.status(200).json({ influencers_count: item.influencersData.length, data: item })
-                        })
+                    response.push({ influencers_count: item.influencersData.length, item })
                 }
             })
+
+            return res.status(200).json(response)
         })
         .catch((err) => {
             console.log(err)

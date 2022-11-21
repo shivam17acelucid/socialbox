@@ -490,3 +490,29 @@ exports.showInfluencersInList = (req, res) => {
             console.log(err)
         })
 }
+
+exports.deleteInfluencersFromList = (req, res) => {
+    let errors = [];
+    let { listName, username } = req.body;
+    UserInfo.findById(req.params.id)
+        .then((data) => {
+            let response = [];
+            data.list.forEach((item) => {
+                if (item.listName === listName) {
+                    errors.push(item)
+                }
+            });
+            errors[0].influencersData.forEach((data) => {
+                if (data.username === username) {
+                    response.push(data);
+                    data.splice(data.indexOf(username), 1)
+                }
+            })
+            response.splice(response.indexOf(username), 1)
+            // data.save();
+            res.json(data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}

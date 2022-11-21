@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData } = require('../Controllers/testing');
+const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
@@ -26,6 +26,7 @@ router.get('/getrelatedinfluencers', influencer_search)
 router.get('/getErFilteredInfluencersData', filteredByErInfluencersData)
 router.post('/createList/:id', createList)
 router.get('/getListData/:id', getListData)
+router.put('/deleteInfluencersFromList/:id', deleteInfluencersFromList)
 router.post('/addInfluencersToList/:id', addInfluencersToList)
 router.get('/showInfluencersList/:id', showInfluencersInList);
 router.get('/compareInfluencers', compareInfluencers);

@@ -39,12 +39,12 @@ let userinfoSchema = new Schema(
     phone: {
       type: String,
       trim: true,
-      // unique:true,
     },
     list: [{
       listName: String,
       deliverables: Array,
       influencersData: Array,
+      deletedInfluencers: Array,
       createdAT: { type: Date, default: Date.now(), index: { expiresIn: 300 } }
     }],
     date: {

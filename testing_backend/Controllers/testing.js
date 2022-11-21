@@ -445,15 +445,26 @@ exports.getListData = (req, res) => {
 }
 
 exports.addInfluencersToList = (req, res) => {
+    let errors = [];
     UserInfo.findById(req.params.id)
         .then((data) => {
             data.list.forEach((item) => {
                 if (item.listName === req.query.list) {
                     InfluencersData.find({ username: req.query.username })
                         .then((result) => {
-                            let listInfluencersData = item.influencersData.push(result[0])
-                            res.json(item.influencersData)
-                            data.save();
+                            item.influencersData.forEach((response) => {
+                                if (response.username === req.query.username) {
+                                    errors.push(response.username)
+                                }
+                            })
+                            if (errors.length > 0) {
+                                return res.json("Data Already Present")
+                            }
+                            else {
+                                let listInfluencersData = item.influencersData.push(result[0])
+                                res.json(item.influencersData)
+                                data.save();
+                            }
                         })
                 }
             })

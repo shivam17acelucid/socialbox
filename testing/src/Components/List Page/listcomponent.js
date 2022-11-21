@@ -4,8 +4,9 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import './listpage.scss';
 import { Input, Label } from 'reactstrap';
-import moment from "moment";
 import { MdOutlineAddBox } from "react-icons/md";
+import { AiFillCaretDown } from 'react-icons/ai';
+import { MdOutlineArrowDropUp } from 'react-icons/md';
 
 
 function Lists() {
@@ -18,6 +19,13 @@ function Lists() {
     const [newPlanClicked, setNewPlanClicked] = useState(false);
     const [listName, setListName] = useState('');
     const [listData, setListData] = useState([]);
+    const [openDeliverablesClicked, setOpenDeliverablesClicked] = useState(false);
+    const [reel, setReel] = useState(0);
+    const [staticPost, setStaticPost] = useState(0);
+    const [video, setVideo] = useState(0);
+    const [story, setStory] = useState(0);
+    const [swipeStory, setSwipeStory] = useState(0);
+    const [igtv, setIgtv] = useState(0);
 
     let navigate = useNavigate();
     const userId = localStorage.getItem('id');
@@ -40,11 +48,11 @@ function Lists() {
         navigate(`/basketInfluencers/${item.categoryName}`)
     }
 
-    const handleCreateList = (listName) => {
+    const handleCreateList = (listName, reel, staticPost, video, story, swipeStory, igtv) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName }),
+            body: JSON.stringify({ listName, reel, staticPost, video, story, swipeStory, igtv }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -158,16 +166,43 @@ function Lists() {
                                     <div>👇</div>
                                 </span>
                                 <div className="add_btn">
-                                    <Button variant="outlined" onClick={handleAddPlan}> <MdOutlineAddBox />New List</Button>
+                                    <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div>
                                     {
                                         newPlanClicked ?
-                                            <>
+                                            <div className='addList_section'>
+                                                <div className='close_btn' onClick={() => { setNewPlanClicked(false) }}>X</div>
                                                 <Label>Name of List</Label>
                                                 <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
                                                 <Label>Deliverables</Label>
-                                                <Input type="text" placeholder="Enter Deliverables" />
-                                                <Button variant="outlined" onClick={() => { handleCreateList(listName) }}>Create List</Button>
-                                            </> :
+                                                {
+                                                    openDeliverablesClicked === true ?
+                                                        <>
+                                                            <label>Reels</label>
+                                                            <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
+                                                            <label>Static Post</label>
+                                                            <Input type='text' value={staticPost} onChange={(e) => { setStaticPost(e.target.value) }} placeholder="Static Post" />
+                                                            <label>Videos</label>
+                                                            <Input type='text' value={video} onChange={(e) => { setVideo(e.target.value) }} placeholder="Videos" />
+                                                            <label>Stories</label>
+                                                            <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
+                                                            <label>Swipe Stories</label>
+                                                            <Input type='text' value={swipeStory} onChange={(e) => { setSwipeStory(e.target.value) }} placeholder="Swipe Stories" />
+                                                            <label>Igtv videos</label>
+                                                            <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
+                                                        </>
+                                                        :
+                                                        <Input placeholder="Enter Deliverables" type='hidden' />
+                                                }
+                                                <span onClick={() => { setOpenDeliverablesClicked((prev) => !prev) }}>
+                                                    {
+                                                        openDeliverablesClicked === true ?
+                                                            <MdOutlineArrowDropUp />
+                                                            :
+                                                            <AiFillCaretDown />
+                                                    }
+                                                </span>
+                                                <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, staticPost, video, story, swipeStory, igtv) }}>Create</Button>
+                                            </div> :
                                             null
                                     }
                                 </div>
@@ -179,12 +214,6 @@ function Lists() {
                                             <div className="list_head">
                                                 {item.listName}
                                                 {item.influencersCount}
-                                            </div>
-                                            <div className="list_footer">
-                                                <span>{moment(item.createdAT).format('MM/DD/YYYY')}</span>
-                                            </div>
-                                            <div className="list_footer_btn">
-                                                <Button><span className="btn_text">View List</span></Button>
                                             </div>
                                         </div>
                                     )

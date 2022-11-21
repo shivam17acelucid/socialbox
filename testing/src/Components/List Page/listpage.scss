@@ -196,17 +196,84 @@ html {
             padding-top: 2rem;
 
             .add_btn {
-                .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-                    width: -webkit-fill-available;
-                    margin-top: 1rem;
-                    background-color: #0014C6;
-                    color: #fff;
+
+                background: linear-gradient(180deg, #E95950 0%, #FAA300 100%);
+                box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+                border-radius: 20px;
+                padding: 16px;
+                cursor: pointer;
+                margin-top: 1rem;
+
+                .addList_btn {
                     font-family: 'Poppins';
                     font-style: normal;
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 21px;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #FFFFFF;
+                    display: flex;
+                    align-content: center;
+                    align-items: center;
+                    justify-content: center;
                 }
+
+                .addList_section {
+                    position: absolute;
+                    z-index: 4;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 0.5rem;
+                    padding: 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    border-radius: 8px;
+                    background-color: #f6f6f6;
+                    box-shadow: var(--box-shadow-primary);
+                    cursor: pointer;
+                    width: 25%;
+
+                    .close_btn {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+
+                    Label {
+                        margin-bottom: 6px;
+                    }
+
+                    Input {
+                        height: 32px;
+                        background: #FFFFFF;
+                        border: 1px solid #B3B3B3;
+                        box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+                        border-radius: 10px;
+                        margin-bottom: 6px;
+                    }
+
+                    span {
+                        position: absolute;
+                        bottom: 6.3rem;
+                        right: 3rem;
+                    }
+
+                    .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                        margin-top: 1rem;
+                    }
+                }
+
+                // .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                //     width: -webkit-fill-available;
+                //     margin-top: 1rem;
+                //     background-color: #0014C6;
+                //     color: #fff;
+                //     font-family: 'Poppins';
+                //     font-style: normal;
+                //     font-weight: 400;
+                //     font-size: 14px;
+                //     line-height: 21px;
+                // }
             }
         }
 
@@ -226,19 +293,17 @@ html {
             .list_content_inner {
                 margin-top: 1rem;
                 height: auto;
-                border-radius: 8px;
                 padding: 12px;
                 cursor: pointer;
-                background-color: rgb(255, 255, 255);
                 display: flex;
                 flex-direction: column;
                 -webkit-box-pack: justify;
                 justify-content: space-between;
                 box-sizing: border-box;
-                border-radius: 20px;
+                // height: 61px;
                 background: #FFFFFF;
-                box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
-                border-radius: 20px;
+                box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+                border-radius: 10px;
 
                 .list_head {
                     font-size: 16px;
@@ -261,31 +326,6 @@ html {
                     -webkit-box-pack: justify;
                     justify-content: space-between;
                     margin-top: 1rem;
-                }
-
-                .list_footer_btn {
-                    margin-top: 1rem;
-
-                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                        width: -webkit-fill-available;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 15px 50px;
-                        height: 44px;
-                        background: #0014C6;
-                        border-radius: 15px;
-
-                        .btn_text {
-                            width: 89px;
-                            height: 21px;
-                            font-family: 'Poppins';
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 14px;
-                            line-height: 21px;
-                            color: #FFFFFF;
-                        }
-                    }
                 }
             }
         }

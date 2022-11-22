@@ -87,7 +87,7 @@ html {
                         font-family: 'Poppins';
                         font-style: normal;
                         font-weight: 400;
-                        font-size: 24px;
+                        font-size: 20px;
                         display: flex;
                         align-items: center;
                         color: #000000;
@@ -116,7 +116,7 @@ html {
 
             .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
                 overflow-y: scroll;
-                height: 70vh;
+                height: 72vh;
 
                 .css-y8ay40-MuiTableCell-root {
                     font-family: 'Poppins';
@@ -137,6 +137,10 @@ html {
                     line-height: 24px;
                     align-items: center;
                     color: #000000;
+
+                    svg {
+                        cursor: pointer;
+                    }
                 }
 
 
@@ -169,5 +173,62 @@ html {
         box-shadow: 0px 0 4px 0 #edecf4;
         z-index: 1 !important;
         max-width: 280px;
+        overflow-y: scroll;
+        height: 100vh;
+        overflow-x: hidden;
+
+        .delete_header {
+            padding-top: 5rem;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            display: flex;
+            text-align: center;
+            color: #E95950;
+            transform: matrix(1, 0.01, 0, 1, 0, 0);
+            justify-content: center;
+        }
+
+        .deleted_box {
+            background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
+            box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
+            border-radius: 20px;
+            transform: matrix(1, 0.01, 0, 1, 0, 0);
+            padding: 2.5rem 2.5rem;
+            margin: 2rem 3rem;
+
+            .box_name {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #1C1C1C;
+                transform: matrix(1, 0.01, 0, 1, 0, 0);
+            }
+
+            .view_box {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #1C1C1C;
+                transform: matrix(1, 0.01, 0, 1, 0, 0);
+                background-color: #fff;
+                border-radius: 15px;
+                justify-content: center;
+                margin-top: 1rem;
+                cursor: pointer;
+            }
+        }
     }
 }

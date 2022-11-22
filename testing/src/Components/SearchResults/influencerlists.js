@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import NFormatter from "../../Common/NumberFormatter/numFormatter";
 import './influencerlists.scss';
 import Navbar from "../../Common/Sidebar/sidebar";
-import { } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -18,6 +17,8 @@ import { Input } from "reactstrap";
 import { MdAdd } from 'react-icons/md';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { MdOutlineArrowDropUp } from 'react-icons/md';
+import { BiFirstPage } from 'react-icons/bi';
+import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
 
 const InfluencersList = () => {
@@ -65,6 +66,10 @@ const InfluencersList = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const handleChangePageToFirst = (event) => {
+        setPage(0)
+    }
 
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
@@ -423,6 +428,8 @@ const InfluencersList = () => {
                                                 onPageChange={handleChangePage}
                                                 onRowsPerPageChange={handleChangeRowsPerPage}
                                             />
+                                            {/* <BiFirstPage size={30} onClick={handleChangePageToFirst} className='pointer' />
+                                            <BiLastPage size={30} className='pointer' /> */}
                                         </TableRow>
                                     </TableFooter>
                                 </Table>

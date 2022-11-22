@@ -17,6 +17,8 @@ import { MdDelete } from 'react-icons/md';
 function UserLists() {
 
     const [listInfluencersData, setListInfluencersData] = useState([]);
+    const [deletedData, setDeleteData] = useState([]);
+    const [isDataDeleted, setIsDataDeleted] = useState(false);
 
     let { listname } = useParams();
 
@@ -37,9 +39,30 @@ function UserLists() {
             })
     }
 
+    const handleDeleteList = (data) => {
+        const url = `http://localhost:4000/deleteInfluencersFromList/${userId}`
+        fetch((url), {
+            method: 'PUT',
+            body: JSON.stringify({ listname, username: data.username }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        }
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                setDeleteData(data)
+                setIsDataDeleted((prev) => !prev)
+            })
+    }
+
     useEffect(() => {
         handleListClick();
     }, []);
+
+    useEffect(() => {
+        handleListClick();
+    }, [isDataDeleted]);
 
     return (
         <div className='users_list_container'>
@@ -115,7 +138,7 @@ function UserLists() {
                                                         {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
                                                     </TableCell>
                                                     <TableCell align="center">{data.city_name}</TableCell>
-                                                    <TableCell><MdDelete /></TableCell>
+                                                    <TableCell><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
                                                 </TableRow>
                                             )}
                                         </TableBody>
@@ -128,7 +151,21 @@ function UserLists() {
                 }
             </div>
             <div className='right_pane'>
-                <div>Recently Deleted</div>
+                <div className='delete_header'>Recently Deleted</div>
+                {
+                    listInfluencersData.map((item) =>
+                        item.item.deletedInfluencers.map((data) =>
+                            <div className='deleted_box'>
+                                <div className='box_name'>
+                                    {data.full_name}
+                                </div>
+                                <div className='view_box' onClick={() => redirectProfile(data)}>
+                                    View Profile
+                                </div>
+                            </div>
+                        )
+                    )
+                }
             </div>
         </div >
     )

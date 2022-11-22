@@ -96,6 +96,7 @@ html {
                     height: 87vh;
 
                     .table_container {
+                        background-color: #FFF;
 
                         .css-1q1u3t4-MuiTableRow-root {
                             background-color: #FFF !important;
@@ -216,4 +217,8 @@ html {
 
 .css-fikjyc-MuiTableCell-root-MuiTablePagination-root {
     overflow: hidden;
+}
+
+.pointer {
+    cursor: pointer;
 }

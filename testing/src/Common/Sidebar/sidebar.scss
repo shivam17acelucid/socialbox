@@ -84,7 +84,7 @@ ul {
     color: #f5f5f5;
     font-size: 1.25rem;
     height: 100%;
-    display: block;
+    display: flex;
     align-items: center;
     padding: 0 16px;
     border-radius: 4px;
@@ -116,9 +116,26 @@ span {
 }
 
 .nav-nested {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 0px 8px 0px;
+    list-style: none;
+    height: 60px;
+    padding-top: 2rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.nav-nested a {
     text-decoration: none;
     color: #f5f5f5;
+    font-size: 1.25rem;
     height: auto !important;
+    display: block;
     align-items: center;
     padding: 0 16px;
     border-radius: 4px;

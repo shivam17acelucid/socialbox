@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import Navbar from '../../../Common/Sidebar/sidebar'
 import './cpinf.scss';
 
 function CompareInfluencers() {
@@ -20,7 +21,8 @@ function CompareInfluencers() {
     }
 
     return (
-        <>
+        <div className='compare_influencers_container'>
+            <Navbar />
             <div className='input_fields'>
                 <input
                     type='text'
@@ -63,7 +65,7 @@ function CompareInfluencers() {
                     }
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 export default CompareInfluencers;

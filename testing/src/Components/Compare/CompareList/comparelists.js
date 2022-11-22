@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import Navbar from '../../../Common/Sidebar/sidebar';
+import './index.scss';
 
 function CompareLists() {
 
@@ -19,7 +21,8 @@ function CompareLists() {
     }
 
     return (
-        <>
+        <div className='compare_lists_container'>
+            <Navbar />
             <div className='input_fields'>
                 <input
                     type='text'
@@ -63,7 +66,7 @@ function CompareLists() {
                     } */}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 export default CompareLists;

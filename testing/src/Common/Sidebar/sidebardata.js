@@ -11,19 +11,18 @@ export const SidebarData = [
     },
     {
         title: 'Compare',
-        path: '/compare',
         icon: <MdIcons.MdCompare />,
-        cName: 'nav-text',
+        cName: 'nav-nested',
         children: [
             {
                 title: "Influencers",
                 path: "/compareInfluencers",
-                cName: 'nav-text',
+                cName: 'nav-nested',
             },
             {
                 title: "Lists",
                 path: "/compareLists",
-                cName: 'nav-text',
+                cName: 'nav-nested',
             }
         ]
     },

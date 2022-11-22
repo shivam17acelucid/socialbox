@@ -503,8 +503,13 @@ exports.deleteInfluencersFromList = (req, res) => {
             });
             filter[0].influencersData.forEach((result) => {
                 if (result.username === username) {
-                    filter[0].deletedInfluencers.push(result)
-                    filter[0].influencersData.splice(filter[0].influencersData.findIndex((username) => username), 1)
+                    // filter[0].deletedInfluencers.push(result)
+                    for (var i = filter[0].influencersData.length - 1; i >= 0; --i) {
+                        if (filter[0].influencersData[i].username == username) {
+                            filter[0].influencersData.splice(i, 1);
+                        }
+                    }
+                    // filter[0].influencersData.splice(filter[0].influencersData.findIndex((username) => username), 1)
                 }
             })
             data.save();

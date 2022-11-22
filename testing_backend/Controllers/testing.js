@@ -492,25 +492,23 @@ exports.showInfluencersInList = (req, res) => {
 }
 
 exports.deleteInfluencersFromList = (req, res) => {
-    let errors = [];
-    let { listName, username } = req.body;
+    let filter = [];
+    let { listname, username } = req.body;
     UserInfo.findById(req.params.id)
         .then((data) => {
-            let response = [];
             data.list.forEach((item) => {
-                if (item.listName === listName) {
-                    errors.push(item)
+                if (item.listName === listname) {
+                    filter.push(item)
                 }
             });
-            errors[0].influencersData.forEach((data) => {
-                if (data.username === username) {
-                    response.push(data);
-                    data.splice(data.indexOf(username), 1)
+            filter[0].influencersData.forEach((result) => {
+                if (result.username === username) {
+                    filter[0].deletedInfluencers.push(result)
+                    filter[0].influencersData.splice(filter[0].influencersData.findIndex((username) => username), 1)
                 }
             })
-            response.splice(response.indexOf(username), 1)
-            // data.save();
-            res.json(data)
+            data.save();
+            res.json(filter[0].influencersData)
         })
         .catch((err) => {
             console.log(err)

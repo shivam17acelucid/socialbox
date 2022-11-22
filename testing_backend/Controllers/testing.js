@@ -350,11 +350,13 @@ exports.getInfluencersDetails = (req, res) => {
             let noOfPosts = [];
             let array = [];
             let city_name = '';
+            let totalReelView = 0;
             result.forEach((data) => {
                 let edges = data.edge_felix_video_timeline.edges;
                 let averageReelView = 0;
                 edges.forEach((res) => {
                     averageReelView += Math.trunc(res.node.video_view_count / 12);
+                    totalReelView += res.node.video_view_count;
                 })
                 avg_likes = 0;
                 avg_comment = 0;
@@ -366,7 +368,7 @@ exports.getInfluencersDetails = (req, res) => {
                     engagementRate = Math.round(engagementRate * 100) / 100
                 });
                 noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
-                edges.unshift({ averageReelView: averageReelView })
+                edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
                 array.push(data)
             })
             array.forEach((item) => {

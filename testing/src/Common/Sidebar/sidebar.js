@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from "./sidebardata";
 import * as FaIcons from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
+import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretRight } from 'react-icons/ai';
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
+    const [expandCompare, setExpandCompare] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
+    const showExpandedMenu = (item) => {
+        if (item.title === 'Compare') {
+            setExpandCompare(!expandCompare);
+        }
+    }
 
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -24,15 +32,40 @@ function Navbar() {
                             SidebarData.map((item, index) => {
                                 return (
                                     <li className={item.cName}>
-                                        {sidebar === true ?
-                                            <Link to={item.path}>
-                                                {item.icon}
-                                            </Link>
-                                            :
-                                            <Link to={item.path}>
-                                                {item.icon}
-                                                <span>{item.title}</span>
-                                            </Link>
+                                        {
+                                            // expandCompare === true ?
+                                            //     item.title === 'Compare' ?
+                                            //         [item].map((data) =>
+                                            //             data.children.map((result) =>
+                                            //                 <Link to={result.path} >
+                                            //                     <span onClick={() => showExpandedMenu(item)}>{result.title}</span>
+                                            //                 </Link>
+                                            //             )
+
+                                            //         ) :
+                                            //         null
+                                            //     :
+                                            sidebar === true ?
+                                                <Link to={item.path}>
+                                                    {item.icon}
+                                                </Link>
+                                                :
+                                                <Link to={item.path}>
+                                                    {item.icon}
+                                                    <span onClick={() => showExpandedMenu(item)}>{item.title}</span>
+                                                    {item.title === 'Compare' ? <span onClick={() => showExpandedMenu(item)} className='sideicon'>{expandCompare === true ? <AiFillCaretDown /> : <AiFillCaretRight />}</span> : null}
+                                                    {expandCompare === true ?
+                                                        item.title === 'Compare' ?
+                                                            [item].map((data) =>
+                                                                data.children.map((result) =>
+                                                                    <Link to={result.path} className='nav-nested' >
+                                                                        <span onClick={() => showExpandedMenu(item)}>{result.title}</span>
+                                                                    </Link>
+                                                                )
+
+                                                            ) :
+                                                            null : null}
+                                                </Link>
                                         }
 
                                     </li>

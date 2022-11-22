@@ -59,6 +59,7 @@ const ProfileData = () => {
         <div>
             {
                 influencersData.map((data) => {
+                    console.log(influencersData)
                     return (
                         <div className="profile_container">
                             <div className="profile_header">

@@ -228,6 +228,11 @@ const InfluencersList = () => {
         setAddToListTableClicked(false)
     }
 
+    // const handleDownloadData = () => {
+    //     const url = `http://localhost:4000/downloadcsv`;
+    //     fetch(url)
+    // }
+
 
     return (
         <div className="search_container">
@@ -321,6 +326,7 @@ const InfluencersList = () => {
                                             </section>
                                             : null
                             }
+                            {/* <Button onClick={handleDownloadData}>Download</Button> */}
                         </div>
                         <div className="table_content">
                             <TableContainer component={Paper}>

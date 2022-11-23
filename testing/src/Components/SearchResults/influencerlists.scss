@@ -22,9 +22,6 @@ html {
 
         .search_content_list_panel {
             display: flex;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            height: 100vh;
 
             .middle_pane {
                 padding-left: 1rem;
@@ -94,6 +91,8 @@ html {
 
                 .table_content {
                     height: 87vh;
+                    overflow-y: scroll;
+                    overflow-x: hidden;
 
                     .table_container {
                         background-color: #FFF;
@@ -207,6 +206,17 @@ html {
                                     justify-content: space-between;
                                 }
                             }
+                        }
+
+                        .compare_section {
+                            position: absolute;
+                            z-index: 4;
+                            bottom: 1%;
+                            left: 90%;
+                            transform: translate(-50%, -50%);
+                            background-color: white;
+                            padding: 1rem 1.5rem;
+                            border-radius: 0.5rem;
                         }
                     }
                 }

@@ -16,7 +16,7 @@ import TablePagination from '@mui/material/TablePagination';
 import { Input } from "reactstrap";
 import { MdAdd } from 'react-icons/md';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { MdOutlineArrowDropUp } from 'react-icons/md';
+import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
@@ -52,6 +52,12 @@ const InfluencersList = () => {
     const [listClicked, setListClicked] = useState(false);
     const [listInfluencersData, setListInfluencersData] = useState([]);
     const [rowClickedData, setRowClickedData] = useState('');
+    const [addToCompareClicked, setAddToCompareClicked] = useState(false);
+    const [addToCompareData, setAddToCompareData] = useState('');
+    const [influencer, setInfluencer] = useState('');
+    const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
+    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    const [valueChanging, setValueChanging] = useState(false);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -71,6 +77,9 @@ const InfluencersList = () => {
         setPage(0)
     }
 
+    let autoSuggestedArray = [];
+    let filteredOptionsArray = [];
+
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
         fetch(url)
@@ -78,6 +87,10 @@ const InfluencersList = () => {
                 data.json()
                     .then((res) => {
                         setInfluencersData(res)
+                        res.map((item) => {
+                            autoSuggestedArray.push(item.username)
+                            setAutoSuggestedData(autoSuggestedArray)
+                        })
                     })
             })
             .catch((err) => {
@@ -178,6 +191,7 @@ const InfluencersList = () => {
     }, [newPlanClicked]);
 
 
+
     const handleAddPlan = () => {
         const data = newPlanClicked ? false : true;
         setNewPlanClicked(data);
@@ -226,6 +240,18 @@ const InfluencersList = () => {
                 console.log(res)
             })
         setAddToListTableClicked(false)
+    }
+
+    const handleAddToCompare = (data) => {
+        const toggle = addToCompareClicked ? false : true;
+        setAddToCompareClicked(toggle);
+        setAddToCompareData(data.username)
+    }
+
+    const handleRemoveInfluencer = (data) => {
+        console.log(data)
+        setRemoveInfluencerClicked(true);
+        // addToCompareData.filter(e => e !== data.username);
     }
 
     // const handleDownloadData = () => {
@@ -408,7 +434,47 @@ const InfluencersList = () => {
                                                                         )
 
                                                                         : null}
-                                                                    <Button id={data.id} >Compare</Button>
+                                                                    <Button id={data.id} onClick={() => handleAddToCompare(data)} >Compare</Button>
+                                                                    {
+                                                                        addToCompareClicked === true ?
+
+                                                                            [data].map((item) =>
+                                                                                item.username === addToCompareData ?
+                                                                                    <div className="compare_section">
+                                                                                        <div className="compare_headers">
+                                                                                            Compare Influencers
+                                                                                        </div>
+                                                                                        <Input type="text" value={influencer} onChange={(e) => {
+                                                                                            setInfluencer(e.target.value)
+                                                                                            setValueChanging(true)
+                                                                                        }} placeholder="Search Influencers" />
+                                                                                        {
+                                                                                            autoSuggestedData.map((result) => {
+                                                                                                <div className="auto_suggested_section">
+                                                                                                    {result.match(influencer) ?
+                                                                                                        filteredOptionsArray.push(result)
+                                                                                                        :
+                                                                                                        null
+                                                                                                    }
+                                                                                                </div>
+                                                                                            })
+                                                                                        }
+                                                                                        <div className="influencers_box">
+                                                                                            <div>
+                                                                                                {item.username} <span onClick={() => handleRemoveInfluencer(data)}><MdDelete /></span>
+                                                                                            </div>
+                                                                                            <div onClick={() => setAddToCompareData('')}>
+                                                                                                Remove All
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                Compare Now
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    : null
+                                                                            )
+                                                                            : null
+                                                                    }
                                                                 </div>
                                                             </TableCell>
                                                         </TableRow>

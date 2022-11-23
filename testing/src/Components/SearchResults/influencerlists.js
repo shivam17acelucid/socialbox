@@ -449,15 +449,25 @@ const InfluencersList = () => {
                                                                                             setValueChanging(true)
                                                                                         }} placeholder="Search Influencers" />
                                                                                         {
-                                                                                            autoSuggestedData.map((result) => {
-                                                                                                <div className="auto_suggested_section">
+                                                                                            autoSuggestedData.map((result) => 
+                                                                                                <section className="auto_suggested_section">
                                                                                                     {result.match(influencer) ?
                                                                                                         filteredOptionsArray.push(result)
                                                                                                         :
                                                                                                         null
                                                                                                     }
-                                                                                                </div>
-                                                                                            })
+                                                                                                    {filteredOptionsArray.length > 0 ?
+                                                                                                        // console.log(filteredOptionsArray)
+                                                                                                        filteredOptionsArray.map((list) =>
+                                                                                                            <div>
+                                                                                                                {list}
+                                                                                                            </div>
+                                                                                                        )
+                                                                                                        :
+                                                                                                        null
+                                                                                                    }
+                                                                                                </section>
+                                                                                            )
                                                                                         }
                                                                                         <div className="influencers_box">
                                                                                             <div>

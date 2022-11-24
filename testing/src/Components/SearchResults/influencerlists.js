@@ -456,7 +456,7 @@ const InfluencersList = () => {
                                                                                                         :
                                                                                                         null
                                                                                                     }
-                                                                                                    {filteredOptionsArray.length > 0 ?
+                                                                                                    {filteredOptionsArray.length > 1 ?
                                                                                                         // console.log(filteredOptionsArray)
                                                                                                         filteredOptionsArray.map((list) =>
                                                                                                             <div>

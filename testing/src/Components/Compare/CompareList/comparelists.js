@@ -5,14 +5,16 @@ import './index.scss';
 
 function CompareLists() {
 
-    const [basket1, setBasket1] = useState('');
-    const [basket2, setBasket2] = useState('');
-    const [basket3, setBasket3] = useState('');
+    const [list1Name, setList1Name] = useState('');
+    const [list2Name, setList2Name] = useState('');
+    const [list3Name, setList3Name] = useState('');
     const [comparedlistsData, setComparedlistsData] = useState([]);
 
-    const handleComparelists = (basket1, basket2, basket3) => {
+    const userId = localStorage.getItem('id');
+
+    const handleComparelists = (list1Name, list2Name, list3Name) => {
         setComparedlistsData([]);
-        const url = `http://localhost:4000/compareCategorizedBaskets?basket1=${basket1}&basket2=${basket2}&basket3=${basket3}`;
+        const url = `http://localhost:4000/compareUsersLists/${userId}?list1Name=${list1Name}?list2Name=${list2Name}&list3Name=${list3Name}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
@@ -26,20 +28,20 @@ function CompareLists() {
             <div className='input_fields'>
                 <input
                     type='text'
-                    value={basket1}
-                    onChange={(e) => { setBasket1(e.target.value) }}
+                    value={list1Name}
+                    onChange={(e) => { setList1Name(e.target.value) }}
                 />
                 <input
                     type='text'
-                    value={basket2}
-                    onChange={(e) => { setBasket2(e.target.value) }}
+                    value={list2Name}
+                    onChange={(e) => { setList2Name(e.target.value) }}
                 />
                 <input
                     type='text'
-                    value={basket3}
-                    onChange={(e) => { setBasket3(e.target.value) }}
+                    value={list3Name}
+                    onChange={(e) => { setList3Name(e.target.value) }}
                 />
-                <Button onClick={() => { handleComparelists(basket1, basket2, basket3) }}><span>Search</span></Button>
+                <Button onClick={() => { handleComparelists(list1Name, list2Name, list3Name) }}><span>Search</span></Button>
             </div>
             <div className='result_pane'>
                 <div className='results'>

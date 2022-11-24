@@ -211,14 +211,18 @@ html {
                         .compare_section {
                             position: absolute;
                             z-index: 4;
-                            bottom: 1%;
+                            // bottom: 1%;
                             left: 90%;
                             transform: translate(-50%, -50%);
                             background-color: white;
                             padding: 1rem 1.5rem;
                             border-radius: 0.5rem;
-                            overflow-y: scroll;
-                            height: 40%;
+
+
+                            .auto_suggested_section {
+                                overflow-y: scroll;
+                                height: 40vh;
+                            }
                         }
                     }
                 }

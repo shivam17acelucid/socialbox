@@ -20,6 +20,7 @@ import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
+import AutoComplete from "../../Common/AutoComplete/index";
 
 const InfluencersList = () => {
 
@@ -57,12 +58,12 @@ const InfluencersList = () => {
     const [influencer, setInfluencer] = useState('');
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
-    const [valueChanging, setValueChanging] = useState(false);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
 
     const userId = localStorage.getItem('id');
+    let autoSuggestedArray = [];
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -77,8 +78,6 @@ const InfluencersList = () => {
         setPage(0)
     }
 
-    let autoSuggestedArray = [];
-    let filteredOptionsArray = [];
 
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
@@ -444,31 +443,7 @@ const InfluencersList = () => {
                                                                                         <div className="compare_headers">
                                                                                             Compare Influencers
                                                                                         </div>
-                                                                                        <Input type="text" value={influencer} onChange={(e) => {
-                                                                                            setInfluencer(e.target.value)
-                                                                                            setValueChanging(true)
-                                                                                        }} placeholder="Search Influencers" />
-                                                                                        {
-                                                                                            autoSuggestedData.map((result) => 
-                                                                                                <section className="auto_suggested_section">
-                                                                                                    {result.match(influencer) ?
-                                                                                                        filteredOptionsArray.push(result)
-                                                                                                        :
-                                                                                                        null
-                                                                                                    }
-                                                                                                    {filteredOptionsArray.length > 1 ?
-                                                                                                        // console.log(filteredOptionsArray)
-                                                                                                        filteredOptionsArray.map((list) =>
-                                                                                                            <div>
-                                                                                                                {list}
-                                                                                                            </div>
-                                                                                                        )
-                                                                                                        :
-                                                                                                        null
-                                                                                                    }
-                                                                                                </section>
-                                                                                            )
-                                                                                        }
+                                                                                        <AutoComplete data={autoSuggestedData} />
                                                                                         <div className="influencers_box">
                                                                                             <div>
                                                                                                 {item.username} <span onClick={() => handleRemoveInfluencer(data)}><MdDelete /></span>

@@ -372,7 +372,7 @@ exports.getInfluencersDetails = (req, res) => {
                 array.push(data)
             })
             array.forEach((item) => {
-                Username.find({ follower_count: { $gte: 5000 } })
+                Username.find({ follower_count: { $gte: 1000 } })
                     .then((result) => {
                         result.forEach((data) => {
                             if (data.username.includes(item.username)) {

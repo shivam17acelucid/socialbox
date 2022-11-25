@@ -76,25 +76,31 @@ let influencersDataSchema = new Schema(
             type: Object,
         },
         cost: [{
-            costFactor: {
+            costFactorReel: {
                 minCostPer1kFollowersForReel: Number,
                 maxCostper1KFollowersForReel: Number,
                 minCostPerLikeForReel: Number,
                 maxCostperLikeForReel: Number,
                 minCostPerCommentForReel: Number,
                 maxCostperCommentForReel: Number,
+            },
+            costFactorPosts: {
                 minCostPer1kFollowersForPosts: Number,
                 maxCostper1KFollowersForPosts: Number,
                 minCostPerLikeForPosts: Number,
                 maxCostperLikeForPosts: Number,
                 minCostPerCommentForPosts: Number,
                 maxCostperCommentForPosts: Number,
+            },
+            costFactorStories: {
                 minCostPer1kFollowersForStory: Number,
                 maxCostper1KFollowersForStory: Number,
                 minCostPerLikeForStory: Number,
                 maxCostperLikeForStory: Number,
                 minCostPerCommentForStory: Number,
                 maxCostperCommentForStory: Number,
+            },
+            costFactorIgtv: {
                 minCostPer1kFollowersForIgtv: Number,
                 maxCostper1KFollowersForIgtv: Number,
                 minCostPerLikeForIgtv: Number,
@@ -102,19 +108,19 @@ let influencersDataSchema = new Schema(
                 minCostPerCommentForIgtv: Number,
                 maxCostperCommentForIgtv: Number,
             },
-            reel: {
+            reelCost: {
                 minTotalCost: Number,
                 maxTotalCost: Number,
             },
-            post: {
+            postCost: {
                 minTotalCost: Number,
                 maxTotalCost: Number,
             },
-            story: {
+            storyCost: {
                 minTotalCost: Number,
                 maxTotalCost: Number,
             },
-            igtv: {
+            igtvCost: {
                 minTotalCost: Number,
                 maxTotalCost: Number,
             },

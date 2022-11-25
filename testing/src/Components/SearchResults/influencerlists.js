@@ -20,7 +20,7 @@ import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
-import AutoComplete from "../../Common/AutoComplete/index";
+// import AutoComplete from "../../Common/AutoComplete/index";
 
 const InfluencersList = () => {
 
@@ -58,6 +58,11 @@ const InfluencersList = () => {
     const [influencer, setInfluencer] = useState('');
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+
+    const [suggestions, setSuggestions] = useState([]);
+    const [suggestionIndex, setSuggestionIndex] = useState(0);
+    const [suggestionsActive, setSuggestionsActive] = useState(false);
+    const [value, setValue] = useState('');
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -258,6 +263,45 @@ const InfluencersList = () => {
     //     fetch(url)
     // }
 
+    const handleChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setValue(query);
+        if (query.length > 2) {
+            const filterSuggestions = autoSuggestedData.filter(
+                (suggestion) =>
+                    suggestion.toLowerCase().indexOf(query) > -1
+            );
+            setSuggestions(filterSuggestions);
+            setSuggestionsActive(true);
+        } else {
+            setSuggestionsActive(false);
+        }
+    };
+
+    const handleClick = (e) => {
+        setSuggestions([]);
+        setValue('');
+        setSuggestionsActive(false);
+        setInfluencer(e.target.innerText)
+    };
+
+    const Suggestions = () => {
+        return (
+            <div className="suggestions">
+                {suggestions.map((suggestion, index) => {
+                    return (
+                        <div
+                            className={index === suggestionIndex ? "active" : ""}
+                            key={index}
+                            onClick={handleClick}
+                        >
+                            {suggestion}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
 
     return (
         <div className="search_container">
@@ -443,7 +487,13 @@ const InfluencersList = () => {
                                                                                         <div className="compare_headers">
                                                                                             Compare Influencers
                                                                                         </div>
-                                                                                        <AutoComplete data={autoSuggestedData} />
+                                                                                        {/* <AutoComplete data={autoSuggestedData} /> */}
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            value={value}
+                                                                                            onChange={handleChange}
+                                                                                        />
+                                                                                        {suggestionsActive && <Suggestions />}
                                                                                         <div className="influencers_box">
                                                                                             <div>
                                                                                                 {item.username} <span onClick={() => handleRemoveInfluencer(data)}><MdDelete /></span>

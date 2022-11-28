@@ -36,12 +36,12 @@ exports.setCalculateCostForReel = (req, res) => {
                 minCostPerComment = minCostPerCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
                 maxCostperLike = maxCostperLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
                 maxCostperComment = maxCostperCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                minCostPer1kFollowers = (minCostPer1kFollowersForReel / 1000) * item.edge_followed_by.count;
-                maxCostPer1kFollowers = (maxCostper1KFollowersForReel / 1000) * item.edge_followed_by.count;
+                let minCostPer1kFollowers = (minCostPer1kFollowersForReel / 1000) * item.edge_followed_by.count;
+                let maxCostPer1kFollowers = (maxCostper1KFollowersForReel / 1000) * item.edge_followed_by.count;
                 totalCost.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
                 totalCost.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
                 item.cost.push({ reelCost: totalCost })
-                // item.save()
+                item.save()
                 array.push(item)
             })
             res.json(array);
@@ -80,16 +80,16 @@ exports.setCalculateCostForPosts = (req, res) => {
                 item.cost.push({ costFactorPosts: costFactorPost })
                 totalCost.minTotalCost = 0;
                 totalCost.maxTotalCost = 0;
-                minCostPerLike = minCostPerLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                minCostPerComment = minCostPerCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                maxCostperLike = maxCostperLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                maxCostperComment = maxCostperCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                minCostPer1kFollowers = (minCostPer1kFollowersForReel / 1000) * item.edge_followed_by.count;
-                maxCostPer1kFollowers = (maxCostper1KFollowersForReel / 1000) * item.edge_followed_by.count;
+                minCostPerLike = minCostPerLikeForPosts * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                minCostPerComment = minCostPerCommentForPosts * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                maxCostperLike = maxCostperLikeForPosts * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                maxCostperComment = maxCostperCommentForPosts * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                let minCostPer1kFollowers = (minCostPer1kFollowersForPosts / 1000) * item.edge_followed_by.count;
+                let maxCostPer1kFollowers = (maxCostper1KFollowersForPosts / 1000) * item.edge_followed_by.count;
                 totalCost.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
                 totalCost.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
-                item.cost.push({ reelCost: totalCost })
-                // item.save();
+                item.cost.push({ postCost: totalCost })
+                item.save();
                 array.push(item)
             })
             res.json(array);
@@ -129,16 +129,16 @@ exports.setCalculateCostForIgtv = (req, res) => {
                 item.cost.push({ costFactorIgtv: costFactorIgtv })
                 totalCost.minTotalCost = 0;
                 totalCost.maxTotalCost = 0;
-                minCostPerLike = minCostPerLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                minCostPerComment = minCostPerCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                maxCostperLike = maxCostperLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                maxCostperComment = maxCostperCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                minCostPer1kFollowers = (minCostPer1kFollowersForReel / 1000) * item.edge_followed_by.count;
-                maxCostPer1kFollowers = (maxCostper1KFollowersForReel / 1000) * item.edge_followed_by.count;
+                minCostPerLike = minCostPerLikeForIgtv * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                minCostPerComment = minCostPerCommentForIgtv * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                maxCostperLike = maxCostperLikeForIgtv * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                maxCostperComment = maxCostperCommentForIgtv * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                let minCostPer1kFollowers = (minCostPer1kFollowersForIgtv / 1000) * item.edge_followed_by.count;
+                let maxCostPer1kFollowers = (maxCostper1KFollowersForIgtv / 1000) * item.edge_followed_by.count;
                 totalCost.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
                 totalCost.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
-                item.cost.push({ reelCost: totalCost })
-                // item.save();
+                item.cost.push({ igtvCost: totalCost })
+                item.save();
                 array.push(item)
             })
             res.json(array);
@@ -178,15 +178,15 @@ exports.setCalculateCostForStories = (req, res) => {
                 item.cost.push({ costFactorStories: costFactorStories })
                 totalCost.minTotalCost = 0;
                 totalCost.maxTotalCost = 0;
-                minCostPerLike = minCostPerLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                minCostPerComment = minCostPerCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                maxCostperLike = maxCostperLikeForReel * item.edge_owner_to_timeline_media.edges[0].avg_likes;
-                maxCostperComment = maxCostperCommentForReel * item.edge_owner_to_timeline_media.edges[0].avg_comment;
-                minCostPer1kFollowers = (minCostPer1kFollowersForReel / 1000) * item.edge_followed_by.count;
-                maxCostPer1kFollowers = (maxCostper1KFollowersForReel / 1000) * item.edge_followed_by.count;
+                minCostPerLike = stor * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                minCostPerComment = minCostPerCommentForStory * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                maxCostperLike = maxCostperLikeForStory * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                maxCostperComment = maxCostperCommentForStory * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                let minCostPer1kFollowers = (minCostPer1kFollowersForStory / 1000) * item.edge_followed_by.count;
+                let maxCostPer1kFollowers = (maxCostper1KFollowersForStory / 1000) * item.edge_followed_by.count;
                 totalCost.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
                 totalCost.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
-                item.cost.push({ reelCost: totalCost })
+                item.cost.push({ storyCost: totalCost })
                 // item.save();
                 array.push(item)
             })

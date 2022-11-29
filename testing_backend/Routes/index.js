@@ -41,7 +41,7 @@ router.get('/filtered_basket_list', filtered_basket_list);
 router.get('/followersfilteredBasketData', followersfilteredBasketData);
 router.post('/setCalculateCostForReel', setCalculateCostForReel);
 router.post('/setCalculateCostForPosts', setCalculateCostForPosts);
-router.post('/setCalculateCostForStories', setCalculateCostForReel);
+router.post('/setCalculateCostForStories', setCalculateCostForStories);
 router.post('/setCalculateCostForIgtv', setCalculateCostForIgtv);
 router.get('/erfilteredBasketData', erfilteredBasketData);
 router.post("/upload-csv", uploadCsv, uploadcsv);

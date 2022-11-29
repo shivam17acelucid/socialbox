@@ -1,12 +1,18 @@
 const InfluencersData = require('../Models/influencer_details');
 const CsvParser = require("json2csv").Parser;
 exports.downloadcsv = (req, res, next) => {
+  let Followers;
   InfluencersData.find({}).then((objs) => {
     let data = [];
+    // objs.forEach((data) => {
+    //   Followers = data.edge_followed_by.count;
+    //   const
+    // })
 
     objs.forEach((obj) => {
-      const { InstagramProfiles, Followers, Engagement, AvgLike, AvgComment, AvgReach, city_name, Category } = obj;
-      data.push({ InstagramProfiles, Followers, Engagement, AvgLike, AvgComment, AvgReach, city_name, Category });
+      Followers = edge_followed_by.count;
+      const { username, Followers, er, avg_likes, avg_comment, avg_reach, city_name, category_enum } = obj;
+      data.push({ username, Followers, er, avg_likes, avg_comment, avg_reach, city_name, category_enum });
     });
 
     const csvFields = ["Instagram Profiles"];

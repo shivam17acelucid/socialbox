@@ -15,12 +15,11 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { Input } from "reactstrap";
 import { MdAdd } from 'react-icons/md';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlineDownload } from 'react-icons/ai';
 import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
-// import AutoComplete from "../../Common/AutoComplete/index";
 
 const InfluencersList = () => {
 
@@ -55,7 +54,7 @@ const InfluencersList = () => {
     const [rowClickedData, setRowClickedData] = useState('');
     const [addToCompareClicked, setAddToCompareClicked] = useState(false);
     const [addToCompareData, setAddToCompareData] = useState('');
-    const [influencer, setInfluencer] = useState('');
+    const [influencer, setInfluencer] = useState([]);
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
     const [csvData, setCsvData] = useState('');
@@ -290,10 +289,10 @@ const InfluencersList = () => {
     };
 
     const handleClick = (e) => {
+        setInfluencer(e.target.innerText)
         setSuggestions([]);
         setValue('');
         setSuggestionsActive(false);
-        setInfluencer(e.target.innerText)
     };
 
     const Suggestions = () => {
@@ -406,15 +405,15 @@ const InfluencersList = () => {
                                             </section>
                                             : null
                             }
-                            <>
+                            <div className="download_icon">
                                 <a
                                     href={`data:text/csv;charset=utf-8,${(csvData)}`}
                                     download="filename.csv"
                                     onClick={handleDownloadData}
                                 >
-                                    download
+                                    <AiOutlineDownload size={30} />
                                 </a>
-                            </>
+                            </div>
                             {/* <Button onClick={handleDownloadData}>Download</Button> */}
                         </div>
                         <div className="table_content">
@@ -507,7 +506,6 @@ const InfluencersList = () => {
                                                                                         <div className="compare_headers">
                                                                                             Compare Influencers
                                                                                         </div>
-                                                                                        {/* <AutoComplete data={autoSuggestedData} /> */}
                                                                                         <input
                                                                                             type="text"
                                                                                             value={value}
@@ -518,6 +516,14 @@ const InfluencersList = () => {
                                                                                             <div>
                                                                                                 {item.username} <span onClick={() => handleRemoveInfluencer(data)}><MdDelete /></span>
                                                                                             </div>
+                                                                                            {
+                                                                                                influencer.length > 0 ?
+                                                                                                console.log(influencer)
+                                                                                                    // influencer.map((data) =>
+                                                                                                    //     console.log(data)
+                                                                                                    // )
+                                                                                                    : null
+                                                                                            }
                                                                                             <div onClick={() => setAddToCompareData('')}>
                                                                                                 Remove All
                                                                                             </div>

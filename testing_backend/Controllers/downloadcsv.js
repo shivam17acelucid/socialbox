@@ -1,22 +1,22 @@
 const InfluencersData = require('../Models/influencer_details');
 const CsvParser = require("json2csv").Parser;
 exports.downloadcsv = (req, res, next) => {
-  let Followers;
   InfluencersData.find({}).then((objs) => {
     let data = [];
-    // objs.forEach((data) => {
-    //   Followers = data.edge_followed_by.count;
-    //   const
-    // })
 
     objs.forEach((obj) => {
-      Followers = edge_followed_by.count;
-      const { username, Followers, er, avg_likes, avg_comment, avg_reach, city_name, category_enum } = obj;
-      data.push({ username, Followers, er, avg_likes, avg_comment, avg_reach, city_name, category_enum });
+      const Followers =  obj.edge_followed_by.count;
+      const EngagementRate = obj.edge_owner_to_timeline_media.edges[0].er;
+      const avg_likes = obj.edge_owner_to_timeline_media.edges[0].avg_likes;
+      const avg_comment = obj.edge_owner_to_timeline_media.edges[0].avg_comment;
+      const avg_reach = obj.edge_felix_video_timeline.edges[0].averageReelView;
+      const city_name = obj.city_name || "null";
+      const category_enum = obj.category_enum || "null";
+      const { username } = obj;
+      data.push({ username, Followers, EngagementRate, avg_likes, avg_comment, avg_reach, city_name, category_enum });
     });
 
-    const csvFields = ["Instagram Profiles"];
-    const csvParser = new CsvParser({ csvFields });
+    const csvParser = new CsvParser();
     const csvData = csvParser.parse(data);
 
     res.setHeader("Content-Type", "text/csv");

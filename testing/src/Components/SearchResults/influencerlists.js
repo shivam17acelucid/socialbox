@@ -58,6 +58,7 @@ const InfluencersList = () => {
     const [influencer, setInfluencer] = useState('');
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    const [csvData, setCsvData] = useState('');
 
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionIndex, setSuggestionIndex] = useState(0);
@@ -185,6 +186,21 @@ const InfluencersList = () => {
             })
     }
 
+    const handleDownloadData = () => {
+        const url = `http://localhost:4000/downloadcsv`;
+        fetch((url), {
+            headers: {
+                'Content-type': 'text/csv; charset=UTF-8',
+            }
+        })
+            .then((res) => {
+                res.text()
+                    .then((data) => {
+                        setCsvData(data)
+                    })
+            })
+    }
+
     useEffect(() => {
         fetchProfiles();
         getListData();
@@ -257,11 +273,6 @@ const InfluencersList = () => {
         setRemoveInfluencerClicked(true);
         // addToCompareData.filter(e => e !== data.username);
     }
-
-    // const handleDownloadData = () => {
-    //     const url = `http://localhost:4000/downloadcsv`;
-    //     fetch(url)
-    // }
 
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
@@ -395,6 +406,15 @@ const InfluencersList = () => {
                                             </section>
                                             : null
                             }
+                            <>
+                                <a
+                                    href={`data:text/csv;charset=utf-8,${(csvData)}`}
+                                    download="filename.csv"
+                                    onClick={handleDownloadData}
+                                >
+                                    download
+                                </a>
+                            </>
                             {/* <Button onClick={handleDownloadData}>Download</Button> */}
                         </div>
                         <div className="table_content">

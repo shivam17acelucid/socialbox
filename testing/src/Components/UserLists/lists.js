@@ -11,7 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
+import { Input } from 'reactstrap';
 
 
 function UserLists() {
@@ -19,6 +20,8 @@ function UserLists() {
     const [listInfluencersData, setListInfluencersData] = useState([]);
     const [deletedData, setDeleteData] = useState([]);
     const [isDataDeleted, setIsDataDeleted] = useState(false);
+    const [isDeliverablesEdited, setIsDeliverablesEdited] = useState(false);
+    const [editingDeliverables, setEditingDeliverables] = useState(false);
 
     let { listname } = useParams();
 
@@ -27,6 +30,21 @@ function UserLists() {
 
     const redirectProfile = (data) => {
         navigate(`/profile/${data.username}`)
+    }
+
+    const handleEditDeliverables = () => {
+        setEditingDeliverables((prev) => !prev)
+        const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
+        fetch((url), {
+            method: 'PUT',
+            body: JSON.stringify(),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+            .then((res) => {
+                setIsDeliverablesEdited(true)
+            })
     }
 
 
@@ -64,6 +82,10 @@ function UserLists() {
         handleListClick();
     }, [isDataDeleted]);
 
+    useEffect(() => {
+        handleListClick();
+    }, [isDeliverablesEdited]);
+
     return (
         <div className='users_list_container'>
             <Navbar />
@@ -88,14 +110,26 @@ function UserLists() {
                                         {
                                             <>
                                                 <div className='deliverables_fields_value'><span>Reels</span>{data.item.deliverables[0].reel}</div>
-                                                <div className='deliverables_fields_value'><span>Posts</span>{data.item.deliverables[1].staticPost}</div>
-                                                <div className='deliverables_fields_value'><span>Videos</span>{data.item.deliverables[2].video}</div>
-                                                <div className='deliverables_fields_value'><span>Stories</span>{data.item.deliverables[3].story}</div>
-                                                <div className='deliverables_fields_value'><span>Swipe Stories</span>{data.item.deliverables[4].swipeStory}</div>
-                                                <div className='deliverables_fields_value'><span>Igtv Videos</span>{data.item.deliverables[5].igtv}</div>
+                                                <div className='deliverables_fields_value'><span>Posts</span>{data.item.deliverables[1].post}</div>
+                                                <div className='deliverables_fields_value'><span>Stories</span>{data.item.deliverables[2].story}</div>
+                                                <div className='deliverables_fields_value'><span>Igtv</span>{data.item.deliverables[3].igtv}</div>
                                             </>
                                         }
                                     </div>
+                                    <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                                        <MdEdit size={20} onClick={handleEditDeliverables} />
+                                    </div>
+                                    {
+                                        editingDeliverables === true ?
+                                            <div>
+                                                <Input />
+                                                <Input />
+                                                <Input />
+                                                <Input />
+                                                <Button>Update</Button>
+                                            </div>
+                                            : null
+                                    }
                                 </div>
                             </div>
                             {/* <hr></hr> */}

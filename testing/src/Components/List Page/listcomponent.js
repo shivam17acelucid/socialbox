@@ -6,7 +6,7 @@ import './listpage.scss';
 import { Input, Label } from 'reactstrap';
 import { MdOutlineAddBox } from "react-icons/md";
 import { AiFillCaretDown } from 'react-icons/ai';
-import { MdOutlineArrowDropUp } from 'react-icons/md';
+import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 
 
 function Lists() {
@@ -21,11 +21,10 @@ function Lists() {
     const [listData, setListData] = useState([]);
     const [openDeliverablesClicked, setOpenDeliverablesClicked] = useState(false);
     const [reel, setReel] = useState(0);
-    const [staticPost, setStaticPost] = useState(0);
-    const [video, setVideo] = useState(0);
+    const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
-    const [swipeStory, setSwipeStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
+    const [listDeleted, setListDeleted] = useState(false);
 
     let navigate = useNavigate();
     const userId = localStorage.getItem('id');
@@ -48,11 +47,11 @@ function Lists() {
         navigate(`/basketInfluencers/${item.categoryName}`)
     }
 
-    const handleCreateList = (listName, reel, staticPost, video, story, swipeStory, igtv) => {
+    const handleCreateList = (listName, reel, post, story, igtv) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName, reel, staticPost, video, story, swipeStory, igtv }),
+            body: JSON.stringify({ listName, reel, post, story, igtv }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -71,6 +70,19 @@ function Lists() {
 
     const handleRedirectToList = (item) => {
         navigate(`/userLists/${item.listName}`)
+    }
+
+    const handleDeleteInfluencer = (item) => {
+        const url = `http://localhost:4000/deleteList/${userId}?listName=${item.listName}`;
+        fetch((url), {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+            .then((res) => {
+                setListDeleted(true);
+            })
     }
 
 
@@ -93,6 +105,10 @@ function Lists() {
     useEffect(() => {
         getListData();
     }, [newPlanClicked]);
+
+    useEffect(() => {
+        getListData();
+    }, [listDeleted]);
 
     return (
         <>
@@ -180,13 +196,9 @@ function Lists() {
                                                             <label>Reels</label>
                                                             <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
                                                             <label>Static Post</label>
-                                                            <Input type='text' value={staticPost} onChange={(e) => { setStaticPost(e.target.value) }} placeholder="Static Post" />
-                                                            <label>Videos</label>
-                                                            <Input type='text' value={video} onChange={(e) => { setVideo(e.target.value) }} placeholder="Videos" />
+                                                            <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" />
                                                             <label>Stories</label>
                                                             <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
-                                                            <label>Swipe Stories</label>
-                                                            <Input type='text' value={swipeStory} onChange={(e) => { setSwipeStory(e.target.value) }} placeholder="Swipe Stories" />
                                                             <label>Igtv videos</label>
                                                             <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
                                                         </>
@@ -201,7 +213,7 @@ function Lists() {
                                                             <AiFillCaretDown />
                                                     }
                                                 </span>
-                                                <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, staticPost, video, story, swipeStory, igtv) }}>Create</Button>
+                                                <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, post, story, igtv) }}>Create</Button>
                                             </div> :
                                             null
                                     }
@@ -210,10 +222,11 @@ function Lists() {
                             <div className="list_content">
                                 {
                                     listData.map((item) =>
-                                        <div className="list_content_inner" onClick={() => { handleRedirectToList(item) }}>
+                                        <div className="list_content_inner">
                                             <div className="list_head">
-                                                {item.listName}
+                                                <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0" }}>{item.listName}</span>
                                                 {item.influencersCount}
+                                                <MdDelete onClick={() => { handleDeleteInfluencer(item) }} />
                                             </div>
                                         </div>
                                     )

@@ -234,10 +234,18 @@ exports.setInfluencerCost = (req, res) => {
 
     InfluencersData.findOne({ username: username })
         .then((data) => {
-            data.costFactorReel = costFactorReel;
-            data.costFactorPosts = costFactorPosts;
-            data.costFactorStories = costFactorStories
-            data.costFactorIgtv = costFactorIgtv;
+            if (minTotalPostCost || maxTotalPostCost) {
+                data.costFactorPosts = costFactorPosts;
+            }
+            if (minTotalIgtvCost || maxTotalIgtvCost) {
+                data.costFactorIgtv = costFactorIgtv;
+            }
+            if (minTotalReelCost || maxTotalReelCost) {
+                data.costFactorReel = costFactorReel;
+            }
+            if (minTotalStoryCost || maxTotalStoryCost) {
+                data.costFactorStories = costFactorStories
+            }
             data.save();
             res.json(data)
         })

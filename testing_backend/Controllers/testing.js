@@ -395,13 +395,28 @@ exports.getInfluencersDetails = (req, res) => {
 }
 
 exports.createList = (req, res, next) => {
-    let { listName, reel, staticPost, video, story, swipeStory, igtv } = req.body;
+    let { listName, reel, post, story, igtv } = req.body;
     let errors = [];
     let error1 = [];
-    let response = [];
     if (!listName) {
         errors.push('Please fill list name');
         return res.status(422).json({ errors: errors });
+    }
+
+    if (!reel) {
+        reel = '0';
+    }
+
+    if (!post) {
+        post = '0';
+    }
+
+    if (!story) {
+        story = '0';
+    }
+
+    if (!igtv) {
+        igtv = '0';
     }
 
     if (errors.length > 0) {
@@ -427,11 +442,30 @@ exports.createList = (req, res, next) => {
                 return res.json("List name Already Present")
             }
             else {
-                data.list.push({ listName: listName, deliverables: [{ reel: reel }, { staticPost: staticPost }, { video: video }, { story: story }, { swipeStory: swipeStory }, { igtv: igtv }] })
+                data.list.push({ listName: listName, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }] })
                 data.save();
                 res.json(data)
             }
         });
+}
+
+exports.editDeliverables = (req, res) => {
+    let { listName } = req.query
+    let { reel, post, story, igtv } = req.body;
+
+    UserInfo.findByIdAndUpdate(req.params.id)
+        .then((data) => {
+            data.list.forEach((item) => {
+                if (item.listName === listName) {
+                    item.deliverables[0].reel = reel;
+                    item.deliverables[1].post = post;
+                    item.deliverables[2].story = story;
+                    item.deliverables[3].igtv = igtv;
+                }
+            });
+            data.save();
+            res.json(data)
+        })
 }
 
 exports.getListData = (req, res) => {
@@ -511,13 +545,27 @@ exports.deleteInfluencersFromList = (req, res) => {
                             filter[0].influencersData.splice(i, 1);
                         }
                     }
-                    // filter[0].influencersData.splice(filter[0].influencersData.findIndex((username) => username), 1)
                 }
             })
             data.save();
-            res.json(filter[0].influencersData)
+            res.json(data)
         })
         .catch((err) => {
             console.log(err)
+        })
+}
+
+exports.deleteList = (req, res) => {
+    let { listName } = req.query;
+    UserInfo.findById(req.params.id)
+        .then((data) => {
+            data.list.forEach((item) => {
+                if (item.listName === listName) {
+                    data.list.splice(
+                        data.list.findIndex(obj => obj.listName === listName), 1);
+                }
+            })
+            data.save();
+            res.json(data)
         })
 }

@@ -84,6 +84,8 @@ let influencersDataSchema = new Schema(
             maxCostperCommentForReel: Number,
             minTotalCost: Number,
             maxTotalCost: Number,
+            influencerExactminTotalCost: Number,
+            influencerExactmaxTotalCost: Number,
         },
         costFactorPosts: {
             minCostPer1kFollowersForPosts: Number,
@@ -94,6 +96,8 @@ let influencersDataSchema = new Schema(
             maxCostperCommentForPosts: Number,
             minTotalCost: Number,
             maxTotalCost: Number,
+            influencerExactminTotalCost: Number,
+            influencerExactmaxTotalCost: Number,
         },
         costFactorStories: {
             minCostPer1kFollowersForStory: Number,
@@ -104,6 +108,8 @@ let influencersDataSchema = new Schema(
             maxCostperCommentForStory: Number,
             minTotalCost: Number,
             maxTotalCost: Number,
+            influencerExactminTotalCost: Number,
+            influencerExactmaxTotalCost: Number,
         },
         costFactorIgtv: {
             minCostPer1kFollowersForIgtv: Number,
@@ -114,6 +120,8 @@ let influencersDataSchema = new Schema(
             maxCostperCommentForIgtv: Number,
             minTotalCost: Number,
             maxTotalCost: Number,
+            influencerExactminTotalCost: Number,
+            influencerExactmaxTotalCost: Number,
         },
     },
     {

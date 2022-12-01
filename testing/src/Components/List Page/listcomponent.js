@@ -59,8 +59,8 @@ function Lists() {
             .then((res) => { res.json() })
             .then((data) => {
                 setListInfluencerDetails(data)
+                setNewPlanClicked(false);
             })
-        setNewPlanClicked(false);
     }
 
     const handleAddPlan = () => {
@@ -72,7 +72,7 @@ function Lists() {
         navigate(`/userLists/${item.listName}`)
     }
 
-    const handleDeleteInfluencer = (item) => {
+    const handleDeleteList = (item) => {
         const url = `http://localhost:4000/deleteList/${userId}?listName=${item.listName}`;
         fetch((url), {
             method: 'PUT',
@@ -104,11 +104,11 @@ function Lists() {
 
     useEffect(() => {
         getListData();
-    }, [newPlanClicked]);
+    }, [newPlanClicked, listDeleted]);
 
-    useEffect(() => {
-        getListData();
-    }, [listDeleted]);
+    // useEffect(() => {
+    //     getListData();
+    // }, [listDeleted]);
 
     return (
         <>
@@ -123,11 +123,11 @@ function Lists() {
                         <div className='middle_pane_content'>
                             <div className='categorised_inf'>
                                 <div className='categorised_heading'>Top Influencers by Category</div>
-                                <div className='categorised_btn'>
+                                {/* <div className='categorised_btn'>
                                     {basketData.map((item) =>
                                         <Button className='button_list'>{item.categoryName}</Button>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
                             <div className='influencers_basket'>
                                 {basketData.map((item) =>
@@ -224,9 +224,9 @@ function Lists() {
                                     listData.map((item) =>
                                         <div className="list_content_inner">
                                             <div className="list_head">
-                                                <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0" }}>{item.listName}</span>
+                                                <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0", cursor: 'pointer', width: '-webkit-fill-available' }}>{item.listName}</span>
                                                 {item.influencersCount}
-                                                <MdDelete onClick={() => { handleDeleteInfluencer(item) }} />
+                                                <MdDelete onClick={() => { handleDeleteList(item) }} />
                                             </div>
                                         </div>
                                     )

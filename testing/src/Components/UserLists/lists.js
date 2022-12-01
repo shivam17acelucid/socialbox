@@ -91,15 +91,15 @@ function UserLists() {
             <Navbar />
             <div className='users_list_pane'>
                 {
-                    listInfluencersData.map((data) =>
+                    listInfluencersData.map((item) =>
                         <>
                             <div className='user_list_header'>
                                 <div className='list_count'>
                                     <div className='list_name'>
-                                        {data.item.listName}
+                                        {item.item.listName}
                                     </div>
                                     <div className='list_inf_count'>
-                                        No of Influencers  {data.influencers_count}
+                                        No of Influencers  {item.influencers_count}
                                     </div>
                                 </div>
                                 <div className='deliverables_count'>
@@ -109,10 +109,10 @@ function UserLists() {
                                     <div className='deliverables_values'>
                                         {
                                             <>
-                                                <div className='deliverables_fields_value'><span>Reels</span>{data.item.deliverables[0].reel}</div>
-                                                <div className='deliverables_fields_value'><span>Posts</span>{data.item.deliverables[1].post}</div>
-                                                <div className='deliverables_fields_value'><span>Stories</span>{data.item.deliverables[2].story}</div>
-                                                <div className='deliverables_fields_value'><span>Igtv</span>{data.item.deliverables[3].igtv}</div>
+                                                <div className='deliverables_fields_value'><span>Reels</span>{item.item.deliverables[0].reel}</div>
+                                                <div className='deliverables_fields_value'><span>Posts</span>{item.item.deliverables[1].post}</div>
+                                                <div className='deliverables_fields_value'><span>Stories</span>{item.item.deliverables[2].story}</div>
+                                                <div className='deliverables_fields_value'><span>Igtv</span>{item.item.deliverables[3].igtv}</div>
                                             </>
                                         }
                                     </div>
@@ -150,7 +150,7 @@ function UserLists() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {data.item.influencersData.map((data, index) =>
+                                            {item.item.influencersData.map((data, index) =>
                                                 < TableRow key={index} >
                                                     <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
                                                         <div>{data.full_name}</div>
@@ -171,7 +171,31 @@ function UserLists() {
                                                     <TableCell align="center">
                                                         {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
                                                     </TableCell>
-                                                    <TableCell align="center">{data.city_name}</TableCell>
+                                                    <TableCell align="center">
+                                                        {
+                                                            NFormatter(
+                                                                (data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
+                                                                    (data.costFactorReel.minTotalCost * item.item.deliverables[0].reel)
+                                                                    :
+                                                                    (data.costFactorReel.influencerExactminTotalCost * item.item.deliverables[0].reel))
+                                                                +
+                                                                (data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
+                                                                    (data.costFactorPosts.minTotalCost * item.item.deliverables[1].post)
+                                                                    :
+                                                                    (data.costFactorPosts.influencerExactminTotalCost * item.item.deliverables[1].post))
+                                                                +
+                                                                (data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
+                                                                    (data.costFactorStories.minTotalCost * item.item.deliverables[2].story)
+                                                                    :
+                                                                    (data.costFactorStories.influencerExactminTotalCost * item.item.deliverables[2].story))
+                                                                +
+                                                                (data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
+                                                                    (data.costFactorIgtv.minTotalCost * item.item.deliverables[3].igtv)
+                                                                    :
+                                                                    (data.costFactorIgtv.influencerExactminTotalCost * item.item.deliverables[3].igtv))
+                                                            )
+                                                        }
+                                                    </TableCell>
                                                     <TableCell><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
                                                 </TableRow>
                                             )}

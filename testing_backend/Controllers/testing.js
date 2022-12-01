@@ -453,14 +453,23 @@ exports.editDeliverables = (req, res) => {
     let { listName } = req.query
     let { reel, post, story, igtv } = req.body;
 
-    UserInfo.findByIdAndUpdate(req.params.id)
+    UserInfo.findById(req.params.id)
         .then((data) => {
             data.list.forEach((item) => {
                 if (item.listName === listName) {
-                    item.deliverables[0].reel = reel;
-                    item.deliverables[1].post = post;
-                    item.deliverables[2].story = story;
-                    item.deliverables[3].igtv = igtv;
+                    let abc = data.list.findIndex(obj => obj.listName === listName)
+                    data.list[abc].deliverables[0] = {
+                        reel: reel,
+                    }
+                    data.list[abc].deliverables[1] = {
+                        post: post,
+                    }
+                    data.list[abc].deliverables[2] = {
+                        story: story,
+                    }
+                    data.list[abc].deliverables[3] = {
+                        igtv: igtv,
+                    }
                 }
             });
             data.save();

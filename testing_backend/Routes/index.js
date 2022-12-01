@@ -26,7 +26,7 @@ router.get('/getinfluencerdata', influencer_list)
 router.get('/getrelatedinfluencers', influencer_search)
 router.get('/getErFilteredInfluencersData', filteredByErInfluencersData)
 router.post('/createList/:id', createList)
-router.put('/editDeliverables/:id', editDeliverables);
+router.post('/editDeliverables/:id', editDeliverables);
 router.get('/getListData/:id', getListData)
 router.put('/deleteInfluencersFromList/:id', deleteInfluencersFromList)
 router.post('/addInfluencersToList/:id', addInfluencersToList)

@@ -9,7 +9,6 @@ exports.compareInfluencers = (req, res) => {
             influencers.forEach((item) => {
                 data.filter((el) => {
                     if (el.username === item) {
-                        console.log(item)
                         array.push(el)
                     }
                 })

@@ -57,7 +57,7 @@ exports.compareCategorizedBaskets = (req, res) => {
 }
 
 exports.compareUsersLists = (req, res) => {
-    let { lists } = req.body;
+    let { lists } = req.query;
     let comparedArray = [];
     let finalArray = [];
 

@@ -458,17 +458,25 @@ exports.editDeliverables = (req, res) => {
             data.list.forEach((item) => {
                 if (item.listName === listName) {
                     let abc = data.list.findIndex(obj => obj.listName === listName)
-                    data.list[abc].deliverables[0] = {
-                        reel: reel,
+                    if (reel) {
+                        data.list[abc].deliverables[0] = {
+                            reel: reel,
+                        }
                     }
-                    data.list[abc].deliverables[1] = {
-                        post: post,
+                    if (post) {
+                        data.list[abc].deliverables[1] = {
+                            post: post,
+                        }
                     }
-                    data.list[abc].deliverables[2] = {
-                        story: story,
+                    if (story) {
+                        data.list[abc].deliverables[2] = {
+                            story: story,
+                        }
                     }
-                    data.list[abc].deliverables[3] = {
-                        igtv: igtv,
+                    if (igtv) {
+                        data.list[abc].deliverables[3] = {
+                            igtv: igtv,
+                        }
                     }
                 }
             });

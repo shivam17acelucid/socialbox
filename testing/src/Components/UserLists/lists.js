@@ -22,6 +22,10 @@ function UserLists() {
     const [isDataDeleted, setIsDataDeleted] = useState(false);
     const [isDeliverablesEdited, setIsDeliverablesEdited] = useState(false);
     const [editingDeliverables, setEditingDeliverables] = useState(false);
+    const [reel, setReels] = useState('');
+    const [post, setPosts] = useState('');
+    const [story, setStories] = useState('');
+    const [igtv, setIgtv] = useState('');
 
     let { listname } = useParams();
 
@@ -34,17 +38,6 @@ function UserLists() {
 
     const handleEditDeliverables = () => {
         setEditingDeliverables((prev) => !prev)
-        const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
-        fetch((url), {
-            method: 'PUT',
-            body: JSON.stringify(),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-            .then((res) => {
-                setIsDeliverablesEdited(true)
-            })
     }
 
 
@@ -71,6 +64,20 @@ function UserLists() {
             .then((data) => {
                 setDeleteData(data)
                 setIsDataDeleted((prev) => !prev)
+            })
+    }
+
+    const handleUpdateDeliverables = () => {
+        const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
+        fetch((url), {
+            method: 'POST',
+            body: JSON.stringify({ reel, post, story, igtv }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+            .then((res) => {
+                setIsDeliverablesEdited(true)
             })
     }
 
@@ -122,11 +129,11 @@ function UserLists() {
                                     {
                                         editingDeliverables === true ?
                                             <div>
-                                                <Input />
-                                                <Input />
-                                                <Input />
-                                                <Input />
-                                                <Button>Update</Button>
+                                                <Input value={reel} onChange={(e) => { setReels(e.target.value) }} placeholder="Reels count" />
+                                                <Input value={post} onChange={(e) => { setPosts(e.target.value) }} placeholder="Posts count" />
+                                                <Input value={story} onChange={(e) => { setStories(e.target.value) }} placeholder="Stories count" />
+                                                <Input value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv count" />
+                                                <Button onClick={handleUpdateDeliverables}>Update</Button>
                                             </div>
                                             : null
                                     }

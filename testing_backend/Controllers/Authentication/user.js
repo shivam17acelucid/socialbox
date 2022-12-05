@@ -5,8 +5,11 @@ const emailRegxp =
 const jwt = require("jsonwebtoken");
 
 exports.signup = (req, res, next) => {
-  let { email, password } = req.body;
+  let { name, email, password } = req.body;
   let errors = [];
+  if (!name) {
+    errors.push("Name Required")
+  }
   if (!email) {
     errors.push("email required");
   }
@@ -27,6 +30,7 @@ exports.signup = (req, res, next) => {
           .json({ errors: [{ user: "email already exists" }] });
       } else {
         const users = new UserInfo({
+          name: name,
           email: email,
           password: password,
         });
@@ -47,7 +51,7 @@ exports.signup = (req, res, next) => {
             users
               .save()
               .then((response) => {
-                res.json("Success")
+                res.json(response)
               })
               .catch((err) => {
                 res.status(500).json({
@@ -86,7 +90,6 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res.status(404).json({ errors: [{ user: "User not found" }] });
       } else {
-        console.log("Done")
         bcrypt
           .compare(password, user.password)
           .then((match) => {
@@ -103,7 +106,7 @@ exports.login = (req, res, next) => {
               }
             );
             user.token = token;
-            res.status(200).json('sucess');
+            res.status(200).json(user);
           })
           .catch((err) => {
             res.status(502).json({ errors: err });

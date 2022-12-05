@@ -26,12 +26,37 @@ function Lists() {
     const [igtv, setIgtv] = useState(0);
     const [listDeleted, setListDeleted] = useState(false);
 
+
+    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
+    const [suggestionIndex, setSuggestionIndex] = useState(0);
+    const [suggestionsActive, setSuggestionsActive] = useState(false);
+    const [value, setValue] = useState('');
+
     let navigate = useNavigate();
     const userId = localStorage.getItem('id');
+    const autoSuggestedArray = [];
 
 
-    const searchInfluencers = () => {
-        navigate(`/influencerslist/${inputField}`);
+    // const searchInfluencers = () => {
+    //     navigate(`/influencerslist/${inputField}`);
+    // }
+
+    const fetchAllData = () => {
+        const url = `http://localhost:4000/getrelatedinfluencers?inputField=`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        res.map((item) => {
+                            autoSuggestedArray.push(item.username)
+                            setAutoSuggestedData(autoSuggestedArray)
+                        })
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     const fetchBasketsName = () => {
@@ -100,15 +125,52 @@ function Lists() {
     useEffect(() => {
         fetchBasketsName();
         getListData();
+        fetchAllData();
     }, []);
 
     useEffect(() => {
         getListData();
     }, [newPlanClicked, listDeleted]);
 
-    // useEffect(() => {
-    //     getListData();
-    // }, [listDeleted]);
+    const handleChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setValue(query);
+        if (query.length > 1) {
+            const filterSuggestions = autoSuggestedData.filter(
+                (suggestion) =>
+                    suggestion.toLowerCase().indexOf(query) > -1
+            );
+            setSuggestions(filterSuggestions);
+            setSuggestionsActive(true);
+        } else {
+            setSuggestionsActive(false);
+        }
+    };
+
+    const handleClick = (e) => {
+        navigate(`/profile/${e.target.innerText}`);
+        setSuggestions([]);
+        setValue('');
+        setSuggestionsActive(false);
+    };
+
+    const Suggestions = () => {
+        return (
+            <div className="suggestions">
+                {suggestions.map((suggestion, index) => {
+                    return (
+                        <div
+                            className={index === suggestionIndex ? "active" : ""}
+                            key={index}
+                            onClick={handleClick}
+                        >
+                            {suggestion}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
 
     return (
         <>
@@ -117,8 +179,16 @@ function Lists() {
                 <div className='lists_content'>
                     <div className='middle_pane_lists'>
                         <div className='list_headers'>
-                            <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' />
-                            <Button className='button_list' onClick={searchInfluencers}>Search</Button>
+                            <input
+                                type="text"
+                                value={value}
+                                onChange={handleChange}
+                                placeholder='Search for influencers, categories...'
+                                className='input_search'
+                            />
+                            {suggestionsActive && <Suggestions />}
+                            {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
+                            {/* <Button className='button_list' onClick={searchInfluencers}>Search</Button> */}
                         </div>
                         <div className='middle_pane_content'>
                             <div className='categorised_inf'>

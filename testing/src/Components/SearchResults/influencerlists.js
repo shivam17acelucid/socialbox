@@ -20,6 +20,13 @@ import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
 import moment from "moment";
+import { useTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+
 
 const InfluencersList = () => {
 
@@ -78,11 +85,6 @@ const InfluencersList = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
-    const handleChangePageToFirst = (event) => {
-        setPage(0)
-    }
-
 
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
@@ -313,6 +315,60 @@ const InfluencersList = () => {
         );
     };
 
+    function TablePaginationActions(count) {
+        const theme = useTheme();
+        // const { count, page, rowsPerPage, onPageChange } = props;
+
+        const handleFirstPageButtonClick = (event) => {
+            setPage(0);
+        };
+
+        const handleBackButtonClick = (event) => {
+            setPage(page - 1);
+        };
+
+        const handleNextButtonClick = (event) => {
+            setPage(page + 1);
+        };
+
+        const handleLastPageButtonClick = (event) => {
+            setPage(Math.max(0, Math.ceil(count.count / rowsPerPage) - 1));
+        };
+
+        return (
+            <div style={{ display: 'flex' }}>
+                <IconButton
+                    onClick={handleFirstPageButtonClick}
+                    disabled={page === 0}
+                    aria-label="first page"
+                >
+                    {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+                </IconButton>
+                <IconButton
+                    onClick={handleBackButtonClick}
+                    disabled={page === 0}
+                    aria-label="previous page"
+                >
+                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                </IconButton>
+                <IconButton
+                    onClick={handleNextButtonClick}
+                    // disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label="next page"
+                >
+                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </IconButton>
+                <IconButton
+                    onClick={handleLastPageButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label="last page"
+                >
+                    {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+                </IconButton>
+            </div>
+        );
+    }
+
     return (
         <div className="search_container">
             <div className="subcontainer">
@@ -518,7 +574,7 @@ const InfluencersList = () => {
                                                                                             </div>
                                                                                             {
                                                                                                 influencer.length > 0 ?
-                                                                                                console.log(influencer)
+                                                                                                    console.log(influencer)
                                                                                                     // influencer.map((data) =>
                                                                                                     //     console.log(data)
                                                                                                     // )
@@ -560,6 +616,7 @@ const InfluencersList = () => {
                                                 }}
                                                 onPageChange={handleChangePage}
                                                 onRowsPerPageChange={handleChangeRowsPerPage}
+                                                ActionsComponent={TablePaginationActions}
                                             />
                                             {/* <BiFirstPage size={30} onClick={handleChangePageToFirst} className='pointer' />
                                             <BiLastPage size={30} className='pointer' /> */}

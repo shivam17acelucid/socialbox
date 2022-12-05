@@ -8,16 +8,27 @@ function CompareInfluencers() {
     const [influencer1Name, setInfluencer1Name] = useState('');
     const [influencer2Name, setInfluencer2Name] = useState('');
     const [influencer3Name, setInfluencer3Name] = useState('');
+    const [influencersArray, setInfluencersArray] = useState([]);
     const [comparedInfluencersData, setComparedInfluencersData] = useState([]);
 
-    const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
-        setComparedInfluencersData([]);
-        const url = `http://localhost:4000/compareInfluencers?influencer1name=${influencer1Name}&influencer2name=${influencer2Name}&influencer3name=${influencer3Name}`;
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                setComparedInfluencersData(data);
-            })
+    // const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
+    //     setComparedInfluencersData([]);
+    //     const url = `http://localhost:4000/compareInfluencers?influencer1name=${influencer1Name}&influencer2name=${influencer2Name}&influencer3name=${influencer3Name}`;
+    //     fetch(url)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setComparedInfluencersData(data);
+    //         })
+    // }
+
+    const handleCompareInfluencers = (influencersArray) => {
+        // setComparedInfluencersData([]);
+        // const url = `http://localhost:4000/compareInfluencers`;
+        // fetch(url)
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         setComparedInfluencersData(data);
+        //     })
     }
 
     return (
@@ -39,7 +50,7 @@ function CompareInfluencers() {
                     value={influencer3Name}
                     onChange={(e) => { setInfluencer3Name(e.target.value) }}
                 />
-                <Button onClick={() => { handleCompareInfluencers(influencer1Name, influencer2Name, influencer3Name) }}><span>Search</span></Button>
+                <Button onClick={() => { handleCompareInfluencers(influencer1Name, influencer2Name, influencer3Name, influencersArray) }}><span>Search</span></Button>
             </div>
             <div className='result_pane'>
                 <div className='results'>

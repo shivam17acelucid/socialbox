@@ -10,6 +10,12 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
+        title: 'My Lists',
+        path: '/userLists/Testing',
+        icon: <MdIcons.MdOutlinePlaylistAddCheck />,
+        cName: 'nav-text'
+    },
+    {
         title: 'Compare',
         icon: <MdIcons.MdCompare />,
         cName: 'nav-nested',

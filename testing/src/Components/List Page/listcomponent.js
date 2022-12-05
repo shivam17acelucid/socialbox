@@ -7,6 +7,7 @@ import { Input, Label } from 'reactstrap';
 import { MdOutlineAddBox } from "react-icons/md";
 import { AiFillCaretDown } from 'react-icons/ai';
 import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
+import TopBar from '../../Common/TopBar';
 
 
 function Lists() {
@@ -38,9 +39,9 @@ function Lists() {
     const autoSuggestedArray = [];
 
 
-    // const searchInfluencers = () => {
-    //     navigate(`/influencerslist/${inputField}`);
-    // }
+    const searchInfluencers = () => {
+        navigate(`/influencerslist/${value}`);
+    }
 
     const fetchAllData = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=`;
@@ -178,6 +179,7 @@ function Lists() {
                 <Navbar />
                 <div className='lists_content'>
                     <div className='middle_pane_lists'>
+                        <TopBar />
                         <div className='list_headers'>
                             <input
                                 type="text"
@@ -188,11 +190,11 @@ function Lists() {
                             />
                             {suggestionsActive && <Suggestions />}
                             {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
-                            {/* <Button className='button_list' onClick={searchInfluencers}>Search</Button> */}
+                            <Button className='button_list' onClick={searchInfluencers}>Search</Button>
                         </div>
                         <div className='middle_pane_content'>
                             <div className='categorised_inf'>
-                                <div className='categorised_heading'>Top Influencers by Category</div>
+                                <div className='categorised_heading'>Top Trending Influencers Baskets</div>
                                 {/* <div className='categorised_btn'>
                                     {basketData.map((item) =>
                                         <Button className='button_list'>{item.categoryName}</Button>

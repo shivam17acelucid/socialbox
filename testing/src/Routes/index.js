@@ -4,6 +4,7 @@ import "./routes.scss";
 const InfluencersList = React.lazy(() => import("../Components/SearchResults/influencerlists"));
 const ProfileData = React.lazy(() => import("../Components/ProfileData/profile"));
 const Login = React.lazy(() => import("../Components/Login/login"));
+const Signup = React.lazy(() => import("../Components/Signup/signup"));
 const Lists = React.lazy(() => import("../Components/List Page/listcomponent"));
 const BasketInfluencers = React.lazy(() => import("../Components/BasketInfluencers/index"));
 const Calculator = React.lazy(() => import("../Components/Calculator/calculator"));
@@ -22,7 +23,8 @@ function RouteF() {
             >
                 <Routes>
                     <Route path="/welcome" element={<Lists />} />
-                    <Route path="/" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/calculator" element={<Calculator />} />
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />

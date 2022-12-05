@@ -1,0 +1,146 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.signup_container {
+    display: flex;
+
+    .left_pane {
+        flex: 1;
+        padding-left: 1rem;
+
+        .social_logo {
+            width: 10rem;
+        }
+
+        .signup_form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            padding-top: 6rem;
+
+            .signup_header {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 48px;
+                line-height: 58px;
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            .signup_title {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                color: rgba(0, 0, 0, 0.8);
+                margin-top: 10px;
+            }
+
+            .input_boxes {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                margin-top: 1rem;
+                width: 18rem;
+
+                .registeration_fields {
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: rgba(0, 0, 0, 0.4);
+                    border: 1px solid #808080;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    margin-top: 4px;
+                    margin-bottom: 4px;
+                    height: 2rem;
+                }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    margin-top: 1rem;
+                    background: #7662DC;
+                    border-radius: 5px;
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-size: 16px;
+                    line-height: 19px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    border: 1px solid #808080;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                }
+
+            }
+        }
+
+        .login_link {
+            margin-top: 3rem;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .social_login_btn {
+            box-sizing: border-box;
+            background: #FFFFFF;
+            display: flex;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.4);
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .signup_footer {
+            margin-top: 4.8rem;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    .right_pane {
+        flex: 1;
+        background-image: url('../../Assets/Images/signupbgimg.png');
+        height: 100vh;
+
+        .right_pane_text {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-size: 20px;
+            line-height: 36px;
+            color: #000000;
+            position: absolute;
+            bottom: 10%;
+            right: 32%;
+        }
+    }
+}

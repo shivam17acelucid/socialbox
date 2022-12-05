@@ -11,117 +11,148 @@ html {
     height: 100%;
     margin: 0px;
     background-color: #FFF;
+    display: flex;
 
-    .login_header {
-        padding-top: 3rem;
-        padding-left: 3rem;
-        padding-right: 3rem;
-        height: 5rem;
-    }
+    .left_pane {
+        flex: 1;
+        padding-left: 1rem;
 
-    .login_body {
-        display: flex;
+        .social_logo {
+            width: 10rem;
+        }
 
-        .login_video {
-            width: 50rem;
+        .welcome_heading {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            padding-top: 6rem;
+        }
+
+        .social_login_btn {
+            box-sizing: border-box;
+            background: #FFFFFF;
+            display: flex;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            width: 20rem;
+            height: 2rem;
         }
 
         .login_form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3rem;
 
-            .login_form_header {
-                padding-top: 13rem;
-                height: 5rem;
-                font-family: 'Poppins';
+            .registeration_fields {
+                font-family: 'Inter';
                 font-style: normal;
-                font-weight: 600;
-                font-size: 48px;
-                line-height: 135%;
-                color: #000000;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                color: rgba(0, 0, 0, 0.4);
+                border: 1px solid #808080;
+                border-radius: 5px;
+                box-sizing: border-box;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                height: 2rem;
+                width: 20rem;
             }
 
-            .login_form_content {
-                display: flex;
-                flex-direction: column;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-
-                .form_label {
-                    height: 2rem;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 20px;
-                    line-height: 30px;
-                    color: #636363;
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
-                }
-
-                .form_input_address {
-                    box-sizing: border-box;
-                    width: 34.5rem;
-                    height: 5rem;
-                    background: #FFFFFF;
-                    border: 1.5px solid #CDCDCD;
-                    border-radius: 15px;
-                    text-align: center;
-                }
-
-                .show_image {
-                    position: absolute;
-                    bottom: 17.5rem;
-                    z-index: 9999;
-                    right: 13rem;
-                    cursor: pointer;
-                }
-
-                .form_forgot_text {
-                    width: 170px;
-                    height: 30px;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 20px;
-                    line-height: 30px;
-                    color: #B80000;
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
-                    margin-left: 25rem;
-                }
-
-                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 1rem 3rem;
-                    width: 35rem;
-                    height: 5rem;
-                    background: #0014C6;
-                    border-radius: 15px;
-                    margin-top: 1rem;
-                }
-
-                .form_login_btn {
-                    width: 68px;
-                    height: 30px;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 20px;
-                    line-height: 30px;
-                    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
+            .show_image {
+                position: absolute;
+                bottom: 17.5rem;
+                z-index: 9999;
+                right: 13rem;
+                cursor: pointer;
             }
 
-            .signup_link {
-                display: flex;
-                justify-content: center;
+            .form_forgot_text {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: right;
+                color: #007DA8;
+                margin-left: 12rem;
+            }
+
+            .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                margin-top: 1rem;
+                background: black;
+                border-radius: 5px;
+                font-family: 'Inter';
+                font-style: normal;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: center;
+                color: #FFFFFF;
+                border: 1px solid #808080;
+                border-radius: 5px;
+                box-sizing: border-box;
+                width: 20rem;
             }
         }
+
+        .signup_link {
+            margin-top: 3rem;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .signup_footer {
+            margin-top: 4.8rem;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    .login_right {
+        flex: 1;
+        height: 100vh;
+
+        .right_pane_top {
+            background-image: url(../../Assets/Images/signupbgss.png);
+            height: 50%;
+
+            .right_pane_text {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 36px;
+
+                color: #000000;
+            }
+        }
+
+        background-image: url(../../Assets/Images/signupbgimg.png);
     }
 
 }

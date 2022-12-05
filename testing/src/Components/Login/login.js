@@ -3,6 +3,10 @@ import './login.scss';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import show from '../../../src/Assets/Images/show.png';
+import logo from '../../../src/Assets/Images/logo.png';
+import logo1 from '../../../src/Assets/Images/logo1.png';
+import textbg from '../../Assets/Images/signupbgss.png';
+import google from '../../../src/Assets/Images/google_logo.png';
 
 
 function Login() {
@@ -44,39 +48,53 @@ function Login() {
 
     return (
         <div className="login_container">
-            <div className="login_header">
-                {/* <img src="" /> */}
-            </div>
-            <div className="login_body">
-                <div className="login_video">Video Place</div>
+            <div className="left_pane">
+                <img src={logo} className='social_logo' />
+                <div className="welcome_heading">
+                    <div>Welcome back,</div>
+                    <div>Please Enter Your Details</div>
+                    <div className="social_login_btn">
+                        <img src={google} height="14px" /><span style={{ marginLeft: '12px' }}>Log in with Google</span>
+                    </div>
+                </div>
                 <div className="login_form">
-                    <span className="login_form_header">Log In</span>
-                    <form className="login_form_content">
-                        <label className="form_label">Email Adress</label>
-                        <input
-                            type='text'
-                            placeholder="Email Address"
-                            className='form_input_address'
-                            value={email}
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
-                        <label className="form_label">Password</label>
-                        <input
-                            type={passwordVisible === true ? 'text' : 'password'}
-                            placeholder="Password"
-                            className='form_input_address'
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value) }}
+                    <input
+                        type='text'
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value) }}
+                        className="registeration_fields"
+                    />
+                    <input
+                        type={passwordVisible === true ? 'text' : 'password'}
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value) }}
+                        className="registeration_fields"
 
-                        />
-                        <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} />
-                        <span className="form_forgot_text">Forgot Password</span>
-                        <Button onClick={handleLogin}><span className="form_login_btn">Login</span></Button>
-                    </form>
-                    <span className="signup_link">Do not have an Account? <Link to='/signup'>Signup Instead</Link></span>
+                    />
+                    {/* <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} /> */}
+                    <span className="form_forgot_text">Forgot Password</span>
+                    <Button onClick={handleLogin}><span className="form_login_btn">Login</span></Button>
+                </div>
+                <div className="signup_link">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>
+                <div className="signup_footer">
+                    ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
                 </div>
             </div>
+            <div className="login_right">
+                <div className="right_pane_top">
+                    <div className="right_pane_text">
+                        Get a brand ambassador
+                        <span style={{ display: 'block' }}>to endorse your product.</span>
+                        <span style={{ display: 'block' }}>Drive sales through</span>
+                        <span style={{ display: 'block' }}>content creators.</span>
+                    </div>
+                </div>
+                <div className="right_pane_bottom">
+                </div>
 
+            </div>
 
         </div>
     )

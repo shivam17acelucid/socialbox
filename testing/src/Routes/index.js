@@ -22,7 +22,7 @@ function RouteF() {
                 </div>}
             >
                 <Routes>
-                    <Route path="/welcome" element={<Lists />} />
+                    <Route path="/welcome/:id" element={<Lists />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/calculator" element={<Calculator />} />

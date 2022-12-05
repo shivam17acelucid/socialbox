@@ -33,8 +33,10 @@ function Login() {
                     console.log(errors)
                 }
                 else {
-                    navigate(`/welcome`);
                     localStorage.setItem('id', data._id)
+                    localStorage.setItem('name', data.name)
+                    const userId = localStorage.getItem('id');
+                    navigate(`/welcome/${userId}`);
                     console.log(localStorage.getItem('id'))
                 }
             })

@@ -178,135 +178,137 @@ function Lists() {
             <div className='list_container'>
                 <Navbar />
                 <div className='lists_content'>
-                    <div className='middle_pane_lists'>
-                        <TopBar />
-                        <div className='list_headers'>
-                            <input
-                                type="text"
-                                value={value}
-                                onChange={handleChange}
-                                placeholder='Search for influencers, categories...'
-                                className='input_search'
-                            />
-                            {suggestionsActive && <Suggestions />}
-                            {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
-                            <Button className='button_list' onClick={searchInfluencers}>Search</Button>
-                        </div>
-                        <div className='middle_pane_content'>
-                            <div className='categorised_inf'>
-                                <div className='categorised_heading'>Top Trending Influencers Baskets</div>
-                                {/* <div className='categorised_btn'>
+                    <TopBar />
+                    <div style={{display: 'flex'}}>
+                        <div className='middle_pane_lists'>
+                            <div className='list_headers'>
+                                <input
+                                    type="text"
+                                    value={value}
+                                    onChange={handleChange}
+                                    placeholder='Search for influencers, categories...'
+                                    className='input_search'
+                                />
+                                {suggestionsActive && <Suggestions />}
+                                {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
+                                <Button className='button_list' onClick={searchInfluencers}>Search</Button>
+                            </div>
+                            <div className='middle_pane_content'>
+                                <div className='categorised_inf'>
+                                    <div className='categorised_heading'>Top Trending Influencers Baskets</div>
+                                    {/* <div className='categorised_btn'>
                                     {basketData.map((item) =>
                                         <Button className='button_list'>{item.categoryName}</Button>
                                     )}
                                 </div> */}
+                                </div>
+                                <div className='influencers_basket'>
+                                    {basketData.map((item) =>
+                                        <div className='influencers_basket_box'>
+                                            <div className='influencers_image'>
+                                                x
+                                            </div>
+                                            <div className='influencers_category_header'>
+                                                Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                            </div>
+                                            <div className='basket_p'>
+                                                Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                            </div>
+                                            <div className='influencers_footer_btn'>
+                                                <Button onClick={() => handleRedirectToBasket(item)}><span>Buy Now</span></Button>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                </div>
                             </div>
-                            <div className='influencers_basket'>
-                                {basketData.map((item) =>
-                                    <div className='influencers_basket_box'>
-                                        <div className='influencers_image'>
-                                            x
+
+                        </div>
+                        <div className="list_bar">
+                            {listClicked === true ?
+                                listInfluencersData.map((item) =>
+                                    <div className="list_clicked_data" >
+                                        <div onClick={() => setListClicked(false)}>back</div>
+                                        <div className="list_name">{item.data.listName}</div>
+                                        <div className="list_clicked_headers">
+                                            Total Influencers {item.influencers_count}
                                         </div>
-                                        <div className='influencers_category_header'>
-                                            Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
-                                        </div>
-                                        <div className='basket_p'>
-                                            Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
-                                        </div>
-                                        <div className='influencers_footer_btn'>
-                                            <Button onClick={() => handleRedirectToBasket(item)}><span>Buy Now</span></Button>
+                                        <div>
+                                            {
+                                                item.data.influencersData.map((response) =>
+                                                    <div className="list_clicked_influencers" >
+                                                        <img src={response.profile_pic_hd_url} />
+                                                        {response.full_name}
+                                                        DeleteButton
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
-                                )}
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div className="list_bar">
-                    {listClicked === true ?
-                        listInfluencersData.map((item) =>
-                            <div className="list_clicked_data" >
-                                <div onClick={() => setListClicked(false)}>back</div>
-                                <div className="list_name">{item.data.listName}</div>
-                                <div className="list_clicked_headers">
-                                    Total Influencers {item.influencers_count}
-                                </div>
-                                <div>
-                                    {
-                                        item.data.influencersData.map((response) =>
-                                            <div className="list_clicked_influencers" >
-                                                <img src={response.profile_pic_hd_url} />
-                                                {response.full_name}
-                                                DeleteButton
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            </div>
-                        )
-                        :
-                        <>
-                            <div className="headers">
-                                <span>
-                                    Kindly select a plan from the list below to start adding influencers!
-                                    <div>👇</div>
-                                </span>
-                                <div className="add_btn">
-                                    <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div>
-                                    {
-                                        newPlanClicked ?
-                                            <div className='addList_section'>
-                                                <div className='close_btn' onClick={() => { setNewPlanClicked(false) }}>X</div>
-                                                <Label>Name of List</Label>
-                                                <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
-                                                <Label>Deliverables</Label>
-                                                {
-                                                    openDeliverablesClicked === true ?
-                                                        <>
-                                                            <label>Reels</label>
-                                                            <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
-                                                            <label>Static Post</label>
-                                                            <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" />
-                                                            <label>Stories</label>
-                                                            <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
-                                                            <label>Igtv videos</label>
-                                                            <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
-                                                        </>
-                                                        :
-                                                        <Input placeholder="Enter Deliverables" type='hidden' />
-                                                }
-                                                <span onClick={() => { setOpenDeliverablesClicked((prev) => !prev) }}>
-                                                    {
-                                                        openDeliverablesClicked === true ?
-                                                            <MdOutlineArrowDropUp />
-                                                            :
-                                                            <AiFillCaretDown />
-                                                    }
-                                                </span>
-                                                <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, post, story, igtv) }}>Create</Button>
-                                            </div> :
-                                            null
-                                    }
-                                </div>
-                            </div>
-                            <div className="list_content">
-                                {
-                                    listData.map((item) =>
-                                        <div className="list_content_inner">
-                                            <div className="list_head">
-                                                <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0", cursor: 'pointer', width: '-webkit-fill-available' }}>{item.listName}</span>
-                                                {item.influencersCount}
-                                                <MdDelete onClick={() => { handleDeleteList(item) }} />
-                                            </div>
+                                )
+                                :
+                                <>
+                                    <div className="headers">
+                                        <span>
+                                            Kindly select a plan from the list below to start adding influencers!
+                                            <div>👇</div>
+                                        </span>
+                                        <div className="add_btn">
+                                            <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div>
+                                            {
+                                                newPlanClicked ?
+                                                    <div className='addList_section'>
+                                                        <div className='close_btn' onClick={() => { setNewPlanClicked(false) }}>X</div>
+                                                        <Label>Name of List</Label>
+                                                        <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
+                                                        <Label>Deliverables</Label>
+                                                        {
+                                                            openDeliverablesClicked === true ?
+                                                                <>
+                                                                    <label>Reels</label>
+                                                                    <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
+                                                                    <label>Static Post</label>
+                                                                    <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" />
+                                                                    <label>Stories</label>
+                                                                    <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
+                                                                    <label>Igtv videos</label>
+                                                                    <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
+                                                                </>
+                                                                :
+                                                                <Input placeholder="Enter Deliverables" type='hidden' />
+                                                        }
+                                                        <span onClick={() => { setOpenDeliverablesClicked((prev) => !prev) }}>
+                                                            {
+                                                                openDeliverablesClicked === true ?
+                                                                    <MdOutlineArrowDropUp />
+                                                                    :
+                                                                    <AiFillCaretDown />
+                                                            }
+                                                        </span>
+                                                        <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, post, story, igtv) }}>Create</Button>
+                                                    </div> :
+                                                    null
+                                            }
                                         </div>
-                                    )
-                                }
-                            </div>
-                        </>
-                    }
+                                    </div>
+                                    <div className="list_content">
+                                        {
+                                            listData.map((item) =>
+                                                <div className="list_content_inner">
+                                                    <div className="list_head">
+                                                        <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0", cursor: 'pointer', width: '-webkit-fill-available' }}>{item.listName}</span>
+                                                        {item.influencersCount}
+                                                        <MdDelete onClick={() => { handleDeleteList(item) }} />
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                </>
+                            }
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -6,6 +6,7 @@ import * as FaIcons from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import { AiFillCaretDown } from 'react-icons/ai';
 import { AiFillCaretRight } from 'react-icons/ai';
+import logo from '../../Assets/Images/logo.png';
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
@@ -21,12 +22,13 @@ function Navbar() {
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
             <div className={sidebar ? 'nav-menu' : 'nav-menu-active'}>
-                <nav>
-                    <div className={sidebar ? 'navbar-inactive' : 'navbar'} >
+                <nav className="navbar">
+                    {/* <div className={sidebar ? 'navbar-inactive' : 'navbar'} >
                         <Link to='#' className='menu-bars'>
                             <FaIcons.FaBars onClick={showSidebar} />
                         </Link>
-                    </div>
+                    </div> */}
+                    <img src={logo} className='logo' />
                     <ul className="nav-menu-items">
                         {
                             SidebarData.map((item, index) => {

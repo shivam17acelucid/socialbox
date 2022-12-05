@@ -9,4 +9,36 @@ html {
 
 .topbar {
     display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 5rem;
+
+    .page_title {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 27px;
+        margin-left: 2rem;
+
+        color: #000000;
+    }
+
+    .topbar_help_icon {
+        margin-right: 1rem;
+    }
+    .topbar_username {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        text-transform: capitalize;
+        line-height: 16px;
+        margin-right: 4rem;
+        color: rgba(0, 0, 0, 0.7);
+
+    }
 }

@@ -85,7 +85,7 @@ function Login() {
             <div className="login_right">
                 <div className="right_pane_top">
                     <div className="right_pane_text">
-                        Get a brand ambassador
+                        <span style={{ display: 'block' }}>Get a brand ambassador</span>
                         <span style={{ display: 'block' }}>to endorse your product.</span>
                         <span style={{ display: 'block' }}>Drive sales through</span>
                         <span style={{ display: 'block' }}>content creators.</span>

@@ -37,6 +37,8 @@ function UserLists() {
     const [deleteIconSelected, setDeleteIconSelected] = useState(true);
     const [listsIconSelected, setListsIconSelected] = useState(false);
     const [bundlesIconSelected, setBundlesIconSelected] = useState(false);
+    const [basketData, setBasketData] = useState([]);
+    const [changeBasket, setChangeBasket] = useState(false);
 
     let { listname } = useParams();
 
@@ -92,8 +94,22 @@ function UserLists() {
             })
     }
 
+    const handleRedirectToBasket = (item) => {
+        setChangeBasket((prev) => !prev);
+        navigate(`/basketInfluencers/${item.categoryName}`);
+    }
+    const fetchBasketsName = () => {
+        const url = `http://localhost:4000/showCategorizedBasket`;
+        fetch(url)
+            .then((res) => res.json())
+            .then((response) => {
+                setBasketData(response)
+            })
+    }
+
     useEffect(() => {
         handleListClick();
+        fetchBasketsName();
     }, []);
 
     useEffect(() => {
@@ -237,40 +253,76 @@ function UserLists() {
                                     :
                                     <img src={deleteicon} onClick={() => {
                                         setDeleteIconSelected(true)
+                                        setBundlesIconSelected(false)
+                                        setListsIconSelected(false)
                                     }} />
                             }
                             {
-                                listsIconSelected === true ?
-                                    <img src={checklistselected} onClick={() => {
+                                listsIconSelected === false ?
+                                    <img src={checklists} onClick={() => {
                                         setListsIconSelected(true)
+                                        setBundlesIconSelected(false)
+                                        setDeleteIconSelected(false)
                                     }} />
                                     :
-                                    <img src={checklists} />
+                                    <img src={checklistselected} onClick={() => {
+                                        setListsIconSelected(false)
+                                    }} />
                             }
                             {
-                                bundlesIconSelected === true ?
-                                    <img src={checkbundleselected} onClick={() => {
+                                bundlesIconSelected === false ?
+                                    <img src={checkbundles} onClick={() => {
                                         setBundlesIconSelected(true)
+                                        setListsIconSelected(false)
+                                        setDeleteIconSelected(false)
                                     }} />
                                     :
-                                    <img src={checkbundles} />
+                                    <img src={checkbundleselected} onClick={() => {
+                                        setBundlesIconSelected(false)
+                                    }} />
                             }
 
                         </div>
-                        <div className='delete_header'>Recently Deleted</div>
                         {
-                            listInfluencersData.map((item) =>
-                                item.item.deletedInfluencers.map((data) =>
-                                    <div className='deleted_box'>
-                                        <div className='box_name'>
-                                            {data.full_name}
-                                        </div>
-                                        <div className='view_box' onClick={() => redirectProfile(data)}>
-                                            View Profile
-                                        </div>
+                            deleteIconSelected === true ?
+                                <>
+                                    <div className='delete_header'>Recently Deleted</div>
+                                    <div className='delete_content'>
+                                        Deleted influencers will be retained for 30 days in the bin. After 30 days they will be permanently deleted.
                                     </div>
-                                )
-                            )
+                                    {listInfluencersData.map((item) =>
+                                        item.item.deletedInfluencers.map((data) =>
+                                            <div className='deleted_box'>
+                                                <div className='box_name'>
+                                                    {data.full_name}
+                                                </div>
+                                                <div className='view_box' onClick={() => redirectProfile(data)}>
+                                                    View
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
+                                </>
+                                :
+                                listsIconSelected === true ?
+                                    <MyLists />
+                                    :
+                                    bundlesIconSelected === true ?
+                                        <div style={{ padding: '1rem' }}>
+                                            <div className='sidebar_header'>
+                                                Top Bundles
+                                            </div>
+                                            {basketData.map((item) =>
+                                                <div className='bundle_box'>
+                                                    <div className='influencers_image'>
+                                                        x
+                                                    </div>
+                                                    <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                    <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                                </div>)}
+                                        </div>
+                                        :
+                                        null
                         }
                     </div>
                 </div>

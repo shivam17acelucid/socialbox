@@ -174,8 +174,10 @@ html {
             z-index: 1 !important;
             max-width: 280px;
             overflow-y: scroll;
-            height: 100vh;
+            height: 95vh;
             overflow-x: hidden;
+            background: #FBFBFB;
+            border: 1px solid rgba(0, 0, 0, 0.2);
 
             .icons_pane {
                 display: flex;
@@ -184,30 +186,40 @@ html {
 
                 img {
                     height: 18px;
+                    cursor: pointer;
                 }
             }
 
             .delete_header {
-                padding-top: 5rem;
-                font-family: 'Poppins';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 20px;
-                line-height: 30px;
+                padding-top: 1rem;
                 display: flex;
                 text-align: center;
-                color: #E95950;
-                transform: matrix(1, 0.01, 0, 1, 0, 0);
                 justify-content: center;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                color: #000000;
+            }
+
+            .delete_content {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: rgba(0, 0, 0, 0.5);
+                padding: 1rem;
+
             }
 
             .deleted_box {
-                background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
-                box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
-                border-radius: 20px;
-                transform: matrix(1, 0.01, 0, 1, 0, 0);
-                padding: 2.5rem 2.5rem;
-                margin: 2rem 3rem;
+                padding: 1rem 2.5rem;
+                margin: 2rem 1rem;
+                background: #FFFFFF;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 5px;
 
                 .box_name {
                     font-family: 'Poppins';
@@ -223,21 +235,85 @@ html {
                 }
 
                 .view_box {
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 16px;
                     line-height: 24px;
                     display: flex;
                     align-items: center;
                     text-align: center;
-                    color: #1C1C1C;
-                    transform: matrix(1, 0.01, 0, 1, 0, 0);
-                    background-color: #fff;
-                    border-radius: 15px;
                     justify-content: center;
                     margin-top: 1rem;
                     cursor: pointer;
+                    background: #7662DC;
+                    border-radius: 3px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 10px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    height: 2rem;
+                    width: 4rem;
+
+                }
+            }
+
+            .sidebar_header {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                color: #000000;
+            }
+
+            .bundle_box {
+                margin: 2rem 0;
+                padding: 1rem;
+                background: #FFFFFF;
+                box-shadow: 0px 2px 4px RGB(0 0 0 / 25%);
+                border-radius: 5px;
+
+                .influencers_image {
+                    box-sizing: border-box;
+                    width: 2rem;
+                    height: 2rem;
+                    border: 2px solid #FFFFFF;
+                    border-radius: 400px;
+                    background: black;
+                }
+
+                .bundle_title {
+                    font-size: 20px;
+                    line-height: 30px;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    color: #000000;
+                }
+
+                .bundle_btn {
+                    border-radius: 10px;
+                    width: 5rem;
+                    margin-top: 8px;
+                    cursor: pointer;
+                    background: #7662DC;
+                    border-radius: 3px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #FFFFFF;
+                    height: 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }

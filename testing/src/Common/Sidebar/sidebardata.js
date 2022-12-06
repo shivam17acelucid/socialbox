@@ -1,11 +1,12 @@
 import React from "react";
 import * as AiIcons from 'react-icons/ai';
 import * as MdIcons from 'react-icons/md';
-
+const userId = localStorage.getItem('id');
 export const SidebarData = [
+
     {
         title: 'Home',
-        path: '/welcome',
+        path: `/welcome/${userId}`,
         icon: <AiIcons.AiFillHome />,
         cName: 'nav-text'
     },

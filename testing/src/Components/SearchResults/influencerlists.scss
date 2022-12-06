@@ -22,6 +22,8 @@ html {
 
         .search_content_list_panel {
             display: flex;
+            flex-direction: column;
+
 
             .middle_pane {
                 padding-left: 1rem;

@@ -48,9 +48,9 @@ function TopBar() {
             {
                 showDropDownSelected === true ?
                     <div className="dropdown">
-                        <div onClick={handleRedirectToProfileSettings}>Profile Settings</div>
-                        <div onClick={handleRedireactToAbout}>About</div>
-                        <div onClick={handleLogout}>Logout</div>
+                        <div onClick={handleRedirectToProfileSettings} className="dropdown_title">Profile Settings</div>
+                        <div onClick={handleRedireactToAbout} className="dropdown_title">About</div>
+                        <div onClick={handleLogout} className="dropdown_title">Logout</div>
                     </div>
                     : null
             }

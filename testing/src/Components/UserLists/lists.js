@@ -13,6 +13,14 @@ import Button from '@mui/material/Button';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { Input } from 'reactstrap';
+import Topbar from "../../Common/TopBar/index";
+import deleteiconfilled from '../../Assets/Images/deleteiconfilled.png';
+import deleteicon from '../../Assets/Images/deleteicon.png';
+import checkbundles from '../../Assets/Images/checkbundle.png'
+import checklists from '../../Assets/Images/checklists.png'
+import checklistselected from '../../Assets/Images/checklistselected.png';
+import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
+import MyLists from '../MyLists';
 
 
 function UserLists() {
@@ -26,6 +34,9 @@ function UserLists() {
     const [post, setPosts] = useState('');
     const [story, setStories] = useState('');
     const [igtv, setIgtv] = useState('');
+    const [deleteIconSelected, setDeleteIconSelected] = useState(true);
+    const [listsIconSelected, setListsIconSelected] = useState(false);
+    const [bundlesIconSelected, setBundlesIconSelected] = useState(false);
 
     let { listname } = useParams();
 
@@ -97,140 +108,172 @@ function UserLists() {
         <div className='users_list_container'>
             <Navbar />
             <div className='users_list_pane'>
-                {
-                    listInfluencersData.map((item) =>
-                        <>
-                            <div className='user_list_header'>
-                                <div className='list_count'>
-                                    <div className='list_name'>
-                                        {item.item.listName}
+                <Topbar />
+                <div style={{ display: 'flex' }}>
+                    {
+                        listInfluencersData.map((item) =>
+                            <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                                <div className='user_list_header'>
+                                    <div className='list_count'>
+                                        <div className='list_name'>
+                                            {item.item.listName}
+                                        </div>
+                                        <div className='list_inf_count'>
+                                            No of Influencers  {item.influencers_count}
+                                        </div>
                                     </div>
-                                    <div className='list_inf_count'>
-                                        No of Influencers  {item.influencers_count}
-                                    </div>
-                                </div>
-                                <div className='deliverables_count'>
-                                    <div className='deliverables_title'>
-                                        Deliverables
-                                    </div>
-                                    <div className='deliverables_values'>
+                                    <div className='deliverables_count'>
+                                        <div className='deliverables_title'>
+                                            Deliverables
+                                        </div>
+                                        <div className='deliverables_values'>
+                                            {
+                                                <>
+                                                    <div className='deliverables_fields_value'><span>Reels</span>{item.item.deliverables[0].reel}</div>
+                                                    <div className='deliverables_fields_value'><span>Posts</span>{item.item.deliverables[1].post}</div>
+                                                    <div className='deliverables_fields_value'><span>Stories</span>{item.item.deliverables[2].story}</div>
+                                                    <div className='deliverables_fields_value'><span>Igtv</span>{item.item.deliverables[3].igtv}</div>
+                                                </>
+                                            }
+                                        </div>
+                                        <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                                            <MdEdit size={20} onClick={handleEditDeliverables} />
+                                        </div>
                                         {
-                                            <>
-                                                <div className='deliverables_fields_value'><span>Reels</span>{item.item.deliverables[0].reel}</div>
-                                                <div className='deliverables_fields_value'><span>Posts</span>{item.item.deliverables[1].post}</div>
-                                                <div className='deliverables_fields_value'><span>Stories</span>{item.item.deliverables[2].story}</div>
-                                                <div className='deliverables_fields_value'><span>Igtv</span>{item.item.deliverables[3].igtv}</div>
-                                            </>
+                                            editingDeliverables === true ?
+                                                <div>
+                                                    <Input value={reel} onChange={(e) => { setReels(e.target.value) }} placeholder="Reels count" />
+                                                    <Input value={post} onChange={(e) => { setPosts(e.target.value) }} placeholder="Posts count" />
+                                                    <Input value={story} onChange={(e) => { setStories(e.target.value) }} placeholder="Stories count" />
+                                                    <Input value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv count" />
+                                                    <Button onClick={handleUpdateDeliverables}>Update</Button>
+                                                </div>
+                                                : null
                                         }
                                     </div>
-                                    <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
-                                        <MdEdit size={20} onClick={handleEditDeliverables} />
-                                    </div>
-                                    {
-                                        editingDeliverables === true ?
-                                            <div>
-                                                <Input value={reel} onChange={(e) => { setReels(e.target.value) }} placeholder="Reels count" />
-                                                <Input value={post} onChange={(e) => { setPosts(e.target.value) }} placeholder="Posts count" />
-                                                <Input value={story} onChange={(e) => { setStories(e.target.value) }} placeholder="Stories count" />
-                                                <Input value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv count" />
-                                                <Button onClick={handleUpdateDeliverables}>Update</Button>
-                                            </div>
-                                            : null
-                                    }
                                 </div>
-                            </div>
-                            {/* <hr></hr> */}
-                            <div className='table_content'>
-                                <TableContainer component={Paper}>
-                                    <Table className="table_container" >
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Name</TableCell>
-                                                <TableCell align="center">Category</TableCell>
-                                                <TableCell align="center">Followers</TableCell>
-                                                <TableCell align="center">Engagement</TableCell>
-                                                <TableCell align="center">Avg Likes</TableCell>
-                                                <TableCell align="center">Avg Comments</TableCell>
-                                                <TableCell align="center">Avg Reach</TableCell>
-                                                <TableCell align="center">Cost</TableCell>
-                                                <TableCell align="center"></TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {item.item.influencersData.map((data, index) =>
-                                                < TableRow key={index} >
-                                                    <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
-                                                        <div>{data.full_name}</div>
-                                                    </TableCell>
-                                                    <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
-                                                    <TableCell align="center">
-                                                        {NFormatter(data.edge_followed_by.count)}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {
-                                                            NFormatter(
-                                                                (data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
-                                                                    (data.costFactorReel.minTotalCost * item.item.deliverables[0].reel)
-                                                                    :
-                                                                    (data.costFactorReel.influencerExactminTotalCost * item.item.deliverables[0].reel))
-                                                                +
-                                                                (data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
-                                                                    (data.costFactorPosts.minTotalCost * item.item.deliverables[1].post)
-                                                                    :
-                                                                    (data.costFactorPosts.influencerExactminTotalCost * item.item.deliverables[1].post))
-                                                                +
-                                                                (data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
-                                                                    (data.costFactorStories.minTotalCost * item.item.deliverables[2].story)
-                                                                    :
-                                                                    (data.costFactorStories.influencerExactminTotalCost * item.item.deliverables[2].story))
-                                                                +
-                                                                (data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
-                                                                    (data.costFactorIgtv.minTotalCost * item.item.deliverables[3].igtv)
-                                                                    :
-                                                                    (data.costFactorIgtv.influencerExactminTotalCost * item.item.deliverables[3].igtv))
-                                                            )
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
+                                <div className='table_content'>
+                                    <TableContainer component={Paper}>
+                                        <Table className="table_container" >
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Name</TableCell>
+                                                    <TableCell align="center">Category</TableCell>
+                                                    <TableCell align="center">Followers</TableCell>
+                                                    <TableCell align="center">Engagement</TableCell>
+                                                    <TableCell align="center">Avg Likes</TableCell>
+                                                    <TableCell align="center">Avg Comments</TableCell>
+                                                    <TableCell align="center">Avg Reach</TableCell>
+                                                    <TableCell align="center">Cost</TableCell>
+                                                    <TableCell align="center"></TableCell>
                                                 </TableRow>
-                                            )}
-                                        </TableBody>
+                                            </TableHead>
+                                            <TableBody>
+                                                {item.item.influencersData.map((data, index) =>
+                                                    < TableRow key={index} >
+                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                            <div>{data.full_name}</div>
+                                                        </TableCell>
+                                                        <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_followed_by.count)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                        </TableCell>
+                                                        <TableCell align="center">
+                                                            {
+                                                                NFormatter(
+                                                                    (data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
+                                                                        (data.costFactorReel.minTotalCost * item.item.deliverables[0].reel)
+                                                                        :
+                                                                        (data.costFactorReel.influencerExactminTotalCost * item.item.deliverables[0].reel))
+                                                                    +
+                                                                    (data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
+                                                                        (data.costFactorPosts.minTotalCost * item.item.deliverables[1].post)
+                                                                        :
+                                                                        (data.costFactorPosts.influencerExactminTotalCost * item.item.deliverables[1].post))
+                                                                    +
+                                                                    (data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
+                                                                        (data.costFactorStories.minTotalCost * item.item.deliverables[2].story)
+                                                                        :
+                                                                        (data.costFactorStories.influencerExactminTotalCost * item.item.deliverables[2].story))
+                                                                    +
+                                                                    (data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
+                                                                        (data.costFactorIgtv.minTotalCost * item.item.deliverables[3].igtv)
+                                                                        :
+                                                                        (data.costFactorIgtv.influencerExactminTotalCost * item.item.deliverables[3].igtv))
+                                                                )
+                                                            }
+                                                        </TableCell>
+                                                        <TableCell><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
+                                                    </TableRow>
+                                                )}
+                                            </TableBody>
 
-                                    </Table>
-                                </TableContainer>
-                            </div>
-                        </>
-                    )
-                }
-            </div>
-            <div className='right_pane'>
-                <div className='delete_header'>Recently Deleted</div>
-                {
-                    listInfluencersData.map((item) =>
-                        item.item.deletedInfluencers.map((data) =>
-                            <div className='deleted_box'>
-                                <div className='box_name'>
-                                    {data.full_name}
-                                </div>
-                                <div className='view_box' onClick={() => redirectProfile(data)}>
-                                    View Profile
+                                        </Table>
+                                    </TableContainer>
                                 </div>
                             </div>
                         )
-                    )
-                }
+                    }
+                    <div className='right_pane'>
+                        <div className='icons_pane'>
+                            {
+                                deleteIconSelected === true
+                                    ?
+                                    <img src={deleteiconfilled} onClick={() => {
+                                        setDeleteIconSelected(false)
+                                    }} />
+                                    :
+                                    <img src={deleteicon} onClick={() => {
+                                        setDeleteIconSelected(true)
+                                    }} />
+                            }
+                            {
+                                listsIconSelected === true ?
+                                    <img src={checklistselected} onClick={() => {
+                                        setListsIconSelected(true)
+                                    }} />
+                                    :
+                                    <img src={checklists} />
+                            }
+                            {
+                                bundlesIconSelected === true ?
+                                    <img src={checkbundleselected} onClick={() => {
+                                        setBundlesIconSelected(true)
+                                    }} />
+                                    :
+                                    <img src={checkbundles} />
+                            }
+
+                        </div>
+                        <div className='delete_header'>Recently Deleted</div>
+                        {
+                            listInfluencersData.map((item) =>
+                                item.item.deletedInfluencers.map((data) =>
+                                    <div className='deleted_box'>
+                                        <div className='box_name'>
+                                            {data.full_name}
+                                        </div>
+                                        <div className='view_box' onClick={() => redirectProfile(data)}>
+                                            View Profile
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
+                </div>
             </div>
         </div >
     )

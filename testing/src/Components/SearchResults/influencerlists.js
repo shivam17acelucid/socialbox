@@ -25,6 +25,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import TopBar from '../../Common/TopBar/index';
 
 
 const InfluencersList = () => {
@@ -371,6 +372,7 @@ const InfluencersList = () => {
                     <Navbar />
                 </div>
                 <div className="search_content_list_panel">
+                    <TopBar />
                     <div className="middle_pane">
                         <div className="filter_bar">
                             <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>

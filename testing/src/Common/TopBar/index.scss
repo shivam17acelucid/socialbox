@@ -14,7 +14,7 @@ html {
     justify-content: space-between;
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    height: 5rem;
+    height: 4rem;
 
     .page_title {
         font-family: 'Noto Sans';
@@ -59,4 +59,13 @@ html {
     max-height: 10rem;
     padding: 1rem;
     cursor: pointer;
+
+    .dropdown_title {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.7);
+    }
 }

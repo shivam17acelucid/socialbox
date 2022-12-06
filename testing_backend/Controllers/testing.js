@@ -395,7 +395,7 @@ exports.getInfluencersDetails = (req, res) => {
 }
 
 exports.createList = (req, res, next) => {
-    let { listName, reel, post, story, igtv } = req.body;
+    let { listName, reel, post, story, igtv, description } = req.body;
     let errors = [];
     let error1 = [];
     if (!listName) {
@@ -442,7 +442,7 @@ exports.createList = (req, res, next) => {
                 return res.json("List name Already Present")
             }
             else {
-                data.list.push({ listName: listName, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }] })
+                data.list.push({ listName: listName, description: description, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }] })
                 data.save();
                 res.json(data)
             }
@@ -583,6 +583,13 @@ exports.deleteList = (req, res) => {
                 }
             })
             data.save();
+            res.json(data)
+        })
+}
+
+exports.getUserDetails = (req, res) => {
+    UserInfo.findById(req.params.id)
+        .then((data) => {
             res.json(data)
         })
 }

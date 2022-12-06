@@ -27,14 +27,24 @@ html {
 
             .list_category_header {
                 height: 3rem;
-                font-family: 'Poppins';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 24px;
-                line-height: 36px;
-                color: #000000;
                 padding-top: 1rem;
                 padding-left: 1rem;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 33px;
+                color: #000000;
+            }
+
+            .list_desc {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 19px;
+                padding-left: 1rem;
+                color: rgba(0, 0, 0, 0.6);
             }
 
             .filter_bar {
@@ -89,6 +99,8 @@ html {
             }
 
             .list_category_data {
+                margin-top: 2rem;
+                margin-left: 4px;
 
                 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
                     background-color: #fff;
@@ -103,67 +115,47 @@ html {
                         width: calc(100% - 2rem);
 
                         .css-y8ay40-MuiTableCell-root {
-                            height: 30px;
-                            font-family: 'Poppins';
+                            font-family: 'Noto Sans';
                             font-style: normal;
-                            font-weight: 600;
-                            font-size: 20px;
-                            line-height: 30px;
-                            color: #0014C6;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 16px;
+                            color: rgba(0, 0, 0, 0.5);
+                            background: #D9D9D9;
                         }
 
                         .css-dwuj3p-MuiTableCell-root {
-                            height: 30px;
-                            font-family: 'Poppins';
+                            font-family: 'Noto Sans';
                             font-style: normal;
-                            font-weight: 600;
-                            font-size: 20px;
-                            line-height: 30px;
-                            color: #0014C6;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 16px;
+                            color: rgba(0, 0, 0, 0.5);
+                            background: #D9D9D9;
                         }
 
                         .css-1ex1afd-MuiTableCell-root {
-                            height: 30px;
-                            font-family: 'Poppins';
+                            font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 20px;
-                            line-height: 30px;
-                            text-decoration-line: underline;
-                            color: #414141;
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: #000000;
+                            background: #fff;
                         }
 
                         .css-1yhpg23-MuiTableCell-root {
-                            font-family: 'Poppins';
+                            font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 18px;
-                            line-height: 30px;
-                            color: #414141;
+                            font-size: 14px;
+                            line-height: 19px;
+                            color: #000000;
+                            background: #fff;
                         }
 
                         .css-1ex1afd-MuiTableCell-root {
-                            display: flex;
-                            align-items: center;
                             text-decoration-line: none;
-
-                            .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                                background: #0014C6;
-                                margin-right: 10px;
-
-                                span {
-                                    font-family: 'Poppins';
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    line-height: 24px;
-                                    color: #FFFFFF;
-                                    display: flex;
-                                    align-items: center;
-                                    width: max-content;
-                                    padding: 0;
-                                    margin: 0;
-                                }
-                            }
                         }
                     }
                 }

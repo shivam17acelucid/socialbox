@@ -20,6 +20,9 @@ import checkbundles from '../../Assets/Images/checkbundle.png'
 import checklists from '../../Assets/Images/checklists.png'
 import checklistselected from '../../Assets/Images/checklistselected.png';
 import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
+import ListIcon from '../../Assets/Images/listicon.png';
+import CostIcon from '../../Assets/Images/costicon.png';
+import CompareIcon from '../../Assets/Images/compareicon.png';
 import MyLists from '../MyLists';
 
 
@@ -188,7 +191,10 @@ function BasketInfluencers() {
                         <div className='list_category_header'>
                             Top {categoryName} Influencers
                         </div>
-                        <div className="filter_bar">
+                        <div className='list_desc'>
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </div>
+                        {/* <div className="filter_bar">
                             <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                             <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                             <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
@@ -271,7 +277,7 @@ function BasketInfluencers() {
                                             </section>
                                             : null
                             }
-                        </div>
+                        </div> */}
                         <div className='list_category_data'>
                             <TableContainer component={Paper}>
                                 <Table stickyHeader className="table_container" >
@@ -283,7 +289,7 @@ function BasketInfluencers() {
                                             <TableCell align="center">Followers</TableCell>
                                             <TableCell align="center">Average Reach</TableCell>
                                             <TableCell align="center">Average Comment</TableCell>
-                                            <TableCell align="center">Engagement Rate</TableCell>
+                                            <TableCell align="center">ER</TableCell>
                                             <TableCell align="center">City</TableCell>
                                             <TableCell align="center"></TableCell>
                                         </TableRow>
@@ -323,9 +329,9 @@ function BasketInfluencers() {
                                                             </TableCell>
                                                             <TableCell align="center">{data.city_name}</TableCell>
                                                             <TableCell key={index} >
-                                                                <>
-                                                                    <Button><span>Cost</span></Button>
-                                                                    <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
+                                                                <div style={{ display: 'flex' }}>
+                                                                    <img src={CostIcon} style={{ marginLeft: '10px', marginRight: '10px' }} />
+                                                                    <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '10px', marginRight: '10px' }} />
                                                                     {addToListTableClicked === true ?
                                                                         [data].map((item) =>
                                                                             item.username == rowClickedData ?
@@ -344,8 +350,8 @@ function BasketInfluencers() {
                                                                         )
 
                                                                         : null}
-                                                                    <Button><span>Compare</span></Button>
-                                                                </>
+                                                                    <img src={CompareIcon} style={{ marginLeft: '10px', marginRight: '10px' }} />
+                                                                </div>
                                                             </TableCell>
                                                         </TableRow>
                                                     </>

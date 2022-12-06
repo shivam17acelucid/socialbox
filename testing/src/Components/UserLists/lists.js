@@ -131,30 +131,27 @@ function UserLists() {
                             <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
                                 <div className='user_list_header'>
                                     <div className='list_count'>
-                                        <div className='list_name'>
-                                            {item.item.listName}
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <div className='list_name'>
+                                                {item.item.listName}
+                                            </div>
+                                            <div>
+                                                <Button onClick={handleEditDeliverables}>Edit</Button>
+                                            </div>
                                         </div>
-                                        <div className='list_inf_count'>
-                                            No of Influencers  {item.influencers_count}
+                                        <div className='list_desc'>
+                                            {item.item.description}
                                         </div>
                                     </div>
                                     <div className='deliverables_count'>
-                                        <div className='deliverables_title'>
-                                            Deliverables
-                                        </div>
-                                        <div className='deliverables_values'>
-                                            {
-                                                <>
-                                                    <div className='deliverables_fields_value'><span>Reels</span>{item.item.deliverables[0].reel}</div>
-                                                    <div className='deliverables_fields_value'><span>Posts</span>{item.item.deliverables[1].post}</div>
-                                                    <div className='deliverables_fields_value'><span>Stories</span>{item.item.deliverables[2].story}</div>
-                                                    <div className='deliverables_fields_value'><span>Igtv</span>{item.item.deliverables[3].igtv}</div>
-                                                </>
-                                            }
-                                        </div>
-                                        <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
-                                            <MdEdit size={20} onClick={handleEditDeliverables} />
-                                        </div>
+                                        {
+                                            <>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[0].reel}<span>Reels</span></div>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[1].post}<span>Posts</span></div>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[2].story}<span>Stories</span></div>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[3].igtv}<span>Igtv</span></div>
+                                            </>
+                                        }
                                         {
                                             editingDeliverables === true ?
                                                 <div>

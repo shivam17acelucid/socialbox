@@ -11,6 +11,7 @@ const Calculator = React.lazy(() => import("../Components/Calculator/calculator"
 const UserLists = React.lazy(() => import("../Components/UserLists/lists"));
 const CompareInfluencers = React.lazy(() => import("../Components/Compare/CompareInfluencers/compareinfluencers"));
 const CompareLists = React.lazy(() => import("../Components/Compare/CompareList/comparelists"));
+const ProfileSettings = React.lazy(() => import("../Components/ProfileSettings/index"));
 
 function RouteF() {
 
@@ -33,6 +34,7 @@ function RouteF() {
                     <Route path="/profile/:profilename" element={<ProfileData />} />
                     <Route path="/CompareInfluencers" element={<CompareInfluencers />} />
                     <Route path="/CompareLists" element={<CompareLists />} />
+                    <Route path="/updateprofile/:id" element={<ProfileSettings />} />
                 </Routes>
             </Suspense>
         </div>

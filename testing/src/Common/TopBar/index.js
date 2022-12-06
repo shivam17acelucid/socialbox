@@ -18,7 +18,7 @@ function TopBar() {
     }
 
     const handleRedirectToProfileSettings = () => {
-        navigate(`/profile/${userId}`)
+        navigate(`/updateprofile/${userId}`)
     }
 
     const handleRedireactToAbout = () => {

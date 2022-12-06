@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './listpage.scss';
 import { Input, Label } from 'reactstrap';
 import { MdOutlineAddBox } from "react-icons/md";
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlineSearch } from 'react-icons/ai';
 import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import TopBar from '../../Common/TopBar';
 
@@ -25,6 +25,7 @@ function Lists() {
     const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
+    const [description, setDescription] = useState('');
     const [listDeleted, setListDeleted] = useState(false);
 
 
@@ -73,11 +74,11 @@ function Lists() {
         navigate(`/basketInfluencers/${item.categoryName}`)
     }
 
-    const handleCreateList = (listName, reel, post, story, igtv) => {
+    const handleCreateList = (listName, description, reel, post, story, igtv) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName, reel, post, story, igtv }),
+            body: JSON.stringify({ listName, description, reel, post, story, igtv }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -179,7 +180,7 @@ function Lists() {
                 <Navbar />
                 <div className='lists_content'>
                     <TopBar />
-                    <div style={{display: 'flex'}}>
+                    <div style={{ display: 'flex' }}>
                         <div className='middle_pane_lists'>
                             <div className='list_headers'>
                                 <input
@@ -191,16 +192,16 @@ function Lists() {
                                 />
                                 {suggestionsActive && <Suggestions />}
                                 {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
-                                <Button className='button_list' onClick={searchInfluencers}>Search</Button>
+                                <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                             </div>
                             <div className='middle_pane_content'>
                                 <div className='categorised_inf'>
                                     <div className='categorised_heading'>Top Trending Influencers Baskets</div>
-                                    {/* <div className='categorised_btn'>
-                                    {basketData.map((item) =>
-                                        <Button className='button_list'>{item.categoryName}</Button>
-                                    )}
-                                </div> */}
+                                    <div className='categorised_btn'>
+                                        {basketData.map((item) =>
+                                            <Button className='button_list'>{item.categoryName}</Button>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className='influencers_basket'>
                                     {basketData.map((item) =>
@@ -215,7 +216,7 @@ function Lists() {
                                                 Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
                                             </div>
                                             <div className='influencers_footer_btn'>
-                                                <Button onClick={() => handleRedirectToBasket(item)}><span>Buy Now</span></Button>
+                                                <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
                                             </div>
                                         </div>
                                     )}
@@ -248,57 +249,68 @@ function Lists() {
                                 )
                                 :
                                 <>
-                                    <div className="headers">
-                                        <span>
-                                            Kindly select a plan from the list below to start adding influencers!
-                                            <div>👇</div>
-                                        </span>
-                                        <div className="add_btn">
-                                            <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div>
-                                            {
-                                                newPlanClicked ?
-                                                    <div className='addList_section'>
-                                                        <div className='close_btn' onClick={() => { setNewPlanClicked(false) }}>X</div>
-                                                        <Label>Name of List</Label>
-                                                        <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
-                                                        <Label>Deliverables</Label>
+                                    <div className="headers_title">
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span className="headers">
+                                                My Lists
+                                            </span>
+                                            <span className='add_list_btn' onClick={handleAddPlan}> + Add new</span>
+                                        </div>
+                                        {/* <div className="add_btn"> */}
+                                        {/* <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div> */}
+                                        {
+                                            newPlanClicked ?
+                                                <div className='addList_section'>
+                                                    <div className='close_btn' onClick={() => { setNewPlanClicked(false) }}>X</div>
+                                                    <Label>Name of List</Label>
+                                                    <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
+                                                    <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} />
+                                                    <Label>Deliverables</Label>
+                                                    {
+                                                        openDeliverablesClicked === true ?
+                                                            <>
+                                                                <label>Reels</label>
+                                                                <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
+                                                                <label>Static Post</label>
+                                                                <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" />
+                                                                <label>Stories</label>
+                                                                <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
+                                                                <label>Igtv videos</label>
+                                                                <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
+                                                            </>
+                                                            :
+                                                            <Input placeholder="Enter Deliverables" type='hidden' />
+                                                    }
+                                                    <span onClick={() => { setOpenDeliverablesClicked((prev) => !prev) }}>
                                                         {
                                                             openDeliverablesClicked === true ?
-                                                                <>
-                                                                    <label>Reels</label>
-                                                                    <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" />
-                                                                    <label>Static Post</label>
-                                                                    <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" />
-                                                                    <label>Stories</label>
-                                                                    <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" />
-                                                                    <label>Igtv videos</label>
-                                                                    <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" />
-                                                                </>
+                                                                <MdOutlineArrowDropUp />
                                                                 :
-                                                                <Input placeholder="Enter Deliverables" type='hidden' />
+                                                                <AiFillCaretDown />
                                                         }
-                                                        <span onClick={() => { setOpenDeliverablesClicked((prev) => !prev) }}>
-                                                            {
-                                                                openDeliverablesClicked === true ?
-                                                                    <MdOutlineArrowDropUp />
-                                                                    :
-                                                                    <AiFillCaretDown />
-                                                            }
-                                                        </span>
-                                                        <Button variant="outlined" onClick={() => { handleCreateList(listName, reel, post, story, igtv) }}>Create</Button>
-                                                    </div> :
-                                                    null
-                                            }
-                                        </div>
+                                                    </span>
+                                                    <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }}>Create</Button>
+                                                </div> :
+                                                null
+                                        }
+                                        {/* </div> */}
                                     </div>
                                     <div className="list_content">
                                         {
                                             listData.map((item) =>
                                                 <div className="list_content_inner">
                                                     <div className="list_head">
-                                                        <span onClick={() => { handleRedirectToList(item) }} style={{ marginLeft: "0", cursor: 'pointer', width: '-webkit-fill-available' }}>{item.listName}</span>
+                                                        <span className='list_name'>{item.listName}</span>
                                                         {item.influencersCount}
                                                         <MdDelete onClick={() => { handleDeleteList(item) }} />
+                                                    </div>
+                                                    <div className='list_desc'>
+                                                        {item.description}
+                                                    </div>
+                                                    <div className='list_footer'>
+                                                        <div className='list_view'>
+                                                            <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )

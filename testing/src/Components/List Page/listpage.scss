@@ -26,11 +26,11 @@ html {
             .list_headers {
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: center;
 
                 .input_search {
                     width: 55rem;
-                    height: 70px;
+                    height: 3rem;
                     background: #FFFFFF;
                     box-shadow: 0px 15px 40px rgba(108, 108, 108, 0.15);
                     border: none;
@@ -49,11 +49,10 @@ html {
                 .button_list {
                     margin-left: 1rem;
                     box-sizing: border-box;
-                    width: 8rem;
-                    height: 4rem;
+                    height: 3rem;
                     background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
-                    border: 2px solid #0014C6;
-                    border-radius: 20px;
+                    border: 2px solid;
+                    border-radius: 10px;
                 }
 
                 .list_toggler {
@@ -62,7 +61,7 @@ html {
             }
 
             .middle_pane_content {
-                padding-top: 3rem;
+                padding-top: 2rem;
                 padding-left: 2rem;
                 overflow-y: scroll;
                 height: 78vh;
@@ -70,27 +69,31 @@ html {
 
                 .categorised_inf {
                     .categorised_heading {
-                        font-family: 'Poppins';
+                        font-family: 'Noto Sans';
                         font-style: normal;
-                        font-weight: 600;
+                        font-weight: 500;
                         font-size: 24px;
-                        line-height: 36px;
-                        height: 36px;
+                        line-height: 33px;
                         color: #000000;
                     }
 
                     .categorised_btn {
-                        margin-top: 3rem;
+                        margin-top: 1rem;
+                        display: flex;
+                        justify-content: space-between;
 
                         .button_list {
-                            box-sizing: border-box;
-                            width: 10rem;
-                            height: 3rem;
-                            background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
-                            border: 2px solid #0014C6;
-                            border-radius: 20px;
+                            border-radius: 10px;
+                            height: 2rem;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 12px;
+                            line-height: 14px;
                             margin-bottom: 1rem;
                             margin-right: 1rem;
+                            background: #7662DC;
+                            color: #FFFFFF;
                         }
 
                         span {
@@ -109,16 +112,20 @@ html {
                 .influencers_basket {
                     display: flex;
                     flex-wrap: wrap;
+                    padding-left: 1rem;
 
                     .influencers_basket_box {
 
                         box-sizing: border-box;
-                        width: 16rem;
-                        height: 16rem;
-                        border: 2px solid #0014C6;
+                        width: 14rem;
+                        height: 14rem;
+                        // border: 2px solid #0014C6;
                         border-radius: 20px;
                         margin-right: 1.5rem;
                         margin-top: 1.25rem;
+                        background: #FFFFFF;
+                        box-shadow: 0px 2px 2px RGB(0 0 0 / 25%);
+                        border-radius: 5px;
 
                         .influencers_image {
                             box-sizing: border-box;
@@ -132,38 +139,35 @@ html {
                         }
 
                         .influencers_category_header {
-                            width: 15rem;
-                            height: 4rem;
-                            font-family: 'Poppins';
-                            font-style: normal;
-                            font-weight: 600;
-                            font-size: 24px;
-                            line-height: 135%;
                             color: #000000;
                             text-align: center;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 24px;
+                            color: #000000;
                         }
 
                         .basket_p {
-                            width: 15rem;
-                            height: 4rem;
-                            font-family: 'Poppins';
-                            font-style: normal;
-                            font-weight: 500;
-                            font-size: 16px;
-                            line-height: 139%;
-                            color: #888888;
                             text-align: center;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 16px;
+                            color: rgba(0, 0, 0, 0.7);
                         }
 
                         .influencers_footer_btn {
-                            width: 14rem;
+                            width: 13rem;
                             height: 51px;
-                            background: #0014C6;
                             border-radius: 15px;
                             display: flex;
                             justify-content: center;
                             margin-top: 10px;
-                            margin-left: 1rem;
+                            background: #7662DC;
+                            border-radius: 3px;
+                            margin-left: 8px;
                         }
 
                         span {
@@ -192,79 +196,101 @@ html {
         box-shadow: 0px 0 4px 0 #edecf4;
         z-index: 1 !important;
         max-width: 280px;
+        background: #FBFBFB;
+        border: 1px solid rgba(0, 0, 0, 0.2);
 
-        .headers {
-            padding-left: 2rem;
-            padding-right: 2rem;
+        .headers_title {
+            padding-left: 1rem;
+            padding-right: 1rem;
             padding-top: 2rem;
 
-            .add_btn {
+            .headers {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                color: #000000;
+            }
 
-                background: linear-gradient(180deg, #E95950 0%, #FAA300 100%);
-                box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
-                border-radius: 20px;
-                padding: 16px;
+            .add_list_btn {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 22px;
+                color: #007DA8;
                 cursor: pointer;
-                margin-top: 1rem;
+            }
 
-                .addList_btn {
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 20px;
-                    line-height: 30px;
-                    color: #FFFFFF;
+            // .add_btn {
+
+            //     background: linear-gradient(180deg, #E95950 0%, #FAA300 100%);
+            //     box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+            //     border-radius: 20px;
+            //     padding: 16px;
+            //     cursor: pointer;
+            //     margin-top: 1rem;
+
+            //     .addList_btn {
+            //         font-family: 'Poppins';
+            //         font-style: normal;
+            //         font-weight: 700;
+            //         font-size: 20px;
+            //         line-height: 30px;
+            //         color: #FFFFFF;
+            //         display: flex;
+            //         align-content: center;
+            //         align-items: center;
+            //         justify-content: center;
+            //     }
+
+            .addList_section {
+                position: absolute;
+                z-index: 4;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 0.5rem;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-radius: 8px;
+                background-color: #f6f6f6;
+                box-shadow: var(--box-shadow-primary);
+                cursor: pointer;
+                width: 25%;
+
+                .close_btn {
                     display: flex;
-                    align-content: center;
-                    align-items: center;
-                    justify-content: center;
+                    justify-content: flex-end;
                 }
 
-                .addList_section {
+                Label {
+                    margin-bottom: 6px;
+                }
+
+                Input {
+                    height: 32px;
+                    background: #FFFFFF;
+                    border: 1px solid #B3B3B3;
+                    box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+                    border-radius: 10px;
+                    margin-bottom: 6px;
+                }
+
+                span {
                     position: absolute;
-                    z-index: 4;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    border-radius: 0.5rem;
-                    padding: 2rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    border-radius: 8px;
-                    background-color: #f6f6f6;
-                    box-shadow: var(--box-shadow-primary);
-                    cursor: pointer;
-                    width: 25%;
-
-                    .close_btn {
-                        display: flex;
-                        justify-content: flex-end;
-                    }
-
-                    Label {
-                        margin-bottom: 6px;
-                    }
-
-                    Input {
-                        height: 32px;
-                        background: #FFFFFF;
-                        border: 1px solid #B3B3B3;
-                        box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
-                        border-radius: 10px;
-                        margin-bottom: 6px;
-                    }
-
-                    span {
-                        position: absolute;
-                        bottom: 6.3rem;
-                        right: 3rem;
-                    }
-
-                    .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-                        margin-top: 1rem;
-                    }
+                    bottom: 6.3rem;
+                    right: 3rem;
                 }
+
+                .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                    margin-top: 1rem;
+                }
+
+                // }
 
                 // .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
                 //     width: -webkit-fill-available;
@@ -292,6 +318,18 @@ html {
             padding-top: 1rem;
             padding-left: 1rem;
             padding-right: 1rem;
+
+            .list_name {
+                margin-left: 0px;
+                cursor: pointer;
+                width: -webkit-fill-available;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 22px;
+                color: #000000;
+            }
 
             .list_content_inner {
                 margin-top: 1rem;
@@ -323,15 +361,42 @@ html {
                     justify-content: space-between;
                 }
 
+                .list_desc {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 16px;
+                    color: rgba(0, 0, 0, 0.7);
+                    margin-top: 8px;
+                }
+
                 .list_footer {
-                    display: flex;
-                    -webkit-box-align: center;
-                    align-items: center;
-                    -webkit-box-pack: justify;
-                    justify-content: space-between;
-                    margin-top: 1rem;
+                    margin-top: 8px;
+
+                    .list_view {
+                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                            background: #7662DC;
+                            border-radius: 3px;
+                            color: #fff;
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+
+.suggestions {
+    background: #FFFFFF;
+    border: 1px solid RGB(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+    border-radius: 5px;
+    width: 55rem;
+    height: 240px;
+    position: absolute;
+    z-index: 9999;
+    top: 22%;
+    left: 14%;
 }

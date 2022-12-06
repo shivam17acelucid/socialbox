@@ -1,0 +1,185 @@
+.headers_title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+
+    .headers {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 27px;
+        color: #000000;
+    }
+
+    .add_list_btn {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: #007DA8;
+        cursor: pointer;
+    }
+
+    // .add_btn {
+
+    //     background: linear-gradient(180deg, #E95950 0%, #FAA300 100%);
+    //     box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+    //     border-radius: 20px;
+    //     padding: 16px;
+    //     cursor: pointer;
+    //     margin-top: 1rem;
+
+    //     .addList_btn {
+    //         font-family: 'Poppins';
+    //         font-style: normal;
+    //         font-weight: 700;
+    //         font-size: 20px;
+    //         line-height: 30px;
+    //         color: #FFFFFF;
+    //         display: flex;
+    //         align-content: center;
+    //         align-items: center;
+    //         justify-content: center;
+    //     }
+
+    .addList_section {
+        position: absolute;
+        z-index: 4;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 8px;
+        background-color: #f6f6f6;
+        box-shadow: var(--box-shadow-primary);
+        cursor: pointer;
+        width: 25%;
+
+        .close_btn {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        Label {
+            margin-bottom: 6px;
+        }
+
+        Input {
+            height: 32px;
+            background: #FFFFFF;
+            border: 1px solid #B3B3B3;
+            box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+
+        span {
+            position: absolute;
+            bottom: 6.3rem;
+            right: 3rem;
+        }
+
+        .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+            margin-top: 1rem;
+        }
+
+        // }
+
+        // .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+        //     width: -webkit-fill-available;
+        //     margin-top: 1rem;
+        //     background-color: #0014C6;
+        //     color: #fff;
+        //     font-family: 'Poppins';
+        //     font-style: normal;
+        //     font-weight: 400;
+        //     font-size: 14px;
+        //     line-height: 21px;
+        // }
+    }
+}
+
+.list_clicked_data {
+    padding: 2rem;
+
+    .list_clicked_headers {
+        margin-top: 2rem;
+    }
+}
+
+.list_content {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .list_name {
+        margin-left: 0px;
+        cursor: pointer;
+        width: -webkit-fill-available;
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+    }
+
+    .list_content_inner {
+        margin-top: 1rem;
+        height: auto;
+        padding: 12px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        box-sizing: border-box;
+        // height: 61px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+        border-radius: 10px;
+
+        .list_head {
+            font-size: 16px;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #1C1C1C;
+            justify-content: space-between;
+        }
+
+        .list_desc {
+            font-family: 'Noto Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-top: 8px;
+        }
+
+        .list_footer {
+            margin-top: 8px;
+
+            .list_view {
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    background: #7662DC;
+                    border-radius: 3px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

@@ -20,6 +20,7 @@ import checkbundles from '../../Assets/Images/checkbundle.png'
 import checklists from '../../Assets/Images/checklists.png'
 import checklistselected from '../../Assets/Images/checklistselected.png';
 import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
+import MyLists from '../MyLists';
 
 
 function BasketInfluencers() {
@@ -380,7 +381,8 @@ function BasketInfluencers() {
                                     }} style={{ cursor: 'pointer' }} />}
                             </div>
                             {
-                                listIconSelected === true ? null
+                                listIconSelected === true ?
+                                    <MyLists />
                                     :
                                     <>
                                         <div className='sidebar_header'>

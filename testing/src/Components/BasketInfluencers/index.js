@@ -15,6 +15,11 @@ import { MdAdd } from 'react-icons/md';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { MdOutlineArrowDropUp } from 'react-icons/md';
 import { Input } from 'reactstrap';
+import TopBar from '../../Common/TopBar/index';
+import checkbundles from '../../Assets/Images/checkbundle.png'
+import checklists from '../../Assets/Images/checklists.png'
+import checklistselected from '../../Assets/Images/checklistselected.png';
+import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
 
 
 function BasketInfluencers() {
@@ -41,6 +46,8 @@ function BasketInfluencers() {
     const [erBasedInfluencers, setErBasedInfluencers] = useState([]);
     const [basketData, setBasketData] = useState([]);
     const [changeBasket, setChangeBasket] = useState(false);
+    const [listIconSelected, setListIconSelected] = useState(false);
+    const [bundleIconSelected, setBundleIconSelected] = useState(true);
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
@@ -174,196 +181,223 @@ function BasketInfluencers() {
         <div className='basket_influencers_container'>
             <Navbar />
             <div className='basket_influencers_container_content'>
-                <div className='middle_pane_lists'>
-                    <div className='list_category_header'>
-                        Top {categoryName} Influencers
-                    </div>
-                    <div className="filter_bar">
-                        <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        {
-                            isfilterErClicked === true ?
-                                <section className="modal_section">
-                                    <div className="modal_option">
-                                        <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
-                                        <div>Select Engagement Rate Range</div>
-                                        <Input
-                                            placeholder="MinRange"
-                                            className="w-50"
-                                            type="text"
-                                            value={minErRange}
-                                            onChange={(e) => { setMinErrange(e.target.value) }}
-                                        />
-                                        <Input
-                                            placeholder="MaxRange"
-                                            className="w-50"
-                                            type="text"
-                                            value={maxErRange}
-                                            onChange={(e) => { setMaxErRange(e.target.value) }}
-                                        />
-                                        <Button
-                                            color="primary"
-                                            onClick={filterByErRange}
-                                        >
-                                            Filter
-                                        </Button>
-                                    </div>
-                                </section>
-                                :
-                                isfilterCategoryClicked === true ?
+                <TopBar />
+                <div style={{ display: 'flex' }}>
+                    <div className='middle_pane_lists'>
+                        <div className='list_category_header'>
+                            Top {categoryName} Influencers
+                        </div>
+                        <div className="filter_bar">
+                            <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                            <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                            <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                            {
+                                isfilterErClicked === true ?
                                     <section className="modal_section">
                                         <div className="modal_option">
-                                            <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
-                                            <div>Add Category</div>
+                                            <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
+                                            <div>Select Engagement Rate Range</div>
                                             <Input
-                                                placeholder="Category"
+                                                placeholder="MinRange"
                                                 className="w-50"
                                                 type="text"
-                                                value={category}
-                                                onChange={(e) => { setCategory(e.target.value) }}
+                                                value={minErRange}
+                                                onChange={(e) => { setMinErrange(e.target.value) }}
+                                            />
+                                            <Input
+                                                placeholder="MaxRange"
+                                                className="w-50"
+                                                type="text"
+                                                value={maxErRange}
+                                                onChange={(e) => { setMaxErRange(e.target.value) }}
                                             />
                                             <Button
                                                 color="primary"
-                                                onClick={filterCategory}
+                                                onClick={filterByErRange}
                                             >
                                                 Filter
                                             </Button>
                                         </div>
                                     </section>
                                     :
-                                    isfilterFollowerClicked === true ?
+                                    isfilterCategoryClicked === true ?
                                         <section className="modal_section">
                                             <div className="modal_option">
-                                                <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
-                                                <div>Select Followers</div>
+                                                <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
+                                                <div>Add Category</div>
                                                 <Input
-                                                    placeholder="MinRange"
+                                                    placeholder="Category"
                                                     className="w-50"
                                                     type="text"
-                                                    value={minRange}
-                                                    onChange={(e) => { setMinrange(e.target.value) }}
-                                                />
-                                                <Input
-                                                    placeholder="MaxRange"
-                                                    className="w-50"
-                                                    type="text"
-                                                    value={maxRange}
-                                                    onChange={(e) => { setMaxRange(e.target.value) }}
+                                                    value={category}
+                                                    onChange={(e) => { setCategory(e.target.value) }}
                                                 />
                                                 <Button
                                                     color="primary"
-                                                    onClick={filterByFollowersRange}
+                                                    onClick={filterCategory}
                                                 >
                                                     Filter
                                                 </Button>
                                             </div>
                                         </section>
-                                        : null
-                        }
-                    </div>
-                    <div className='list_category_data'>
-                        <TableContainer component={Paper}>
-                            <Table stickyHeader className="table_container" >
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell align="center">Category</TableCell>
-                                        <TableCell align="center">Avg Likes</TableCell>
-                                        <TableCell align="center">Followers</TableCell>
-                                        <TableCell align="center">Average Reach</TableCell>
-                                        <TableCell align="center">Average Comment</TableCell>
-                                        <TableCell align="center">Engagement Rate</TableCell>
-                                        <TableCell align="center">City</TableCell>
-                                        <TableCell align="center"></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {
-                                        (filterErClicked === true ?
-                                            erBasedInfluencers :
-                                            filterCategoryClicked === true ?
-                                                categoryBasedInfluencers :
-                                                filterFollowerClicked === true ?
-                                                    followersRangeBasedInfluencers :
-                                                    influencersData)
-                                            .map((data, index) =>
-                                                <>
-                                                    < TableRow>
-                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
-                                                            {data.full_name}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_followed_by.count)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
-                                                        </TableCell>
-                                                        <TableCell align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
-                                                        </TableCell>
-                                                        <TableCell align="center">{data.city_name}</TableCell>
-                                                        <TableCell key={index} >
-                                                            <>
-                                                                <Button><span>Cost</span></Button>
-                                                                <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
-                                                                {addToListTableClicked === true ?
-                                                                    [data].map((item) =>
-                                                                        item.username == rowClickedData ?
-                                                                            <section className="addList_section" id={data.id}>
-                                                                                <div className="addList_option">
-                                                                                    <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
-                                                                                    <div>Recently Created Lists</div>
-                                                                                    {listData.map((item) =>
-                                                                                        <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                            {item.listName}
-                                                                                        </div>
-                                                                                    )}
-                                                                                </div>
-                                                                            </section>
-                                                                            : null
-                                                                    )
+                                        :
+                                        isfilterFollowerClicked === true ?
+                                            <section className="modal_section">
+                                                <div className="modal_option">
+                                                    <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
+                                                    <div>Select Followers</div>
+                                                    <Input
+                                                        placeholder="MinRange"
+                                                        className="w-50"
+                                                        type="text"
+                                                        value={minRange}
+                                                        onChange={(e) => { setMinrange(e.target.value) }}
+                                                    />
+                                                    <Input
+                                                        placeholder="MaxRange"
+                                                        className="w-50"
+                                                        type="text"
+                                                        value={maxRange}
+                                                        onChange={(e) => { setMaxRange(e.target.value) }}
+                                                    />
+                                                    <Button
+                                                        color="primary"
+                                                        onClick={filterByFollowersRange}
+                                                    >
+                                                        Filter
+                                                    </Button>
+                                                </div>
+                                            </section>
+                                            : null
+                            }
+                        </div>
+                        <div className='list_category_data'>
+                            <TableContainer component={Paper}>
+                                <Table stickyHeader className="table_container" >
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell align="center">Category</TableCell>
+                                            <TableCell align="center">Avg Likes</TableCell>
+                                            <TableCell align="center">Followers</TableCell>
+                                            <TableCell align="center">Average Reach</TableCell>
+                                            <TableCell align="center">Average Comment</TableCell>
+                                            <TableCell align="center">Engagement Rate</TableCell>
+                                            <TableCell align="center">City</TableCell>
+                                            <TableCell align="center"></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {
+                                            (filterErClicked === true ?
+                                                erBasedInfluencers :
+                                                filterCategoryClicked === true ?
+                                                    categoryBasedInfluencers :
+                                                    filterFollowerClicked === true ?
+                                                        followersRangeBasedInfluencers :
+                                                        influencersData)
+                                                .map((data, index) =>
+                                                    <>
+                                                        < TableRow>
+                                                            <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                                {data.full_name}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {NFormatter(data.edge_followed_by.count)}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                            </TableCell>
+                                                            <TableCell align="center">
+                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                            </TableCell>
+                                                            <TableCell align="center">{data.city_name}</TableCell>
+                                                            <TableCell key={index} >
+                                                                <>
+                                                                    <Button><span>Cost</span></Button>
+                                                                    <Button id={data.id} onClick={() => { handleAddToListTable(data) }}><span><MdAdd /> To List</span></Button>
+                                                                    {addToListTableClicked === true ?
+                                                                        [data].map((item) =>
+                                                                            item.username == rowClickedData ?
+                                                                                <section className="addList_section" id={data.id}>
+                                                                                    <div className="addList_option">
+                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
+                                                                                        <div>Recently Created Lists</div>
+                                                                                        {listData.map((item) =>
+                                                                                            <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                {item.listName}
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </section>
+                                                                                : null
+                                                                        )
 
-                                                                    : null}
-                                                                <Button><span>Compare</span></Button>
-                                                            </>
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </>
-                                            )
-                                    }
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                                                        : null}
+                                                                    <Button><span>Compare</span></Button>
+                                                                </>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </>
+                                                )
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className='side_influencers_bundle'>
-                <div className='side_list_css'>
-                    <div className='sidebar_header'>
-                        Top Bundles
-                    </div>
-                    {
-                        basketData.map((item) =>
-                            <div className='bundle_box'>
-                                <div className='influencers_image'>
-                                    x
-                                </div>
-                                <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                    <div className='side_influencers_bundle'>
+                        <div className='side_list_css'>
+                            <div className='select_pane'>
+                                {bundleIconSelected === true ?
+                                    <img src={checkbundleselected} onClick={() => {
+                                        setBundleIconSelected(false)
+                                        setListIconSelected(true)
+                                    }} style={{ cursor: 'pointer' }} />
+                                    :
+                                    <img src={checkbundles} onClick={() => {
+                                        setBundleIconSelected(true)
+                                        setListIconSelected(false)
+                                    }} style={{ cursor: 'pointer' }} />}
+                                {listIconSelected === false ?
+                                    <img src={checklists} onClick={() => {
+                                        setListIconSelected(true)
+                                        setBundleIconSelected(false)
+                                    }} style={{ cursor: 'pointer' }} />
+                                    :
+                                    <img src={checklistselected} onClick={() => {
+                                        setListIconSelected(false)
+                                        setBundleIconSelected(true)
+                                    }} style={{ cursor: 'pointer' }} />}
                             </div>
-
-                        )
-                    }
+                            {
+                                listIconSelected === true ? null
+                                    :
+                                    <>
+                                        <div className='sidebar_header'>
+                                            Top Bundles
+                                        </div>
+                                        {basketData.map((item) =>
+                                            <div className='bundle_box'>
+                                                <div className='influencers_image'>
+                                                    x
+                                                </div>
+                                                <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                            </div>)}
+                                    </>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

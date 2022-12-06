@@ -16,8 +16,8 @@ html {
 
     .basket_influencers_container_content {
         display: flex;
-        padding-left: 1rem;
         flex: 1;
+        flex-direction: column;
         width: calc(100% - 25rem);
 
         .middle_pane_lists {
@@ -198,75 +198,90 @@ html {
                 }
             }
         }
-    }
-}
 
-.side_influencers_bundle {
-    width: 100%;
-    box-shadow: 0px 0 4px 0 #edecf4;
-    z-index: 1 !important;
-    max-width: 240px;
-    overflow-y: scroll;
-    height: 100vh;
+        .side_influencers_bundle {
+            overflow-y: scroll;
+            height: 92vh;
+            width: 100%;
+            box-shadow: 0px 0 4px 0 #edecf4;
+            z-index: 1 !important;
+            max-width: 280px;
+            background: #FBFBFB;
+            border: 1px solid rgba(0, 0, 0, 0.2);
 
-    .side_list_css {
-        padding: 5rem 1rem 0;
+            .side_list_css {
+                padding: 2rem 1rem 0;
 
-        .sidebar_header {
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 30px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: #E95950;
-            transform: matrix(1, 0.01, 0, 1, 0, 0);
-            justify-content: center;
-        }
+                .select_pane {
+                    display: flex;
+                    justify-content: space-around;
 
-        .bundle_box {
-            background: linear-gradient(180deg, #E95950 0%, #FFA300 100%);
-            box-shadow: 0px 0px 30px RGB(1 28 231 / 10%);
-            border-radius: 20px;
-            transform: matrix(1, 0.01, 0, 1, 0, 0);
-            margin: 2rem 0;
-            padding: 1rem;
+                    img {
+                        height: 18px;
+                    }
+                }
 
-            .influencers_image {
-                box-sizing: border-box;
-                width: 2rem;
-                height: 2rem;
-                border: 2px solid #FFFFFF;
-                border-radius: 400px;
-                background: black;
-            }
+                .sidebar_header {
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 27px;
+                    color: #000000;
+                    margin-top: 2rem;
+                }
 
-            .bundle_title {
-                font-family: 'Poppins';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 20px;
-                line-height: 30px;
-                display: flex;
-                align-items: center;
-                text-align: center;
-                color: #1C1C1C;
-                transform: matrix(1, 0.01, 0, 1, 0, 0);
-            }
+                .bundle_box {
+                    margin: 2rem 0;
+                    padding: 1rem;
+                    background: #FFFFFF;
+                    box-shadow: 0px 2px 4px RGB(0 0 0 / 25%);
+                    border-radius: 5px;
 
-            .bundle_btn {
-                box-sizing: border-box;
-                height: 29.37px;
-                background: #FFFFFF;
-                border-radius: 10px;
-                width: 5rem;
-                text-align: center;
-                margin-left: 2rem;
-                margin-top: 8px;
-                cursor: pointer;
-                ;
+                    .influencers_image {
+                        box-sizing: border-box;
+                        width: 2rem;
+                        height: 2rem;
+                        border: 2px solid #FFFFFF;
+                        border-radius: 400px;
+                        background: black;
+                    }
+
+                    .bundle_title {
+                        font-size: 20px;
+                        line-height: 30px;
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        color: #000000;
+                    }
+
+                    .bundle_btn {
+                        border-radius: 10px;
+                        width: 5rem;
+                        margin-top: 8px;
+                        cursor: pointer;
+                        background: #7662DC;
+                        border-radius: 3px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 14px;
+                        color: #FFFFFF;
+                        height: 2rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
             }
         }
     }

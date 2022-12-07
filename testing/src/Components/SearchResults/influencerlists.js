@@ -52,8 +52,6 @@ const InfluencersList = () => {
     const [filterFollowerClicked, setFilterFollowerClicked] = useState(false);
     const [filterCategoryClicked, setFilterCategoryClicked] = useState(false);
     const [filterErClicked, setFilterErClicked] = useState(false);
-    const [minRange, setMinrange] = useState();
-    const [maxRange, setMaxRange] = useState();
     const [newPlanClicked, setNewPlanClicked] = useState(false);
     // const [listName, setListName] = useState('');
     // const [brandName, setBrandName] = useState('');
@@ -75,6 +73,7 @@ const InfluencersList = () => {
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState('');
     const [rangeFollowers, setRangeFollowers] = useState([1000, 100000])
+    const [silderRolled, setSliderRolled] = useState(false);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -133,10 +132,10 @@ const InfluencersList = () => {
 
     const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
 
-    const scale = item => {
-        const previousMarkIndex = Math.floor(item / 25);
+    const scale = value => {
+        const previousMarkIndex = Math.floor(value / 25);
         const previousMark = followersRange[previousMarkIndex];
-        const remainder = item % 25;
+        const remainder = value % 25;
         if (remainder === 0) {
             return previousMark.scaledValue;
         }
@@ -222,7 +221,7 @@ const InfluencersList = () => {
     const filterByFollowersRange = () => {
         setFilterFollowerClicked(true);
         setIsFilterFollowerClicked(false);
-        const url = `http://localhost:4000/getfilteredData?minFollowers=${minRange}&maxFollowers=${maxRange}`;
+        const url = `http://localhost:4000/getfilteredData?minFollowers=${scale(rangeFollowers[0])}&maxFollowers=${[scale(rangeFollowers[1])]}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -507,11 +506,14 @@ const InfluencersList = () => {
                                         isfilterFollowerClicked === true ?
                                             <section className="modal_section">
                                                 <div className="modal_option">
-                                                    <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
-                                                    <div>Select Followers</div>
+                                                    {/* <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div> */}
+                                                    <div className="modal_title">Followers Count</div>
                                                     <Slider
                                                         value={rangeFollowers}
-                                                        onChange={(e, data) => { setRangeFollowers(data) }}
+                                                        onChange={(e, data) => {
+                                                            setRangeFollowers(data)
+                                                            setSliderRolled(true);
+                                                        }}
                                                         marks={followersRange}
                                                         min={0}
                                                         max={200}
@@ -519,9 +521,18 @@ const InfluencersList = () => {
                                                         scale={scale}
                                                         valueLabelFormat={numFormatter}
                                                     />
-                                                    {console.log(scale(rangeFollowers[1]))}
-                                                    <div>Minimum Followers Count: {scale(rangeFollowers[0])}</div>
-                                                    <div>Maximum Followers Count: {scale(rangeFollowers[1])}</div>
+                                                    {
+                                                        silderRolled === true ?
+                                                            <>
+                                                                <div className="followers_count_1">Minimum Followers Count: {scale(rangeFollowers[0])}</div>
+                                                                <div className="followers_count">Maximum Followers Count: {scale(rangeFollowers[1])}</div>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <div className="followers_count_1">Minimum Followers Count: {rangeFollowers[0]}</div>
+                                                                <div className="followers_count">Maximum Followers Count: {rangeFollowers[1]}</div>
+                                                            </>
+                                                    }
                                                     <Button
                                                         color="primary"
                                                         onClick={filterByFollowersRange}

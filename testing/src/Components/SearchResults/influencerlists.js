@@ -39,10 +39,7 @@ const InfluencersList = () => {
     const [rowsPerPage, setRowsPerPage] = useState(8);
     const [showVerifiedInfluencers, setShowVerifiedInfluencers] = useState(false);
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
-    const [er, setEr] = useState('');
     const [category, setCategory] = useState('');
-    const [minErRange, setMinErrange] = useState();
-    const [maxErRange, setMaxErRange] = useState();
     const [categoryBasedInfluencers, setCategoryBasedInfluencers] = useState([]);
     const [erBasedInfluencers, setErBasedInfluencers] = useState([]);
     const [followersRangeBasedInfluencers, setFollowersRangeBasedInfluencers] = useState([]);
@@ -73,6 +70,7 @@ const InfluencersList = () => {
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState('');
     const [rangeFollowers, setRangeFollowers] = useState([1000, 100000])
+    const [rangeEr, setRangeEr] = useState([0, 20]);
     const [silderRolled, setSliderRolled] = useState(false);
 
     let { inputField } = useParams();
@@ -192,6 +190,34 @@ const InfluencersList = () => {
         }
     ];
 
+    const ErRange = [
+        {
+            value: 0,
+            scaledValue: 0,
+            label: "0"
+        },
+        {
+            value: 5,
+            scaledValue: 5,
+            label: "5"
+        },
+        {
+            value: 10,
+            scaledValue: 10,
+            label: "10"
+        },
+        {
+            value: 15,
+            scaledValue: 15,
+            label: "15"
+        },
+        {
+            value: 20,
+            scaledValue: 20,
+            label: "20"
+        }
+    ];
+
     function numFormatter(num) {
         if (num > 999 && num < 1000000) {
             return (num / 1000).toFixed(0) + "K"; // convert to K for number from > 1000 < 1 million
@@ -237,7 +263,7 @@ const InfluencersList = () => {
     const filterByErRange = () => {
         setFilterErClicked(true);
         setIsFilterErClicked(false);
-        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${minErRange}&maxEr=${maxErRange}`;
+        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${rangeEr[0]}&maxEr=${rangeEr[1]}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -457,22 +483,30 @@ const InfluencersList = () => {
                                 isfilterErClicked === true ?
                                     <section className="modal_section">
                                         <div className="modal_option">
-                                            <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
-                                            <div>Select Engagement Rate Range</div>
-                                            <Input
-                                                placeholder="MinRange"
-                                                className="w-50"
-                                                type="text"
-                                                value={minErRange}
-                                                onChange={(e) => { setMinErrange(e.target.value) }}
+                                            <div>Engagement %</div>
+                                            <Slider
+                                                value={rangeEr}
+                                                onChange={(e, data) => {
+                                                    setRangeEr(data)
+                                                    setSliderRolled(true);
+                                                }}
+                                                marks={ErRange}
+                                                min={0}
+                                                max={20}
+                                                step={1}
                                             />
-                                            <Input
-                                                placeholder="MaxRange"
-                                                className="w-50"
-                                                type="text"
-                                                value={maxErRange}
-                                                onChange={(e) => { setMaxErRange(e.target.value) }}
-                                            />
+                                            {
+                                                silderRolled === true ?
+                                                    <>
+                                                        <div className="followers_count_1">Minimum ER: {rangeEr[0]}</div>
+                                                        <div className="followers_count">Maximum ER: {rangeEr[1]}</div>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <div className="followers_count_1">Minimum ER: {rangeEr[0]}</div>
+                                                        <div className="followers_count">Maximum ER: {rangeEr[1]}</div>
+                                                    </>
+                                            }
                                             <Button
                                                 color="primary"
                                                 onClick={filterByErRange}
@@ -485,7 +519,6 @@ const InfluencersList = () => {
                                     isfilterCategoryClicked === true ?
                                         <section className="modal_section">
                                             <div className="modal_option">
-                                                <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
                                                 <div>Add Category</div>
                                                 <Input
                                                     placeholder="Category"
@@ -506,7 +539,6 @@ const InfluencersList = () => {
                                         isfilterFollowerClicked === true ?
                                             <section className="modal_section">
                                                 <div className="modal_option">
-                                                    {/* <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div> */}
                                                     <div className="modal_title">Followers Count</div>
                                                     <Slider
                                                         value={rangeFollowers}

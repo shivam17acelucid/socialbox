@@ -26,6 +26,10 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TopBar from '../../Common/TopBar/index';
+import ListIcon from '../../Assets/Images/listicon.png';
+import CostIcon from '../../Assets/Images/costicon.png';
+import CompareIcon from '../../Assets/Images/compareicon.png';
+import Slider from '@mui/material/Slider';
 
 
 const InfluencersList = () => {
@@ -70,6 +74,7 @@ const InfluencersList = () => {
     const [suggestionIndex, setSuggestionIndex] = useState(0);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState('');
+    const [rangeFollowers, setRangeFollowers] = useState([1000, 100000])
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -127,6 +132,76 @@ const InfluencersList = () => {
     const handleCategoryFilterClicked = () => setIsFilterCategoryClicked(value => !value);
 
     const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
+
+    const scale = item => {
+        const previousMarkIndex = Math.floor(item / 25);
+        const previousMark = followersRange[previousMarkIndex];
+        const remainder = item % 25;
+        if (remainder === 0) {
+            return previousMark.scaledValue;
+        }
+        const nextMark = followersRange[previousMarkIndex + 1];
+        const increment = (nextMark.scaledValue - previousMark.scaledValue) / 25;
+        return remainder * increment + previousMark.scaledValue;
+    };
+
+    const followersRange = [
+        {
+            value: 0,
+            scaledValue: 1000,
+            label: "1k"
+        },
+        {
+            value: 25,
+            scaledValue: 5000,
+            label: "5k"
+        },
+        {
+            value: 50,
+            scaledValue: 10000,
+            label: "10k"
+        },
+        {
+            value: 75,
+            scaledValue: 25000,
+            label: "25k"
+        },
+        {
+            value: 100,
+            scaledValue: 50000,
+            label: "50k"
+        },
+        {
+            value: 125,
+            scaledValue: 100000,
+            label: "100k"
+        },
+        {
+            value: 150,
+            scaledValue: 250000,
+            label: "250k"
+        },
+        {
+            value: 175,
+            scaledValue: 500000,
+            label: "500k"
+        },
+        {
+            value: 200,
+            scaledValue: 1000000,
+            label: "1M"
+        }
+    ];
+
+    function numFormatter(num) {
+        if (num > 999 && num < 1000000) {
+            return (num / 1000).toFixed(0) + "K"; // convert to K for number from > 1000 < 1 million
+        } else if (num >= 1000000) {
+            return (num / 1000000).toFixed(0) + "M"; // convert to M for number from > 1 million
+        } else if (num < 900) {
+            return num; // if value < 1000, nothing to do
+        }
+    }
 
     const filterCategory = () => {
         setFilterCategoryClicked(true)
@@ -434,20 +509,19 @@ const InfluencersList = () => {
                                                 <div className="modal_option">
                                                     <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
                                                     <div>Select Followers</div>
-                                                    <Input
-                                                        placeholder="MinRange"
-                                                        className="w-50"
-                                                        type="text"
-                                                        value={minRange}
-                                                        onChange={(e) => { setMinrange(e.target.value) }}
+                                                    <Slider
+                                                        value={rangeFollowers}
+                                                        onChange={(e, data) => { setRangeFollowers(data) }}
+                                                        marks={followersRange}
+                                                        min={0}
+                                                        max={200}
+                                                        step={1}
+                                                        scale={scale}
+                                                        valueLabelFormat={numFormatter}
                                                     />
-                                                    <Input
-                                                        placeholder="MaxRange"
-                                                        className="w-50"
-                                                        type="text"
-                                                        value={maxRange}
-                                                        onChange={(e) => { setMaxRange(e.target.value) }}
-                                                    />
+                                                    {console.log(scale(rangeFollowers[1]))}
+                                                    <div>Minimum Followers Count: {scale(rangeFollowers[0])}</div>
+                                                    <div>Maximum Followers Count: {scale(rangeFollowers[1])}</div>
                                                     <Button
                                                         color="primary"
                                                         onClick={filterByFollowersRange}
@@ -482,7 +556,7 @@ const InfluencersList = () => {
                                             <TableCell align="center">Avg Reach</TableCell>
                                             <TableCell align="center">City</TableCell>
                                             <TableCell align="center">Category</TableCell>
-                                            <TableCell align="center"></TableCell>
+                                            <TableCell align="center">Actions</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -529,8 +603,8 @@ const InfluencersList = () => {
                                                             <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
                                                             <TableCell key={index}>
                                                                 <div className="btn_display">
-                                                                    <Button id={data.id}>Cost</Button>
-                                                                    <Button id={data.id} onClick={() => { handleAddToListTable(data) }}>Add To List</Button>
+                                                                    <img id={data.id} src={CostIcon} />
+                                                                    <img id={data.id} onClick={() => { handleAddToListTable(data) }} src={ListIcon} />
                                                                     {addToListTableClicked === true ?
                                                                         [data].map((item) =>
                                                                             item.username == rowClickedData ?
@@ -549,7 +623,7 @@ const InfluencersList = () => {
                                                                         )
 
                                                                         : null}
-                                                                    <Button id={data.id} onClick={() => handleAddToCompare(data)} >Compare</Button>
+                                                                    <img id={data.id} onClick={() => handleAddToCompare(data)} src={CompareIcon} />
                                                                     {
                                                                         addToCompareClicked === true ?
 

@@ -15,8 +15,7 @@ html {
 
     .lists_content {
         display: flex;
-        // padding-left: 1rem;
-        // width: calc(100% - 15rem);
+        width: -webkit-fill-available;
         flex-direction: column;
 
         .middle_pane_lists {

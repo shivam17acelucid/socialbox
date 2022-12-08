@@ -21,6 +21,8 @@ import checklists from '../../Assets/Images/checklists.png'
 import checklistselected from '../../Assets/Images/checklistselected.png';
 import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
 import MyLists from '../MyLists';
+import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
+import { Label } from 'reactstrap';
 
 
 function UserLists() {
@@ -30,10 +32,12 @@ function UserLists() {
     const [isDataDeleted, setIsDataDeleted] = useState(false);
     const [isDeliverablesEdited, setIsDeliverablesEdited] = useState(false);
     const [editingDeliverables, setEditingDeliverables] = useState(false);
-    const [reel, setReels] = useState('');
-    const [post, setPosts] = useState('');
-    const [story, setStories] = useState('');
-    const [igtv, setIgtv] = useState('');
+    const [reel, setReel] = useState(0);
+    const [post, setPost] = useState(0);
+    const [story, setStory] = useState(0);
+    const [igtv, setIgtv] = useState(0);
+    const [description, setDescription] = useState('');
+    const [listName, setListName] = useState('');
     const [deleteIconSelected, setDeleteIconSelected] = useState(true);
     const [listsIconSelected, setListsIconSelected] = useState(false);
     const [bundlesIconSelected, setBundlesIconSelected] = useState(false);
@@ -80,7 +84,7 @@ function UserLists() {
             })
     }
 
-    const handleUpdateDeliverables = () => {
+    const handleUpdateDeliverables = (reel, post, story, igtv) => {
         const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
         fetch((url), {
             method: 'POST',
@@ -91,6 +95,7 @@ function UserLists() {
         })
             .then((res) => {
                 setIsDeliverablesEdited(true)
+                handleEditDeliverables();
             })
     }
 
@@ -154,12 +159,66 @@ function UserLists() {
                                         }
                                         {
                                             editingDeliverables === true ?
-                                                <div>
-                                                    <Input value={reel} onChange={(e) => { setReels(e.target.value) }} placeholder="Reels count" />
-                                                    <Input value={post} onChange={(e) => { setPosts(e.target.value) }} placeholder="Posts count" />
-                                                    <Input value={story} onChange={(e) => { setStories(e.target.value) }} placeholder="Stories count" />
-                                                    <Input value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv count" />
-                                                    <Button onClick={handleUpdateDeliverables}>Update</Button>
+                                                <div className='addList_section'>
+                                                    <Label> Edit List</Label>
+                                                    <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
+                                                    <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
+                                                    <Label style={{ marginTop: '12px' }}>Deliverables</Label>
+                                                    <>
+                                                        <div className='deliverables_pane'>
+                                                            <label>Reels</label>
+                                                            <div>
+                                                                {
+                                                                    reel === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setReel(reel - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{reel}</span>
+                                                                <span onClick={() => { setReel(reel + 1) }}><RiAddFill /></span>
+
+                                                            </div>
+                                                            <label>Static Post</label>
+                                                            <div>
+                                                                {
+                                                                    post === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setPost(post - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{post}</span>
+                                                                <span onClick={() => { setPost(post + 1) }}><RiAddFill /></span>
+                                                            </div>
+                                                        </div>
+                                                        <div className='deliverables_pane'>
+                                                            <label>Stories</label>
+                                                            <div>
+                                                                {
+                                                                    story === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setStory(story - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{story}</span>
+                                                                <span onClick={() => { setStory(story + 1) }}><RiAddFill /></span>
+                                                            </div>
+                                                            <label>Igtv videos</label>
+                                                            <div>
+                                                                {
+                                                                    igtv === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setIgtv(igtv - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{igtv}</span>
+                                                                <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                    <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                                                        <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv) }} className="update_btn">Update</Button>
+                                                        <Button onClick={handleEditDeliverables}>Cancel</Button>
+                                                    </div>
                                                 </div>
                                                 : null
                                         }

@@ -461,12 +461,13 @@ const InfluencersList = () => {
                 <IconButton
                     onClick={handleNextButtonClick}
                     aria-label="next page"
+                    disabled={page >= Math.ceil(count.count / rowsPerPage) - 1}
                 >
                     <KeyboardArrowRight />
                 </IconButton>
                 <IconButton
                     onClick={handleLastPageButtonClick}
-                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    disabled={page >= Math.ceil(count.count / rowsPerPage) - 1}
                     aria-label="last page"
                 >
                     <LastPageIcon />

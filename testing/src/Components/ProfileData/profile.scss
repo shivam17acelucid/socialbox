@@ -9,13 +9,15 @@ html {
     display: flex;
 
     .profile_container {
+        display: flex;
         height: 100vh;
         margin: 0px;
         background-color: #FFF;
 
         .profile_header {
-            padding: 5rem 8rem;
+            padding: 2rem;
             display: flex;
+            flex-direction: column;
 
             .profile_pic {
                 height: 5rem;
@@ -23,53 +25,132 @@ html {
             }
 
             .profile_basic_info {
-                margin-left: 5rem;
+                margin-left: 15rem;
 
                 .profile_username {
-                    padding-bottom: 2rem;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 19px;
+                    color: rgba(0, 0, 0, 0.6);
                 }
 
                 .profile_name {
-                    padding-bottom: 2rem;
+                    padding-bottom: 1rem;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 33px;
+                    color: #000000;
+                }
+
+                .profile_user_location {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 19px;
+                    color: RGB(0, 0, 0, 0.8);
+                    margin-top: 1rem;
+                }
+
+                .profile_category {
+                    background: #4D38B9;
+                    border-radius: 3px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    padding: 8px;
+                    margin-top: 1rem;
+                    width: fit-content;
+                }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    background: #7662DC;
+                    border-radius: 3px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    margin-top: 1rem;
+                    padding: 8px 29px;
                 }
             }
-        }
 
-        .profile_info_bar {
-            .profile_info_bar_collection {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-left: 5rem;
-                padding-right: 5rem;
+            .profile_info_bar {
+                padding-top: 6rem;
 
-                .addList_div {
-                    width: 200px;
-                    max-height: 350px;
-                    position: absolute;
-                    z-index: 4;
-                    padding-bottom: 8px;
-                    top: initial;
-                    padding-top: 0px;
+                .profile_info_bar_collection {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
 
-                    .addList_option {
-                        max-height: 342px;
-                        display: flex;
-                        flex-direction: column;
-                        -webkit-box-pack: justify;
-                        justify-content: space-between;
-                        padding: 4px;
-                        border-radius: 8px;
-                        background-color: rgb(255, 255, 255);
-                        box-shadow: var(--box-shadow-primary);
+                    .detail_box {
+                        padding: 0 2rem;
+
+                        .profile_result_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 24px;
+                            line-height: 33px;
+                            display: flex;
+                            align-items: flex-end;
+                            text-align: center;
+                            color: #000000;
+                        }
+
+                        .labels {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 16px;
+                            display: flex;
+                            align-items: flex-end;
+                            text-align: center;
+                            color: rgba(0, 0, 0, 0.6);
+                        }
+                    }
+
+                }
+
+                .profile_demography {
+                    padding: 4rem;
+
+                    .demography_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
                     }
                 }
             }
         }
 
         .profile_posts {
-            margin-top: 5rem;
+            padding-top: 2rem;
             text-align: center;
+
+            .recent_posts_title {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                color: #000000;
+            }
         }
 
     }

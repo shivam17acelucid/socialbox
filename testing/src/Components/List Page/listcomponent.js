@@ -6,8 +6,7 @@ import './listpage.scss';
 import { Input, Label } from 'reactstrap';
 import { MdOutlineAddBox } from "react-icons/md";
 import { AiOutlineSearch } from 'react-icons/ai';
-import { IoAddOutline } from 'react-icons/io';
-import { RiSubtractFill } from 'react-icons/ri';
+import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
 import { MdDelete } from 'react-icons/md';
 import TopBar from '../../Common/TopBar';
 
@@ -248,20 +247,64 @@ function Lists() {
                                         newPlanClicked ?
                                             <div className='addList_section'>
                                                 <Label>Create New List</Label>
-                                                <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} />
-                                                <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} />
-                                                <Label>Deliverables</Label>
+                                                <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
+                                                <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
+                                                <Label style={{ marginTop: '12px' }}>Deliverables</Label>
                                                 <>
-                                                    <label>Reels</label>
-                                                    {/* <Input type='text' value={reel} onChange={(e) => { setReel(e.target.value) }} placeholder="Reels" /> */}
-                                                    <label>Static Post</label>
-                                                    {/* <Input type='text' value={post} onChange={(e) => { setPost(e.target.value) }} placeholder="Static Post" /> */}
-                                                    <label>Stories</label>
-                                                    {/* <Input type='text' value={story} onChange={(e) => { setStory(e.target.value) }} placeholder="Stories" /> */}
-                                                    <label>Igtv videos</label>
-                                                    {/* <Input type='text' value={igtv} onChange={(e) => { setIgtv(e.target.value) }} placeholder="Igtv videos" /> */}
+                                                    <div className='deliverables_pane'>
+                                                        <label>Reels</label>
+                                                        <div>
+                                                            {
+                                                                reel === 0 ?
+                                                                    <span><RiSubtractFill /></span>
+                                                                    :
+                                                                    <span onClick={() => { setReel(reel - 1) }}><RiSubtractFill /></span>
+                                                            }
+                                                            <span className='deliverable_value'>{reel}</span>
+                                                            <span onClick={() => { setReel(reel + 1) }}><RiAddFill /></span>
+
+                                                        </div>
+                                                        <label>Static Post</label>
+                                                        <div>
+                                                            {
+                                                                post === 0 ?
+                                                                    <span><RiSubtractFill /></span>
+                                                                    :
+                                                                    <span onClick={() => { setPost(post - 1) }}><RiSubtractFill /></span>
+                                                            }
+                                                            <span className='deliverable_value'>{post}</span>
+                                                            <span onClick={() => { setPost(post + 1) }}><RiAddFill /></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='deliverables_pane'>
+                                                        <label>Stories</label>
+                                                        <div>
+                                                            {
+                                                                story === 0 ?
+                                                                    <span><RiSubtractFill /></span>
+                                                                    :
+                                                                    <span onClick={() => { setStory(story - 1) }}><RiSubtractFill /></span>
+                                                            }
+                                                            <span className='deliverable_value'>{story}</span>
+                                                            <span onClick={() => { setStory(story + 1) }}><RiAddFill /></span>
+                                                        </div>
+                                                        <label>Igtv videos</label>
+                                                        <div>
+                                                            {
+                                                                igtv === 0 ?
+                                                                    <span><RiSubtractFill /></span>
+                                                                    :
+                                                                    <span onClick={() => { setIgtv(igtv - 1) }}><RiSubtractFill /></span>
+                                                            }
+                                                            <span className='deliverable_value'>{igtv}</span>
+                                                            <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
+                                                        </div>
+                                                    </div>
                                                 </>
-                                                <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }}>Create</Button>
+                                                <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                                                    <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }}>Add</Button>
+                                                    <Button onClick={handleAddPlan}>Cancel</Button>
+                                                </div>
                                             </div> :
                                             null
                                     }

@@ -15,7 +15,7 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { Input } from "reactstrap";
 import { MdAdd } from 'react-icons/md';
-import { AiFillCaretDown, AiOutlineDownload } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlineDownload, AiOutlineClose } from 'react-icons/ai';
 import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { BiFirstPage } from 'react-icons/bi';
 import { BiLastPage } from 'react-icons/bi';
@@ -733,16 +733,19 @@ const InfluencersList = () => {
                                                                             item.username == rowClickedData ?
                                                                                 <section className="addList_section" id={data.id}>
                                                                                     <div className="addList_option">
+                                                                                        <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
                                                                                         <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
                                                                                         <div className="section_list_title">
                                                                                             Select the list to which you want to add the
                                                                                             influencer.
                                                                                         </div>
-                                                                                        {listData.map((item) =>
-                                                                                            <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                                {item.listName}
-                                                                                            </div>
-                                                                                        )}
+                                                                                        <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                                                                            {listData.map((item) =>
+                                                                                                <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                    {item.listName}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </div>
                                                                                     </div>
                                                                                 </section>
                                                                                 : null

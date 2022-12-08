@@ -131,7 +131,11 @@ function Lists() {
 
     useEffect(() => {
         getListData();
-    }, [newPlanClicked, listDeleted]);
+    }, [newPlanClicked]);
+
+    useEffect(() => {
+        getListData();
+    }, [listDeleted]);
 
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();

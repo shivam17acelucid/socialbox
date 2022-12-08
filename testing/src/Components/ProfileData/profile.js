@@ -6,7 +6,11 @@ import NFormatter from "../../Common/NumberFormatter/numFormatter";
 import TopBar from '../../Common/TopBar/index';
 import SideBar from '../../Common/Sidebar/sidebar';
 import Testing from '../../Assets/Images/testing.png'
+import LikeIcon from '../../Assets/Images/likeIcon.png'
+import CommentIcon from '../../Assets/Images/commentIcon.png'
+import ViewIcon from '../../Assets/Images/viewIcon.png'
 import { MdAdd } from 'react-icons/md';
+import { AiOutlineHeart, AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
 
 const ProfileData = () => {
     const [influencersData, setInfluencersData] = useState([]);
@@ -85,9 +89,12 @@ const ProfileData = () => {
                                             <div className="profile_user_location">
                                                 {data.city_name}
                                             </div>
-                                            <div className="profile_category">
-                                                {data.category_enum}
-                                            </div>
+                                            {
+                                                data.category_enum ?
+                                                    <div className="profile_category">
+                                                        {data.category_enum}
+                                                    </div> : null
+                                            }
                                             <div>
                                                 <Button onClick={handleAddList}><MdAdd />Add To My List</Button>
                                                 {
@@ -143,6 +150,60 @@ const ProfileData = () => {
                                 </div>
                                 <div className="profile_posts">
                                     <div className="recent_posts_title">Recent Posts</div>
+                                    <div className="image1">
+                                        <img src={Testing} className="recent_post_preview" />
+                                        {/* <img src={data.edge_owner_to_timeline_media.edges[1].node.display_url} /> */}
+                                        <div className="like_comment_view_box">
+                                            <div className="value_box">
+                                                <AiOutlineHeart />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.edge_liked_by.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineComment />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.edge_media_to_comment.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineEye />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.video_view_count}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="image1">
+                                        <img src={Testing} className="recent_post_preview" />
+                                        {/* <img src={data.edge_owner_to_timeline_media.edges[2].node.display_url} /> */}
+                                        <div className="like_comment_view_box">
+                                            <div className="value_box">
+                                                <AiOutlineHeart />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.edge_liked_by.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineComment />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.edge_media_to_comment.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineEye />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.video_view_count}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="image1">
+                                        <img src={Testing} className="recent_post_preview" />
+                                        {/* <img src={data.edge_owner_to_timeline_media.edges[3].node.display_url} /> */}
+                                        <div className="like_comment_view_box">
+                                            <div className="value_box">
+                                                <AiOutlineHeart />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.edge_liked_by.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineComment />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.edge_media_to_comment.count}</span>
+                                            </div>
+                                            <div className="value_box">
+                                                <AiOutlineEye />
+                                                <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.video_view_count}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )

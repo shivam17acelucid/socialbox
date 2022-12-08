@@ -87,7 +87,7 @@ html {
             }
 
             .profile_info_bar {
-                padding-top: 6rem;
+                padding-top: 8rem;
 
                 .profile_info_bar_collection {
                     display: flex;
@@ -119,6 +119,7 @@ html {
                             align-items: flex-end;
                             text-align: center;
                             color: rgba(0, 0, 0, 0.6);
+                            margin-left: 0;
                         }
                     }
 
@@ -140,7 +141,7 @@ html {
         }
 
         .profile_posts {
-            padding-top: 2rem;
+            padding: 2rem;
             text-align: center;
 
             .recent_posts_title {
@@ -150,6 +151,52 @@ html {
                 font-size: 20px;
                 line-height: 27px;
                 color: #000000;
+            }
+
+            .image1 {
+                padding: 1rem;
+                display: flex;
+
+                .recent_post_preview {
+                    height: 10rem;
+                }
+
+                .like_comment_view_box {
+                    display: flex;
+                    flex-direction: column;
+                    align-content: center;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding-left: 1rem;
+
+                    img {
+                        height: 20px;
+                    }
+
+                    .value_box {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        color: #000000;
+
+                        .like_comment_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            display: flex;
+                            align-items: flex-end;
+                            text-align: center;
+                            color: #000000;
+                        }
+                    }
+                }
             }
         }
 

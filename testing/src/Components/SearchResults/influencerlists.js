@@ -307,10 +307,10 @@ const InfluencersList = () => {
             })
     }
 
-    useEffect(() => {
-        fetchProfiles();
-        getListData();
-    }, []);
+    // useEffect(() => {
+    //     fetchProfiles();
+    //     getListData();
+    // }, []);
 
     useEffect(() => {
         fetchProfiles();
@@ -499,6 +499,7 @@ const InfluencersList = () => {
     };
 
     const handleRedirectToResults = () => {
+        setAutoSuggestedData([])
         setRedirectedResult(!redirectedResult);
         navigate(`/influencerslist/${inputValue}`);
         setInputValue('');

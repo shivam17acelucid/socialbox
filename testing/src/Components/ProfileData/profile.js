@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import '../ProfileData/profile.scss';
 import Button from '@mui/material/Button';
 import NFormatter from "../../Common/NumberFormatter/numFormatter";
+import TopBar from '../../Common/TopBar/index';
+import SideBar from '../../Common/Sidebar/sidebar';
 
 const ProfileData = () => {
     const [influencersData, setInfluencersData] = useState([]);
@@ -56,64 +58,68 @@ const ProfileData = () => {
     }, []);
 
     return (
-        <div>
-            {
-                influencersData.map((data) => {
-                    console.log(influencersData)
-                    return (
-                        <div className="profile_container">
-                            <div className="profile_header">
-                                <div className="profile_pic">
-                                    <img src={data.profile_pic_url_hd} />
+        <div className="profile_container_box">
+            <SideBar />
+            <div style={{ width: '-webkit-fill-available' }}>
+                <TopBar />
+                {
+                    influencersData.map((data) => {
+                        console.log(influencersData)
+                        return (
+                            <div className="profile_container">
+                                <div className="profile_header">
+                                    <div className="profile_pic">
+                                        <img src={data.profile_pic_url_hd} />
+                                    </div>
+                                    <div className="profile_basic_info">
+                                        <div className="profile_username">
+                                            {data.username}
+                                        </div>
+                                        <div className="profile_name">
+                                            {data.full_name}
+                                        </div>
+                                        <div className="profile_user_location">
+                                            {data.city_name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="profile_basic_info">
-                                    <div className="profile_username">
-                                        {data.username}
-                                    </div>
-                                    <div className="profile_name">
-                                        {data.full_name}
-                                    </div>
-                                    <div className="profile_user_location">
-                                        {data.city_name}
+                                <div className="profile_info_bar">
+                                    <div className="profile_info_bar_collection">
+                                        <div>
+                                            <Button onClick={handleAddList}>Add To List</Button>
+                                            {
+                                                addToListClicked === true ?
+                                                    <section className="addList_div">
+                                                        <div className="addList_option">
+                                                            <div>To New List</div>
+                                                            <div>Recently Created Lists</div>
+                                                            {listData.map((value) =>
+                                                                <div className="list_options" onClick={() => { handleAddInfluencerToList(value, data) }}>
+                                                                    {value.listName}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </section> : ''
+                                            }
+                                        </div>
+                                        <div>{NFormatter(data.edge_followed_by.count)} Followers</div>
+                                        <div>{NFormatter(data.edge_felix_video_timeline.count + data.edge_owner_to_timeline_media.count)} Posts</div>
+                                        <div>{data.edge_owner_to_timeline_media['edges'][0].er} Engagement Rate</div>
+                                        <div>{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)} Average Likes</div>
+                                        <div>{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)} Average Comment</div>
+                                        <div>{NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)} Average Views</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="profile_info_bar">
-                                <div className="profile_info_bar_collection">
-                                    <div>
-                                        <Button onClick={handleAddList}>Add To List</Button>
-                                        {
-                                            addToListClicked === true ?
-                                                <section className="addList_div">
-                                                    <div className="addList_option">
-                                                        <div>To New List</div>
-                                                        <div>Recently Created Lists</div>
-                                                        {listData.map((value) =>
-                                                            <div className="list_options" onClick={() => { handleAddInfluencerToList(value, data) }}>
-                                                                {value.listName}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </section> : ''
-                                        }
-                                    </div>
-                                    <div>{NFormatter(data.edge_followed_by.count)} Followers</div>
-                                    <div>{NFormatter(data.edge_felix_video_timeline.count + data.edge_owner_to_timeline_media.count)} Posts</div>
-                                    <div>{data.edge_owner_to_timeline_media['edges'][0].er} Engagement Rate</div>
-                                    <div>{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)} Average Likes</div>
-                                    <div>{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)} Average Comment</div>
-                                    <div>{NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)} Average Views</div>
+                                <div className="profile_demography">
+                                </div>
+                                <div className="profile_posts">
+                                    Posts
                                 </div>
                             </div>
-                            <div className="profile_demography">
-                            </div>
-                            <div className="profile_posts">
-                                Posts
-                            </div>
-                        </div>
-                    )
-                })
-            }
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import './index.scss';
 import help from '../../Assets/Images/help.png';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-
+import UserIcon from '../../Assets/Images/userIcon.png'
 
 function TopBar() {
 
@@ -41,6 +41,7 @@ function TopBar() {
                 <div className="page_title">Home</div>
                 <div style={{ display: 'flex' }}>
                     <span className="topbar_help_icon"><img src={help} /></span>
+                    <img src={UserIcon} className="topbar_user_icon" />
                     <span className="topbar_username">{userName}</span>
                     <span style={{ marginRight: '4rem', cursor: 'pointer' }}><MdOutlineArrowDropDown onClick={handleShowProfileDropdown} /></span>
                 </div>

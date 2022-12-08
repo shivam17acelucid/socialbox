@@ -30,13 +30,14 @@ import ListIcon from '../../Assets/Images/listicon.png';
 import CostIcon from '../../Assets/Images/costicon.png';
 import CompareIcon from '../../Assets/Images/compareicon.png';
 import Slider from '@mui/material/Slider';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 
 const InfluencersList = () => {
 
     const [influencersData, setInfluencersData] = useState([]);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(8);
+    const [rowsPerPage, setRowsPerPage] = useState(7);
     const [showVerifiedInfluencers, setShowVerifiedInfluencers] = useState(false);
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
     const [category, setCategory] = useState('');
@@ -72,6 +73,10 @@ const InfluencersList = () => {
     const [rangeFollowers, setRangeFollowers] = useState([1000, 100000])
     const [rangeEr, setRangeEr] = useState([0, 20]);
     const [silderRolled, setSliderRolled] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [redirectedResult, setRedirectedResult] = useState(false);
+    const [suggestionsForInputActive, setSuggestionsForInputActive] = useState(false);
+    const [suggestions1, setSuggestions1] = useState([]);
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -308,6 +313,11 @@ const InfluencersList = () => {
     }, []);
 
     useEffect(() => {
+        fetchProfiles();
+        getListData();
+    }, [redirectedResult]);
+
+    useEffect(() => {
         getListData();
     }, [newPlanClicked]);
 
@@ -465,6 +475,64 @@ const InfluencersList = () => {
         );
     }
 
+    const handleInputChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setInputValue(query);
+        if (query.length > 1) {
+            const filterSuggestions = autoSuggestedData.filter(
+                (suggestion) =>
+                    suggestion.toLowerCase().indexOf(query) > -1
+            );
+            setSuggestions1(filterSuggestions);
+            setSuggestionsForInputActive(true);
+        } else {
+            setSuggestionsForInputActive(false);
+        }
+    }
+
+    const handleInfluencerClick = (e) => {
+        navigate(`/profile/${e.target.innerText}`);
+        setSuggestions1([]);
+        setInputValue('');
+        setSuggestionsForInputActive(false);
+    };
+
+    const handleRedirectToResults = () => {
+        setRedirectedResult(!redirectedResult);
+        navigate(`/influencerslist/${inputValue}`);
+        setInputValue('');
+        setSuggestions1([]);
+        setSuggestionsForInputActive(false);
+    }
+
+    const SuggestionsInfluencer = () => {
+        return (
+            <>
+                <div className="suggestions_influencer">
+                    <div style={{
+                        margin: '5px', padding: 0, fontFamily: 'Noto Sans',
+                        fontStyle: 'normal',
+                        fontWeight: 700,
+                        fontSize: '18px',
+                        lineHeight: '16px',
+                        color: 'rgba(0, 0, 0, 0.7)'
+                    }}>Influencers</div>
+                    {suggestions1.map((suggestion, index) => {
+                        return (
+                            <div
+                                className={index === setSuggestionsForInputActive ? "active_influencer" : ""}
+                                key={index}
+                                onClick={handleInfluencerClick}
+                            >
+                                {suggestion}
+                            </div>
+                        );
+                    })}
+                </div>
+            </>
+        );
+    };
+
     return (
         <div className="search_container">
             <div className="subcontainer">
@@ -474,6 +542,16 @@ const InfluencersList = () => {
                 <div className="search_content_list_panel">
                     <TopBar />
                     <div className="middle_pane">
+                        <div className="input_box_influencer">
+                            <Input
+                                type="text"
+                                placeholder='Search for influencers, categories...'
+                                value={inputValue}
+                                onChange={handleInputChange}
+                            />
+                            {suggestionsForInputActive && <SuggestionsInfluencer />}
+                            <AiOutlineSearch onClick={handleRedirectToResults} />
+                        </div>
                         <div className="filter_bar">
                             <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                             <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
@@ -653,8 +731,11 @@ const InfluencersList = () => {
                                                                             item.username == rowClickedData ?
                                                                                 <section className="addList_section" id={data.id}>
                                                                                     <div className="addList_option">
-                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
-                                                                                        <div>Recently Created Lists</div>
+                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
+                                                                                        <div className="section_list_title">
+                                                                                            Select the list to which you want to add the
+                                                                                            influencer.
+                                                                                        </div>
                                                                                         {listData.map((item) =>
                                                                                             <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
                                                                                                 {item.listName}
@@ -717,7 +798,7 @@ const InfluencersList = () => {
                                     <TableFooter>
                                         <TableRow>
                                             <TablePagination
-                                                rowsPerPageOptions={[8, 16, { label: 'All', value: -1 }]}
+                                                rowsPerPageOptions={[7, 14, { label: 'All', value: -1 }]}
                                                 colSpan={3}
                                                 count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterErClicked === true ? erBasedInfluencers.length : filterCategoryClicked === true ? categoryBasedInfluencers.length : filterFollowerClicked === true ? followersRangeBasedInfluencers.length : influencersData.length}
                                                 rowsPerPage={rowsPerPage}

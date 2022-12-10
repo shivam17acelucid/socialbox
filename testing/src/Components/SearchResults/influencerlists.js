@@ -587,12 +587,30 @@ const InfluencersList = () => {
                                                         <div className="followers_count">Maximum ER: {rangeEr[1]}</div>
                                                     </>
                                             }
-                                            <Button
-                                                color="primary"
-                                                onClick={filterByErRange}
-                                            >
-                                                Filter
-                                            </Button>
+                                            <div style={{
+                                                display: 'flex', justifyContent: 'space-between'
+                                            }}>
+                                                <Button
+                                                    color="primary"
+                                                    onClick={filterByErRange}
+                                                >
+                                                    Filter
+                                                </Button>
+                                                <Button
+                                                    color="primary"
+                                                    onClick={handleErFilterClicked}
+                                                    style={{
+                                                        background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                        fontWeight: 600,
+                                                        fontSize: '12px',
+                                                        lineHeight: '16px',
+                                                        textAlign: 'center',
+                                                        color: '#595959'
+                                                    }}
+                                                >
+                                                    Clear
+                                                </Button>
+                                            </div>
                                         </div>
                                     </section>
                                     :
@@ -607,12 +625,30 @@ const InfluencersList = () => {
                                                     value={category}
                                                     onChange={(e) => { setCategory(e.target.value) }}
                                                 />
-                                                <Button
-                                                    color="primary"
-                                                    onClick={filterCategory}
-                                                >
-                                                    Filter
-                                                </Button>
+                                                <div style={{
+                                                    display: 'flex', justifyContent: 'space-between'
+                                                }}>
+                                                    <Button
+                                                        color="primary"
+                                                        onClick={filterCategory}
+                                                    >
+                                                        Filter
+                                                    </Button>
+                                                    <Button
+                                                        color="primary"
+                                                        onClick={handleCategoryFilterClicked}
+                                                        style={{
+                                                            background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                            fontWeight: 600,
+                                                            fontSize: '12px',
+                                                            lineHeight: '16px',
+                                                            textAlign: 'center',
+                                                            color: '#595959'
+                                                        }}
+                                                    >
+                                                        Clear
+                                                    </Button>
+                                                </div>
                                             </div>
                                         </section>
                                         :
@@ -645,12 +681,30 @@ const InfluencersList = () => {
                                                                 <div className="followers_count">Maximum Followers Count: {rangeFollowers[1]}</div>
                                                             </>
                                                     }
-                                                    <Button
-                                                        color="primary"
-                                                        onClick={filterByFollowersRange}
-                                                    >
-                                                        Filter
-                                                    </Button>
+                                                    <div style={{
+                                                        display: 'flex', justifyContent: 'space-between'
+                                                    }}>
+                                                        <Button
+                                                            color="primary"
+                                                            onClick={filterByFollowersRange}
+                                                        >
+                                                            Filter
+                                                        </Button>
+                                                        <Button
+                                                            color="primary"
+                                                            onClick={handleFollowerFilterClicked}
+                                                            style={{
+                                                                background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                                fontWeight: 600,
+                                                                fontSize: '12px',
+                                                                lineHeight: '16px',
+                                                                textAlign: 'center',
+                                                                color: '#595959'
+                                                            }}
+                                                        >
+                                                            Clear
+                                                        </Button>
+                                                    </div>
                                                 </div>
                                             </section>
                                             : null

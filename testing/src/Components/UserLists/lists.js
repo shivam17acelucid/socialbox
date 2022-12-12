@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
-import { MdDelete, MdEdit } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import { Input } from 'reactstrap';
 import Topbar from "../../Common/TopBar/index";
 import deleteiconfilled from '../../Assets/Images/deleteiconfilled.png';
@@ -84,11 +84,12 @@ function UserLists() {
             })
     }
 
-    const handleUpdateDeliverables = (reel, post, story, igtv) => {
+    const handleUpdateDeliverables = (reel, post, story, igtv, listName) => {
+        let newListName = listName;
         const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ reel, post, story, igtv }),
+            body: JSON.stringify({ reel, post, story, igtv, description, newListName }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             }
@@ -96,6 +97,7 @@ function UserLists() {
             .then((res) => {
                 setIsDeliverablesEdited(true)
                 handleEditDeliverables();
+                navigate(`/userLists/${newListName}`)
             })
     }
 
@@ -216,7 +218,7 @@ function UserLists() {
                                                         </div>
                                                     </>
                                                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                                        <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv) }} className="update_btn">Update</Button>
+                                                        <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, listName) }} className="update_btn">Update</Button>
                                                         <Button onClick={handleEditDeliverables}>Cancel</Button>
                                                     </div>
                                                 </div>

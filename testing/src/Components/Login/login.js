@@ -51,13 +51,9 @@ function Login() {
     return (
         <div className="login_container">
             <div className="left_pane">
-                <img src={logo} className='social_logo' />
+                <img src={logo1} className='social_logo' />
                 <div className="welcome_heading">
-                    <div>Welcome back,</div>
-                    <div>Please Enter Your Details</div>
-                    <div className="social_login_btn">
-                        <img src={google} height="14px" /><span style={{ marginLeft: '12px' }}>Log in with Google</span>
-                    </div>
+                    <img src={logo} className='social_logo' />
                 </div>
                 <div className="login_form">
                     <input
@@ -77,7 +73,10 @@ function Login() {
                     />
                     {/* <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} /> */}
                     <span className="form_forgot_text">Forgot Password</span>
-                    <Button onClick={handleLogin}><span className="form_login_btn">Login</span></Button>
+                    <Button onClick={handleLogin}><span className="form_login_btn">Log in</span></Button>
+                    <div className="social_login_btn">
+                        <img src={google} height="14px" /><span style={{ marginLeft: '12px' }}>Log in with Google</span>
+                    </div>
                 </div>
                 <div className="signup_link">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>
                 <div className="signup_footer">

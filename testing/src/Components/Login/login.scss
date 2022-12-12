@@ -19,6 +19,7 @@ html {
 
         .social_logo {
             width: 10rem;
+            margin-top: 2rem;
         }
 
         .welcome_heading {
@@ -28,17 +29,18 @@ html {
             justify-content: center;
             align-items: center;
             padding-top: 6rem;
+
+            .social_logo {
+                width: 10rem;
+                margin-top: 0 !important;
+            }
         }
 
         .social_login_btn {
+            cursor: pointer;
             box-sizing: border-box;
             background: #FFFFFF;
             display: flex;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 17px;
             text-align: center;
             align-content: center;
             justify-content: center;
@@ -47,7 +49,13 @@ html {
             border: 1px solid #808080;
             border-radius: 5px;
             width: 20rem;
-            height: 2rem;
+            height: 2.54rem;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.4)
         }
 
         .login_form {
@@ -70,8 +78,9 @@ html {
                 box-sizing: border-box;
                 margin-top: 4px;
                 margin-bottom: 4px;
-                height: 2rem;
                 width: 20rem;
+                height: 2.5rem;
+                padding-left: 1rem;
             }
 
             .show_image {
@@ -91,15 +100,16 @@ html {
                 text-align: right;
                 color: #007DA8;
                 margin-left: 12rem;
+                cursor: pointer;
             }
 
             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                 margin-top: 1rem;
-                background: black;
+                background: #7662DC;
                 border-radius: 5px;
                 font-family: 'Inter';
                 font-style: normal;
-                font-size: 16px;
+                font-size: 18px;
                 line-height: 19px;
                 text-align: center;
                 color: #FFFFFF;
@@ -107,6 +117,8 @@ html {
                 border-radius: 5px;
                 box-sizing: border-box;
                 width: 20rem;
+                height: 2.5rem;
+                text-transform: none;
             }
         }
 
@@ -138,16 +150,18 @@ html {
         height: 100vh;
 
         .right_pane_top {
-            background-image: url(../../Assets/Images/signupbgss.png);
             height: 50%;
 
             .right_pane_text {
+                position: absolute;
+                top: 10%;
+                right: 25%;
                 font-family: 'Poppins';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 36px;
-                
+
                 color: #000000;
             }
         }

@@ -341,17 +341,126 @@ html {
                         .compare_section {
                             position: absolute;
                             z-index: 4;
-                            // bottom: 1%;
-                            left: 90%;
                             transform: translate(-50%, -50%);
                             background-color: white;
                             padding: 1rem 1.5rem;
-                            border-radius: 0.5rem;
+                            background: #FFFFFF;
+                            border: 1px solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            width: 400px;
+                            min-height: 363px;
+                            top: 72%;
+                            left: 85%;
 
+                            .close_btn {
+                                display: flex;
+                                justify-content: flex-end;
+                            }
 
-                            .auto_suggested_section {
+                            .compare_headers {
+                                font-family: 'Noto Sans';
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 16px;
+                                line-height: 22px;
+                                color: #000000;
+                            }
+
+                            .compare_title {
+                                font-family: 'Noto Sans';
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 14px;
+                                line-height: 19px;
+                                color: rgba(0, 0, 0, 0.7);
+                                margin-top: 1rem;
+                            }
+
+                            .compare_input {
+                                background: #FFFFFF;
+                                border: 1px solid rgba(0, 0, 0, 0.5);
+                                border-radius: 5px;
+                                width: 19rem;
+                                height: 36px;
+                                box-sizing: border-box;
+                                margin-top: 8px;
+                            }
+
+                            .suggestions {
+                                position: absolute;
+                                background: #FFFFFF;
+                                border: 1px solid rgba(0, 0, 0, 0.5);
+                                border-radius: 5px;
+                                z-index: 9999;
+                                width: 19rem;
+                                max-height: 150px;
                                 overflow-y: scroll;
-                                height: 40vh;
+
+                                .active_inf {
+                                    padding: 12px;
+                                }
+
+                                .non_active {
+                                    padding: 12px;
+                                }
+                            }
+
+                            .influencers_box {
+
+                                .added_influencer {
+                                    background: #D9D9D9;
+                                    border-radius: 10px;
+                                    width: 17rem;
+                                    display: flex;
+                                    align-content: center;
+                                    align-items: center;
+                                    padding: 12px;
+                                    justify-content: space-between;
+                                    margin-top: 8px;
+                                }
+
+                                .clear_all {
+                                    font-family: 'Noto Sans';
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    font-size: 14px;
+                                    line-height: 16px;
+                                    color: #007DA8;
+                                    margin-top: 8px;
+                                }
+
+                                .btn_pane {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    margin-top: 2rem;
+
+                                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                                        background: #7662DC;
+                                        border-radius: 3px;
+                                        font-family: 'Noto Sans';
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 12px;
+                                        line-height: 16px;
+                                        text-align: center;
+                                        color: #FFFFFF;
+                                        height: 2rem;
+                                    }
+
+                                    .clear_btn {
+                                        background: #D7D7D7;
+                                        border-radius: 3px;
+                                        font-family: 'Noto Sans';
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 12px;
+                                        line-height: 16px;
+                                        text-align: center;
+                                        color: #595959;
+                                    }
+                                }
                             }
                         }
                     }

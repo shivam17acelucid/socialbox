@@ -12,7 +12,7 @@ export const SidebarData = [
     },
     {
         title: 'My Lists',
-        path: '/userLists/Testing',
+        path: '/userLists/hey',
         icon: <MdIcons.MdOutlinePlaylistAddCheck />,
         cName: 'nav-text'
     },

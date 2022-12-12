@@ -452,6 +452,7 @@ exports.createList = (req, res, next) => {
 exports.editDeliverables = (req, res) => {
     let { listName } = req.query
     let { reel, post, story, igtv } = req.body;
+    let { newListName, description } = req.body;
 
     UserInfo.findById(req.params.id)
         .then((data) => {
@@ -477,6 +478,12 @@ exports.editDeliverables = (req, res) => {
                         data.list[abc].deliverables[3] = {
                             igtv: igtv,
                         }
+                    }
+                    if (newListName) {
+                        data.list[abc].listName = newListName;
+                    }
+                    if (description) {
+                        data.list[abc].description = description;
                     }
                 }
             });

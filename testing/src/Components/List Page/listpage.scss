@@ -15,7 +15,7 @@ html {
 
     .lists_content {
         display: flex;
-        width: -webkit-fill-available;
+        flex: 1;
         flex-direction: column;
 
         .middle_pane_lists {

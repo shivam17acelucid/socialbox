@@ -64,6 +64,7 @@ const InfluencersList = () => {
     const [influencer, setInfluencer] = useState([]);
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    // const [autoSuggestedWholeData, setAutoSuggestedWholeData] = useState([]);
     const [csvData, setCsvData] = useState('');
 
     const [suggestions, setSuggestions] = useState([]);
@@ -93,6 +94,23 @@ const InfluencersList = () => {
         setPage(0);
     };
 
+    const fetchAllData = () => {
+        const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        res.map((item) => {
+                            autoSuggestedArray.push(item.username)
+                            setAutoSuggestedData(autoSuggestedArray)
+                        })
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     const fetchProfiles = () => {
         const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
         fetch(url)
@@ -100,10 +118,6 @@ const InfluencersList = () => {
                 data.json()
                     .then((res) => {
                         setInfluencersData(res)
-                        res.map((item) => {
-                            autoSuggestedArray.push(item.username)
-                            setAutoSuggestedData(autoSuggestedArray)
-                        })
                     })
             })
             .catch((err) => {
@@ -313,6 +327,7 @@ const InfluencersList = () => {
     // }, []);
 
     useEffect(() => {
+        fetchAllData();
         fetchProfiles();
         getListData();
     }, [redirectedResult]);

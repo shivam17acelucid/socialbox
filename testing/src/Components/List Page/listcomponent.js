@@ -330,6 +330,9 @@ function Lists() {
                                                     <div className='list_view'>
                                                         <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
                                                     </div>
+                                                    <div className='inf_count'>
+                                                        {item.influencersData.length} Influencers
+                                                    </div>
                                                 </div>
                                             </div>
                                         )

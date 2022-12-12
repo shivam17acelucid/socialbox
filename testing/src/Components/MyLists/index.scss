@@ -229,6 +229,9 @@
 
         .list_footer {
             margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
             .list_view {
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
@@ -236,6 +239,16 @@
                     border-radius: 3px;
                     color: #fff;
                 }
+            }
+
+            .inf_count {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 16px;
+                text-align: right;
+                color: rgba(0, 0, 0, 0.9);
             }
         }
     }

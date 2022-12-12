@@ -127,6 +127,11 @@ function UserLists() {
 
     useEffect(() => {
         handleListClick();
+        fetchBasketsName();
+    }, [listname]);
+
+    useEffect(() => {
+        handleListClick();
     }, [isDataDeleted]);
 
     useEffect(() => {

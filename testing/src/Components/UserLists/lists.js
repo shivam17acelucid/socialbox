@@ -98,6 +98,12 @@ function UserLists() {
                 setIsDeliverablesEdited(true)
                 handleEditDeliverables();
                 navigate(`/userLists/${newListName}`)
+                setListName('');
+                setDescription('');
+                setReel(reel);
+                setPost(post);
+                setStory(story);
+                setIgtv(igtv);
             })
     }
 
@@ -124,6 +130,7 @@ function UserLists() {
     }, [isDataDeleted]);
 
     useEffect(() => {
+        listname = listName;
         handleListClick();
     }, [isDeliverablesEdited]);
 

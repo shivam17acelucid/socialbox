@@ -10,13 +10,14 @@ import LikeIcon from '../../Assets/Images/likeIcon.png'
 import CommentIcon from '../../Assets/Images/commentIcon.png'
 import ViewIcon from '../../Assets/Images/viewIcon.png'
 import { MdAdd } from 'react-icons/md';
-import { AiOutlineHeart, AiOutlineComment, AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineComment, AiOutlineEye, AiOutlineClose } from 'react-icons/ai';
 
 const ProfileData = () => {
     const [influencersData, setInfluencersData] = useState([]);
     const [addToListClicked, setAddToListClicked] = useState(false);
     const [listData, setListData] = useState([]);
     const [listInfluencerDetails, setListInfluencerDetails] = useState([]);
+    const [newPlanClicked, setNewPlanClicked] = useState(false);
 
     let { profilename } = useParams();
 
@@ -50,12 +51,13 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${data.listName}&username=${value.username}`
+        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
             .then((data) => { data.json() })
             .then((res) => {
+                setAddToListClicked(!addToListClicked)
             })
     }
 
@@ -66,11 +68,10 @@ const ProfileData = () => {
     return (
         <div className="profile_container_box">
             <SideBar />
-            <div style={{ width: '-webkit-fill-available' }}>
+            <div style={{ flex: 1 }}>
                 <TopBar />
                 {
                     influencersData.map((data) => {
-                        console.log(influencersData)
                         return (
                             <div className="profile_container">
                                 <div className="profile_header">
@@ -99,17 +100,24 @@ const ProfileData = () => {
                                                 <Button onClick={handleAddList}><MdAdd />Add To My List</Button>
                                                 {
                                                     addToListClicked === true ?
-                                                        <section className="addList_div">
+                                                        <section className="addList_section" id={data.id}>
                                                             <div className="addList_option">
-                                                                <div>To New List</div>
-                                                                <div>Recently Created Lists</div>
-                                                                {listData.map((value) =>
-                                                                    <div className="list_options" onClick={() => { handleAddInfluencerToList(value, data) }}>
-                                                                        {value.listName}
-                                                                    </div>
-                                                                )}
+                                                                <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddList}><AiOutlineClose /></div>
+                                                                <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
+                                                                <div className="section_list_title">
+                                                                    Select the list to which you want to add the
+                                                                    influencer.
+                                                                </div>
+                                                                <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                                    {listData.map((item) =>
+                                                                        <div className="list_options" onClick={() => { handleAddInfluencerToList(data, item) }}>
+                                                                            {item.listName}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
                                                             </div>
-                                                        </section> : ''
+                                                        </section>
+                                                        : ''
                                                 }
                                             </div>
                                         </div>

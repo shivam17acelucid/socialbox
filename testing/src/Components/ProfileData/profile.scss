@@ -71,6 +71,59 @@ html {
                     width: fit-content;
                 }
 
+                .addList_section {
+                    max-height: 350px;
+                    position: absolute;
+                    z-index: 4;
+                    padding: 12px;
+                    background: #FFFFFF;
+                    border: 1px solid RGB(0, 0, 0, 0.2);
+                    box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
+                    border-radius: 5px;
+                    top: 34%;
+                    left: 33%;
+
+                    .addList_option {
+                        max-height: 342px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 10px;
+                        border-radius: 8px;
+                        cursor: pointer;
+
+                        .section_dropdown_header {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+                        }
+
+                        .section_list_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.7);
+                            margin-top: 8px;
+                        }
+
+                        .list_options {
+                            font-family: 'Inter';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.8);
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                        }
+                    }
+                }
+
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                     background: #7662DC;
                     border-radius: 3px;

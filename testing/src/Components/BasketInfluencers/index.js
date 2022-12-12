@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import NFormatter from '../../Common/NumberFormatter/numFormatter';
 import { useNavigate, useParams } from "react-router-dom";
 import { MdAdd } from 'react-icons/md';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlineClose } from 'react-icons/ai';
 import { MdOutlineArrowDropUp } from 'react-icons/md';
 import { Input } from 'reactstrap';
 import TopBar from '../../Common/TopBar/index';
@@ -102,6 +102,7 @@ function BasketInfluencers() {
         })
             .then((data) => { data.json() })
             .then((res) => {
+                setAddToListTableClicked(!addToListTableClicked)
                 console.log(res)
             })
     }
@@ -329,7 +330,7 @@ function BasketInfluencers() {
                                                             </TableCell>
                                                             <TableCell align="center">{data.city_name}</TableCell>
                                                             <TableCell key={index} >
-                                                                <div style={{ display: 'flex' }}>
+                                                                <div style={{ display: 'flex', cursor: 'pointer' }}>
                                                                     <img src={CostIcon} style={{ marginLeft: '10px', marginRight: '10px' }} />
                                                                     <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '10px', marginRight: '10px' }} />
                                                                     {addToListTableClicked === true ?
@@ -337,13 +338,19 @@ function BasketInfluencers() {
                                                                             item.username == rowClickedData ?
                                                                                 <section className="addList_section" id={data.id}>
                                                                                     <div className="addList_option">
-                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>To New List <span><MdAdd /></span></div>
-                                                                                        <div>Recently Created Lists</div>
-                                                                                        {listData.map((item) =>
-                                                                                            <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                                {item.listName}
-                                                                                            </div>
-                                                                                        )}
+                                                                                        <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
+                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
+                                                                                        <div className="section_list_title">
+                                                                                            Select the list to which you want to add the
+                                                                                            influencer.
+                                                                                        </div>
+                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                                                            {listData.map((item) =>
+                                                                                                <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                    {item.listName}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </div>
                                                                                     </div>
                                                                                 </section>
                                                                                 : null

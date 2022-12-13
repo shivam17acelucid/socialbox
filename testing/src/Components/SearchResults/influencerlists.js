@@ -494,7 +494,19 @@ const InfluencersList = () => {
     }
 
     const handleCompareInfluencers = () => {
-        console.log(addToCompareData)
+        let params = '';
+        let result = ''
+        addToCompareData.map((item) => {
+            result += params.concat(params, `&influencers=${item.username}`)
+        })
+        const url = `http://localhost:4000/compareInfluencers?${result}`;
+        fetch(url)
+            .then((res) => {
+                res.json()
+                    .then((data) => {
+                        console.log(data)
+                    })
+            })
     }
 
     const handleInputChange = (e) => {

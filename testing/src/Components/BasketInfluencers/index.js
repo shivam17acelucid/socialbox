@@ -60,7 +60,6 @@ function BasketInfluencers() {
     const [influencer, setInfluencer] = useState([]);
     const [addToCompareClicked, setAddToCompareClicked] = useState(false);
     const [addToCompareData, setAddToCompareData] = useState([]);
-    const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
@@ -228,14 +227,25 @@ function BasketInfluencers() {
     }
 
     const handleRemoveInfluencer = (data) => {
-        // setRemoveInfluencerClicked(true);
         setAddToCompareData((current) => current.filter((item) =>
             item.username !== data.username
         ))
     }
 
     const handleCompareInfluencers = () => {
-        console.log(addToCompareData)
+        let params = '';
+        let result = ''
+        addToCompareData.map((item) => {
+            result += params.concat(params, `&influencers=${item.username}`)
+        })
+        const url = `http://localhost:4000/compareInfluencers?${result}`;
+        fetch(url)
+            .then((res) => {
+                res.json()
+                    .then((data) => {
+                        console.log(data)
+                    })
+            })
     }
 
     const fetchAllData = () => {

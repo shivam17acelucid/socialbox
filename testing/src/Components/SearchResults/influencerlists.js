@@ -60,7 +60,7 @@ const InfluencersList = () => {
     const [listInfluencersData, setListInfluencersData] = useState([]);
     const [rowClickedData, setRowClickedData] = useState('');
     const [addToCompareClicked, setAddToCompareClicked] = useState(false);
-    const [addToCompareData, setAddToCompareData] = useState('');
+    const [addToCompareData, setAddToCompareData] = useState([]);
     const [influencer, setInfluencer] = useState([]);
     const [removeInfluencerClicked, setRemoveInfluencerClicked] = useState(false);
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
@@ -390,13 +390,14 @@ const InfluencersList = () => {
     const handleAddToCompare = (data) => {
         const toggle = addToCompareClicked ? false : true;
         setAddToCompareClicked(toggle);
-        setAddToCompareData(data.username)
+        setAddToCompareData([{ username: data.username }])
     }
 
     const handleRemoveInfluencer = (data) => {
-        console.log(data)
-        setRemoveInfluencerClicked(true);
-        // addToCompareData.filter(e => e !== data.username);
+        // setRemoveInfluencerClicked(true);
+        setAddToCompareData((current) => current.filter((item) =>
+            item.username !== data.username
+        ))
     }
 
     const handleChange = (e) => {
@@ -419,6 +420,8 @@ const InfluencersList = () => {
         setSuggestions([]);
         setValue('');
         setSuggestionsActive(false);
+        setAddToCompareData([...addToCompareData, { username: e.target.innerText }])
+        console.log(addToCompareData)
     };
 
     const Suggestions = () => {
@@ -488,6 +491,10 @@ const InfluencersList = () => {
                 </IconButton>
             </div>
         );
+    }
+
+    const handleCompareInfluencers = () => {
+        console.log(addToCompareData)
     }
 
     const handleInputChange = (e) => {
@@ -825,50 +832,55 @@ const InfluencersList = () => {
                                                                         addToCompareClicked === true ?
 
                                                                             [data].map((item) =>
-                                                                                item.username === addToCompareData ?
-                                                                                    <div className="compare_section">
-                                                                                        <div className="close_btn"><AiOutlineClose onClick={() => handleAddToCompare()} /></div>
-                                                                                        <div className="compare_headers">
-                                                                                            Add to Compare
-                                                                                        </div>
-                                                                                        <div className="compare_title">
-                                                                                            Select the influencer(s) from your lists to
-                                                                                            add to the selection you want to compare. You may
-                                                                                            compare upto four influencers.
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="text"
-                                                                                            value={value}
-                                                                                            onChange={handleChange}
-                                                                                            className="compare_input    "
-                                                                                        />
-                                                                                        {suggestionsActive && <Suggestions />}
-                                                                                        <div className="influencers_box">
-                                                                                            <div className="added_influencer">
-                                                                                                {item.username} <span onClick={() => handleRemoveInfluencer(data)}><AiOutlineClose /></span>
-                                                                                            </div>
+                                                                                <div className="compare_section">
+                                                                                    <div className="close_btn"><AiOutlineClose onClick={() => handleAddToCompare()} /></div>
+                                                                                    <div className="compare_headers">
+                                                                                        Add to Compare
+                                                                                    </div>
+                                                                                    <div className="compare_title">
+                                                                                        Select the influencer(s) from results to
+                                                                                        add to the selection you want to compare. You may
+                                                                                        compare upto four influencers.
+                                                                                    </div>
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        value={value}
+                                                                                        onChange={handleChange}
+                                                                                        className="compare_input"
+                                                                                    />
+                                                                                    {suggestionsActive && <Suggestions />}
+                                                                                    <div className="influencers_box">
+                                                                                        <div style={{ overflowY: 'scroll', height: '20vh' }}>
                                                                                             {
-                                                                                                influencer.length > 0 ?
-                                                                                                    console.log(influencer)
-                                                                                                    // influencer.map((data) =>
-                                                                                                    //     console.log(data)
-                                                                                                    // )
+                                                                                                addToCompareData.length > 0 ?
+                                                                                                    <>
+                                                                                                        {/* <div className="added_influencer">
+                                                                                                                {addToCompareData[0].username} <span><AiOutlineClose onClick={() => { setAddToCompareData([]) }} /></span>
+                                                                                                            </div> */}
+                                                                                                        {
+                                                                                                            addToCompareData.map((data) =>
+                                                                                                                <div className="added_influencer">
+                                                                                                                    {data.username}<span><AiOutlineClose onClick={() => { handleRemoveInfluencer(data) }} /></span>
+                                                                                                                </div>
+                                                                                                            )
+                                                                                                        }
+                                                                                                    </>
                                                                                                     : null
                                                                                             }
-                                                                                            <div onClick={() => setAddToCompareData('')} className="clear_all">
-                                                                                                Clear all
-                                                                                            </div>
-                                                                                            <div className="btn_pane">
-                                                                                                <Button>
-                                                                                                    Compare Now
-                                                                                                </Button>
-                                                                                                <Button className="clear_btn">
-                                                                                                    Compare Later
-                                                                                                </Button>
-                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div onClick={() => setAddToCompareData([])} className="clear_all">
+                                                                                            Clear all
+                                                                                        </div>
+                                                                                        <div className="btn_pane">
+                                                                                            <Button onClick={handleCompareInfluencers}>
+                                                                                                Compare Now
+                                                                                            </Button>
+                                                                                            <Button className="clear_btn">
+                                                                                                Compare Later
+                                                                                            </Button>
                                                                                         </div>
                                                                                     </div>
-                                                                                    : null
+                                                                                </div>
                                                                             )
                                                                             : null
                                                                     }

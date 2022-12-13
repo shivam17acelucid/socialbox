@@ -83,6 +83,10 @@ ul {
 
 }
 
+.nav-text:hover {
+    background: #4D38B9;
+}
+
 .nav-text a {
     text-decoration: none;
     color: #f5f5f5;
@@ -130,6 +134,10 @@ span {
     font-weight: 700;
     font-size: 14px;
     line-height: 19px;
+}
+
+.nav-nested:hover {
+    background: #4D38B9;
 }
 
 .nav-nested a {

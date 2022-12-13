@@ -420,7 +420,12 @@ const InfluencersList = () => {
         setSuggestions([]);
         setValue('');
         setSuggestionsActive(false);
-        setAddToCompareData([...addToCompareData, { username: e.target.innerText }])
+        {
+            const abc = addToCompareData.find((item) => item.username === e.target.innerText)
+            if (!abc) {
+                setAddToCompareData([...addToCompareData, { username: e.target.innerText }])
+            }
+        }
         console.log(addToCompareData)
     };
 

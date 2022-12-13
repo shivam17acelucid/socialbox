@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import './index.scss';
 import help from '../../Assets/Images/help.png';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import UserIcon from '../../Assets/Images/userIcon.png'
+import { useNavigate, redirect } from 'react-router-dom';
+import UserIcon from '../../Assets/Images/userIcon.png';
 
 function TopBar() {
 
@@ -26,20 +26,22 @@ function TopBar() {
     }
 
     const handleLogout = () => {
-        let url = `http://localhost:4000/logout`;
-        fetch((url), {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
+        localStorage.clear();
+        // <redirect to='/login' />
+        // let url = `http://localhost:4000/logout`;
+        // fetch((url), {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8',
+        //     }
+        // })
     }
 
     return (
         <>
             <div className="topbar">
                 <div className="page_title">Home</div>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                     <span className="topbar_help_icon"><img src={help} /></span>
                     <img src={UserIcon} className="topbar_user_icon" />
                     <span className="topbar_username">{userName}</span>

@@ -21,7 +21,7 @@ html {
 
     .menu-bars {
         margin-left: 1rem;
-        font-size: 1.5rem;
+        // font-size: 1.5rem;
         background: none;
     }
 }
@@ -71,14 +71,14 @@ ul {
     align-items: center;
     list-style: none;
     height: 60px;
-    font-family: 'Poppins';
+    font-family: 'Noto Sans';
     font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
 
     span {
-        font-size: 18px;
+        font-size: 14px;
     }
 
 }
@@ -125,22 +125,26 @@ span {
     align-items: center;
     list-style: none;
     height: 60px;
-    font-family: 'Poppins';
+    font-family: 'Noto Sans';
     font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
 }
 
 .nav-nested a {
     text-decoration: none;
     color: #f5f5f5;
-    font-size: 1.25rem;
+    // font-size: 1.25rem;
     height: auto !important;
     display: block;
     align-items: center;
     padding: 0 16px;
     border-radius: 4px;
+
+    svg {
+        font-size: 18px;
+    }
 }
 
 .logo {

@@ -68,6 +68,8 @@ html {
 
 
                 .categorised_inf {
+                    padding-top: 1rem;
+                    padding-left: 1rem;
                     .categorised_heading {
                         font-family: 'Noto Sans';
                         font-style: normal;
@@ -144,7 +146,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 24px;
+                            font-size: 16px;
                             color: #000000;
                         }
 
@@ -172,10 +174,10 @@ html {
 
                         span {
                             height: 21px;
-                            font-family: 'Poppins';
+                            font-family: 'Noto sans';
                             font-style: normal;
-                            font-weight: 400;
-                            font-size: 14px;
+                            font-weight: 700;
+                            font-size: 10px;
                             line-height: 21px;
                             color: #FFFFFF;
                             flex: none;
@@ -364,7 +366,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 22px;
                 color: #000000;
             }
@@ -427,7 +429,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 16px;
+                        font-size: 12px;
                         line-height: 16px;
                         text-align: right;
                         color: rgba(0, 0, 0, 0.9);

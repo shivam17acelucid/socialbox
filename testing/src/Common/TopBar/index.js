@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './index.scss';
 import help from '../../Assets/Images/help.png';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
-import { useNavigate, redirect } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import UserIcon from '../../Assets/Images/userIcon.png';
 
 function TopBar() {
@@ -26,8 +26,8 @@ function TopBar() {
     }
 
     const handleLogout = () => {
+        <Link to='/login' />
         localStorage.clear();
-        // <redirect to='/login' />
         // let url = `http://localhost:4000/logout`;
         // fetch((url), {
         //     method: 'POST',
@@ -53,7 +53,7 @@ function TopBar() {
                     <div className="dropdown">
                         <div onClick={handleRedirectToProfileSettings} className="dropdown_title">Profile Settings</div>
                         <div onClick={handleRedireactToAbout} className="dropdown_title">About</div>
-                        <div onClick={handleLogout} className="dropdown_title">Logout</div>
+                        <div onClick={handleLogout} className="dropdown_title"><Link to='/login'>Logout</Link></div>
                     </div>
                     : null
             }

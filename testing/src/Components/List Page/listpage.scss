@@ -24,8 +24,8 @@ html {
 
             .list_headers {
                 display: flex;
-                align-items: center;
                 justify-content: center;
+                flex-direction: column;
 
                 .input_search {
                     width: 55rem;
@@ -57,10 +57,23 @@ html {
                 .list_toggler {
                     margin-left: 10rem;
                 }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    background: #FFFFFF;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    border-radius: 5px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: rgba(0, 0, 0, 0.7);
+                    text-transform: none;
+                }
             }
 
             .middle_pane_content {
-                padding-top: 2rem;
+                // padding-top: 1rem;
                 padding-left: 2rem;
                 overflow-y: scroll;
                 height: 74vh;

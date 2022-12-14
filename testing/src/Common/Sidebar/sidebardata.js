@@ -2,6 +2,7 @@ import React from "react";
 import * as AiIcons from 'react-icons/ai';
 import * as MdIcons from 'react-icons/md';
 const userId = localStorage.getItem('id');
+const listname = localStorage.getItem('newList')
 export const SidebarData = [
 
     {
@@ -12,7 +13,7 @@ export const SidebarData = [
     },
     {
         title: 'My Lists',
-        path: '/userLists/hey',
+        path: `/userLists/${listname}`,
         icon: <MdIcons.MdOutlinePlaylistAddCheck />,
         cName: 'nav-text'
     },

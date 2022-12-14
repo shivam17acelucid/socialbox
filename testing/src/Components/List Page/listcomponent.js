@@ -8,6 +8,7 @@ import { MdOutlineAddBox } from "react-icons/md";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
 import { MdDelete } from 'react-icons/md';
+import { BsFilterLeft } from 'react-icons/bs';
 import TopBar from '../../Common/TopBar';
 
 
@@ -86,6 +87,7 @@ function Lists() {
             .then((data) => {
                 setListInfluencerDetails(data)
                 setNewPlanClicked(false);
+                localStorage.setItem('newList', listName);
             })
     }
 
@@ -196,16 +198,22 @@ function Lists() {
                     <div style={{ display: 'flex' }}>
                         <div className='middle_pane_lists'>
                             <div className='list_headers'>
-                                <input
-                                    type="text"
-                                    value={value}
-                                    onChange={handleChange}
-                                    placeholder='Search for influencers, categories...'
-                                    className='input_search'
-                                />
-                                {suggestionsActive && <Suggestions />}
-                                {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
-                                <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <input
+                                        type="text"
+                                        value={value}
+                                        onChange={handleChange}
+                                        placeholder='Search for influencers, categories...'
+                                        className='input_search'
+                                    />
+                                    {suggestionsActive && <Suggestions />}
+                                    {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
+                                    <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8rem', paddingTop: '10px' }}>
+                                    <Button style={{ marginRight: '12px' }}>Followers count <BsFilterLeft /></Button>
+                                    <Button>Engagement % <BsFilterLeft /></Button>
+                                </div>
                             </div>
                             <div className='middle_pane_content'>
                                 <div className='categorised_inf'>

@@ -111,12 +111,12 @@ function CompareInfluencers() {
                                 }
                                 <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><FcLike /><span>{item.edge_owner_to_timeline_media.edges[0].avg_likes}</span></div>
-                                    <div className='profile_comment'><FcComments /><span>{item.edge_owner_to_timeline_media.edges[0].avg_comment}</span></div>
+                                    <div className='profile_like'><FcLike /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</span></div>
+                                    <div className='profile_comment'><FcComments /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</span></div>
                                 </div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><FcBinoculars /><span>{item.edge_felix_video_timeline.edges[0].averageReelView}</span></div>
-                                    <div className='profile_comment'><FcRating /><span>{item.edge_owner_to_timeline_media.edges[0].er}</span></div>
+                                    <div className='profile_like'><FcBinoculars /><span>{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</span></div>
+                                    <div className='profile_comment'><FcRating /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].er)}</span></div>
                                 </div>
                                 <div className='list_remove_pane'>
                                     <div>+Add to my List</div>
@@ -126,10 +126,26 @@ function CompareInfluencers() {
                                     <div className='recent_posts_title'>Recent Posts</div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
-                                        <div>
-                                            <div className='profile_like'><FcLike /><span>{item.edge_owner_to_timeline_media.edges[0].avg_likes}</span></div>
-                                            <div className='profile_comment'><FcComments /><span>{item.edge_owner_to_timeline_media.edges[0].avg_comment}</span></div>
-                                            <div className='profile_like'><FcBinoculars /><span>{item.edge_felix_video_timeline.edges[0].averageReelView}</span></div>
+                                        <div style={{ paddingLeft: '8px' }}>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
+                                        </div>
+                                    </div>
+                                    <div className='recent_post_box'>
+                                        <img src={Testing} />
+                                        <div style={{ paddingLeft: '8px' }}>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
+                                        </div>
+                                    </div>
+                                    <div className='recent_post_box'>
+                                        <img src={Testing} />
+                                        <div style={{ paddingLeft: '8px' }}>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
                                         </div>
                                     </div>
                                 </div>

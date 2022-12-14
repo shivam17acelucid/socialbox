@@ -35,12 +35,12 @@ export const SidebarData = [
         children: [
             {
                 title: "Influencers",
-                path: "/compareInfluencers",
+                path: "/CompareInfluencers",
                 cName: 'nav-nested',
             },
             {
                 title: "Lists",
-                path: "/compareLists",
+                path: "/CompareLists",
                 cName: 'nav-nested',
             }
         ]

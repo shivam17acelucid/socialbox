@@ -22,7 +22,7 @@ html {
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             width: 15rem;
-            height: max-content;
+            height: 58rem;
             margin-left: 1rem;
 
             .profile_container {
@@ -165,7 +165,7 @@ html {
             }
 
             .recent_posts {
-                padding: 20px;
+                padding: 20px 16px;
 
                 .recent_posts_title {
                     font-family: 'Noto Sans';
@@ -178,6 +178,8 @@ html {
 
                 .recent_post_box {
                     display: flex;
+                    align-items: center;
+                    padding: 12px 0;
 
                     img {
                         height: 100px;

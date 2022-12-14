@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './index.scss';
 import help from '../../Assets/Images/help.png';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import UserIcon from '../../Assets/Images/userIcon.png';
 
 function TopBar() {
@@ -11,6 +11,10 @@ function TopBar() {
     const userId = localStorage.getItem('id');
     const userName = localStorage.getItem('name');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    let TOPBAR_TEXTS = [{ page: `/home/${userId}`, text: "Home" }, { page: "/calculator", text: "Calculator" }, { page: "/influencerslist/", text: "Search Results" }, { page: "/basketInfluencers", text: "Influencer Bundle" }, { page: "/userLists", text: "List" }, { page: "/profile", text: "Influencer Profile" }, { page: `/updateprofile/${userId}`, text: "Profile Settings" }]
+    let textToShow = TOPBAR_TEXTS.find(el => location.pathname.includes(el.page))?.text
 
     const handleShowProfileDropdown = () => {
         let data = showDropDownSelected ? false : true;
@@ -40,7 +44,7 @@ function TopBar() {
     return (
         <>
             <div className="topbar">
-                <div className="page_title">Home</div>
+                <div className="page_title">{textToShow}</div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <span className="topbar_help_icon"><img src={help} /></span>
                     <img src={UserIcon} className="topbar_user_icon" />

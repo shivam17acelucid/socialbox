@@ -36,7 +36,7 @@ function Login() {
                     localStorage.setItem('id', data._id)
                     localStorage.setItem('name', data.name)
                     const userId = localStorage.getItem('id');
-                    navigate(`/welcome/${userId}`);
+                    navigate(`/home/${userId}`);
                     console.log(localStorage.getItem('id'))
                 }
             })

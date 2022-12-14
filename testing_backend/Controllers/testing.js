@@ -443,6 +443,7 @@ exports.createList = (req, res, next) => {
             }
             else {
                 data.list.push({ listName: listName, description: description, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }] })
+                data.lastListAdded = listName;
                 data.save();
                 res.json(data)
             }

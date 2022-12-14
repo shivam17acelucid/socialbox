@@ -48,6 +48,9 @@ let userinfoSchema = new Schema(
       deletedInfluencers: Array,
       createdAT: { type: Date, default: Date.now(), index: { expiresIn: 300 } }
     }],
+    lastListAdded: {
+      type: String,
+    },
     date: {
       type: Date,
     },

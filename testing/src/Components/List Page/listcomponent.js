@@ -211,8 +211,8 @@ function Lists() {
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8rem', paddingTop: '10px' }}>
-                                    <Button style={{ marginRight: '12px' }}>Followers count <BsFilterLeft /></Button>
-                                    <Button>Engagement % <BsFilterLeft /></Button>
+                                    <Button style={{ marginRight: '12px', minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }}>Followers count <BsFilterLeft /></Button>
+                                    <Button style={{ minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }}>Engagement % <BsFilterLeft /></Button>
                                 </div>
                             </div>
                             <div className='middle_pane_content'>

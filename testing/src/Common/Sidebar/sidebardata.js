@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as AiIcons from 'react-icons/ai';
 import * as MdIcons from 'react-icons/md';
 const userId = localStorage.getItem('id');
-const listname = localStorage.getItem('newList')
+const list = localStorage.getItem('listName')
+const lastListName = () => {
+    const url = `http://localhost:4000/getUserDetails/${userId}`;
+    fetch(url)
+        .then((res) => {
+            res.json()
+                .then((data) => {
+                    localStorage.setItem('listName', data.lastListAdded)
+                })
+        })
+}
+lastListName();
 export const SidebarData = [
 
     {
@@ -13,7 +24,7 @@ export const SidebarData = [
     },
     {
         title: 'My Lists',
-        path: `/userLists/${listname}`,
+        path: `/userLists/${list}`,
         icon: <MdIcons.MdOutlinePlaylistAddCheck />,
         cName: 'nav-text'
     },

@@ -12,14 +12,17 @@ html {
 
     .result_pane {
         display: flex;
-        padding: 2rem;
+        padding: 2rem; //need to find soln
+        overflow-x: scroll;
+        overflow-y: scroll;
+        height: 85vh;
 
         .results {
             background: #FFFFFF;
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             width: 15rem;
-            height: 600px;
+            height: max-content;
             margin-left: 1rem;
 
             .profile_container {
@@ -30,6 +33,156 @@ html {
                 .image {
                     width: 10rem;
                     height: 10rem;
+                }
+            }
+
+            .profile_name {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 33px;
+                text-align: center;
+                color: #000000;
+                cursor: pointer;
+                padding: 10px 16px;
+            }
+
+            .profile_username {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                text-align: center;
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            .profile_location {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 19px;
+                text-align: center;
+                color: rgba(0, 0, 0, 0.8);
+
+            }
+
+            .profile_category {
+                background: #4D38B9;
+                border-radius: 3px;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 16px;
+                text-align: center;
+                color: #FFFFFF;
+                padding: 10px;
+            }
+
+            .profile_followers {
+                padding: 10px 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                text-align: center;
+                color: #000000;
+
+                svg {
+                    height: 2rem;
+                    width: 2rem;
+                }
+            }
+
+            .like_comment_box {
+                display: flex;
+                justify-content: space-evenly;
+                padding: 10px;
+
+                .profile_like {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        display: flex;
+                        align-items: flex-end;
+                        text-align: center;
+                        color: #000000;
+                    }
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
+                .profile_comment {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        display: flex;
+                        align-items: flex-end;
+                        text-align: center;
+                        color: #000000;
+                    }
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
+            }
+
+            .list_remove_pane {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-around;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 19px;
+                color: #007DA8;
+            }
+
+            .recent_posts {
+                padding: 20px;
+
+                .recent_posts_title {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+
+                .recent_post_box {
+                    display: flex;
+
+                    img {
+                        height: 100px;
+                        width: 100px;
+                    }
                 }
             }
 

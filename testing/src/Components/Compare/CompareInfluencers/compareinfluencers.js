@@ -4,7 +4,10 @@ import Navbar from '../../../Common/Sidebar/sidebar'
 import './cpinf.scss';
 import Topbar from '../../../Common/TopBar/index';
 import Testing from '../.././../Assets/Images/testing.png';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { HiOutlineUser } from 'react-icons/hi';
+import { FcLike, FcComments, FcBinoculars, FcRating } from 'react-icons/fc';
+import NFormatter from '../../../Common/NumberFormatter/numFormatter';
 
 function CompareInfluencers() {
 
@@ -14,6 +17,7 @@ function CompareInfluencers() {
     const [influencersArray, setInfluencersArray] = useState([]);
     const [comparedInfluencersData, setComparedInfluencersData] = useState([]);
     const params = useParams();
+    const navigate = useNavigate();
 
     // const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
     //     setComparedInfluencersData([]);
@@ -43,6 +47,10 @@ function CompareInfluencers() {
         //     })
     }
 
+    const redirectToProfile = (item) => {
+        navigate(`/profile/${item.username}`)
+    }
+
     const handleCompareInfluencersByParams = () => {
         let query = params.influencers.substring(1);
         const url = `http://localhost:4000/compareInfluencers?${query}`;
@@ -63,7 +71,7 @@ function CompareInfluencers() {
     return (
         <div className='compare_influencers_container'>
             <Navbar />
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, width: '100vh' }}>
                 <Topbar />
                 {/* <div className='input_fields'>
                     <input
@@ -90,18 +98,47 @@ function CompareInfluencers() {
                                 <div className='profile_container'>
                                     <img src={Testing} className='image' />
                                 </div>
-                                <div>Influencer Name</div>
-                                <div>Followers</div>
-                                <div>Engagement Rate</div>
-                                <div>Average Like</div>
-                                <div>Average Comment</div>
-                                <div>Average Reach</div>
+                                <div className='profile_name' onClick={() => { redirectToProfile(item) }}>{item.full_name}</div>
+                                <div className='profile_username'>@{item.username}</div>
+                                <div className='profile_location'>{item.city_name}</div>
+                                {
+                                    item.category_enum ?
+
+                                        <div style={{ padding: '12px' }}>
+                                            <div className='profile_category'>{item.category_enum}</div>
+                                        </div>
+                                        : null
+                                }
+                                <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
+                                <div className='like_comment_box'>
+                                    <div className='profile_like'><FcLike /><span>{item.edge_owner_to_timeline_media.edges[0].avg_likes}</span></div>
+                                    <div className='profile_comment'><FcComments /><span>{item.edge_owner_to_timeline_media.edges[0].avg_comment}</span></div>
+                                </div>
+                                <div className='like_comment_box'>
+                                    <div className='profile_like'><FcBinoculars /><span>{item.edge_felix_video_timeline.edges[0].averageReelView}</span></div>
+                                    <div className='profile_comment'><FcRating /><span>{item.edge_owner_to_timeline_media.edges[0].er}</span></div>
+                                </div>
+                                <div className='list_remove_pane'>
+                                    <div>+Add to my List</div>
+                                    <div>Remove</div>
+                                </div>
+                                <div className='recent_posts'>
+                                    <div className='recent_posts_title'>Recent Posts</div>
+                                    <div className='recent_post_box'>
+                                        <img src={Testing} />
+                                        <div>
+                                            <div className='profile_like'><FcLike /><span>{item.edge_owner_to_timeline_media.edges[0].avg_likes}</span></div>
+                                            <div className='profile_comment'><FcComments /><span>{item.edge_owner_to_timeline_media.edges[0].avg_comment}</span></div>
+                                            <div className='profile_like'><FcBinoculars /><span>{item.edge_felix_video_timeline.edges[0].averageReelView}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         )
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default CompareInfluencers;

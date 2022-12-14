@@ -9,4 +9,30 @@ html {
 
 .compare_influencers_container {
     display: flex;
+
+    .result_pane {
+        display: flex;
+        padding: 2rem;
+
+        .results {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            width: 15rem;
+            height: 600px;
+            margin-left: 1rem;
+
+            .profile_container {
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+
+                .image {
+                    width: 10rem;
+                    height: 10rem;
+                }
+            }
+
+        }
+    }
 }

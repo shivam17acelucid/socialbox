@@ -504,14 +504,15 @@ const InfluencersList = () => {
         addToCompareData.map((item) => {
             result += params.concat(params, `&influencers=${item.username}`)
         })
-        const url = `http://localhost:4000/compareInfluencers?${result}`;
-        fetch(url)
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        console.log(data)
-                    })
-            })
+        navigate(`/CompareInfluencers/${result}`)
+        // const url = `http://localhost:4000/compareInfluencers?${result}`;
+        // fetch(url)
+        //     .then((res) => {
+        //         res.json()
+        //             .then((data) => {
+        //                 console.log(data)
+        //             })
+        //     })
     }
 
     const handleInputChange = (e) => {

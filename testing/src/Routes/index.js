@@ -32,6 +32,7 @@ function RouteF() {
                     <Route path="/basketInfluencers/:categoryName" element={<BasketInfluencers />} />
                     <Route path="/userLists/:listname" element={<UserLists />} />
                     <Route path="/profile/:profilename" element={<ProfileData />} />
+                    <Route path="/CompareInfluencers/:influencers" element={<CompareInfluencers />} />
                     <Route path="/CompareInfluencers" element={<CompareInfluencers />} />
                     <Route path="/CompareLists" element={<CompareLists />} />
                     <Route path="/updateprofile/:id" element={<ProfileSettings />} />

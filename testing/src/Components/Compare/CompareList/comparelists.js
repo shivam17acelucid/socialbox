@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import TopBar from '../../../Common/TopBar';
 import './index.scss';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaRupeeSign } from 'react-icons/fa';
 
 function CompareLists() {
 
@@ -179,15 +180,40 @@ function CompareLists() {
                                 : null
                         }
                     </div>
-                    <div className='results'>
-                        <div>Number of Influencers</div>
-                        <div>Total Followers</div>
-                        <div>Total Reach</div>
-                        <div>Average ER</div>
-                        <div>Average Like</div>
-                        <div>Total Comments</div>
-                        <div>Total Costs</div>
-                    </div>
+                    {
+                        comparedlistsData.map((item) =>
+                            <div className='results'>
+                                <div className='listname'>{item.listName}</div>
+                                <div className='inf_count'>{item.totalInfluencers} Influencers</div>
+                                <div className='list_view'>View list </div>
+                                <div className='category'>
+                                    {item.totalCategory.map((data) =>
+                                        data !== null ?
+                                            <div className='category_box'>
+                                                {data}
+                                            </div>
+                                            : null
+
+
+                                    )
+                                    }
+                                </div>
+                                <div className='cost'><FaRupeeSign />Cost</div>
+                                <div className='detail_label'>Estimated Cost</div>
+                                <div className='followers_count'>{item.totalFollowers}</div>
+                                <div className='detail_label'>Total Followers</div>
+                                <div className='avg_like'>{item.totalAvgLike}</div>
+                                <div className='detail_label'>Average Likes</div>
+                                <div className='avg_comment'>{item.totalAvgComment}</div>
+                                <div className='detail_label'>Average Comment</div>
+                                <div className='avg_reach'>{item.totalReach}</div>
+                                <div className='detail_label'>Average Reach</div>
+                                <div className='avg_reach'>Er</div>
+                                <div className='detail_label'>Average ER</div>
+                                <div className='remove_btn'>Remove</div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

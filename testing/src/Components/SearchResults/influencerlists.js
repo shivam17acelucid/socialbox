@@ -501,11 +501,13 @@ const InfluencersList = () => {
     const handleCompareInfluencers = () => {
         let params = '';
         let result = ''
+        let string = ''
         addToCompareData.map((item) => {
             result += params.concat(params, `&influencers=${item.username}`)
+            string = result.substring(1);
         })
-        navigate(`/CompareInfluencers/${result}`)
-        // const url = `http://localhost:4000/compareInfluencers?${result}`;
+        navigate(`/CompareInfluencers/${string}`)
+        // const url = `http://localhost:4000/compareInfluencers?${string}`;
         // fetch(url)
         //     .then((res) => {
         //         res.json()

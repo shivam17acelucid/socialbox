@@ -44,15 +44,6 @@ function CompareInfluencers() {
     //         })
     // }
 
-    const handleCompareInfluencers = () => {
-        let result = ''
-        addToCompareData.map((item) => {
-            result += (`&influencers=${item.username}`)
-            navigate(`/CompareInfluencers/${params.influencers}${result}`)
-        })
-        handleAddToCompare();
-        setAddToCompareData([])
-    }
 
     const handleAddToListTable = (e) => {
         setResultClickedData(e.username)
@@ -88,12 +79,6 @@ function CompareInfluencers() {
     }
 
     const fetchAllData = () => {
-        // let query = params.influencers.substring(1);
-        // console.log(query)
-        // console.log(query.split('&influencers').length)
-        // for (let i = 0; i < query.split('&').length; i++) {
-        //     console.log(query.substring(query.indexOf('='), query.indexOf('&')))
-        // }
         const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
         fetch(url)
             .then((data) => {
@@ -160,7 +145,6 @@ function CompareInfluencers() {
     const handleAddToCompare = () => {
         const toggle = addToCompareClicked ? false : true;
         setAddToCompareClicked(toggle);
-        // setAddToCompareData([{ username: data.username }])
     }
 
     const handleRemoveInfluencer = (data) => {
@@ -169,12 +153,26 @@ function CompareInfluencers() {
         ))
     }
 
+    const handleCompareInfluencers = () => {
+        let result = ''
+        addToCompareData.map((item) => {
+            result += (`&influencers=${item.username}`)
+            {
+                JSON.stringify(params) !== '{}' ?
+                    navigate(`/CompareInfluencers/${params.influencers}${result}`)
+                    :
+                    navigate(`/CompareInfluencers/${result.substring(1)}`)
+            }
+        })
+        handleAddToCompare();
+        setAddToCompareData([])
+    }
 
 
     const handleCompareInfluencersByParams = () => {
         if (JSON.stringify(params) !== '{}') {
-            let query = params.influencers.substring(1);
-            const url = `http://localhost:4000/compareInfluencers?${query}`;
+            const url = `http://localhost:4000/compareInfluencers?${params.influencers}`;
+            console.log(url)
             fetch(url)
                 .then((res) => {
                     res.json()
@@ -184,7 +182,6 @@ function CompareInfluencers() {
                 })
         }
         else {
-            console.log("hey")
             setComparedInfluencersData([])
         }
 

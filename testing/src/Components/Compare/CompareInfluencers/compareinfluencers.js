@@ -4,7 +4,7 @@ import Navbar from '../../../Common/Sidebar/sidebar'
 import './cpinf.scss';
 import Topbar from '../../../Common/TopBar/index';
 import Testing from '../.././../Assets/Images/testing.png';
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { HiOutlineUser } from 'react-icons/hi';
 import { FcLike, FcComments, FcBinoculars, FcRating } from 'react-icons/fc';
 import NFormatter from '../../../Common/NumberFormatter/numFormatter';
@@ -12,10 +12,6 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 function CompareInfluencers() {
 
-    const [influencer1Name, setInfluencer1Name] = useState('');
-    const [influencer2Name, setInfluencer2Name] = useState('');
-    const [influencer3Name, setInfluencer3Name] = useState('');
-    const [influencersArray, setInfluencersArray] = useState([]);
     const [comparedInfluencersData, setComparedInfluencersData] = useState([]);
     const [paramsChanged, setParamsChanged] = useState(false);
     const [addToListTableClicked, setAddToListTableClicked] = useState(false);
@@ -198,24 +194,10 @@ function CompareInfluencers() {
             <Navbar />
             <div style={{ flex: 1, width: '100vh' }}>
                 <Topbar />
-                {/* <div className='input_fields'>
-                    <input
-                        type='text'
-                        value={influencer1Name}
-                        onChange={(e) => { setInfluencer1Name(e.target.value) }}
-                    />
-                    <input
-                        type='text'
-                        value={influencer2Name}
-                        onChange={(e) => { setInfluencer2Name(e.target.value) }}
-                    />
-                    <input
-                        type='text'
-                        value={influencer3Name}
-                        onChange={(e) => { setInfluencer3Name(e.target.value) }}
-                    />
-                    <Button onClick={() => { handleCompareInfluencers(influencer1Name, influencer2Name, influencer3Name, influencersArray) }}><span>Search</span></Button>
-                </div> */}
+                <div className='tabs'>
+                    <div className='inf_pane'><Link to='/CompareInfluencers'>Influencers</Link></div>
+                    <div className='list_pane'><Link to='/CompareLists'>Lists</Link></div>
+                </div>
                 <div className='result_pane'>
                     {
                         comparedInfluencersData.map((item) =>

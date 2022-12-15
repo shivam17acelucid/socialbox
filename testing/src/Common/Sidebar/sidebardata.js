@@ -31,19 +31,19 @@ export const SidebarData = [
     {
         title: 'Compare',
         icon: <MdIcons.MdCompare />,
-        cName: 'nav-nested',
-        children: [
-            {
-                title: "Influencers",
-                path: "/CompareInfluencers",
-                cName: 'nav-nested',
-            },
-            {
-                title: "Lists",
-                path: "/CompareLists",
-                cName: 'nav-nested',
-            }
-        ]
+        path: "/CompareInfluencers",
+        cName: 'nav-text',
+        // children: [
+        //     {
+        //         title: "Influencers",
+        //         cName: 'nav-nested',
+        //     },
+        //     {
+        //         title: "Lists",
+        //         path: "/CompareLists",
+        //         cName: 'nav-nested',
+        //     }
+        // ]
     },
     {
         title: 'Calculator',

@@ -10,14 +10,14 @@ import logo from '../../Assets/Images/logo.png';
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
-    const [expandCompare, setExpandCompare] = useState(false);
+    // const [expandCompare, setExpandCompare] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
-    const showExpandedMenu = (item) => {
-        if (item.title === 'Compare') {
-            setExpandCompare(!expandCompare);
-        }
-    }
+    // const showExpandedMenu = (item) => {
+    //     if (item.title === 'Compare') {
+    //         setExpandCompare(!expandCompare);
+    //     }
+    // }
 
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -35,18 +35,6 @@ function Navbar() {
                                 return (
                                     <li className={item.cName}>
                                         {
-                                            // expandCompare === true ?
-                                            //     item.title === 'Compare' ?
-                                            //         [item].map((data) =>
-                                            //             data.children.map((result) =>
-                                            //                 <Link to={result.path} >
-                                            //                     <span onClick={() => showExpandedMenu(item)}>{result.title}</span>
-                                            //                 </Link>
-                                            //             )
-
-                                            //         ) :
-                                            //         null
-                                            //     :
                                             sidebar === true ?
                                                 <Link to={item.path}>
                                                     {item.icon}
@@ -54,19 +42,27 @@ function Navbar() {
                                                 :
                                                 <Link to={item.path}>
                                                     {item.icon}
-                                                    <span onClick={() => showExpandedMenu(item)}>{item.title}</span>
-                                                    {item.title === 'Compare' ? <span onClick={() => showExpandedMenu(item)} className='sideicon'>{expandCompare === true ? <AiFillCaretDown /> : <AiFillCaretRight />}</span> : null}
-                                                    {expandCompare === true ?
-                                                        item.title === 'Compare' ?
+                                                    <span
+                                                    // onClick={() => showExpandedMenu(item)}
+                                                    >{item.title}</span>
+                                                    {/* {item.title === 'Compare' ? 
+                                                    <span onClick={() => showExpandedMenu(item)} className='sideicon'>{expandCompare === true ? <AiFillCaretDown /> : <AiFillCaretRight />}</span> : null} */}
+                                                    {/* {
+                                                    // expandCompare === true ?
+                                                    //     item.title === 'Compare' ?
                                                             [item].map((data) =>
                                                                 data.children.map((result) =>
                                                                     <Link to={result.path} className='nav-nested' >
-                                                                        <span onClick={() => showExpandedMenu(item)}>{result.title}</span>
+                                                                        <span 
+                                                                        // onClick={() => showExpandedMenu(item)}
+                                                                        >{result.title}</span>
                                                                     </Link>
                                                                 )
 
-                                                            ) :
-                                                            null : null}
+                                                            ) 
+                                                            // :
+                                                            // null : null
+                                                            } */}
                                                 </Link>
                                         }
 

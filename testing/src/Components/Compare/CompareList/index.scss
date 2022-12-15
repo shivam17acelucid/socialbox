@@ -274,6 +274,7 @@ html {
                 text-align: center;
                 color: RGB(0, 0, 0, 0.4);
                 padding-top: 12px;
+                padding-bottom: 40px;
             }
 
             .cost {
@@ -288,6 +289,45 @@ html {
                 color: #000000;
                 justify-content: center;
             }
+
+            .followers_count,
+            .avg_like,
+            .avg_comment,
+            .avg_reach {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 27px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #000000;
+                justify-content: center;
+            }
+
+            .remove_btn {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 19px;
+                color: #007DA8;
+                text-align: center;
+            }
+
+            .detail_label_last {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 14px;
+                text-align: center;
+                color: RGB(0, 0, 0, 0.4);
+                padding-top: 12px;
+                padding-bottom: 20px;
+            }
+
         }
     }
 }

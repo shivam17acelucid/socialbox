@@ -6,6 +6,9 @@ import TopBar from '../../../Common/TopBar';
 import './index.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaRupeeSign } from 'react-icons/fa';
+import { HiOutlineUser } from 'react-icons/hi';
+import { FcLike, FcComments, FcBinoculars, FcRating } from 'react-icons/fc';
+import NFormatter from '../../../Common/NumberFormatter/numFormatter';
 
 function CompareLists() {
 
@@ -126,6 +129,40 @@ function CompareLists() {
                     <div className='list_pane'><Link to='/CompareLists'>Lists</Link></div>
                 </div>
                 <div className='result_pane'>
+                    {
+                        comparedlistsData.map((item) =>
+                            <div className='results'>
+                                <div className='listname'>{item.listName}</div>
+                                <div className='inf_count'>{item.totalInfluencers} Influencers</div>
+                                <div className='list_view'>View list </div>
+                                <div className='category'>
+                                    {item.totalCategory.map((data) =>
+                                        data !== null ?
+                                            <div className='category_box'>
+                                                {data}
+                                            </div>
+                                            : null
+
+
+                                    )
+                                    }
+                                </div>
+                                <div className='cost'><FaRupeeSign />Cost</div>
+                                <div className='detail_label'>Estimated Cost</div>
+                                <div className='followers_count'><HiOutlineUser />{NFormatter(item.totalFollowers)}</div>
+                                <div className='detail_label'>Total Followers</div>
+                                <div className='avg_like'><FcLike />{NFormatter(item.totalAvgLike)}</div>
+                                <div className='detail_label'>Average Likes</div>
+                                <div className='avg_comment'><FcComments />{NFormatter(item.totalAvgComment)}</div>
+                                <div className='detail_label'>Average Comment</div>
+                                <div className='avg_reach'><FcBinoculars />{NFormatter(item.totalReach)}</div>
+                                <div className='detail_label'>Average Reach</div>
+                                <div className='avg_reach'><FcRating />Er</div>
+                                <div className='detail_label_last'>Average ER</div>
+                                <div className='remove_btn'>Remove</div>
+                            </div>
+                        )
+                    }
                     <div className='add_influencers'>
                         <div className='add_btn' onClick={() => handleAddToCompare()}>+</div>
                         <div className='add_inf' onClick={() => handleAddToCompare()}>Add Lists</div>
@@ -180,40 +217,6 @@ function CompareLists() {
                                 : null
                         }
                     </div>
-                    {
-                        comparedlistsData.map((item) =>
-                            <div className='results'>
-                                <div className='listname'>{item.listName}</div>
-                                <div className='inf_count'>{item.totalInfluencers} Influencers</div>
-                                <div className='list_view'>View list </div>
-                                <div className='category'>
-                                    {item.totalCategory.map((data) =>
-                                        data !== null ?
-                                            <div className='category_box'>
-                                                {data}
-                                            </div>
-                                            : null
-
-
-                                    )
-                                    }
-                                </div>
-                                <div className='cost'><FaRupeeSign />Cost</div>
-                                <div className='detail_label'>Estimated Cost</div>
-                                <div className='followers_count'>{item.totalFollowers}</div>
-                                <div className='detail_label'>Total Followers</div>
-                                <div className='avg_like'>{item.totalAvgLike}</div>
-                                <div className='detail_label'>Average Likes</div>
-                                <div className='avg_comment'>{item.totalAvgComment}</div>
-                                <div className='detail_label'>Average Comment</div>
-                                <div className='avg_reach'>{item.totalReach}</div>
-                                <div className='detail_label'>Average Reach</div>
-                                <div className='avg_reach'>Er</div>
-                                <div className='detail_label'>Average ER</div>
-                                <div className='remove_btn'>Remove</div>
-                            </div>
-                        )
-                    }
                 </div>
             </div>
         </div>

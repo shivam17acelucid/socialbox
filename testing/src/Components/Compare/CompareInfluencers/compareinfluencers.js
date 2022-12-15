@@ -21,9 +21,18 @@ function CompareInfluencers() {
     const [addToListTableClicked, setAddToListTableClicked] = useState(false);
     const [listData, setListData] = useState([]);
     const [resultClickedData, setResultClickedData] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [suggestionIndex, setSuggestionIndex] = useState(0);
+    const [suggestionsActive, setSuggestionsActive] = useState(false);
+    const [value, setValue] = useState('');
+    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    const [influencer, setInfluencer] = useState([]);
+    const [addToCompareClicked, setAddToCompareClicked] = useState(false);
+    const [addToCompareData, setAddToCompareData] = useState([]);
     const params = useParams();
     const navigate = useNavigate();
     const userId = localStorage.getItem('id');
+    let autoSuggestedArray = [];
 
     // const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
     //     setComparedInfluencersData([]);
@@ -35,26 +44,14 @@ function CompareInfluencers() {
     //         })
     // }
 
-    const handleCompareInfluencers = (influencersArray) => {
-        // setComparedInfluencersData([]);
-        // const url = `http://localhost:4000/compareInfluencers`;
-        // fetch(url)
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         setComparedInfluencersData(data);
-        //     })
-        // const url = `http://localhost:4000/compareInfluencers?${result}`;
-        // fetch(url)
-        //     .then((res) => {
-        //         res.json()
-        //             .then((data) => {
-        //                 console.log(data)
-        //             })
-        //     })
-    }
-
-    const handleAddInfluencer = () => {
-
+    const handleCompareInfluencers = () => {
+        let result = ''
+        addToCompareData.map((item) => {
+            result += (`&influencers=${item.username}`)
+            navigate(`/CompareInfluencers/${params.influencers}${result}`)
+        })
+        handleAddToCompare();
+        setAddToCompareData([])
     }
 
     const handleAddToListTable = (e) => {
@@ -90,6 +87,90 @@ function CompareInfluencers() {
         navigate(`/profile/${item.username}`)
     }
 
+    const fetchAllData = () => {
+        // let query = params.influencers.substring(1);
+        // console.log(query)
+        // console.log(query.split('&influencers').length)
+        // for (let i = 0; i < query.split('&').length; i++) {
+        //     console.log(query.substring(query.indexOf('='), query.indexOf('&')))
+        // }
+        const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
+        fetch(url)
+            .then((data) => {
+                data.json()
+                    .then((res) => {
+                        res.map((item) => {
+                            autoSuggestedArray.push(item.username)
+                            setAutoSuggestedData(autoSuggestedArray)
+                        })
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const handleChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setValue(query);
+        if (query.length > 1) {
+            const filterSuggestions = autoSuggestedData.filter(
+                (suggestion) =>
+                    suggestion.toLowerCase().indexOf(query) > -1
+            );
+            setSuggestions(filterSuggestions);
+            setSuggestionsActive(true);
+        } else {
+            setSuggestionsActive(false);
+        }
+    };
+
+    const handleClick = (e) => {
+        setInfluencer(e.target.innerText)
+        setSuggestions([]);
+        setValue('');
+        setSuggestionsActive(false);
+        {
+            const abc = addToCompareData.find((item) => item.username === e.target.innerText)
+            if (!abc) {
+                setAddToCompareData([...addToCompareData, { username: e.target.innerText }])
+            }
+        }
+        console.log(addToCompareData)
+    };
+
+    const Suggestions = () => {
+        return (
+            <div className="suggestions">
+                {suggestions.map((suggestion, index) => {
+                    return (
+                        <div
+                            className={index === suggestionIndex ? "active_inf" : "non_active"}
+                            key={index}
+                            onClick={handleClick}
+                        >
+                            {suggestion}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
+
+    const handleAddToCompare = () => {
+        const toggle = addToCompareClicked ? false : true;
+        setAddToCompareClicked(toggle);
+        // setAddToCompareData([{ username: data.username }])
+    }
+
+    const handleRemoveInfluencer = (data) => {
+        setAddToCompareData((current) => current.filter((item) =>
+            item.username !== data.username
+        ))
+    }
+
+
+
     const handleCompareInfluencersByParams = () => {
         if (JSON.stringify(params) !== '{}') {
             let query = params.influencers.substring(1);
@@ -112,6 +193,7 @@ function CompareInfluencers() {
     useEffect(() => {
         handleCompareInfluencersByParams();
         getListData();
+        fetchAllData();
     }, [params])
 
     return (
@@ -222,8 +304,61 @@ function CompareInfluencers() {
                         )
                     }
                     <div className='add_influencers'>
-                        <div className='add_btn' onClick={handleAddInfluencer}>+</div>
-                        <div className='add_inf' onClick={handleAddInfluencer}>Add Influencer</div>
+                        <div className='add_btn' onClick={() => handleAddToCompare()}>+</div>
+                        <div className='add_inf' onClick={() => handleAddToCompare()}>Add Influencer</div>
+                        {
+                            addToCompareClicked === true ?
+
+                                // [data].map((item) =>
+                                <div className="compare_section">
+                                    <div className="close_btn"><AiOutlineClose onClick={() => handleAddToCompare()} /></div>
+                                    <div className="compare_headers">
+                                        Add to Compare
+                                    </div>
+                                    <div className="compare_title">
+                                        Select the influencer(s) from results to
+                                        add to the selection you want to compare. You may
+                                        compare upto four influencers.
+                                    </div>
+                                    <input
+                                        type="text"
+                                        value={value}
+                                        onChange={handleChange}
+                                        className="compare_input"
+                                    />
+                                    {suggestionsActive && <Suggestions />}
+                                    <div className="influencers_box">
+                                        <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                            {
+                                                addToCompareData.length > 0 ?
+                                                    <>
+                                                        {
+                                                            addToCompareData.map((data) =>
+                                                                <div className="added_influencer">
+                                                                    {data.username}<span><AiOutlineClose onClick={() => { handleRemoveInfluencer(data) }} /></span>
+                                                                </div>
+                                                            )
+                                                        }
+                                                    </>
+                                                    : null
+                                            }
+                                        </div>
+                                        <div onClick={() => setAddToCompareData([])} className="clear_all">
+                                            Clear all
+                                        </div>
+                                        <div className="btn_pane">
+                                            <Button onClick={handleCompareInfluencers}>
+                                                Compare Now
+                                            </Button>
+                                            <Button className="clear_btn">
+                                                Compare Later
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                // )
+                                : null
+                        }
                     </div>
                 </div>
             </div>

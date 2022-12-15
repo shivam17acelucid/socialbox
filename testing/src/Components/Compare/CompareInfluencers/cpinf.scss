@@ -162,6 +162,59 @@ html {
                 font-size: 14px;
                 line-height: 19px;
                 color: #007DA8;
+
+                .addList_section {
+                    max-height: 350px;
+                    position: absolute;
+                    z-index: 4;
+                    padding: 12px;
+                    background: #FFFFFF;
+                    border: 1px solid RGB(0, 0, 0, 0.2);
+                    box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
+                    border-radius: 5px;
+                    top: 60%;
+                    left: 15%;
+
+                    .addList_option {
+                        max-height: 342px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 10px;
+                        border-radius: 8px;
+                        cursor: pointer;
+
+                        .section_dropdown_header {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+                        }
+
+                        .section_list_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.7);
+                            margin-top: 8px;
+                        }
+
+                        .list_options {
+                            font-family: 'Inter';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.8);
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                        }
+                    }
+                }
             }
 
             .recent_posts {
@@ -174,12 +227,14 @@ html {
                     font-size: 12px;
                     line-height: 16px;
                     color: rgba(0, 0, 0, 0.6);
+                    padding: 8px;
                 }
 
                 .recent_post_box {
                     display: flex;
                     align-items: center;
                     padding: 12px 0;
+                    justify-content: space-around;
 
                     img {
                         height: 100px;
@@ -188,6 +243,37 @@ html {
                 }
             }
 
+        }
+
+        .add_influencers {
+            background: #EBEBEB;
+            width: 15rem;
+            height: 58rem;
+            border-radius: 5px;
+            margin-left: 1rem;
+
+            .add_btn {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 128px;
+                line-height: 174px;
+                text-align: center;
+                margin-top: 12rem;
+                color: rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+            }
+
+            .add_inf {
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 19px;
+                text-align: center;
+                color: rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+            }
         }
     }
 }

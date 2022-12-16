@@ -228,7 +228,7 @@ function Lists() {
                                     {basketData.map((item) =>
                                         <div className='influencers_basket_box'>
                                             <div className='influencers_image'>
-                                                x
+                                                <img src={item.image} />
                                             </div>
                                             <div className='influencers_category_header'>
                                                 Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle

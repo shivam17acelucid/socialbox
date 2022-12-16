@@ -24,6 +24,7 @@ import ListIcon from '../../Assets/Images/listicon.png';
 import CostIcon from '../../Assets/Images/costicon.png';
 import CompareIcon from '../../Assets/Images/compareicon.png';
 import MyLists from '../MyLists';
+import Sport from '../../Assets/Images/sport.jpg'
 
 
 function BasketInfluencers() {
@@ -620,11 +621,11 @@ function BasketInfluencers() {
                                         </div>
                                         {basketData.map((item) =>
                                             <div className='bundle_box'>
-                                                <div className='influencers_image'>
-                                                    x
+                                                <img src={Sport} className='influencers_image' />
+                                                <div className='bundle_desc'>
+                                                    <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                    <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                 </div>
-                                                <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                             </div>)}
                                     </>
                             }

@@ -420,7 +420,7 @@ html {
             width: 100%;
             box-shadow: 0px 0 4px 0 #edecf4;
             z-index: 1 !important;
-            max-width: 280px;
+            max-width: 320px;
             background: #FBFBFB;
             border: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -451,50 +451,52 @@ html {
                 }
 
                 .bundle_box {
-                    margin: 2rem 0;
-                    padding: 1rem;
+                    display: flex;
+                    margin: 2rem 0 2rem 12px;
                     background: #FFFFFF;
                     box-shadow: 0px 2px 4px RGB(0 0 0 / 25%);
                     border-radius: 5px;
+                    width: 256px;
+                    height: 132px;
 
                     .influencers_image {
-                        box-sizing: border-box;
-                        width: 2rem;
-                        height: 2rem;
-                        border: 2px solid #FFFFFF;
-                        border-radius: 400px;
-                        background: black;
+                        img {
+                            height: 85px;
+                        }
+
+                        width: 100px;
                     }
 
-                    .bundle_title {
-                        font-size: 16px;
-                        line-height: 22px;
-                        display: flex;
-                        align-items: center;
-                        text-align: center;
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
-                    }
+                    .bundle_desc {
+                        padding: 16px;
 
-                    .bundle_btn {
-                        border-radius: 10px;
-                        width: 5rem;
-                        margin-top: 8px;
-                        cursor: pointer;
-                        background: #7662DC;
-                        border-radius: 3px;
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 14px;
-                        line-height: 14px;
-                        color: #FFFFFF;
-                        height: 2rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        .bundle_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+
+                        }
+
+                        .bundle_btn {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 10px;
+                            line-height: 14px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #FFFFFF;
+                            height: 2rem;
+                            width: 62px;
+                            background: #7662DC;
+                            border-radius: 3px;
+                            margin-top: 10px;
+                            margin-bottom: 20px;
+                        }
                     }
                 }
             }

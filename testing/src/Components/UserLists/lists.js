@@ -23,6 +23,7 @@ import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
 import MyLists from '../MyLists';
 import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
 import { Label } from 'reactstrap';
+import Sport from '../../Assets/Images/sport.jpg'
 
 
 function UserLists() {
@@ -384,11 +385,11 @@ function UserLists() {
                                             </div>
                                             {basketData.map((item) =>
                                                 <div className='bundle_box'>
-                                                    <div className='influencers_image'>
-                                                        x
+                                                    <img src={Sport} className='influencers_image' />
+                                                    <div className='bundle_desc'>
+                                                        <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                        <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                     </div>
-                                                    <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                    <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                 </div>)}
                                         </div>
                                         :

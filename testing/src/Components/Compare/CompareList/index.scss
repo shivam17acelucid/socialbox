@@ -11,29 +11,6 @@ html {
 .compare_lists_container {
     display: flex;
 
-    .tabs {
-        display: flex;
-
-        .inf_pane {
-            font-family: 'Noto Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 22px;
-            color: #4D38B9;
-            padding: 10px 4rem;
-        }
-
-        .list_pane {
-            font-family: 'Noto Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 22px;
-            color: #4D38B9;
-            padding: 10px;
-        }
-    }
 
     .result_pane {
         display: flex;

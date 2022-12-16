@@ -194,10 +194,6 @@ function CompareInfluencers() {
             <Navbar />
             <div style={{ flex: 1, width: '100vh' }}>
                 <Topbar />
-                <div className='tabs'>
-                    <div className='inf_pane'><Link to='/CompareInfluencers'>Influencers</Link></div>
-                    <div className='list_pane'><Link to='/CompareLists'>Lists</Link></div>
-                </div>
                 <div className='result_pane'>
                     {
                         comparedInfluencersData.map((item) =>

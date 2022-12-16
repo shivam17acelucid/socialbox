@@ -14,7 +14,7 @@ html {
     justify-content: space-between;
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    height: 4rem;
+    min-height: 4rem;
 
     .page_title {
         font-family: 'Noto Sans';
@@ -23,8 +23,20 @@ html {
         font-size: 20px;
         line-height: 27px;
         margin-left: 2rem;
+        padding-top: 16px;
 
         color: #000000;
+
+        .tab_text {
+            font-family: 'Noto Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: #4D38B9;
+            text-decoration: none;
+
+        }
     }
 
     .topbar_help_icon {

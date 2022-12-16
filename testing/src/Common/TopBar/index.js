@@ -44,7 +44,21 @@ function TopBar() {
     return (
         <>
             <div className="topbar">
-                <div className="page_title">{textToShow}</div>
+                <div className="page_title">
+                    {textToShow}
+                    {textToShow === 'Compare Influencers' || textToShow === 'Compare Lists' ?
+                        <div style={{ display: 'flex', paddingTop: '16px' }}>
+                            <div style={{ paddingLeft: '20px' }}>
+                                <Link to="/CompareInfluencers" className="tab_text">Influencers</Link>
+                            </div>
+                            <div style={{ paddingLeft: '56px' }}>
+                                <Link to="/CompareLists" className="tab_text">List</Link>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <span className="topbar_help_icon"><img src={help} /></span>
                     <img src={UserIcon} className="topbar_user_icon" />

@@ -12,6 +12,9 @@ let categorisedBasketSchema = new Schema(
         basket: {
             type: Array,
         },
+        image: {
+            type: String,
+        }
     },
     {
         timestamps: true,

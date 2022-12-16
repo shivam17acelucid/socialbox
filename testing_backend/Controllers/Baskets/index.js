@@ -3,6 +3,7 @@ const InfluencersData = require('../../Models/influencer_details');
 
 exports.createCategorizedBasket = (req, res) => {
     let { categoryName } = req.body;
+    let { image } = req.body;
 
     CategorizedBasket.findOne({ categoryName: categoryName })
         .then((data) => {
@@ -12,6 +13,7 @@ exports.createCategorizedBasket = (req, res) => {
             else {
                 const categorizedBasket = new CategorizedBasket({
                     categoryName: categoryName,
+                    image: image
                 })
                 categorizedBasket.save()
                     .then((response) => {

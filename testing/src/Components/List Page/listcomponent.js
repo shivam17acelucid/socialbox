@@ -10,6 +10,7 @@ import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
 import { MdDelete } from 'react-icons/md';
 import { BsFilterLeft } from 'react-icons/bs';
 import TopBar from '../../Common/TopBar';
+import Sport from '../../Assets/Images/sport.jpg'
 
 
 function Lists() {
@@ -228,16 +229,18 @@ function Lists() {
                                     {basketData.map((item) =>
                                         <div className='influencers_basket_box'>
                                             <div className='influencers_image'>
-                                                <img src={item.image} />
+                                                <img src={Sport} />
                                             </div>
-                                            <div className='influencers_category_header'>
-                                                Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
-                                            </div>
-                                            <div className='basket_p'>
-                                                Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
-                                            </div>
-                                            <div className='influencers_footer_btn'>
-                                                <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                            <div className='basket_right_pane'>
+                                                <div className='influencers_category_header'>
+                                                    Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                                </div>
+                                                <div className='basket_p'>
+                                                    Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                                </div>
+                                                <div className='influencers_footer_btn'>
+                                                    <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                </div>
                                             </div>
                                         </div>
                                     )}

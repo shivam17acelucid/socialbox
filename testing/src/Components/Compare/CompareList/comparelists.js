@@ -72,7 +72,7 @@ function CompareLists() {
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        if (query.length > 1) {
+        if (query.length > 0) {
             const filterSuggestions = autoSuggestedData.filter(
                 (suggestion) =>
                     suggestion.toLowerCase().indexOf(query) > -1
@@ -94,24 +94,28 @@ function CompareLists() {
                 setAddToCompareData([...addToCompareData, { listName: e.target.innerText }])
             }
         }
-        console.log(addToCompareData)
     };
 
     const Suggestions = () => {
         return (
-            <div className="suggestions">
-                {suggestions.map((suggestion, index) => {
-                    return (
-                        <div
-                            className={index === suggestionIndex ? "active_inf" : "non_active"}
-                            key={index}
-                            onClick={handleClick}
-                        >
-                            {suggestion}
-                        </div>
-                    );
-                })}
-            </div>
+            <>
+                <div className="suggestions">
+                    {suggestions.map((suggestion, index) => {
+                        return (
+                            <div
+                                className={index === suggestionIndex ? "active_inf" : "non_active"}
+                                key={index}
+                                onClick={handleClick}
+                            >
+                                {suggestion}
+                            </div>
+                        );
+                    })}
+                </div>
+                {/* <div className="suggestions">
+                    NO LISTS FOUND
+                </div> */}
+            </>
         );
     };
 
@@ -157,7 +161,7 @@ function CompareLists() {
                                 <div className='detail_label'>Average Comment</div>
                                 <div className='avg_reach'><FcBinoculars />{NFormatter(item.totalReach)}</div>
                                 <div className='detail_label'>Average Reach</div>
-                                <div className='avg_reach'><FcRating />Er</div>
+                                <div className='avg_reach'><FcRating />{item.averageEr}</div>
                                 <div className='detail_label_last'>Average ER</div>
                                 <div className='remove_btn'>Remove</div>
                             </div>

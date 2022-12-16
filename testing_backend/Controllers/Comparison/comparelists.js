@@ -78,6 +78,7 @@ exports.compareUsersLists = (req, res) => {
                 totalAvgComment = 0;
                 totalReach = 0;
                 totalCategory = [];
+                averageEr = 0;
                 totalInfluencers = response.influencersData.length;
                 let listname = response.listName
                 response.influencersData.forEach((dataa) => {
@@ -87,8 +88,9 @@ exports.compareUsersLists = (req, res) => {
                     totalAvgComment += dataa.edge_owner_to_timeline_media.edges[0].avg_comment / totalInfluencers;
                     totalReach += dataa.edge_felix_video_timeline.edges[0].totalReelView / totalInfluencers;
                     totalCategory.push(dataa.category_enum)
+                    averageEr += dataa.edge_owner_to_timeline_media.edges[0].er / totalInfluencers;
                 })
-                finalArray.push({ totalInfluencers: totalInfluencers, totalFollowers: totalFollowers, totalEngagment: totalEngagment, totalAvgLike: totalAvgLike, totalAvgComment: totalAvgComment, totalReach: totalReach, listName: listname, totalCategory: totalCategory })
+                finalArray.push({ totalInfluencers: totalInfluencers, totalFollowers: totalFollowers, totalEngagment: totalEngagment, totalAvgLike: totalAvgLike, totalAvgComment: totalAvgComment, totalReach: totalReach, listName: listname, totalCategory: totalCategory, averageEr: averageEr })
             })
             res.json(finalArray)
         })

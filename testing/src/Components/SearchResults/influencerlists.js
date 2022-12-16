@@ -838,19 +838,39 @@ const InfluencersList = () => {
                                                                                     <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
                                                                                     <div className='cost_box'>
                                                                                         <div>Reel</div>
-                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                        {
+                                                                                            data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.minTotalCost)} - Rs{NFormatter(data.costFactorReel.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorReel.influencerExactmaxTotalCost)}</div>
+                                                                                        }
                                                                                     </div>
                                                                                     <div className='cost_box'>
                                                                                         <div>Post</div>
-                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                        {
+                                                                                            data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.minTotalCost)} - Rs{NFormatter(data.costFactorPosts.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorPosts.influencerExactmaxTotalCost)}</div>
+                                                                                        }
                                                                                     </div>
                                                                                     <div className='cost_box'>
                                                                                         <div>Story</div>
-                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                        {
+                                                                                            data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.minTotalCost)} - Rs{NFormatter(data.costFactorStories.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorStories.influencerExactmaxTotalCost)}</div>
+                                                                                        }
                                                                                     </div>
                                                                                     <div className='cost_box'>
                                                                                         <div>Igtv</div>
-                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                        {
+                                                                                            data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.minTotalCost)} - Rs{NFormatter(data.costFactorIgtv.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorIgtv.influencerExactmaxTotalCost)}</div>
+                                                                                        }
                                                                                     </div>
                                                                                     <div className='modal_footer'>
                                                                                         To check a more accurate estimate, please contact +91 98765 43210

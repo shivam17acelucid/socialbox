@@ -1,9 +1,27 @@
 const CategorizedBasket = require('../../Models/categorised_basket');
 const InfluencersData = require('../../Models/influencer_details');
+const path = require("path");
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/");
+    },
+    filename: function (req, file, cb) {
+        let ext = path.extname(file.originalname);
+        cb(null, Date.now() + ext);
+    },
+});
 
+const upload = multer({
+    storage: storage,
+});
+
+(module.exports.upload = upload.single("image")),
+    (req, res, next) => {
+        next();
+    };
 exports.createCategorizedBasket = (req, res) => {
     let { categoryName } = req.body;
-    let { image } = req.body;
 
     CategorizedBasket.findOne({ categoryName: categoryName })
         .then((data) => {
@@ -13,13 +31,26 @@ exports.createCategorizedBasket = (req, res) => {
             else {
                 const categorizedBasket = new CategorizedBasket({
                     categoryName: categoryName,
-                    image: image
                 })
                 categorizedBasket.save()
                     .then((response) => {
                         res.status(200).json(response)
                     })
             }
+        })
+
+}
+
+exports.addImageToBasket = (req, res) => {
+    let { categoryName } = req.query;
+
+    CategorizedBasket.findOne({ categoryName: categoryName })
+        .then((data) => {
+            data.image = req.file.path;
+            data.save()
+                .then((response) => {
+                    res.status(200).json(response)
+                })
         })
 
 }

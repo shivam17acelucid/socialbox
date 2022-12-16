@@ -5,7 +5,7 @@ const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
-const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData } = require('../Controllers/Baskets/index');
+const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
 const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../controllers/rolehandler");
@@ -37,6 +37,7 @@ router.put('/deleteList/:id', deleteList);
 router.get('/compareCategorizedBaskets', compareCategorizedBaskets);
 router.get('/compareUsersLists/:id', compareUsersLists);
 router.post('/createCategorizedBasket', rolehandler.grantAccess("create", "categorizedInfluencers"), createCategorizedBasket);
+router.post('/addImageToBasket', upload, addImageToBasket)
 router.post('/addInfluencersToBasket', rolehandler.grantAccess("update", "categorizedInfluencers"), addInfluencersToBasket);
 router.get('/showCategorizedBasket', showCategorizedBasket);
 router.get('/showBasketInfluencers', showBasketInfluencers);

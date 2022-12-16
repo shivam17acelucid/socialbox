@@ -161,6 +161,75 @@ html {
                     }
                 }
 
+                .cost_modal {
+                    position: absolute;
+                    background: #FFFFFF;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 5px;
+                    width: 365px;
+                    height: 367px;
+                    top: 40%;
+                    left: 55%;
+
+                    .modal_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        padding: 16px 24px;
+                        color: #000000;
+                    }
+
+                    .modal_desc,
+                    .cost_box {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 19px;
+                        padding: 0 24px;
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+
+                    .cost_box {
+                        display: flex;
+                        padding: 8px 24px;
+
+                        .cost_value {
+                            padding-left: 8rem;
+                        }
+                    }
+
+                    .modal_footer {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 19px;
+                        padding: 0 24px;
+                        color: rgba(0, 0, 0, 0.7);
+                        padding: 24px 24px 0;
+
+                    }
+
+                    .close_btn {
+                        background: #D7D7D7;
+                        border-radius: 3px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 12px;
+                        line-height: 16px;
+                        text-align: center;
+                        color: #595959;
+                        width: 124px;
+                        height: 36px;
+                        margin: 16px 24px;
+                    }
+                }
+
                 .addList_section {
                     max-height: 350px;
                     position: absolute;

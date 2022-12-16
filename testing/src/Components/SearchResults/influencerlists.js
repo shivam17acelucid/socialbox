@@ -77,6 +77,8 @@ const InfluencersList = () => {
     const [redirectedResult, setRedirectedResult] = useState(false);
     const [suggestionsForInputActive, setSuggestionsForInputActive] = useState(false);
     const [suggestions1, setSuggestions1] = useState([]);
+    const [costModalOpened, setCostModalOpened] = useState(false);
+    const [costUser, setCostUser] = useState('');
 
     let { inputField } = useParams();
     let navigate = useNavigate();
@@ -318,6 +320,12 @@ const InfluencersList = () => {
                         setCsvData(data)
                     })
             })
+    }
+
+    const handleCostClicked = (e) => {
+        setCostUser(e.username)
+        let data = costModalOpened ? false : true;
+        setCostModalOpened(data)
     }
 
     // useEffect(() => {
@@ -821,7 +829,38 @@ const InfluencersList = () => {
                                                             <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
                                                             <TableCell key={index}>
                                                                 <div className="btn_display">
-                                                                    <img id={data.id} src={CostIcon} />
+                                                                    <img id={data.id} src={CostIcon} onClick={(e) => { handleCostClicked(data) }} />
+                                                                    {
+                                                                        costModalOpened === true ?
+                                                                            costUser === data.username ?
+                                                                                <div className='cost_modal'>
+                                                                                    <div className='modal_title'>Check Cost </div>
+                                                                                    <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Reel</div>
+                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                    </div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Post</div>
+                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                    </div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Story</div>
+                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                    </div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Igtv</div>
+                                                                                        <div className='cost_value'>: Rs</div>
+                                                                                    </div>
+                                                                                    <div className='modal_footer'>
+                                                                                        To check a more accurate estimate, please contact +91 98765 43210
+                                                                                    </div>
+                                                                                    <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
+                                                                                </div>
+                                                                                : null
+                                                                            :
+                                                                            null
+                                                                    }
                                                                     <img id={data.id} onClick={() => { handleAddToListTable(data) }} src={ListIcon} />
                                                                     {addToListTableClicked === true ?
                                                                         [data].map((item) =>

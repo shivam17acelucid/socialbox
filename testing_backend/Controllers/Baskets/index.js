@@ -46,7 +46,7 @@ exports.addImageToBasket = (req, res) => {
 
     CategorizedBasket.findOne({ categoryName: categoryName })
         .then((data) => {
-            data.image = req.file.path;
+            data.image = req.file.filename;
             data.save()
                 .then((response) => {
                     res.status(200).json(response)

@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(mongoSanitize());
 app.use(cors())
 app.use("/", Route);
+app.use("/uploads", express.static("./uploads"));
 
 /* mongodb connection */
 mongoose

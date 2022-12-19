@@ -9,6 +9,7 @@ html {
 
 .update_profile_container {
     display: flex;
+    background: #F8F8F8;
 
     .main_pane {
         width: 100%;
@@ -19,6 +20,16 @@ html {
 
             .pane1_3 {
                 padding: 2rem;
+
+                .avatar_title {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: rgba(0, 0, 0, 0.3);
+                }
             }
 
             .pane2_3 {
@@ -26,26 +37,60 @@ html {
                 flex-direction: column;
                 padding: 2rem;
 
+                .label_1 {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: rgba(0, 0, 0, 0.7);
+
+                }
+
+                .pane2_1 {
+                    display: flex;
+
+                    .update_input_fields {
+                        background: #FFFFFF;
+                        border: 1px solid rgba(0, 0, 0, 0.5);
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        height: 36px;
+                        width: 9rem;
+                        margin-top: 8px;
+                        margin-bottom: 8px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.4);
+                        padding-left: 12px;
+                        margin-right: 6px;
+                    }
+                }
+
                 .update_input_fields {
                     background: #FFFFFF;
                     border: 1px solid rgba(0, 0, 0, 0.5);
                     border-radius: 5px;
                     box-sizing: border-box;
-                    height: 3rem;
+                    height: 36px;
                     width: 18rem;
-                    margin-top: 12px;
-                    margin-bottom: 12px;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 19px;
                     color: rgba(0, 0, 0, 0.4);
+                    padding-left: 12px;
                 }
 
                 .btn_div {
                     display: flex;
-                    justify-content: space-evenly;
+                    justify-content: space-between;
                     padding-top: 2rem;
 
                     .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
@@ -58,6 +103,8 @@ html {
                         line-height: 16px;
                         text-align: center;
                         color: #FFFFFF;
+                        width: 124px;
+                        height: 36px;
                     }
 
                     .cancel_btn {
@@ -65,6 +112,42 @@ html {
                         border-radius: 3px;
                         color: #595959;
                     }
+                }
+            }
+
+
+            .pane3_3 {
+                display: flex;
+                flex-direction: column;
+                padding: 2rem;
+
+                .label_1 {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: rgba(0, 0, 0, 0.7);
+
+                }
+
+                .update_input_fields {
+                    background: #FFFFFF;
+                    border: 1px solid rgba(0, 0, 0, 0.5);
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    height: 36px;
+                    width: 18rem;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: rgba(0, 0, 0, 0.4);
+                    padding-left: 12px;
+                    margin-right: 6px;
                 }
             }
         }
@@ -76,7 +159,7 @@ html {
             font-size: 12px;
             line-height: 15px;
             color: rgba(0, 0, 0, 0.4);
-            padding-left: 2rem;
+            padding: 2rem;
         }
     }
 }

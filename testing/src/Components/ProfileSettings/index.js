@@ -20,9 +20,10 @@ function ProfileSettings() {
                 <div className='middle_pane'>
                     <div className='pane1_3'>
                         <img src={Profile} />
+                        <div className='avatar_title'>Change Avatar</div>
                     </div>
                     <div className='pane2_3'>
-                        <div>Personal Details</div>
+                        <div className='label_1'>Personal Details</div>
                         <Input
                             type='text'
                             placeholder='Name'
@@ -44,7 +45,7 @@ function ProfileSettings() {
                             onChange={(e) => { setMobile(e.target.value) }}
                             className="update_input_fields"
                         />
-                        <div>
+                        <div className='label_1' style={{ marginTop: '24px' }}>
                             Adress
                         </div>
                         <Input
@@ -62,25 +63,62 @@ function ProfileSettings() {
                             placeholder='Landmark (optional)'
                             className="update_input_fields"
                         />
-                        {/* <Input
+                        <Input
                             type='text'
                             placeholder='City / District'
                             className="update_input_fields"
-                        /> */}
-                        {/* <Input
-                            type='text'
-                            placeholder='State'
-                            className="update_input_fields"
                         />
-                        <Input
-                            type='text'
-                            placeholder='PIN'
-                            className="update_input_fields"
-                        /> */}
+                        <div className='pane2_1'>
+                            <Input
+                                type='text'
+                                placeholder='State'
+                                className="update_input_fields"
+                            />
+                            <Input
+                                type='text'
+                                placeholder='PIN'
+                                className="update_input_fields"
+                            />
+                        </div>
                         <div className='btn_div'>
                             <Button>Save</Button>
                             <Button className='cancel_btn'>Cancel</Button>
                         </div>
+                    </div>
+                    <div className='pane3_3'>
+                        <div className='label_1'>Company</div>
+                        <Input
+                            type='text'
+                            placeholder='Designation'
+                            className="update_input_fields"
+                        />
+                        <Input
+                            type='text'
+                            placeholder='Company'
+                            className="update_input_fields"
+                        />
+                        <Input
+                            type='text'
+                            placeholder='Website'
+                            className="update_input_fields"
+                        />
+
+                        <div className='label_1' style={{ paddingTop: '24px' }}>Social Media</div>
+                        <Input
+                            type='text'
+                            placeholder='Linked-in Profile'
+                            className="update_input_fields"
+                        />
+                        <Input
+                            type='text'
+                            placeholder='Linked-in Profile'
+                            className="update_input_fields"
+                        />
+                        <Input
+                            type='text'
+                            placeholder='Facebook Profile'
+                            className="update_input_fields"
+                        />
                     </div>
                 </div>
                 <div className='footer_pane'>

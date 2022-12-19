@@ -80,6 +80,7 @@ exports.compareUsersLists = (req, res) => {
                 totalCategory = [];
                 averageEr = 0;
                 totalInfluencers = response.influencersData.length;
+                totalCost = 0;
                 let listname = response.listName
                 response.influencersData.forEach((dataa) => {
                     totalFollowers += dataa.edge_followed_by.count;
@@ -89,8 +90,36 @@ exports.compareUsersLists = (req, res) => {
                     totalReach += dataa.edge_felix_video_timeline.edges[0].totalReelView / totalInfluencers;
                     totalCategory.push(dataa.category_enum)
                     averageEr += dataa.edge_owner_to_timeline_media.edges[0].er / totalInfluencers;
+                    {
+                        totalCost +=
+                            (dataa.costFactorIgtv.maxTotalCost
+                                ?
+                                dataa.costFactorIgtv.maxTotalCost * response.deliverables[3].igtv
+                                :
+                                dataa.costFactorIgtv.influencerExactmaxTotalCost * response.deliverables[3].igtv)
+                            +
+                            (dataa.costFactorStories.maxTotalCost ?
+                                dataa.costFactorStories.maxTotalCost * response.deliverables[2].story
+                                :
+                                dataa.costFactorStories.influencerExactmaxTotalCost * response.deliverables[2].story)
+                            +
+                            (dataa.costFactorPosts.maxTotalCost ?
+                                dataa.costFactorPosts.maxTotalCost * response.deliverables[1].post
+                                :
+                                dataa.costFactorPosts.influencerExactmaxTotalCost * response.deliverables[1].post)
+                            +
+                            (dataa.costFactorPosts.maxTotalCost ?
+                                dataa.costFactorPosts.maxTotalCost * response.deliverables[1].post
+                                :
+                                dataa.costFactorPosts.influencerExactmaxTotalCost * response.deliverables[1].post)
+                            +
+                            (dataa.costFactorReel.maxTotalCost ?
+                                dataa.costFactorReel.maxTotalCost * response.deliverables[0].reel
+                                :
+                                dataa.costFactorReel.influencerExactmaxTotalCost * response.deliverables[0].reel)
+                    }
                 })
-                finalArray.push({ totalInfluencers: totalInfluencers, totalFollowers: totalFollowers, totalEngagment: totalEngagment, totalAvgLike: totalAvgLike, totalAvgComment: totalAvgComment, totalReach: totalReach, listName: listname, totalCategory: totalCategory, averageEr: averageEr })
+                finalArray.push({ totalInfluencers: totalInfluencers, totalFollowers: totalFollowers, totalEngagment: totalEngagment, totalAvgLike: totalAvgLike, totalAvgComment: totalAvgComment, totalReach: totalReach, listName: listname, totalCategory: totalCategory, averageEr: averageEr, totalCost: totalCost })
             })
             res.json(finalArray)
         })

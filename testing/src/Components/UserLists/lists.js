@@ -385,7 +385,7 @@ function UserLists() {
                                             </div>
                                             {basketData.map((item) =>
                                                 <div className='bundle_box'>
-                                                    <img src={Sport} className='influencers_image' />
+                                                    <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
                                                     <div className='bundle_desc'>
                                                         <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
                                                         <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>

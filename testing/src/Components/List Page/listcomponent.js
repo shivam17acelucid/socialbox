@@ -229,7 +229,7 @@ function Lists() {
                                     {basketData.map((item) =>
                                         <div className='influencers_basket_box'>
                                             <div className='influencers_image'>
-                                                <img src={Sport} />
+                                                <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
                                             </div>
                                             <div className='basket_right_pane'>
                                                 <div className='influencers_category_header'>

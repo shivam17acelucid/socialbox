@@ -7,7 +7,7 @@ const Login = React.lazy(() => import("../Components/Login/login"));
 const Signup = React.lazy(() => import("../Components/Signup/signup"));
 const Lists = React.lazy(() => import("../Components/List Page/listcomponent"));
 const BasketInfluencers = React.lazy(() => import("../Components/BasketInfluencers/index"));
-const Calculator = React.lazy(() => import("../Components/Calculator/calculator"));
+const CalculateCost = React.lazy(() => import("../Components/Calculator/CalculateInfluencers/calculateinf"));
 const UserLists = React.lazy(() => import("../Components/UserLists/lists"));
 const CompareInfluencers = React.lazy(() => import("../Components/Compare/CompareInfluencers/compareinfluencers"));
 const CompareLists = React.lazy(() => import("../Components/Compare/CompareList/comparelists"));
@@ -26,7 +26,7 @@ function RouteF() {
                     <Route path="/home/:id" element={<Lists />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/calculator" element={<Calculator />} />
+                    <Route path="/calculate" element={<CalculateCost />} />
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                     <Route path="/basketInfluencers/:categoryName" element={<BasketInfluencers />} />

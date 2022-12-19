@@ -1,40 +1,22 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import Navbar from '../../../Common/Sidebar/sidebar';
+import Topbar from '../../../Common/TopBar/index';
 import './calculateinf.scss';
 
-function CalculateInfluencers() {
+function CalculateCost() {
 
-    const [influencerName, setInfluencerName] = useState('');
-
-    const handleCostInfluencer = () => {
-
-    }
 
     return (
-        <>
-            <div className='input_fields'>
-                <input
-                    type='text'
-                    value={influencerName}
-                    onChange={(e) => { setInfluencerName(e.target.value) }}
-                />
-                <Button onClick={() => { handleCostInfluencer(influencerName) }}><span>Search</span></Button>
-            </div>
-            <div className='result_pane'>
-                <div className='results'>
-                    <div>Influencer Name</div>
-                    <div>Followers</div>
-                    <div>Engagement Rate</div>
-                    <div>Average Like</div>
-                    <div>Average Comment</div>
-                    <div>Average Reach</div>
-                    <div>Deliverables</div>
-                    <div>Cost</div>
-                </div>
-                <div className='result_map_data'>
+        <div className='calculate_container'>
+            <Navbar />
+            <div className='middle_pane_calculate'>
+                <Topbar />
+                <div className='middle_pane_content'>
+
                 </div>
             </div>
-        </>
+        </div>
     )
 }
-export default CalculateInfluencers;
+export default CalculateCost;

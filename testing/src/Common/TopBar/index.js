@@ -13,7 +13,7 @@ function TopBar() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    let TOPBAR_TEXTS = [{ page: `/home/${userId}`, text: "Home" }, { page: "/CompareLists", text: "Compare Lists" }, { page: "/CompareInfluencers", text: "Compare Influencers" }, { page: "/influencerslist/", text: "Search Results" }, { page: "/basketInfluencers", text: "Influencer Bundle" }, { page: "/userLists", text: "List" }, { page: "/profile", text: "Influencer Profile" }, { page: `/updateprofile/${userId}`, text: "Profile Settings" }]
+    let TOPBAR_TEXTS = [{ page: `/home/${userId}`, text: "Home" }, { page: "/CompareLists", text: "Compare Lists" }, { page: "/CompareInfluencers", text: "Compare Influencers" }, { page: "/influencerslist/", text: "Search Results" }, { page: "/basketInfluencers", text: "Influencer Bundle" }, { page: "/userLists", text: "List" }, { page: "/profile", text: "Influencer Profile" }, { page: `/updateprofile/${userId}`, text: "Profile Settings" }, { page: `/calculate`, text: "Calculate Cost" }]
     let textToShow = TOPBAR_TEXTS.find(el => location.pathname.includes(el.page))?.text
 
     const handleShowProfileDropdown = () => {

@@ -39,6 +39,7 @@ function CompareLists() {
                 res.json()
                     .then((data) => {
                         setComparedlistsData(data)
+                        handleAddToCompare();
                     })
             })
     }

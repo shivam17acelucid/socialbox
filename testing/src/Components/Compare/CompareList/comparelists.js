@@ -148,7 +148,7 @@ function CompareLists() {
                                     )
                                     }
                                 </div>
-                                <div className='cost'><FaRupeeSign />Cost</div>
+                                <div className='cost'><FaRupeeSign />{NFormatter(item.totalCost)}</div>
                                 <div className='detail_label'>Estimated Cost</div>
                                 <div className='followers_count'><HiOutlineUser />{NFormatter(item.totalFollowers)}</div>
                                 <div className='detail_label'>Total Followers</div>

@@ -163,15 +163,15 @@ const ProfileData = () => {
                                         {/* <img src={data.edge_owner_to_timeline_media.edges[1].node.display_url} /> */}
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
-                                                <AiOutlineHeart />
+                                                <img src={LikeIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.edge_liked_by.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineComment />
+                                                <img src={CommentIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.edge_media_to_comment.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineEye />
+                                                <img src={ViewIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[1].node.video_view_count}</span>
                                             </div>
                                         </div>
@@ -181,15 +181,15 @@ const ProfileData = () => {
                                         {/* <img src={data.edge_owner_to_timeline_media.edges[2].node.display_url} /> */}
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
-                                                <AiOutlineHeart />
+                                                <img src={LikeIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.edge_liked_by.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineComment />
+                                                <img src={CommentIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.edge_media_to_comment.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineEye />
+                                                <img src={ViewIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[2].node.video_view_count}</span>
                                             </div>
                                         </div>
@@ -199,15 +199,15 @@ const ProfileData = () => {
                                         {/* <img src={data.edge_owner_to_timeline_media.edges[3].node.display_url} /> */}
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
-                                                <AiOutlineHeart />
+                                                <img src={LikeIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.edge_liked_by.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineComment />
+                                                <img src={CommentIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.edge_media_to_comment.count}</span>
                                             </div>
                                             <div className="value_box">
-                                                <AiOutlineEye />
+                                                <img src={ViewIcon} />
                                                 <span className="like_comment_value">{data.edge_owner_to_timeline_media.edges[3].node.video_view_count}</span>
                                             </div>
                                         </div>

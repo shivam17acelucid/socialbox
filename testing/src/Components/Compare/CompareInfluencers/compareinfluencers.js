@@ -6,8 +6,12 @@ import Topbar from '../../../Common/TopBar/index';
 import Testing from '../.././../Assets/Images/testing.png';
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { HiOutlineUser } from 'react-icons/hi';
-import { FcLike, FcComments, FcBinoculars, FcRating } from 'react-icons/fc';
+import { FcRating } from 'react-icons/fc';
 import NFormatter from '../../../Common/NumberFormatter/numFormatter';
+import LikeIcon from '../../../Assets/Images/likeIcon.png'
+import CommentIcon from '../../../Assets/Images/commentIcon.png'
+import ER from '../../../Assets/Images/er.png'
+import ViewIcon from '../../../Assets/Images/viewIcon.png'
 import { AiOutlineClose } from 'react-icons/ai';
 
 function CompareInfluencers() {
@@ -230,12 +234,12 @@ function CompareInfluencers() {
                                 }
                                 <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><FcLike /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</span></div>
-                                    <div className='profile_comment'><FcComments /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</span></div>
+                                    <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</span></div>
+                                    <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</span></div>
                                 </div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><FcBinoculars /><span>{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</span></div>
-                                    <div className='profile_comment'><FcRating /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].er)}</span></div>
+                                    <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</span></div>
+                                    <div className='profile_comment'><img src={ER} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].er)}</span></div>
                                 </div>
                                 <div className='list_remove_pane'>
                                     <div onClick={() => { handleAddToListTable(item) }}>+Add to my List</div>
@@ -269,25 +273,25 @@ function CompareInfluencers() {
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_liked_by.count)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_media_to_comment.count)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[1].node.video_view_count)}</div>
+                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_liked_by.count)}</span></div>
+                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_media_to_comment.count)}</span></div>
+                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[1].node.video_view_count)}</span></div>
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_liked_by.count)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_media_to_comment.count)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[2].node.video_view_count)}</div>
+                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_liked_by.count)}</span></div>
+                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_media_to_comment.count)}</span></div>
+                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[2].node.video_view_count)}</span></div>
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_liked_by.count)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_media_to_comment.count)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[3].node.video_view_count)}</div>
+                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_liked_by.count)}</span></div>
+                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_media_to_comment.count)}</span></div>
+                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[3].node.video_view_count)}</span></div>
                                         </div>
                                     </div>
                                 </div>

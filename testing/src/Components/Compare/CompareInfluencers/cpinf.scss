@@ -243,6 +243,18 @@ html {
                         height: 100px;
                         width: 100px;
                     }
+
+                    .profile_like,
+                    .profile_comment {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        img {
+                            height: 20px;
+                            width: 20px;
+                        }
+                    }
                 }
             }
 

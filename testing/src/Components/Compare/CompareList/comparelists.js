@@ -32,16 +32,44 @@ function CompareLists() {
         addToCompareData.map((item) => {
             result += (`&lists=${item.listName}`)
             string = result.substring(1);
+            {
+                JSON.stringify(params) !== '{}' ?
+                    navigate(`/CompareLists/${params.lists}${result}`)
+                    :
+                    navigate(`/CompareLists/${string}`)
+            }
         })
-        const url = `http://localhost:4000/compareUsersLists/${userId}?${string}`;
-        fetch(url)
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        setComparedlistsData(data)
-                        handleAddToCompare();
-                    })
-            })
+    }
+
+    const compareList = () => {
+        if (JSON.stringify(params) !== '{}') {
+            const url = `http://localhost:4000/compareUsersLists/${userId}?${params.lists}`;
+            fetch(url)
+                .then((res) => {
+                    res.json()
+                        .then((data) => {
+                            setComparedlistsData(data)
+                        })
+                })
+        }
+        else {
+            setComparedlistsData([])
+        }
+    }
+
+    const handleRemoveComparedList = (item) => {
+        let newStr = '';
+        let updateStr = params.lists.substring(params.lists.indexOf('?') + 1);
+        if (updateStr.split('=').length - 1 > 2) {
+            let abc = updateStr.split('&');
+            for (let i in abc) {
+                if (!abc[i].includes(item.listName)) {
+                    newStr += abc[i] + '&';
+                }
+            }
+            let finalstring = newStr.substring(0, newStr.length - 1)
+            navigate(`/CompareLists/${finalstring}`)
+        }
     }
 
     const getListData = () => {
@@ -124,6 +152,10 @@ function CompareLists() {
         getListData();
     }, [])
 
+    useEffect(() => {
+        compareList();
+    }, [params])
+
     return (
         <div className='compare_lists_container'>
             <Navbar />
@@ -160,7 +192,7 @@ function CompareLists() {
                                 <div className='detail_label'>Average Reach</div>
                                 <div className='avg_reach'><FcRating />{item.averageEr}</div>
                                 <div className='detail_label_last'>Average ER</div>
-                                <div className='remove_btn'>Remove</div>
+                                <div className='remove_btn' onClick={() => { handleRemoveComparedList(item) }}>Remove</div>
                             </div>
                         )
                     }

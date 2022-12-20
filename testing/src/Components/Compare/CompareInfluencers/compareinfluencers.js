@@ -185,7 +185,6 @@ function CompareInfluencers() {
     const handleCompareInfluencersByParams = () => {
         if (JSON.stringify(params) !== '{}') {
             const url = `http://localhost:4000/compareInfluencers?${params.influencers}`;
-            console.log(url)
             fetch(url)
                 .then((res) => {
                     res.json()

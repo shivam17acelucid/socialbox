@@ -138,6 +138,23 @@ function CompareInfluencers() {
         );
     };
 
+    const handleRemoveComparedInfluencer = (item) => {
+        let newStr = '';
+        let updateStr = params.influencers.substring(params.influencers.indexOf('?') + 1);
+        if (updateStr.split('=').length - 1 > 2) {
+            let abc = updateStr.split('&');
+            for (let i in abc) {
+                if (!abc[i].includes(item.username)) {
+                    newStr += abc[i] + '&';
+                }
+            }
+            let finalstring = newStr.substring(0, newStr.length - 1)
+            navigate(`/CompareInfluencers/${finalstring}`)
+        }
+
+
+    }
+
     const handleAddToCompare = () => {
         const toggle = addToCompareClicked ? false : true;
         setAddToCompareClicked(toggle);
@@ -246,32 +263,32 @@ function CompareInfluencers() {
 
                                             : null
                                         : null}
-                                    <div>Remove</div>
+                                    <div onClick={() => { handleRemoveComparedInfluencer(item) }}>Remove</div>
                                 </div>
                                 <div className='recent_posts'>
                                     <div className='recent_posts_title'>Recent Posts</div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_liked_by.count)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[1].node.edge_media_to_comment.count)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[1].node.video_view_count)}</div>
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_liked_by.count)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[2].node.edge_media_to_comment.count)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[2].node.video_view_count)}</div>
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
                                         <div style={{ paddingLeft: '8px' }}>
-                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</div>
-                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</div>
-                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</div>
+                                            <div className='profile_like'><FcLike />{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_liked_by.count)}</div>
+                                            <div className='profile_comment'><FcComments />{NFormatter(item.edge_owner_to_timeline_media.edges[3].node.edge_media_to_comment.count)}</div>
+                                            <div className='profile_like'><FcBinoculars />{NFormatter(item.edge_felix_video_timeline.edges[3].node.video_view_count)}</div>
                                         </div>
                                     </div>
                                 </div>

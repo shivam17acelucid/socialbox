@@ -16,7 +16,8 @@ html {
     border: 1px solid rgba(0, 0, 0, 0.2);
     min-height: 4rem;
 
-    .page_title {
+    .page_title,
+    .page_title_compared {
         font-family: 'Noto Sans';
         font-style: normal;
         font-weight: 500;
@@ -37,6 +38,10 @@ html {
             text-decoration: none;
 
         }
+    }
+
+    .page_title_compared {
+        padding-top: 16px;
     }
 
     .topbar_help_icon {

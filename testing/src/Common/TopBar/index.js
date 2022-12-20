@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './index.scss';
 import help from '../../Assets/Images/help.png';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useLocation, useParams } from 'react-router-dom';
 import UserIcon from '../../Assets/Images/userIcon.png';
 
 function TopBar() {
 
     const [showDropDownSelected, setShowDropdownSelected] = useState(false);
+    const [comparedPageVisited, setComparedPageVisited] = useState(false);
     const userId = localStorage.getItem('id');
     const userName = localStorage.getItem('name');
     const navigate = useNavigate();
     const location = useLocation();
+    const params = useParams()
 
     let TOPBAR_TEXTS = [{ page: `/home/${userId}`, text: "Home" }, { page: "/CompareLists", text: "Compare Lists" }, { page: "/CompareInfluencers", text: "Compare Influencers" }, { page: "/influencerslist/", text: "Search Results" }, { page: "/basketInfluencers", text: "Influencer Bundle" }, { page: "/userLists", text: "List" }, { page: "/profile", text: "Influencer Profile" }, { page: `/updateprofile/${userId}`, text: "Profile Settings" }, { page: `/calculate`, text: "Calculate Cost" }]
     let textToShow = TOPBAR_TEXTS.find(el => location.pathname.includes(el.page))?.text
+
+    const checkPage = () => {
+        {
+            textToShow === 'Compare Influencers' || textToShow === 'Compare Lists' ?
+                setComparedPageVisited(true)
+                :
+                setComparedPageVisited(false)
+        }
+    }
+
+    useEffect(()=>{
+        checkPage();
+    },[params])
 
     const handleShowProfileDropdown = () => {
         let data = showDropDownSelected ? false : true;
@@ -44,7 +59,7 @@ function TopBar() {
     return (
         <>
             <div className="topbar">
-                <div className="page_title">
+                <div className={comparedPageVisited === true ? "page_title_compared" : "page_title"}>
                     {textToShow}
                     {textToShow === 'Compare Influencers' || textToShow === 'Compare Lists' ?
                         <div style={{ display: 'flex', paddingTop: '16px' }}>

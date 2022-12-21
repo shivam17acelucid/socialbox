@@ -618,8 +618,9 @@ exports.getFilteredResults = (req, res) => {
         .then((data) => {
             flag.push(data)
             if (flag[0].length > 0) {
+                array.push(data)
                 if (minFollowers && maxFollowers) {
-                    flag.forEach((item) => {
+                    array.forEach((item) => {
                         item.forEach((response) => {
                             if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
                                 filter.push(response)
@@ -627,6 +628,9 @@ exports.getFilteredResults = (req, res) => {
                         })
                     })
                     if (minEr && maxEr) {
+                        if(filter = []){
+                            res.json([])
+                        }
                         filter.forEach((data) => {
                             if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
                                 result.push(data)
@@ -640,7 +644,7 @@ exports.getFilteredResults = (req, res) => {
                     }
                 }
                 else if (minEr && maxEr) {
-                    flag.forEach((data) => {
+                    array.forEach((data) => {
                         data.forEach((response) => {
                             if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
                                 result.push(response)

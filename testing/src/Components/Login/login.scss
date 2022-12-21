@@ -50,12 +50,12 @@ html {
             border-radius: 5px;
             width: 20rem;
             height: 2.54rem;
-            font-family: 'Inter';
+            font-family: 'Poppins';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 16px;
-            line-height: 19px;
-            color: rgba(0, 0, 0, 0.4)
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.4);
         }
 
         .login_form {
@@ -101,10 +101,11 @@ html {
                 color: #007DA8;
                 margin-left: 12rem;
                 cursor: pointer;
+                padding-top: 20px;
             }
 
             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-                margin-top: 1rem;
+                margin-top: 2rem;
                 background: #7662DC;
                 border-radius: 5px;
                 font-family: 'Inter';

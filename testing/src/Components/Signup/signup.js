@@ -12,6 +12,8 @@ function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [company, setCompany] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const navigate = useNavigate();
@@ -44,13 +46,15 @@ function Signup() {
     return (
         <div className="signup_container">
             <div className="left_pane">
-                <img src={logo} className='social_logo' />
+                <img src={logo1} className='social_logo' />
                 <div className="signup_form">
                     <div className="signup_header">Sign up</div>
                     <div className="signup_title">Let's Get Started with your free trial</div>
                     <div className="input_boxes">
                         <Input className="registeration_fields" placeholder="Name" value={name} onChange={(e) => { setName(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                        <Input className="registeration_fields" placeholder="Mobile (optional)" value={mobile} onChange={(e) => { setMobile(e.target.value) }} />
+                        <Input className="registeration_fields" placeholder="Company (optional)" value={company} onChange={(e) => { setCompany(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
                         <Button onClick={handleSignup}>Sign up</Button>

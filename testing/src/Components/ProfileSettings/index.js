@@ -111,7 +111,7 @@ function ProfileSettings() {
                         />
                         <Input
                             type='text'
-                            placeholder='Linked-in Profile'
+                            placeholder='Instagram'
                             className="update_input_fields"
                         />
                         <Input

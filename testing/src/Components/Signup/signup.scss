@@ -12,10 +12,11 @@ html {
 
     .left_pane {
         flex: 1;
-        padding-left: 1rem;
 
         .social_logo {
             width: 10rem;
+            padding-top: 25px;
+            padding-left: 1rem;
         }
 
         .signup_form {
@@ -24,7 +25,7 @@ html {
             align-content: center;
             justify-content: center;
             align-items: center;
-            padding-top: 6rem;
+            padding-top: 90px;
 
             .signup_header {
                 font-family: 'Inter';
@@ -66,7 +67,7 @@ html {
                     box-sizing: border-box;
                     margin-top: 4px;
                     margin-bottom: 4px;
-                    height: 2rem;
+                    height: 2.2rem;
                     padding-left: 1rem;
                 }
 
@@ -85,13 +86,14 @@ html {
                     box-sizing: border-box;
                     font-weight: 700;
                     text-transform: none;
+                    height: 2.2rem;
                 }
 
             }
         }
 
         .login_link {
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-family: 'Inter';
             font-style: normal;
             font-weight: 400;
@@ -105,21 +107,21 @@ html {
             box-sizing: border-box;
             background: #FFFFFF;
             display: flex;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 17px;
             text-align: center;
-            color: rgba(0, 0, 0, 0.4);
             align-content: center;
             justify-content: center;
             align-items: center;
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.4);
         }
 
         .signup_footer {
-            margin-top: 4.8rem;
+            margin-top: 1.6rem;
             font-family: 'Inter';
             font-style: normal;
             font-weight: 400;

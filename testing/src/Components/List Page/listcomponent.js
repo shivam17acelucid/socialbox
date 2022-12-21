@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './listpage.scss';
 import { Input, Label } from 'reactstrap';
 import { MdOutlineAddBox } from "react-icons/md";
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
 import { MdDelete } from 'react-icons/md';
 import { BsFilterLeft } from 'react-icons/bs';
@@ -514,6 +514,11 @@ function Lists() {
         setIsFilterErClicked(false);
     }
 
+    const handleClearFilters = () => {
+        setFilterErApplied(false);
+        setFilterFollowersApplied(false);
+    }
+
     useEffect(() => {
         if (selectedOption !== null) {
             if (selectedOption.label.includes('Mega(1M + Followers)')) {
@@ -616,7 +621,7 @@ function Lists() {
                                     {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8rem', paddingTop: '10px' }}>
+                                <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '7rem', paddingTop: '10px' }}>
                                     <Button style={{ marginRight: '12px', minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
                                     <Button style={{ minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
@@ -764,6 +769,7 @@ function Lists() {
                                                 </section>
                                                 : null
                                     }
+                                    <Button style={{ marginLeft: '12px', minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>
                                 </div>
                             </div>
                             <div className='middle_pane_content'>

@@ -25,7 +25,7 @@ function RouteF() {
                 <Routes>
                     <Route path="/home/:id" element={<Lists />} />
                     <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Login />} />
                     <Route path="/calculate" element={<CalculateCost />} />
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />

@@ -30,6 +30,7 @@ function CompareLists() {
     const navigate = useNavigate();
 
     const handleComparelists = () => {
+        setAddToCompareClicked(!addToCompareClicked)
         let result = '';
         let string = '';
         addToCompareData.map((item) => {
@@ -87,6 +88,10 @@ function CompareLists() {
                         })
                     })
             })
+    }
+
+    const redirectToList = (item) => {
+        navigate(`/userLists/${item.listName}`)
     }
 
     const handleAddToCompare = () => {
@@ -170,7 +175,7 @@ function CompareLists() {
                             <div className='results'>
                                 <div className='listname'>{item.listName}</div>
                                 <div className='inf_count'>{item.totalInfluencers} Influencers</div>
-                                <div className='list_view'>View list </div>
+                                <div className='list_view' onClick={() => {redirectToList(item)}}>View list </div>
                                 <div className='category'>
                                     {item.totalCategory.map((data) =>
                                         data !== null ?

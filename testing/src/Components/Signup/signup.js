@@ -32,13 +32,13 @@ function Signup() {
                     console.log(errors)
                 }
                 else {
-                    navigate(`/login`);
+                    navigate(`/`);
                 }
             })
     }
 
     const handleLogin = () => {
-        navigate(`/login`);
+        navigate(`/`);
     }
 
     return (

@@ -71,6 +71,148 @@ html {
                     color: rgba(0, 0, 0, 0.7);
                     text-transform: none;
                 }
+
+                .modal_section {
+                    position: absolute;
+                    z-index: 4;
+                    top: 60%;
+                    left: 64%;
+                    transform: translate(-50%, -50%);
+                    width: 24rem;
+                    border-radius: 0.5rem;
+                    background: #FFFFFF;
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 5px;
+                    padding-left: 1rem;
+                    padding-right: 3rem;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    height: 460px;
+
+                    .modal_option {
+                        max-height: 342px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        cursor: pointer;
+                        // padding: 1rem;
+
+                        .modal_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+                        }
+
+                        .label_slider {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 19px;
+                            color: RGB(0, 0, 0, 0.5);
+                            padding-top: 1rem;
+                        }
+
+                        .css-b62m3t-container {
+                            min-width: 245px;
+                        }
+
+                        .slider_dropdown {
+                            background: #FFFFFF;
+                            border: 1px solid rgba(0, 0, 0, 0.5);
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            height: 36px;
+                            width: 260px;
+                            margin-top: 1rem;
+                            font-family: 'Inter';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.4);
+                            padding-left: 12px;
+
+                            option {
+                                font-family: 'Inter';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: rgba(0, 0, 0, 0.8);
+                            }
+                        }
+
+                        .css-1aznpnh-MuiSlider-root {
+                            color: #7662DC;
+                            border-radius: 5px;
+                            margin: 0;
+                            margin-top: 1rem;
+                        }
+
+                        .css-yafthl-MuiSlider-markLabel {
+                            font-size: 10px;
+                        }
+
+                        .css-1eoe787-MuiSlider-markLabel {
+                            font-size: 10px;
+                        }
+
+                        .css-14pt78w-MuiSlider-rail {
+                            background: #D9D9D9;
+                            border-radius: 5px;
+                        }
+
+                        .css-eg0mwd-MuiSlider-thumb {
+                            background: #FFFFFF;
+                            border: 1px solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 0px 1px 2px RGB(0 0 0 / 25%);
+                        }
+
+                        .followers_count {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 16px;
+                            color: RGB(0, 0, 0, 0.5);
+                            margin-top: 10px;
+                        }
+
+                        .followers_count_1 {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 12px;
+                            line-height: 16px;
+                            color: RGB(0, 0, 0, 0.5);
+                            margin-top: 32px;
+                        }
+
+                        input {
+                            margin: 12px;
+                        }
+
+                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                            background: #7662DC;
+                            border-radius: 3px;
+                            width: 124px;
+                            height: 36px;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 12px;
+                            line-height: 16px;
+                            text-align: center;
+                            color: #FFFFFF;
+                            margin-top: 2rem;
+                        }
+                    }
+                }
             }
 
             .middle_pane_content {

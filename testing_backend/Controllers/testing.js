@@ -604,7 +604,8 @@ exports.getUserDetails = (req, res) => {
 
 
 exports.getFilteredResults = (req, res) => {
-    let { minEr, maxEr, minFollowers, maxFollowers, inputField } = req.body;
+    let { inputField } = req.query;
+    let { minEr, maxEr, minFollowers, maxFollowers, } = req.body;
     let array = [];
     let filter = [];
     let result = [];
@@ -612,43 +613,88 @@ exports.getFilteredResults = (req, res) => {
     if (inputField != null) {
         search = { $or: [{ full_name: { $regex: inputField, $options: 'i' } }, { username: { $regex: inputField, $options: 'i' } }, { category_enum: { $regex: inputField, $options: 'i' } }] }
     }
+    let flag = [];
 
     InfluencersData.find(search)
         .then((data) => {
-            array.push(data)
-            if (minFollowers && maxFollowers) {
-                array.forEach((item) => {
-                    item.forEach((response) => {
-                        if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
-                            filter.push(response)
-                        }
+            flag.push(data)
+            if (flag[0].length > 0) {
+                array.push(data)
+                if (minFollowers && maxFollowers) {
+                    array.forEach((item) => {
+                        item.forEach((response) => {
+                            if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
+                                filter.push(response)
+                            }
+                        })
                     })
-                })
-                if (minEr && maxEr) {
-                    filter.forEach((data) => {
-                        if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                    if (minEr && maxEr) {
+                        filter.forEach((data) => {
+                            if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                result.push(data)
+                            }
+                        })
+                    }
+                    else {
+                        filter.forEach((data) => {
+                            result.push(data)
+                        })
+                    }
+                }
+                else if (minEr && maxEr) {
+                    array.forEach((data) => {
+                        data.forEach((response) => {
+                            if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                result.push(response)
+                            }
+                        })
+                    })
+                }
+                else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
+                    result.push(data)
+                }
+                res.json(result)
+            }
+            else {
+                InfluencersData.find()
+                    .then((data) => {
+                        array.push(data)
+                        if (minFollowers && maxFollowers) {
+                            array.forEach((item) => {
+                                item.forEach((response) => {
+                                    if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
+                                        filter.push(response)
+                                    }
+                                })
+                            })
+                            if (minEr && maxEr) {
+                                filter.forEach((data) => {
+                                    if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                        result.push(data)
+                                    }
+                                })
+                            }
+                            else {
+                                filter.forEach((data) => {
+                                    result.push(data)
+                                })
+                            }
+                        }
+                        else if (minEr && maxEr) {
+                            array.forEach((data) => {
+                                data.forEach((response) => {
+                                    if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                        result.push(response)
+                                    }
+                                })
+                            })
+                        }
+                        else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                             result.push(data)
                         }
+                        res.json(result)
                     })
-                }
-                else {
-                    filter.forEach((data) => {
-                        result.push(data)
-                    })
-                }
             }
-            else if (minEr && maxEr) {
-                array.forEach((data) => {
-                    data.forEach((response) => {
-                        if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
-                            result.push(response)
-                        }
-                    })
-                })
-            }
-            else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
-                result.push(data)
-            }
-            res.json(result)
+
         })
 }

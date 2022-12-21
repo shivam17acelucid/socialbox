@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails } = require('../Controllers/testing');
+const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../controllers/downloadcsv");
 const { signup, login, logout } = require('../Controllers/Authentication/user')
@@ -26,6 +26,7 @@ router.get('/getinfluencerdata', influencer_list)
 router.get('/getrelatedinfluencers', influencer_search)
 router.get('/getErFilteredInfluencersData', filteredByErInfluencersData)
 router.get('/getUserDetails/:id', getUserDetails);
+router.get('/getFilteredResults', getFilteredResults)
 router.post('/createList/:id', createList)
 router.post('/editDeliverables/:id', editDeliverables);
 router.get('/getListData/:id', getListData)

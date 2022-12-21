@@ -618,9 +618,9 @@ exports.getFilteredResults = (req, res) => {
         .then((data) => {
             flag.push(data)
             if (flag[0].length > 0) {
-                array.push(data)
+                // array.push(data)
                 if (minFollowers && maxFollowers) {
-                    array.forEach((item) => {
+                    flag.forEach((item) => {
                         item.forEach((response) => {
                             if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
                                 filter.push(response)
@@ -641,7 +641,7 @@ exports.getFilteredResults = (req, res) => {
                     }
                 }
                 else if (minEr && maxEr) {
-                    array.forEach((data) => {
+                    flag.forEach((data) => {
                         data.forEach((response) => {
                             if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
                                 result.push(response)
@@ -652,7 +652,14 @@ exports.getFilteredResults = (req, res) => {
                 else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                     result.push(data)
                 }
-                res.json(result)
+                {
+                    result.length > 1 ?
+                        res.json(result)
+                        :
+                        result.map((item) =>
+                            res.json(item)
+                        )
+                }
             }
             else {
                 InfluencersData.find()
@@ -691,7 +698,15 @@ exports.getFilteredResults = (req, res) => {
                         else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                             result.push(data)
                         }
-                        res.json(result)
+                        {
+                            result.length > 1 ?
+                                res.json(result)
+                                :
+
+                                result.map((item) =>
+                                    res.json(item)
+                                )
+                        }
                     })
             }
 

@@ -618,7 +618,6 @@ exports.getFilteredResults = (req, res) => {
         .then((data) => {
             flag.push(data)
             if (flag[0].length > 0) {
-                // array.push(data)
                 if (minFollowers && maxFollowers) {
                     flag.forEach((item) => {
                         item.forEach((response) => {

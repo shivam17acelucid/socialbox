@@ -653,7 +653,9 @@ exports.getFilteredResults = (req, res) => {
                 else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                     result.push(data)
                 }
-                res.json(result)
+                result.map((i) => {
+                    res.json(i)
+                })
             }
             else {
                 InfluencersData.find()
@@ -692,7 +694,9 @@ exports.getFilteredResults = (req, res) => {
                         else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                             result.push(data)
                         }
-                        res.json(result)
+                        result.map((i) => {
+                            res.json(i)
+                        })
                     })
             }
 

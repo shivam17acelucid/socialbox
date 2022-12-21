@@ -7,8 +7,11 @@ import './index.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaRupeeSign } from 'react-icons/fa';
 import { HiOutlineUser } from 'react-icons/hi';
-import { FcLike, FcComments, FcBinoculars, FcRating } from 'react-icons/fc';
 import NFormatter from '../../../Common/NumberFormatter/numFormatter';
+import LikeIcon from '../../../Assets/Images/likeIcon.png'
+import CommentIcon from '../../../Assets/Images/commentIcon.png'
+import ER from '../../../Assets/Images/er.png'
+import ViewIcon from '../../../Assets/Images/viewIcon.png'
 
 function CompareLists() {
 
@@ -172,7 +175,7 @@ function CompareLists() {
                                     {item.totalCategory.map((data) =>
                                         data !== null ?
                                             <div className='category_box'>
-                                                {data}
+                                                {data.split('_')}
                                             </div>
                                             : null
 
@@ -184,13 +187,13 @@ function CompareLists() {
                                 <div className='detail_label'>Estimated Cost</div>
                                 <div className='followers_count'><HiOutlineUser />{NFormatter(item.totalFollowers)}</div>
                                 <div className='detail_label'>Total Followers</div>
-                                <div className='avg_like'><FcLike />{NFormatter(item.totalAvgLike)}</div>
+                                <div className='avg_like'><img src={LikeIcon} />{NFormatter(item.totalAvgLike)}</div>
                                 <div className='detail_label'>Average Likes</div>
-                                <div className='avg_comment'><FcComments />{NFormatter(item.totalAvgComment)}</div>
+                                <div className='avg_comment'><img src={CommentIcon} />{NFormatter(item.totalAvgComment)}</div>
                                 <div className='detail_label'>Average Comment</div>
-                                <div className='avg_reach'><FcBinoculars />{NFormatter(item.totalReach)}</div>
+                                <div className='avg_reach'><img src={ViewIcon} />{NFormatter(item.totalReach)}</div>
                                 <div className='detail_label'>Average Reach</div>
-                                <div className='avg_reach'><FcRating />{item.averageEr}</div>
+                                <div className='avg_reach'><img src={ER} />{item.averageEr}</div>
                                 <div className='detail_label_last'>Average ER</div>
                                 <div className='remove_btn' onClick={() => { handleRemoveComparedList(item) }}>Remove</div>
                             </div>

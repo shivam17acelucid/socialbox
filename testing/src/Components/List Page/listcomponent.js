@@ -269,7 +269,7 @@ function Lists() {
                                                     <>
                                                         <div className='deliverables_pane'>
                                                             <label>Reels</label>
-                                                            <div>
+                                                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                                                 {
                                                                     reel === 0 ?
                                                                         <span><RiSubtractFill /></span>

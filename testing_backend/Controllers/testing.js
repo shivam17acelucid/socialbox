@@ -604,8 +604,7 @@ exports.getUserDetails = (req, res) => {
 
 
 exports.getFilteredResults = (req, res) => {
-    let { inputField } = req.query;
-    let { minEr, maxEr, minFollowers, maxFollowers, } = req.body;
+    let { minEr, maxEr, minFollowers, maxFollowers, inputField } = req.query;
     let array = [];
     let filter = [];
     let result = [];
@@ -653,9 +652,7 @@ exports.getFilteredResults = (req, res) => {
                 else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                     result.push(data)
                 }
-                result.map((i) => {
-                    res.json(i)
-                })
+                res.json(result)
             }
             else {
                 InfluencersData.find()
@@ -694,9 +691,7 @@ exports.getFilteredResults = (req, res) => {
                         else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
                             result.push(data)
                         }
-                        result.map((i) => {
-                            res.json(i)
-                        })
+                        res.json(result)
                     })
             }
 

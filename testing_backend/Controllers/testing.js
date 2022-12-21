@@ -604,12 +604,16 @@ exports.getUserDetails = (req, res) => {
 
 
 exports.getFilteredResults = (req, res) => {
-    let { minEr, maxEr, minFollowers, maxFollowers } = req.body;
+    let { minEr, maxEr, minFollowers, maxFollowers, inputField } = req.body;
     let array = [];
     let filter = [];
     let result = [];
+    let search = {};
+    if (inputField != null) {
+        search = { $or: [{ full_name: { $regex: inputField, $options: 'i' } }, { username: { $regex: inputField, $options: 'i' } }, { category_enum: { $regex: inputField, $options: 'i' } }] }
+    }
 
-    InfluencersData.find()
+    InfluencersData.find(search)
         .then((data) => {
             array.push(data)
             if (minFollowers && maxFollowers) {
@@ -622,9 +626,9 @@ exports.getFilteredResults = (req, res) => {
                 })
                 if (minEr && maxEr) {
                     filter.forEach((data) => {
-                            if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
-                                result.push(data)
-                            }
+                        if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                            result.push(data)
+                        }
                     })
                 }
                 else {

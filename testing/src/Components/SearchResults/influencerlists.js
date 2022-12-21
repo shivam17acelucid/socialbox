@@ -88,6 +88,7 @@ const InfluencersList = () => {
     const [maxRangeFollowers, setMaxRangeFollowers] = useState(10000)
     const [rangeEr, setRangeEr] = useState([0, 20]);
     const [silderRolled, setSliderRolled] = useState(false);
+    const [silderErRolled, setSliderErRolled] = useState(false);
     const [sliderRolled1, setSlider1Rolled] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [redirectedResult, setRedirectedResult] = useState(false);
@@ -110,7 +111,7 @@ const InfluencersList = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOption1, setSelectedOption1] = useState(null);
 
-    let { inputField } = useParams();
+    let { inputField, eRange, followerRange } = useParams();
     let navigate = useNavigate();
 
     const userId = localStorage.getItem('id');
@@ -135,20 +136,6 @@ const InfluencersList = () => {
                             autoSuggestedArray.push(item.username)
                             setAutoSuggestedData(autoSuggestedArray)
                         })
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const fetchProfiles = () => {
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField=${inputField}`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        setInfluencersData(res)
                     })
             })
             .catch((err) => {
@@ -521,7 +508,76 @@ const InfluencersList = () => {
     // useEffect(() => {
     //     fetchProfiles();
     //     getListData();
-    // }, []);
+    // }, []);    
+
+    const fetchProfiles = () => {
+        let str = '';
+        let follString = '';
+        let splitArray;
+        let splitFollArray;
+        if (eRange && !followerRange) {
+            if (eRange.includes('eRange')) {
+                str = eRange.split('=');
+                splitArray = str[1].split('&');
+                const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                fetch(url)
+                    .then((data) => {
+                        data.json()
+                            .then((res) => {
+                                setInfluencersData(res)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+            if (eRange.includes('followerRange')) {
+                follString = eRange.split('=')
+                splitFollArray = follString[1].split('&')
+                const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                fetch(url)
+                    .then((data) => {
+                        data.json()
+                            .then((res) => {
+                                setInfluencersData(res)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        }
+        if (eRange && followerRange) {
+            str = eRange.split('=');
+            splitArray = str[1].split('&');
+            follString = followerRange.split('=')
+            splitFollArray = follString[1].split('&')
+            const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setInfluencersData(res)
+                        })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+        if (!eRange && !followerRange) {
+            const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}`;
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setInfluencersData(res)
+                        })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
 
     useEffect(() => {
         fetchAllData();
@@ -575,7 +631,6 @@ const InfluencersList = () => {
                 setMicroClicked(false);
             }
         }
-        console.log(nanoClicked);
     }, [selectedOption])
 
     useEffect(() => {
@@ -891,7 +946,7 @@ const InfluencersList = () => {
                                                 value={rangeEr}
                                                 onChange={(e, data) => {
                                                     setRangeEr(data)
-                                                    setSliderRolled(true);
+                                                    setSliderErRolled(true);
                                                 }}
                                                 marks={ErRange}
                                                 min={0}
@@ -899,7 +954,7 @@ const InfluencersList = () => {
                                                 step={1}
                                             />
                                             {
-                                                silderRolled === true ?
+                                                silderErRolled === true ?
                                                     <>
                                                         <div className="followers_count_1">Minimum ER: {rangeEr[0]}</div>
                                                         <div className="followers_count">Maximum ER: {rangeEr[1]}</div>

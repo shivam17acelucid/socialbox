@@ -30,11 +30,11 @@ function RouteF() {
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField/:er" element={<InfluencersList />} />
-                    <Route path="/influencerslist//:er" element={<InfluencersList />} />
+                    <Route path="/influencerslist//:eRange" element={<InfluencersList />} />
                     <Route path="/influencerslist//:followerRange" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField/:followerRange" element={<InfluencersList />} />
-                    <Route path="/influencerslist//:er/:followerRange" element={<InfluencersList />} />
-                    <Route path="/influencerslist/:inputField/:er/:followerRange" element={<InfluencersList />} />
+                    <Route path="/influencerslist//:eRange/:followerRange" element={<InfluencersList />} />
+                    <Route path="/influencerslist/:inputField/:eRange/:followerRange" element={<InfluencersList />} />
                     <Route path="/basketInfluencers/:categoryName" element={<BasketInfluencers />} />
                     <Route path="/userLists/:listname" element={<UserLists />} />
                     <Route path="/profile/:profilename" element={<ProfileData />} />

@@ -82,13 +82,13 @@ function Lists() {
 
     const searchInfluencers = () => {
         if (filterErApplied) {
-            navigate(`/influencerslist/${value}/er=${rangeEr[0]}&${rangeEr[1]}`);
+            navigate(`/influencerslist/${value}/eRange=${rangeEr[0]}&${rangeEr[1]}`);
         }
         if (filterFollowersApplied) {
             navigate(`/influencerslist/${value}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`);
         }
         if (filterErApplied && filterFollowersApplied) {
-            navigate(`/influencerslist/${value}/er=${rangeEr[0]}&${rangeEr[1]}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`);
+            navigate(`/influencerslist/${value}/eRange=${rangeEr[0]}&${rangeEr[1]}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`);
         }
         if (!filterErApplied && !filterFollowersApplied) {
             navigate(`/influencerslist/${value}`);

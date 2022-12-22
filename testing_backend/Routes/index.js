@@ -7,7 +7,7 @@ const { signup, login, logout } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
-const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost } = require('../Controllers/CostCalculator/index');
+const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../controllers/rolehandler");
 
 
@@ -48,6 +48,8 @@ router.post('/setCalculateCostForReel', setCalculateCostForReel);
 router.post('/setCalculateCostForPosts', setCalculateCostForPosts);
 router.post('/setCalculateCostForStories', setCalculateCostForStories);
 router.post('/setCalculateCostForIgtv', setCalculateCostForIgtv);
+router.post('/setCalculateCostForSwipeupStories', setCalculateCostForSwipeupStories);
+router.post('/setCalculateCostForVideos', setCalculateCostForVideos);
 router.put('/setInfluencerCost', setInfluencerCost);
 router.get('/erfilteredBasketData', erfilteredBasketData);
 router.post("/upload-csv", uploadCsv, uploadcsv);

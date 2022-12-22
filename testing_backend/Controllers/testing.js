@@ -395,7 +395,7 @@ exports.getInfluencersDetails = (req, res) => {
 }
 
 exports.createList = (req, res, next) => {
-    let { listName, reel, post, story, igtv, description } = req.body;
+    let { listName, reel, post, story, igtv, description, swipeup, video } = req.body;
     let errors = [];
     let error1 = [];
     if (!listName) {
@@ -417,6 +417,14 @@ exports.createList = (req, res, next) => {
 
     if (!igtv) {
         igtv = '0';
+    }
+
+    if (!swipeup) {
+        swipeup = '0';
+    }
+
+    if (!video) {
+        video = '0';
     }
 
     if (errors.length > 0) {
@@ -442,7 +450,7 @@ exports.createList = (req, res, next) => {
                 return res.json("List name Already Present")
             }
             else {
-                data.list.push({ listName: listName, description: description, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }] })
+                data.list.push({ listName: listName, description: description, deliverables: [{ reel: reel }, { post: post }, { story: story }, { igtv: igtv }, { swipeup: swipeup }, { video: video }] })
                 data.lastListAdded = listName;
                 data.save();
                 res.json(data)
@@ -452,7 +460,7 @@ exports.createList = (req, res, next) => {
 
 exports.editDeliverables = (req, res) => {
     let { listName } = req.query
-    let { reel, post, story, igtv } = req.body;
+    let { reel, post, story, igtv, swipeup, video } = req.body;
     let { newListName, description } = req.body;
 
     UserInfo.findById(req.params.id)
@@ -478,6 +486,16 @@ exports.editDeliverables = (req, res) => {
                     if (igtv) {
                         data.list[abc].deliverables[3] = {
                             igtv: igtv,
+                        }
+                    }
+                    if (swipeup) {
+                        data.list[abc].deliverables[4] = {
+                            swipeup: swipeup,
+                        }
+                    }
+                    if (video) {
+                        data.list[abc].deliverables[5] = {
+                            video: video,
                         }
                     }
                     if (newListName) {
@@ -628,7 +646,7 @@ exports.getFilteredResults = (req, res) => {
                         })
                     })
                     if (minEr && maxEr) {
-                        if(filter = []){
+                        if (filter = []) {
                             res.json([])
                         }
                         filter.forEach((data) => {

@@ -200,12 +200,114 @@ exports.setCalculateCostForStories = (req, res) => {
 
 }
 
+exports.setCalculateCostForSwipeupStories = (req, res) => {
+    let { minCostPer1kFollowersForSwipeUpStory,
+        maxCostper1KFollowersForSwipeUpStory,
+        minCostPerLikeForSwipeUpStory,
+        maxCostperLikeForSwipeUpStory,
+        minCostPerCommentForSwipeUpStory,
+        maxCostperCommentForSwipeUpStory,
+    } = req.body;
+
+    let costFactorSwipeUp = {};
+
+    if (minCostPer1kFollowersForSwipeUpStory && maxCostper1KFollowersForSwipeUpStory) {
+        costFactorSwipeUp.minCostPer1kFollowersForSwipeUpStory = minCostPer1kFollowersForSwipeUpStory;
+        costFactorSwipeUp.maxCostper1KFollowersForSwipeUpStory = maxCostper1KFollowersForSwipeUpStory;
+    }
+
+    if (minCostPerLikeForSwipeUpStory && maxCostperLikeForSwipeUpStory && minCostPerCommentForSwipeUpStory && maxCostperCommentForSwipeUpStory) {
+        costFactorSwipeUp.minCostPerLikeForSwipeUpStory = minCostPerLikeForSwipeUpStory;
+        costFactorSwipeUp.maxCostperLikeForSwipeUpStory = maxCostperLikeForSwipeUpStory;
+        costFactorSwipeUp.minCostPerCommentForSwipeUpStory = minCostPerCommentForSwipeUpStory;
+        costFactorSwipeUp.maxCostperCommentForSwipeUpStory = maxCostperCommentForSwipeUpStory;
+    }
+
+    let array = [];
+
+    InfluencersData.find()
+        .then((data) => {
+            data.forEach((item) => {
+                if (!item.costFactorSwipeUp.influencerExactminTotalCost || !item.costFactorSwipeUp.influencerExactmaxTotalCost) {
+                    minCostPerLike = minCostPerLikeForSwipeUpStory * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                    minCostPerComment = minCostPerCommentForSwipeUpStory * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                    maxCostperLike = maxCostperLikeForSwipeUpStory * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                    maxCostperComment = maxCostperCommentForSwipeUpStory * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                    let minCostPer1kFollowers = (minCostPer1kFollowersForSwipeUpStory / 1000) * item.edge_followed_by.count;
+                    let maxCostPer1kFollowers = (maxCostper1KFollowersForSwipeUpStory / 1000) * item.edge_followed_by.count;
+                    costFactorSwipeUp.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
+                    costFactorSwipeUp.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
+                    item.costFactorSwipeUp = costFactorSwipeUp;
+                    item.save();
+                    array.push(item)
+                }
+                else {
+                    console.log(item.costFactorSwipeUp)
+                }
+            })
+            res.json(array);
+        })
+
+}
+
+exports.setCalculateCostForVideos = (req, res) => {
+    let { minCostPer1kFollowersForVideo,
+        maxCostper1KFollowersForVideo,
+        minCostPerLikeForVideo,
+        maxCostperLikeForVideo,
+        minCostPerCommentForVideo,
+        maxCostperCommentForVideo,
+    } = req.body;
+
+    let costFactorVideo = {};
+
+    if (minCostPer1kFollowersForVideo && maxCostper1KFollowersForVideo) {
+        costFactorVideo.minCostPer1kFollowersForVideo = minCostPer1kFollowersForVideo;
+        costFactorVideo.maxCostper1KFollowersForVideo = maxCostper1KFollowersForVideo;
+    }
+
+    if (minCostPerLikeForVideo && maxCostperLikeForVideo && minCostPerCommentForVideo && maxCostperCommentForVideo) {
+        costFactorVideo.minCostPerLikeForVideo = minCostPerLikeForVideo;
+        costFactorVideo.maxCostperLikeForVideo = maxCostperLikeForVideo;
+        costFactorVideo.minCostPerCommentForVideo = minCostPerCommentForVideo;
+        costFactorVideo.maxCostperCommentForVideo = maxCostperCommentForVideo;
+    }
+
+    let array = [];
+
+    InfluencersData.find()
+        .then((data) => {
+            data.forEach((item) => {
+                if (!item.costFactorVideo.influencerExactminTotalCost || !item.costFactorVideo.influencerExactmaxTotalCost) {
+                    minCostPerLike = minCostPerLikeForVideo * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                    minCostPerComment = minCostPerCommentForVideo * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                    maxCostperLike = maxCostperLikeForVideo * item.edge_owner_to_timeline_media.edges[0].avg_likes;
+                    maxCostperComment = maxCostperCommentForVideo * item.edge_owner_to_timeline_media.edges[0].avg_comment;
+                    let minCostPer1kFollowers = (minCostPer1kFollowersForVideo / 1000) * item.edge_followed_by.count;
+                    let maxCostPer1kFollowers = (maxCostper1KFollowersForVideo / 1000) * item.edge_followed_by.count;
+                    costFactorVideo.minTotalCost = minCostPer1kFollowers + minCostPerLike + minCostPerComment;
+                    costFactorVideo.maxTotalCost = maxCostPer1kFollowers + maxCostperLike + maxCostperComment;
+                    item.costFactorVideo = costFactorVideo;
+                    item.save();
+                    array.push(item)
+                }
+                else {
+                    console.log(item.costFactorVideo)
+                }
+            })
+            res.json(array);
+        })
+
+}
+
 exports.setInfluencerCost = (req, res) => {
-    let { username, minTotalPostCost, maxTotalPostCost, minTotalReelCost, maxTotalReelCost, minTotalIgtvCost, maxTotalIgtvCost, minTotalStoryCost, maxTotalStoryCost } = req.body;
+    let { username, minTotalPostCost, maxTotalPostCost, minTotalReelCost, maxTotalReelCost, minTotalIgtvCost, maxTotalIgtvCost, minTotalStoryCost, maxTotalStoryCost, minTotalSwipeUpCost, maxTotalSwipeUpCost, minTotalVideoCost, maxTotalVideoCost } = req.body;
     let costFactorPosts = {};
     let costFactorReel = {};
     let costFactorStories = {};
     let costFactorIgtv = {};
+    let costFactorSwipeUp = {};
+    let costFactorVideo = {};
 
     if (minTotalPostCost) {
         costFactorPosts.influencerExactminTotalCost = minTotalPostCost;
@@ -231,6 +333,18 @@ exports.setInfluencerCost = (req, res) => {
     if (maxTotalIgtvCost) {
         costFactorIgtv.influencerExactmaxTotalCost = maxTotalIgtvCost;
     }
+    if (minTotalSwipeUpCost) {
+        costFactorSwipeUp.influencerExactminTotalCost = minTotalSwipeUpCost;
+    }
+    if (maxTotalStoryCost) {
+        costFactorSwipeUp.influencerExactmaxTotalCost = maxTotalStoryCost;
+    }
+    if (minTotalVideoCost) {
+        costFactorVideo.influencerExactminTotalCost = minTotalVideoCost;
+    }
+    if (maxTotalIgtvCost) {
+        costFactorVideo.influencerExactmaxTotalCost = maxTotalVideoCost;
+    }
 
     InfluencersData.findOne({ username: username })
         .then((data) => {
@@ -245,6 +359,12 @@ exports.setInfluencerCost = (req, res) => {
             }
             if (minTotalStoryCost || maxTotalStoryCost) {
                 data.costFactorStories = costFactorStories
+            }
+            if (minTotalSwipeUpCost || maxTotalSwipeUpCost) {
+                data.costFactorSwipeUp = costFactorSwipeUp
+            }
+            if (minTotalVideoCost || maxTotalVideoCost) {
+                data.costFactorVideo = costFactorVideo
             }
             data.save();
             res.json(data)

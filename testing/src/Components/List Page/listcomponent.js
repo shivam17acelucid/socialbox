@@ -784,7 +784,7 @@ function Lists() {
                                     </div>
                                     <div className='categorised_btn'>
                                         {basketData.map((item) =>
-                                            <Button className='button_list'>{item.categoryName}</Button>
+                                            <Button className='button_list' onClick={() => { handleRedirectToBasket(item) }}>{item.categoryName}</Button>
                                         )}
                                     </div>
                                 </div>

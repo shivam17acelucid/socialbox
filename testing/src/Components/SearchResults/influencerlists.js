@@ -450,19 +450,50 @@ const InfluencersList = () => {
     }
 
     const filterByErRange = () => {
-        setFilterErClicked(true);
+        let splitFoll;
+        let splitFollArr;
         setIsFilterErClicked(false);
-        const url = `http://localhost:4000/getErFilteredInfluencersData?minEr=${rangeEr[0]}&maxEr=${rangeEr[1]}`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        setErBasedInfluencers(res)
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        if (!inputField) {
+            if (eRange && !followerRange) {
+                if (eRange.includes('eRange')) {
+                    navigate(`/influencerslist//eRange=${rangeEr[0]}&${rangeEr[1]}`)
+                }
+                else if (eRange.includes('followerRange')) {
+                    splitFoll = eRange.split('=');
+                    splitFollArr = splitFoll[1].split('&');
+                    navigate(`/influencerslist//eRange=${rangeEr[0]}&${rangeEr[1]}/followerRange=${splitFollArr[0]}&${splitFollArr[1]}`)
+                }
+            }
+            if (eRange && followerRange) {
+                splitFoll = followerRange.split('=')
+                splitFollArr = splitFoll[1].split('&')
+                navigate(`/influencerslist//eRange=${rangeEr[0]}&${rangeEr[1]}/followerRange=${splitFollArr[0]}&${splitFollArr[1]}`);
+            }
+            else if (!eRange && !followerRange) {
+                console.log(rangeEr[0], rangeEr[1]);
+                navigate(`/influencerslist//eRange=${rangeEr[0]}&${rangeEr[1]}`)
+            }
+        }
+        else if (inputField) {
+            if (eRange && !followerRange) {
+                if (eRange.includes('eRange')) {
+                    navigate(`/influencerslist/${inputField}/eRange=${rangeEr[0]}&${rangeEr[1]}`)
+                }
+                else if (eRange.includes('followerRange')) {
+                    splitFoll = eRange.split('=');
+                    splitFollArr = splitFoll[1].split('&');
+                    navigate(`/influencerslist/${inputField}/eRange=${rangeEr[0]}&${rangeEr[1]}/followerRange=${splitFollArr[0]}&${splitFollArr[1]}`)
+                }
+            }
+            if (eRange && followerRange) {
+                splitFoll = followerRange.split('=')
+                splitFollArr = splitFoll[1].split('&')
+                navigate(`/influencerslist/${inputField}/eRange=${rangeEr[0]}&${rangeEr[1]}/followerRange=${splitFollArr[0]}&${splitFollArr[1]}`);
+            }
+            else if (!eRange && !followerRange) {
+                navigate(`/influencerslist/${inputField}/eRange=${rangeEr[0]}&${rangeEr[1]}`)
+            }
+        }
     }
 
     const getListData = () => {
@@ -672,6 +703,10 @@ const InfluencersList = () => {
             }
         }
     }, [selectedOption1])
+
+    useEffect(() => {
+        fetchProfiles();
+    }, [isfilterErClicked])
 
 
     const handleAddPlan = () => {

@@ -29,7 +29,7 @@ function RouteF() {
                     <Route path="/calculate" element={<CalculateCost />} />
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />
-                    <Route path="/influencerslist/:inputField/:er" element={<InfluencersList />} />
+                    <Route path="/influencerslist/:inputField/:eRange" element={<InfluencersList />} />
                     <Route path="/influencerslist//:eRange" element={<InfluencersList />} />
                     <Route path="/influencerslist//:followerRange" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField/:followerRange" element={<InfluencersList />} />

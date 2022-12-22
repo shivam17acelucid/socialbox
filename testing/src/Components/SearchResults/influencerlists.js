@@ -419,11 +419,13 @@ const InfluencersList = () => {
     }
 
     const filterCategory = () => {
+        let array = [];
         setIsFilterCategoryClicked(false);
         influencersData.forEach((data) => {
             if (data.category_enum !== null) {
                 if (data.category_enum.includes(category.toUpperCase())) {
-                    setCategoryFilteredData([data])
+                    array.push(data)
+                    setCategoryFilteredData(array)
                     setFilterCategoryClicked(true)
                 }
             }
@@ -1306,7 +1308,7 @@ const InfluencersList = () => {
                                                                                         <div>Swipeup Stories</div>
                                                                                         {
                                                                                             data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
-                                                                                                <div className='cost_value' style={{paddingLeft: '1rem'}}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
+                                                                                                <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
                                                                                                 :
                                                                                                 <div className='cost_value'>: Rs{NFormatter(data.costFactorSwipeUp.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.influencerExactmaxTotalCost)}</div>
                                                                                         }

@@ -110,6 +110,7 @@ const InfluencersList = () => {
     const [megaMaxClicked, setMegaMaxClicked] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOption1, setSelectedOption1] = useState(null);
+    const [categoryFilteredData, setCategoryFilteredData] = useState([])
 
     let { inputField, eRange, followerRange } = useParams();
     let navigate = useNavigate();
@@ -418,19 +419,15 @@ const InfluencersList = () => {
     }
 
     const filterCategory = () => {
-        setFilterCategoryClicked(true)
         setIsFilterCategoryClicked(false);
-        const url = `http://localhost:4000/getinfluencerdata?category=${category}`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        setCategoryBasedInfluencers(res)
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        influencersData.forEach((data) => {
+            if (data.category_enum !== null) {
+                if (data.category_enum.includes(category.toUpperCase())) {
+                    setCategoryFilteredData([data])
+                    setFilterCategoryClicked(true)
+                }
+            }
+        })
     }
 
     const filterByFollowersRange = () => {
@@ -1228,7 +1225,7 @@ const InfluencersList = () => {
                                                         erBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                         :
                                                         filterCategoryClicked === true ?
-                                                            categoryBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                            categoryFilteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                             :
                                                             showVerifiedInfluencers === true ?
                                                                 verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -1409,7 +1406,7 @@ const InfluencersList = () => {
                                             <TablePagination
                                                 rowsPerPageOptions={[7, 14, { label: 'All', value: -1 }]}
                                                 colSpan={3}
-                                                count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterErClicked === true ? erBasedInfluencers.length : filterCategoryClicked === true ? categoryBasedInfluencers.length : filterFollowerClicked === true ? followersRangeBasedInfluencers.length : influencersData.length}
+                                                count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterErClicked === true ? erBasedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : filterFollowerClicked === true ? followersRangeBasedInfluencers.length : influencersData.length}
                                                 rowsPerPage={rowsPerPage}
                                                 page={page}
                                                 SelectProps={{

@@ -42,6 +42,8 @@ function Lists() {
     const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
+    const [swipeUpStory, setswipeUpStory] = useState(0);
+    const [video, setVideo] = useState(0);
     const [description, setDescription] = useState('');
     const [listDeleted, setListDeleted] = useState(false);
 
@@ -125,11 +127,11 @@ function Lists() {
         navigate(`/basketInfluencers/${item.categoryName}`)
     }
 
-    const handleCreateList = (listName, description, reel, post, story, igtv) => {
+    const handleCreateList = (listName, description, reel, post, story, igtv, swipeUpStory, video) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName, description, reel, post, story, igtv }),
+            body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeUpStory, video }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -822,7 +824,7 @@ function Lists() {
                                                     <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
                                                     <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
                                                     <Label style={{ marginTop: '12px' }}>Deliverables</Label>
-                                                    <>
+                                                    <div>
                                                         <div className='deliverables_pane'>
                                                             <label>Reels</label>
                                                             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -860,7 +862,7 @@ function Lists() {
                                                                 <span className='deliverable_value'>{story}</span>
                                                                 <span onClick={() => { setStory(story + 1) }}><RiAddFill /></span>
                                                             </div>
-                                                            <label>Igtv videos</label>
+                                                            <label>Igtv</label>
                                                             <div>
                                                                 {
                                                                     igtv === 0 ?
@@ -872,9 +874,33 @@ function Lists() {
                                                                 <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
                                                             </div>
                                                         </div>
-                                                    </>
+                                                        <div className='deliverables_pane'>
+                                                            <label>Video</label>
+                                                            <div>
+                                                                {
+                                                                    video === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setVideo(video - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{video}</span>
+                                                                <span onClick={() => { setVideo(video + 1) }}><RiAddFill /></span>
+                                                            </div>
+                                                            <label>Swipe up Stories</label>
+                                                            <div>
+                                                                {
+                                                                    swipeUpStory === 0 ?
+                                                                        <span><RiSubtractFill /></span>
+                                                                        :
+                                                                        <span onClick={() => { setswipeUpStory(swipeUpStory - 1) }}><RiSubtractFill /></span>
+                                                                }
+                                                                <span className='deliverable_value'>{swipeUpStory}</span>
+                                                                <span onClick={() => { setswipeUpStory(swipeUpStory + 1) }}><RiAddFill /></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                                        <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }}>Add</Button>
+                                                        <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv, swipeUpStory, video) }}>Add</Button>
                                                         <Button onClick={handleAddPlan}>Cancel</Button>
                                                     </div>
                                                 </div>

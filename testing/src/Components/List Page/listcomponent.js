@@ -46,6 +46,9 @@ function Lists() {
     const [video, setVideo] = useState(0);
     const [description, setDescription] = useState('');
     const [listDeleted, setListDeleted] = useState(false);
+    const [basketName, setBasketName] = useState([]);
+    const [sortingBaskets, setSortingBaskets] = useState(false);
+    const [sortedBaskets, setSortedBaskets] = useState([]);
 
 
     const [autoSuggestedData, setAutoSuggestedData] = useState([]);
@@ -521,6 +524,22 @@ function Lists() {
         setFilterFollowersApplied(false);
     }
 
+    const handleChangeBasketValue = (e) => {
+        setBasketName(e.target.value)
+        if ((e.target.value).length > 1) {
+            setSortingBaskets(true);
+            basketData.map((data) => {
+                data.categoryName.includes(basketName.toUpperCase()) ?
+                    setSortedBaskets(data)
+                    :
+                    console.log("h")
+            })
+        }
+        else {
+            setSortingBaskets(false)
+        }
+    }
+
     useEffect(() => {
         if (selectedOption !== null) {
             if (selectedOption.label.includes('Mega(1M + Followers)')) {
@@ -779,7 +798,7 @@ function Lists() {
                                     <div className='basket_top'>
                                         <div className='categorised_heading'>Top Trending Influencers Baskets</div>
                                         <div>
-                                            <Input className='basket_search' placeholder='Search bundles, categories...' />
+                                            <Input className='basket_search' placeholder='Search bundles, categories...' onChange={handleChangeBasketValue} value={basketName} />
                                         </div>
                                     </div>
                                     <div className='categorised_btn'>
@@ -789,25 +808,46 @@ function Lists() {
                                     </div>
                                 </div>
                                 <div className='influencers_basket'>
-                                    {basketData.map((item) =>
-                                        <div className='influencers_basket_box'>
-                                            <div className='influencers_image'>
-                                                <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
-                                            </div>
-                                            <div className='basket_right_pane'>
-                                                <div className='influencers_category_header'>
-                                                    Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                    {
+                                        sortingBaskets === true ?
+                                            [sortedBaskets].map((item) =>
+                                                <div className='influencers_basket_box'>
+                                                    <div className='influencers_image'>
+                                                        <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
+                                                    </div>
+                                                    <div className='basket_right_pane'>
+                                                        <div className='influencers_category_header'>
+                                                            Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                                        </div>
+                                                        <div className='basket_p'>
+                                                            Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                                        </div>
+                                                        <div className='influencers_footer_btn'>
+                                                            <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className='basket_p'>
-                                                    Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                            )
+                                            :
+                                            basketData.map((item) =>
+                                                <div className='influencers_basket_box'>
+                                                    <div className='influencers_image'>
+                                                        <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
+                                                    </div>
+                                                    <div className='basket_right_pane'>
+                                                        <div className='influencers_category_header'>
+                                                            Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                                        </div>
+                                                        <div className='basket_p'>
+                                                            Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                                        </div>
+                                                        <div className='influencers_footer_btn'>
+                                                            <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className='influencers_footer_btn'>
-                                                    <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-
+                                            )
+                                    }
                                 </div>
                             </div>
 

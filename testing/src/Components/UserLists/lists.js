@@ -37,7 +37,7 @@ function UserLists() {
     const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
-    const [swipeUpStory, setswipeUpStory] = useState(0);
+    const [swipeup, setSwipeup] = useState(0);
     const [video, setVideo] = useState(0);
     const [description, setDescription] = useState('');
     const [listName, setListName] = useState('');
@@ -87,12 +87,12 @@ function UserLists() {
             })
     }
 
-    const handleUpdateDeliverables = (reel, post, story, igtv, listName, swipeUpStory, video) => {
+    const handleUpdateDeliverables = (reel, post, story, igtv, listName, swipeup, video) => {
         let newListName = listName;
         const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ reel, post, story, igtv, swipeUpStory, video, description, newListName }),
+            body: JSON.stringify({ reel, post, story, igtv, swipeup, video, description, newListName }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             }
@@ -181,7 +181,7 @@ function UserLists() {
                                                 <div className='overlay'>
                                                     <div className='addList_section'>
                                                         <Label> Edit List</Label>
-                                                        <Input type="text" placeholder="List Name" value={listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
+                                                        <Input type="text" placeholder="List Name" value={item.item.listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
                                                         <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
                                                         <Label style={{ marginTop: '12px' }}>Deliverables</Label>
                                                         <>
@@ -234,9 +234,33 @@ function UserLists() {
                                                                     <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
                                                                 </div>
                                                             </div>
+                                                            <div className='deliverables_pane'>
+                                                                <label>Swipeup Stories</label>
+                                                                <div>
+                                                                    {
+                                                                        swipeup === 0 ?
+                                                                            <span><RiSubtractFill /></span>
+                                                                            :
+                                                                            <span onClick={() => { setSwipeup(swipeup - 1) }}><RiSubtractFill /></span>
+                                                                    }
+                                                                    <span className='deliverable_value'>{swipeup}</span>
+                                                                    <span onClick={() => { setSwipeup(swipeup + 1) }}><RiAddFill /></span>
+                                                                </div>
+                                                                <label>Videos</label>
+                                                                <div>
+                                                                    {
+                                                                        video === 0 ?
+                                                                            <span><RiSubtractFill /></span>
+                                                                            :
+                                                                            <span onClick={() => { setVideo(video - 1) }}><RiSubtractFill /></span>
+                                                                    }
+                                                                    <span className='deliverable_value'>{video}</span>
+                                                                    <span onClick={() => { setVideo(video + 1) }}><RiAddFill /></span>
+                                                                </div>
+                                                            </div>
                                                         </>
                                                         <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                                            <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, listName) }} className="update_btn">Update</Button>
+                                                            <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, listName, swipeup, video) }} className="update_btn">Update</Button>
                                                             <Button onClick={handleEditDeliverables}>Cancel</Button>
                                                         </div>
                                                     </div>
@@ -305,6 +329,16 @@ function UserLists() {
                                                                         (data.costFactorIgtv.minTotalCost * item.item.deliverables[3].igtv)
                                                                         :
                                                                         (data.costFactorIgtv.influencerExactminTotalCost * item.item.deliverables[3].igtv))
+                                                                    +
+                                                                    (data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
+                                                                        (data.costFactorSwipeUp.minTotalCost * item.item.deliverables[4].swipeup)
+                                                                        :
+                                                                        (data.costFactorSwipeup.influencerExactminTotalCost * item.item.deliverables[4].swipeup))
+                                                                    +
+                                                                    (data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
+                                                                        (data.costFactorVideo.minTotalCost * item.item.deliverables[5].video)
+                                                                        :
+                                                                        (data.costFactorVideo.influencerExactminTotalCost * item.item.deliverables[5].video))
                                                                 )
                                                             }
                                                         </TableCell>

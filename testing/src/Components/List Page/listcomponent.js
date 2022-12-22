@@ -776,7 +776,12 @@ function Lists() {
                             </div>
                             <div className='middle_pane_content'>
                                 <div className='categorised_inf'>
-                                    <div className='categorised_heading'>Top Trending Influencers Baskets</div>
+                                    <div className='basket_top'>
+                                        <div className='categorised_heading'>Top Trending Influencers Baskets</div>
+                                        <div>
+                                            <Input className='basket_search' placeholder='Search bundles, categories...' />
+                                        </div>
+                                    </div>
                                     <div className='categorised_btn'>
                                         {basketData.map((item) =>
                                             <Button className='button_list'>{item.categoryName}</Button>

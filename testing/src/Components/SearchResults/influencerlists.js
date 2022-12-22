@@ -434,19 +434,49 @@ const InfluencersList = () => {
     }
 
     const filterByFollowersRange = () => {
-        setFilterFollowerClicked(true);
+        let splitFoll;
+        let splitFollArr;
         setIsFilterFollowerClicked(false);
-        const url = `http://localhost:4000/getfilteredData?minFollowers=${scale(minRangeFollowers)}&maxFollowers=${[scale(maxRangeFollowers)]}`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        setFollowersRangeBasedInfluencers(res)
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        if (!inputField) {
+            if (eRange && !followerRange) {
+                if (eRange.includes('eRange')) {
+                    splitFoll = eRange.split('=');
+                    splitFollArr = splitFoll[1].split('&');
+                    navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                }
+                else if (eRange.includes('followerRange')) {
+                    navigate(`/influencerslist//followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                }
+            }
+            if (eRange && followerRange) {
+                splitFoll = eRange.split('=')
+                splitFollArr = splitFoll[1].split('&')
+                navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`);
+            }
+            else if (!eRange && !followerRange) {
+                navigate(`/influencerslist//followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+            }
+        }
+        else if (inputField) {
+            if (eRange && !followerRange) {
+                if (eRange.includes('eRange')) {
+                    splitFoll = eRange.split('=');
+                    splitFollArr = splitFoll[1].split('&');
+                    navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                }
+                else if (eRange.includes('followerRange')) {
+                    navigate(`/influencerslist/${inputField}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                }
+            }
+            if (eRange && followerRange) {
+                splitFoll = eRange.split('=')
+                splitFollArr = splitFoll[1].split('&')
+                navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`);
+            }
+            else if (!eRange && !followerRange) {
+                navigate(`/influencerslist/${inputField}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+            }
+        }
     }
 
     const filterByErRange = () => {
@@ -534,6 +564,7 @@ const InfluencersList = () => {
         setFilterFollowerClicked(false);
         setAllFilterCleared(!allFilterCleared)
         setShowVerifiedInfluencers(false)
+        navigate(`/influencerslist/${inputField}`)
     }
 
     // useEffect(() => {
@@ -707,6 +738,10 @@ const InfluencersList = () => {
     useEffect(() => {
         fetchProfiles();
     }, [isfilterErClicked])
+
+    useEffect(() => {
+        fetchProfiles();
+    }, [isfilterFollowerClicked])
 
 
     const handleAddPlan = () => {

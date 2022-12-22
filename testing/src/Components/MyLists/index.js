@@ -17,6 +17,8 @@ function MyLists() {
     const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
+    const [swipeup, setSwipeup] = useState(0);
+    const [video, setVideo] = useState(0);
     const [description, setDescription] = useState('');
     const [listDeleted, setListDeleted] = useState(false);
     const [newPlanClicked, setNewPlanClicked] = useState(false);
@@ -25,11 +27,11 @@ function MyLists() {
     const userId = localStorage.getItem('id');
     const navigate = useNavigate();
 
-    const handleCreateList = (listName, description, reel, post, story, igtv) => {
+    const handleCreateList = (listName, description, reel, post, story, igtv, swipeup, video) => {
         const url = `http://localhost:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ listName, description, reel, post, story, igtv }),
+            body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeup, video }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -150,6 +152,30 @@ function MyLists() {
                                             }
                                             <span className='deliverable_value'>{igtv}</span>
                                             <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
+                                        </div>
+                                    </div>
+                                    <div className='deliverables_pane'>
+                                        <label>SwipeUp stories</label>
+                                        <div>
+                                            {
+                                                swipeup === 0 ?
+                                                    <span><RiSubtractFill /></span>
+                                                    :
+                                                    <span onClick={() => { setSwipeup(swipeup - 1) }}><RiSubtractFill /></span>
+                                            }
+                                            <span className='deliverable_value'>{swipeup}</span>
+                                            <span onClick={() => { setSwipeup(swipeup + 1) }}><RiAddFill /></span>
+                                        </div>
+                                        <label>Videos</label>
+                                        <div>
+                                            {
+                                                video === 0 ?
+                                                    <span><RiSubtractFill /></span>
+                                                    :
+                                                    <span onClick={() => { setVideo(video - 1) }}><RiSubtractFill /></span>
+                                            }
+                                            <span className='deliverable_value'>{video}</span>
+                                            <span onClick={() => { setVideo(video + 1) }}><RiAddFill /></span>
                                         </div>
                                     </div>
                                 </>

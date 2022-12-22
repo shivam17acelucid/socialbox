@@ -37,6 +37,8 @@ function UserLists() {
     const [post, setPost] = useState(0);
     const [story, setStory] = useState(0);
     const [igtv, setIgtv] = useState(0);
+    const [swipeUpStory, setswipeUpStory] = useState(0);
+    const [video, setVideo] = useState(0);
     const [description, setDescription] = useState('');
     const [listName, setListName] = useState('');
     const [deleteIconSelected, setDeleteIconSelected] = useState(true);
@@ -85,12 +87,12 @@ function UserLists() {
             })
     }
 
-    const handleUpdateDeliverables = (reel, post, story, igtv, listName) => {
+    const handleUpdateDeliverables = (reel, post, story, igtv, listName, swipeUpStory, video) => {
         let newListName = listName;
         const url = `http://localhost:4000/editDeliverables/${userId}?listName=${listname}`
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ reel, post, story, igtv, description, newListName }),
+            body: JSON.stringify({ reel, post, story, igtv, swipeUpStory, video, description, newListName }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             }
@@ -170,6 +172,8 @@ function UserLists() {
                                                 <div className='deliverables_fields_value'>{item.item.deliverables[1].post}<span>Posts</span></div>
                                                 <div className='deliverables_fields_value'>{item.item.deliverables[2].story}<span>Stories</span></div>
                                                 <div className='deliverables_fields_value'>{item.item.deliverables[3].igtv}<span>Igtv</span></div>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[4].swipeup}<span>Swipeup Stories</span></div>
+                                                <div className='deliverables_fields_value'>{item.item.deliverables[5].video}<span>Videos</span></div>
                                             </>
                                         }
                                         {

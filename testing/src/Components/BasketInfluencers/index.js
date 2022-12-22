@@ -485,6 +485,24 @@ function BasketInfluencers() {
                                                                                                 <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorIgtv.influencerExactmaxTotalCost)}</div>
                                                                                         }
                                                                                     </div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Swipeup Stories</div>
+                                                                                        {
+                                                                                            data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
+                                                                                                <div className='cost_value' style={{paddingLeft: '1rem'}}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorSwipeUp.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.influencerExactmaxTotalCost)}</div>
+                                                                                        }
+                                                                                    </div>
+                                                                                    <div className='cost_box'>
+                                                                                        <div>Videos</div>
+                                                                                        {
+                                                                                            data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.minTotalCost)} - Rs{NFormatter(data.costFactorVideo.maxTotalCost)}</div>
+                                                                                                :
+                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorVideo.influencerExactmaxTotalCost)}</div>
+                                                                                        }
+                                                                                    </div>
                                                                                     <div className='modal_footer'>
                                                                                         To check a more accurate estimate, please contact +91 98765 43210
                                                                                     </div>

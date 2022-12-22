@@ -155,7 +155,7 @@ function MyLists() {
                                         </div>
                                     </div>
                                     <div className='deliverables_pane'>
-                                        <label>SwipeUp stories</label>
+                                        <label>SwipeUp story</label>
                                         <div>
                                             {
                                                 swipeup === 0 ?

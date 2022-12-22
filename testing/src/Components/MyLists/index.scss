@@ -118,6 +118,11 @@
                 align-items: center;
                 padding: 1rem;
 
+                label {
+                    max-width: 70px;
+                    width: 70px;
+                }
+
                 .deliverable_value {
                     font-family: 'Noto Sans';
                     font-style: normal;

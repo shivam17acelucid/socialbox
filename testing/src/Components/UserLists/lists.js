@@ -235,7 +235,7 @@ function UserLists() {
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_pane'>
-                                                                <label>Swipeup Stories</label>
+                                                                <label>Swipeup Story</label>
                                                                 <div>
                                                                     {
                                                                         swipeup === 0 ?

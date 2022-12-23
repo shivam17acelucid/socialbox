@@ -7,7 +7,7 @@ const Login = React.lazy(() => import("../Components/Login/login"));
 const Signup = React.lazy(() => import("../Components/Signup/signup"));
 const Lists = React.lazy(() => import("../Components/List Page/listcomponent"));
 const BasketInfluencers = React.lazy(() => import("../Components/BasketInfluencers/index"));
-const CalculateCost = React.lazy(() => import("../Components/Calculator/CalculateInfluencers/calculateinf"));
+const CalculateCost = React.lazy(() => import("../Components/Calculator/calculateinf"));
 const UserLists = React.lazy(() => import("../Components/UserLists/lists"));
 const CompareInfluencers = React.lazy(() => import("../Components/Compare/CompareInfluencers/compareinfluencers"));
 const CompareLists = React.lazy(() => import("../Components/Compare/CompareList/comparelists"));

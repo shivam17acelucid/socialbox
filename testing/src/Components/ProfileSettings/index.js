@@ -10,7 +10,12 @@ function ProfileSettings() {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [mobile, setMobile] = useState('')
+    const [mobile, setMobile] = useState('');
+    const [openAvtarModal, setOpenAvtarModal] = useState(false);
+
+    const handleChangeAvatar = () => {
+        setOpenAvtarModal(!openAvtarModal)
+    }
 
     return (
         <div className='update_profile_container'>
@@ -20,7 +25,21 @@ function ProfileSettings() {
                 <div className='middle_pane'>
                     <div className='pane1_3'>
                         <img src={Profile} />
-                        <div className='avatar_title'>Change Avatar</div>
+                        <div className='avatar_title' onClick={handleChangeAvatar}>Change Avatar</div>
+                        {
+                            openAvtarModal === true ?
+                                <div className='overlay'>
+                                    <div className='avatar_section'>
+                                        <div className='avatar_title_modal'>Change Avatar </div>
+                                        <div className='btn_pane'>
+                                            <Button style={{marginLeft: '24px'}}>Select</Button>
+                                            <Button style={{marginLeft: '20px'}} className="clr_btn " onClick={handleChangeAvatar}>Clear</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                null
+                        }
                     </div>
                     <div className='pane2_3'>
                         <div className='label_1'>Personal Details</div>

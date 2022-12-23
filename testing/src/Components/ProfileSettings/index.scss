@@ -29,6 +29,68 @@ html {
                     line-height: 16px;
                     text-align: center;
                     color: rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                }
+
+                .overlay {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    cursor: pointer;
+                    z-index: 1;
+
+                    .avatar_section {
+                        background: #FFFFFF;
+                        border: 1px solid rgba(0, 0, 0, 0.2);
+                        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+                        border-radius: 5px;
+                        width: 540px;
+                        height: 442px;
+                        box-sizing: border-box;
+                        position: absolute;
+                        z-index: 4;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+
+                        .avatar_title_modal {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+                            padding: 16px 24px;
+                        }
+
+                        .btn_pane {
+
+                            .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                                background: #7662DC;
+                                border-radius: 3px;
+                                width: 124px;
+                                height: 36px;
+                                font-family: 'Noto Sans';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 12px;
+                                line-height: 16px;
+                                text-align: center;
+                                color: #FFFFFF;
+                            }
+
+                            .clr_btn {
+                                background: #D7D7D7;
+                                border-radius: 3px;
+                                color: #595959;
+                            }
+                        }
+                    }
                 }
             }
 

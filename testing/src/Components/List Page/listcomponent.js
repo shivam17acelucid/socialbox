@@ -525,14 +525,15 @@ function Lists() {
     }
 
     const handleChangeBasketValue = (e) => {
+        let array = [];
         setBasketName(e.target.value)
         if ((e.target.value).length > 1) {
             setSortingBaskets(true);
             basketData.map((data) => {
-                data.categoryName.includes(basketName.toUpperCase()) ?
-                    setSortedBaskets(data)
-                    :
-                    console.log("h")
+                if (data.categoryName.toUpperCase().includes(basketName.toUpperCase())) {
+                    array.push(data)
+                    setSortedBaskets(array)
+                }
             })
         }
         else {
@@ -810,7 +811,7 @@ function Lists() {
                                 <div className='influencers_basket'>
                                     {
                                         sortingBaskets === true ?
-                                            [sortedBaskets].map((item) =>
+                                            sortedBaskets.map((item) =>
                                                 <div className='influencers_basket_box'>
                                                     <div className='influencers_image'>
                                                         <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />

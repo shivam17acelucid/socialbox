@@ -8,6 +8,8 @@ import CalculateBg2 from '../../Assets/Images/calculate2.png';
 
 function CalculateCost() {
 
+    const [stepActive, setStepActive] = useState(false);
+
 
     return (
         <div className='calculate_container'>
@@ -16,10 +18,10 @@ function CalculateCost() {
                 <Topbar />
                 <div className='middle_pane_content'>
                     <div className='steps_pane'>
-                        <div className='steps_pane_part'>a</div>
-                        <div className='steps_pane_part'>b</div>
-                        <div className='steps_pane_part'>b</div>
-                        <div className='steps_pane_part'>d</div>
+                        <div className={stepActive ? 'steps_pane_part' : 'steps_pane_part_active'}>a</div>
+                        <div className={stepActive ? 'steps_pane_part' : 'steps_pane_part_active'}>b</div>
+                        <div className={stepActive ? 'steps_pane_part' : 'steps_pane_part_active'}>b</div>
+                        <div className={stepActive ? 'steps_pane_part' : 'steps_pane_part_active'}>d</div>
                     </div>
 
                 </div>

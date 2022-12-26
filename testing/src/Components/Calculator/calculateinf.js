@@ -54,24 +54,24 @@ function CalculateCost() {
 
     const scale = value => {
         const previousMarkIndex = Math.floor(value / 25);
-        const previousMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : followersRange)[previousMarkIndex];
+        const previousMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange)[previousMarkIndex];
         const remainder = value % 25;
         if (remainder === 0) {
             return previousMark.scaledValue;
         }
-        const nextMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : followersRange)[previousMarkIndex + 1];
+        const nextMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange)[previousMarkIndex + 1];
         const increment = (nextMark.scaledValue - previousMark.scaledValue) / 25;
         return remainder * increment + previousMark.scaledValue;
     };
 
     const scale1 = value => {
         const previousMarkIndex1 = Math.floor(value / 25);
-        const previousMark1 = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : followersRange)[previousMarkIndex1];
+        const previousMark1 = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange)[previousMarkIndex1];
         const remainder = value % 25;
         if (remainder === 0) {
             return previousMark1.scaledValue;
         }
-        const nextMark = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : followersRange)[previousMarkIndex1 + 1];
+        const nextMark = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange)[previousMarkIndex1 + 1];
         const increment = (nextMark.scaledValue - previousMark1.scaledValue) / 25;
         return remainder * increment + previousMark1.scaledValue;
     };
@@ -213,54 +213,6 @@ function CalculateCost() {
             value: 100,
             scaledValue: 50000,
             label: "50k"
-        }
-    ];
-
-    const followersRange = [
-        {
-            value: 0,
-            scaledValue: 1000,
-            label: "1k"
-        },
-        {
-            value: 25,
-            scaledValue: 5000,
-            label: "5k"
-        },
-        {
-            value: 50,
-            scaledValue: 10000,
-            label: "10k"
-        },
-        {
-            value: 75,
-            scaledValue: 25000,
-            label: "25k"
-        },
-        {
-            value: 100,
-            scaledValue: 50000,
-            label: "50k"
-        },
-        {
-            value: 125,
-            scaledValue: 100000,
-            label: "100k"
-        },
-        {
-            value: 150,
-            scaledValue: 250000,
-            label: "250k"
-        },
-        {
-            value: 175,
-            scaledValue: 500000,
-            label: "500k"
-        },
-        {
-            value: 200,
-            scaledValue: 1000000,
-            label: "1M"
         }
     ];
 
@@ -468,7 +420,7 @@ function CalculateCost() {
                                                         setMinRangeFollowers(data)
                                                         setSliderRolled(true);
                                                     }}
-                                                    marks={megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : followersRange}
+                                                    marks={megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange}
                                                     min={0}
                                                     max={100}
                                                     step={1}
@@ -499,7 +451,7 @@ function CalculateCost() {
                                                         setMaxRangeFollowers(data)
                                                         setSlider1Rolled(true);
                                                     }}
-                                                    marks={megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : followersRange}
+                                                    marks={megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange}
                                                     min={0}
                                                     max={100}
                                                     step={1}

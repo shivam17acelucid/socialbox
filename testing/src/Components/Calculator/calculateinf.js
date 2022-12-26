@@ -9,6 +9,7 @@ import categoryIcon from '../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../Assets/Images/locationIcon.png';
 import Slider from '@mui/material/Slider';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 
 const options = [
     { value: 'Nano(1K-10K Followers)', label: 'Nano(1K-10K Followers)' },
@@ -26,12 +27,10 @@ const options1 = [
 ];
 
 function CalculateCost() {
-
-    const [stepActive, setStepActive] = useState(false);
-    const [step1, setStep1] = useState(true);
-    const [step2, setStep2] = useState(false);
-    const [step3, setStep3] = useState(false);
-    const [step4, setStep4] = useState(false);
+    const [budget, setBudget] = useState(0);
+    const [creatorsCount, setCreatorsCount] = useState(0);
+    const [isChecked, setIsChecked] = useState(false);
+    const [isInfluencerChecked, setIsInfluencerChecked] = useState(false);
 
     const [nanoClicked, setNanoClicked] = useState(false);
     const [microClicked, setMicroClicked] = useState(false);
@@ -51,6 +50,17 @@ function CalculateCost() {
     const [sliderRolled1, setSlider1Rolled] = useState(false);
     const [isfilterFollowerClicked, setIsFilterFollowerClicked] = useState(false);
     const [filterFollowersApplied, setFilterFollowersApplied] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleNextPage = () => {
+        if (isChecked === true) {
+            navigate(`calculate/budget=${budget}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+        }
+        else if (isInfluencerChecked === true) {
+            navigate(`calculate/creators=${creatorsCount}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+        }
+    }
 
     const scale = value => {
         const previousMarkIndex = Math.floor(value / 25);
@@ -226,15 +236,6 @@ function CalculateCost() {
         }
     }
 
-    const filterByFollowersRange = () => {
-        setIsFilterFollowerClicked(true);
-        setFilterFollowersApplied(true)
-    }
-
-    const filterDataByFollowersRange = () => {
-        setIsFilterFollowerClicked(false);
-    }
-
     useEffect(() => {
         if (selectedOption !== null) {
             if (selectedOption.label.includes('Mega(1M + Followers)')) {
@@ -316,7 +317,6 @@ function CalculateCost() {
         }
     }, [selectedOption1])
 
-
     return (
         <div className='calculate_container'>
             <Navbar />
@@ -384,116 +384,111 @@ function CalculateCost() {
                             <div className='cost_value'> ₹ --</div>
                         </div>
                     </div>
-                    {
-                        step1 === true ?
-                            <>
-                                <div className='content_pane'>
-                                    <div className='steps_title'>Step 1</div>
-                                    <div className='pane_title'>Influencer Stats</div>
-                                    <div className='filter_content'>
-                                        Adjust sliders for the followers count needed for
-                                        your Influencer groups
+                    <div className='content_pane'>
+                        <div className='steps_title'>Step 1</div>
+                        <div className='pane_title'>Influencer Stats</div>
+                        <div className='filter_content'>
+                            Adjust sliders for the followers count needed for
+                            your Influencer groups
+                        </div>
+                        <div>
+                            <section className="modal_section">
+                                <div className="modal_option">
+                                    <div className="modal_title">Followers Count</div>
+                                    <div className="label_slider">Minimum</div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        {
+                                            silderRolled === true ?
+                                                <div className="followers_count_1">{numFormatter(scale1(minRangeFollowers))}</div>
+                                                :
+                                                <div className="followers_count_1">{numFormatter(minRangeFollowers)}</div>
+                                        }
+                                        <div style={{ display: 'flex', justifyContent: "flex-end" }}>
+                                            <Select
+                                                defaultValue={selectedOption}
+                                                onChange={setSelectedOption}
+                                                options={options}
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <section className="modal_section">
-                                            <div className="modal_option">
-                                                <div className="modal_title">Followers Count</div>
-                                                <div className="label_slider">Minimum</div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    {
-                                                        silderRolled === true ?
-                                                            <div className="followers_count_1">{numFormatter(scale1(minRangeFollowers))}</div>
-                                                            :
-                                                            <div className="followers_count_1">{numFormatter(minRangeFollowers)}</div>
-                                                    }
-                                                    <div style={{ display: 'flex', justifyContent: "flex-end" }}>
-                                                        <Select
-                                                            defaultValue={selectedOption}
-                                                            onChange={setSelectedOption}
-                                                            options={options}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <Slider
-                                                    value={minRangeFollowers}
-                                                    onChange={(e, data) => {
-                                                        setMinRangeFollowers(data)
-                                                        setSliderRolled(true);
-                                                    }}
-                                                    marks={megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange}
-                                                    min={0}
-                                                    max={100}
-                                                    step={1}
-                                                    scale={scale1}
-                                                    valueLabelFormat={numFormatter}
+                                    <Slider
+                                        value={minRangeFollowers}
+                                        onChange={(e, data) => {
+                                            setMinRangeFollowers(data)
+                                            setSliderRolled(true);
+                                        }}
+                                        marks={megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                        scale={scale1}
+                                        valueLabelFormat={numFormatter}
+                                    />
+                                    <div style={{ paddingTop: '18px' }}>
+                                        <div className="label_slider">Maximum</div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            {
+                                                sliderRolled1 === true ?
+                                                    <div className="followers_count">{numFormatter(scale(maxRangeFollowers))}</div>
+                                                    :
+                                                    <div className="followers_count">{numFormatter(maxRangeFollowers)}</div>
+                                            }
+                                            <div style={{ display: 'flex', justifyContent: "flex-end" }}>
+                                                <Select
+                                                    defaultValue={selectedOption1}
+                                                    onChange={setSelectedOption1}
+                                                    options={options1}
                                                 />
-                                                <div style={{ paddingTop: '18px' }}>
-                                                    <div className="label_slider">Maximum</div>
-                                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                        {
-                                                            sliderRolled1 === true ?
-                                                                <div className="followers_count">{numFormatter(scale(maxRangeFollowers))}</div>
-                                                                :
-                                                                <div className="followers_count">{numFormatter(maxRangeFollowers)}</div>
-                                                        }
-                                                        <div style={{ display: 'flex', justifyContent: "flex-end" }}>
-                                                            <Select
-                                                                defaultValue={selectedOption1}
-                                                                onChange={setSelectedOption1}
-                                                                options={options1}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <Slider
-                                                    value={maxRangeFollowers}
-                                                    onChange={(e, data) => {
-                                                        setMaxRangeFollowers(data)
-                                                        setSlider1Rolled(true);
-                                                    }}
-                                                    marks={megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange}
-                                                    min={0}
-                                                    max={100}
-                                                    step={1}
-                                                    scale={scale}
-                                                    valueLabelFormat={numFormatter}
-                                                />
-                                                <div style={{
-                                                    display: 'flex', justifyContent: 'space-between'
-                                                }}>
-                                                </div>
                                             </div>
-                                        </section>
-                                    </div>
-                                    <div className='content_bottom_pane'>
-                                        <div className='select_title_field'>
-                                            Select the budget or the number of influencers
-                                            required for marketing
-                                        </div>
-                                        <div style={{ paddingTop: '12px' }}>
-                                            <label>Budegt (INR)</label>
-                                            <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' /></span>
-                                        </div>
-                                        <div style={{ paddingTop: '12px' }}>
-                                            <label>No of influencers</label>
-                                            <span><Input className='input_box' /></span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <Button>Next</Button>
+                                    <Slider
+                                        value={maxRangeFollowers}
+                                        onChange={(e, data) => {
+                                            setMaxRangeFollowers(data)
+                                            setSlider1Rolled(true);
+                                        }}
+                                        marks={megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange}
+                                        min={0}
+                                        max={100}
+                                        step={1}
+                                        scale={scale}
+                                        valueLabelFormat={numFormatter}
+                                    />
+                                    <div style={{
+                                        display: 'flex', justifyContent: 'space-between'
+                                    }}>
                                     </div>
                                 </div>
-                                <div className='right_pane'>
-                                    <div className='image1'></div>
-                                    <div className='image2' style={{ opacity: '0.2' }}>
-                                    </div>
-                                    <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
-                                    <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
-                                </div>
-                            </>
-                            :
-                            null
-                    }
+                            </section>
+                        </div>
+                        <div className='content_bottom_pane'>
+                            <div className='select_title_field'>
+                                Select the budget or the number of influencers
+                                required for marketing
+                            </div>
+                            <div style={{ paddingTop: '12px' }}>
+                                <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} />
+                                <label>Budegt (INR)</label>
+                                <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' type='number' value={budget} onChange={(e) => setBudget(e.target.value)} disabled={isInfluencerChecked === true ? true : false} /></span>
+                            </div>
+                            <div style={{ paddingTop: '12px' }}>
+                                <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} />
+                                <label>No of influencers</label>
+                                <span><Input className='input_box' type='number' value={creatorsCount} onChange={(e) => { setCreatorsCount(e.target.value) }} disabled={isChecked === true ? true : false} /></span>
+                            </div>
+                        </div>
+                        <div>
+                            <Button onClick={handleNextPage}>Next</Button>
+                        </div>
+                    </div>
+                    <div className='right_pane'>
+                        <div className='image1'></div>
+                        <div className='image2' style={{ opacity: '0.2' }}>
+                        </div>
+                        <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                    </div>
 
                 </div>
             </div>

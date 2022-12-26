@@ -483,12 +483,12 @@ function CalculateCost() {
                                 required for marketing
                             </div>
                             <div style={{ paddingTop: '12px' }}>
-                                <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} />
+                                <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} style={{ cursor: 'pointer' }} />
                                 <label>Budegt (INR)</label>
                                 <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' type='number' value={budget} onChange={(e) => setBudget(e.target.value)} disabled={isInfluencerChecked === true ? true : false} /></span>
                             </div>
                             <div style={{ paddingTop: '12px' }}>
-                                <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} />
+                                <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} style={{ cursor: 'pointer' }} />
                                 <label>No of influencers</label>
                                 <span><Input className='input_box' type='number' value={creatorsCount} onChange={(e) => { setCreatorsCount(e.target.value) }} disabled={isChecked === true ? true : false} /></span>
                             </div>

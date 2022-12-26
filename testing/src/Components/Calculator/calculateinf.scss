@@ -276,10 +276,107 @@ html {
             .content_pane {
                 display: flex;
                 flex-direction: column;
+                padding: 32px 48px;
+
+                .steps_title {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
+                .pane_title {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 33px;
+                    color: #000000;
+                    padding-top: 8px;
+                }
+
+                .filter_content {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #000000;
+                    padding-top: 24px;
+                }
 
                 .content_bottom_pane {
                     display: flex;
                     flex-direction: column;
+
+                    .select_title_field {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: #000000;
+                    }
+
+                    label {
+                        font-family: 'Inter';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.8);
+                    }
+
+                    .input_box {
+                        background: #FFFFFF;
+                        border: 1px solid rgba(0, 0, 0, 0.5);
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        height: 36px;
+                        width: 134px;
+                    }
+                }
+
+                .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    background: #7662DC;
+                    border-radius: 3px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    width: 124px;
+                    height: 36px;
+                }
+            }
+
+            .right_pane {
+                flex: 1;
+
+                .image1 {
+                    background-image: url('../../Assets/Images/calculatebg1.png');
+                    height: 45vh;
+                    background-repeat: no-repeat;
+                    margin-top: 2rem;
+                }
+
+                .image2 {
+                    height: 25vh;
+                    background-image: url('../../Assets/Images/calculate2.png');
+                    background-repeat: no-repeat;
+                }
+
+                .indicator {
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: rgba(0, 0, 0, 0.3);
                 }
             }
         }

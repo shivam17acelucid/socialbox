@@ -1,0 +1,17 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.calculate_2_container {
+    display: flex;
+
+    .middle_pane_calculate {
+        flex: 1;
+        background: #F8F8F8;
+    }
+}

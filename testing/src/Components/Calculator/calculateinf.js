@@ -69,11 +69,11 @@ function CalculateCost() {
                 setError(true)
             }
             else {
-                navigate(`/calculate/budget=${budget}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+                navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
             }
         }
         else if (isInfluencerChecked === true) {
-            navigate(`/calculate/creators=${creatorsCount}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+            navigate(`/calculate/creators=${creatorsCount}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
         }
     }
 

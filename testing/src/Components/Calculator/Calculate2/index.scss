@@ -1,0 +1,276 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+}
+
+.calculate_2_container {
+    display: flex;
+
+    .middle_pane_calculate {
+        flex: 1;
+        background: #F8F8F8;
+
+        .middle_pane_content {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            height: 38rem;
+            margin: 32px;
+            display: flex;
+
+            .steps_pane {
+                width: 230px;
+
+                .steps_pane_part {
+                    // height: 9.5rem;
+                    background: #fff;
+                    border-left: solid 5px #357AFF;
+                    border-radius: 1px;
+                    border-right: solid 2px #D9D9D9;
+                    padding: 16px 36px 3px;
+                    border-bottom: 1px solid #CCCCCC;
+
+                    .steps_pane_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6)
+                    }
+
+                    .followers_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                        padding-top: 8px;
+                    }
+
+                    .followers_count {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                    }
+
+                    .budget_influencers_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                        padding-top: 10px;
+                    }
+
+                    .budget_influencers_value {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                        padding-left: 10px;
+                    }
+
+                    .deliverables {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .deliverables_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 24px;
+                            color: #000000;
+                        }
+
+                        .deliverables_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 11px;
+                            line-height: 15px;
+                            max-width: 30px;
+                            color: rgba(0, 0, 0, 0.6);
+                        }
+                    }
+
+                    .filter_pane {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding: 5px 0 4px;
+
+                        .filter_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 20px;
+                            line-height: 27px;
+                            color: #000000;
+                            padding-left: 16px;
+                        }
+                    }
+
+                    .cost_title {
+                        padding: 25px 0 2px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+
+                    .cost_title {
+                        padding: 25px 0 2px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+
+                    .cost_value {
+                        padding: 0 0 36px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                    }
+                }
+
+                .steps_pane_part_inactive {
+                    // height: 9.5rem;
+                    background: #D9D9D9;
+                    padding: 16px 36px 7px;
+                    border-left: solid 5px #B6B6B6;
+                    border-radius: 1px;
+                    border-right: solid 2px #D9D9D9;
+                    padding: 16px 36px 3px;
+                    border-bottom: 1px solid #CCCCCC;
+
+                    .steps_pane_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6)
+                    }
+
+                    .followers_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                        padding-top: 8px;
+                    }
+
+                    .followers_count {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                    }
+
+                    .budget_influencers_title {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                        padding-top: 10px;
+                    }
+
+                    .budget_influencers_value {
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                    }
+
+                    .deliverables {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .deliverables_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 24px;
+                            color: #000000;
+                        }
+
+                        .deliverables_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 11px;
+                            line-height: 15px;
+                            max-width: 30px;
+                            color: rgba(0, 0, 0, 0.6);
+                        }
+                    }
+
+                    .filter_pane {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding: 5px 0 4px;
+
+                        .filter_value {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 20px;
+                            line-height: 27px;
+                            color: #000000;
+                            padding-left: 16px;
+                        }
+                    }
+
+                    .cost_title {
+                        padding: 25px 0 2px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 19px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+
+                    .cost_value {
+                        padding: 0 0 36px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+}

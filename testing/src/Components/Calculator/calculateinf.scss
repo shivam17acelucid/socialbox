@@ -457,6 +457,16 @@ html {
                     }
                 }
 
+                .error_pane {
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: #D72828;
+                    width: 650px;
+                }
+
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                     background: #7662DC;
                     border-radius: 3px;
@@ -469,7 +479,7 @@ html {
                     color: #FFFFFF;
                     width: 124px;
                     height: 36px;
-                    margin-top: 1.5rem;
+                    margin-top: 4px;
                 }
             }
 
@@ -503,6 +513,6 @@ html {
 }
 
 input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button { 
-	-webkit-appearance: none;
-} 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}

@@ -31,6 +31,7 @@ function CalculateCost() {
     const [creatorsCount, setCreatorsCount] = useState(0);
     const [isChecked, setIsChecked] = useState(false);
     const [isInfluencerChecked, setIsInfluencerChecked] = useState(false);
+    const [error, setError] = useState(false)
 
     const [nanoClicked, setNanoClicked] = useState(false);
     const [microClicked, setMicroClicked] = useState(false);
@@ -55,7 +56,20 @@ function CalculateCost() {
 
     const handleNextPage = () => {
         if (isChecked === true) {
-            navigate(`calculate/budget=${budget}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+            if (((silderRolled ?
+                scale1(minRangeFollowers)
+                :
+                minRangeFollowers) > budget)
+                &&
+                ((sliderRolled1 ?
+                    scale(maxRangeFollowers)
+                    :
+                    maxRangeFollowers) > budget)) {
+                setError(true)
+            }
+            else {
+                navigate(`/budget=${budget}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
+            }
         }
         else if (isInfluencerChecked === true) {
             navigate(`calculate/creators=${creatorsCount}/followerRange=${minRangeFollowers}&${maxRangeFollowers}`)
@@ -478,6 +492,14 @@ function CalculateCost() {
                                 <span><Input className='input_box' type='number' value={creatorsCount} onChange={(e) => { setCreatorsCount(e.target.value) }} disabled={isChecked === true ? true : false} /></span>
                             </div>
                         </div>
+                        {
+                            error ?
+                                <div className='error_pane'>
+                                    The followers count does not correspond to the budget.
+                                    Please change the budget or followers count to a reasonable range and try again.
+                                </div>
+                                : null
+                        }
                         <div>
                             <Button onClick={handleNextPage}>Next</Button>
                         </div>

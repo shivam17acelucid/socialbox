@@ -276,7 +276,7 @@ html {
             .content_pane {
                 display: flex;
                 flex-direction: column;
-                padding: 32px 48px;
+                padding: 16px 32px;
 
                 .steps_title {
                     font-family: 'Noto Sans';
@@ -307,9 +307,127 @@ html {
                     padding-top: 24px;
                 }
 
+                .modal_section {
+                    width: 350px;
+
+                    .modal_option {
+                        max-height: 342px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        cursor: pointer;
+
+                        .modal_title {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: #000000;
+                        }
+
+                        .label_slider {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 19px;
+                            color: RGB(0, 0, 0, 0.5);
+                            padding-top: 1rem;
+                        }
+
+                        .css-b62m3t-container {
+                            min-width: 245px;
+                        }
+
+                        .slider_dropdown {
+                            background: #FFFFFF;
+                            border: 1px solid rgba(0, 0, 0, 0.5);
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            height: 36px;
+                            width: 260px;
+                            margin-top: 1rem;
+                            font-family: 'Inter';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 19px;
+                            color: rgba(0, 0, 0, 0.4);
+                            padding-left: 12px;
+
+                            option {
+                                font-family: 'Inter';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: rgba(0, 0, 0, 0.8);
+                            }
+                        }
+
+                        .css-1aznpnh-MuiSlider-root {
+                            color: #7662DC;
+                            border-radius: 5px;
+                            margin: 0;
+                            margin-top: 1rem;
+                        }
+
+                        .css-yafthl-MuiSlider-markLabel {
+                            font-size: 10px;
+                        }
+
+                        .css-1eoe787-MuiSlider-markLabel {
+                            font-size: 10px;
+                        }
+
+                        .css-14pt78w-MuiSlider-rail {
+                            background: #D9D9D9;
+                            border-radius: 5px;
+                        }
+
+                        .css-eg0mwd-MuiSlider-thumb {
+                            background: #FFFFFF;
+                            border: 1px solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 0px 1px 2px RGB(0 0 0 / 25%);
+                        }
+
+                        .followers_count,
+                        .followers_count_1 {
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 27px;
+                            color: rgba(0, 0, 0, 0.7);
+                            margin-top: 5px;
+                        }
+
+                        input {
+                            margin: 12px;
+                        }
+
+                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                            background: #7662DC;
+                            border-radius: 3px;
+                            width: 124px;
+                            height: 36px;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 12px;
+                            line-height: 16px;
+                            text-align: center;
+                            color: #FFFFFF;
+                            margin-top: 2rem;
+                        }
+                    }
+                }
+
                 .content_bottom_pane {
                     display: flex;
                     flex-direction: column;
+                    padding-top: 16px;
 
                     .select_title_field {
                         font-family: 'Noto Sans';
@@ -334,7 +452,7 @@ html {
                         border: 1px solid rgba(0, 0, 0, 0.5);
                         border-radius: 5px;
                         box-sizing: border-box;
-                        height: 36px;
+                        height: 32px;
                         width: 134px;
                     }
                 }
@@ -351,6 +469,7 @@ html {
                     color: #FFFFFF;
                     width: 124px;
                     height: 36px;
+                    margin-top: 1.5rem;
                 }
             }
 

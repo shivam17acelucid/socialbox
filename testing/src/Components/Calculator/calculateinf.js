@@ -7,6 +7,7 @@ import { Input } from 'reactstrap';
 import bdayIcon from '../../Assets/Images/bdayIcon.png';
 import categoryIcon from '../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../Assets/Images/locationIcon.png';
+import errorIcon from '../../Assets/Images/errorIcon.png';
 import Slider from '@mui/material/Slider';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
@@ -495,7 +496,7 @@ function CalculateCost() {
                         {
                             error ?
                                 <div className='error_pane'>
-                                    The followers count does not correspond to the budget.
+                                    <img src={errorIcon} height='12px' /> The followers count does not correspond to the budget.
                                     Please change the budget or followers count to a reasonable range and try again.
                                 </div>
                                 : null

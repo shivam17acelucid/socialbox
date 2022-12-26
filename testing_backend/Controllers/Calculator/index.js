@@ -1,6 +1,6 @@
 const Calculator = require('../../Models/calculator');
 
-exports.setBasicFields = (req, res) => {
+exports.setBasicFieldsForReel = (req, res) => {
     let {
         budgetperFollowersRange,
         minFollowersRange,
@@ -11,16 +11,29 @@ exports.setBasicFields = (req, res) => {
         reach,
         LikesComment,
     } = req.body;
-    let reel = {};
-    let post = {};
-    let story = {};
-    let igtv = {};
-    let swipeupStory = {};
-    let video = {};
     let nanoFollowers = {};
+    let microFollowers = {};
+    let midTierFollowers = {};
+    let miniMacroFollowers = {};
+    let macroFollowers = {};
+    let megaFollowers = {};
 
     if (minFollowersRange > 1000 && maxFollowersRange < 10000) {
-        
+        nanoFollowers.budgetperFollowersRange = budgetperFollowersRange;
+        nanoFollowers.creatorsCount = creatorsCount;
+        nanoFollowers.reach = reach;
+        nanoFollowers.multipleForBudgetReach = multipleForBudgetReach;
+        nanoFollowers.multipleForBudgetLikesComment = multipleForBudgetLikesComment;
+        nanoFollowers.LikesComment = LikesComment;
+    }
+
+    if (minFollowersRange > 10000 && maxFollowersRange < 50000) {
+        microFollowers.budgetperFollowersRange = budgetperFollowersRange;
+        microFollowers.creatorsCount = creatorsCount;
+        microFollowers.reach = reach;
+        microFollowers.multipleForBudgetReach = multipleForBudgetReach;
+        microFollowers.multipleForBudgetLikesComment = multipleForBudgetLikesComment;
+        microFollowers.LikesComment = LikesComment;
     }
 
     Calculator.find()

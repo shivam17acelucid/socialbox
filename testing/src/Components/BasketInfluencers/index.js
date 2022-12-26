@@ -243,17 +243,12 @@ function BasketInfluencers() {
     const handleCompareInfluencers = () => {
         let params = '';
         let result = ''
+        let string = ''
         addToCompareData.map((item) => {
             result += params.concat(params, `&influencers=${item.username}`)
+            string = result.substring(1);
         })
-        const url = `http://localhost:4000/compareInfluencers?${result}`;
-        fetch(url)
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        console.log(data)
-                    })
-            })
+        navigate(`/CompareInfluencers/${string}`)
     }
 
     const fetchAllData = () => {
@@ -489,7 +484,7 @@ function BasketInfluencers() {
                                                                                         <div>Swipeup Stories</div>
                                                                                         {
                                                                                             data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
-                                                                                                <div className='cost_value' style={{paddingLeft: '1rem'}}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
+                                                                                                <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
                                                                                                 :
                                                                                                 <div className='cost_value'>: Rs{NFormatter(data.costFactorSwipeUp.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.influencerExactmaxTotalCost)}</div>
                                                                                         }

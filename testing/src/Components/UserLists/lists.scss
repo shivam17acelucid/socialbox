@@ -150,25 +150,28 @@ html {
                             color: rgba(0, 0, 0, 0.4);
                         }
 
-                        .deliverables_pane {
+                        .deliverables_pane_align {
                             display: flex;
-                            justify-content: space-around;
-                            align-items: center;
-                            padding: 1rem;
+                            justify-content: flex-start;
 
-                            label {
-                                max-width: 70px;
-                                width: 70px;
-                            }
+                            .deliverables_box {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px;
+                                margin-left: 1.5rem;
 
-                            .deliverable_value {
-                                font-family: 'Noto Sans';
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 16px;
-                                line-height: 19px;
-                                text-align: center;
-                                color: rgba(0, 0, 0, 0.4);
+                                .deliverables_value {
+                                    display: flex;
+                                    background: #FFFFFF;
+                                    border: 1px solid rgba(0, 0, 0, 0.5);
+                                    border-radius: 5px;
+                                    width: 154px;
+                                    height: 36px;
+                                    align-items: center;
+                                    cursor: pointer;
+                                    margin-left: 2.5rem;
+                                }
                             }
                         }
 

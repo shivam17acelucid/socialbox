@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TopBar from "../../../Common/TopBar";
 import Navbar from "../../../Common/Sidebar/sidebar";
 import './index.scss';
@@ -9,11 +9,97 @@ import categoryIcon from '../../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../../Assets/Images/locationIcon.png';
 import { Input } from 'reactstrap';
 import Button from '@mui/material/Button';
+import { components } from "react-select";
+import PropTypes from "prop-types";
+import { default as ReactSelect } from "react-select";
 
+const ageGroup = [
+    { value: "0-17", label: "0 - 17" },
+    { value: "18-24", label: "18 - 24" },
+    { value: "25-34", label: "25 - 34" },
+    { value: "35-54", label: "35 - 54" },
+    { value: "55+", label: "55+" },
+];
+
+const genderOptions = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Others", label: "Others" },
+]
 
 function CalculateFilters() {
 
+    const [optionSelected, setOptionSelected] = useState(null);
+    const [gender, setGender] = useState(null)
     const params = useParams();
+
+    const MySelect = props => {
+        if (props.allowSelectAll) {
+            return (
+                <ReactSelect
+                    {...props}
+                    options={[props.allOption, ...props.options]}
+                    onChange={selected => {
+                        if (
+                            selected !== null &&
+                            selected.length > 0 &&
+                            selected[selected.length - 1].value === props.allOption.value
+                        ) {
+                            return props.onChange(props.options);
+                        }
+                        return props.onChange(selected);
+                    }}
+                />
+            );
+        }
+
+        return <ReactSelect {...props} />;
+    };
+
+    MySelect.propTypes = {
+        options: PropTypes.array,
+        value: PropTypes.any,
+        onChange: PropTypes.func,
+        allowSelectAll: PropTypes.bool,
+        allOption: PropTypes.shape({
+            label: PropTypes.string,
+            value: PropTypes.string
+        })
+    };
+
+    MySelect.defaultProps = {
+        allOption: {
+            label: "Select all",
+            value: "*"
+        }
+    };
+
+    const MultiValue = props => (
+        <components.MultiValue {...props}>
+            <span>{props.data.label}</span>
+        </components.MultiValue>
+    );
+
+    const Option = props => {
+        return (
+            <div>
+                <components.Option {...props}>
+                    <input
+                        type="checkbox"
+                        checked={props.isSelected}
+                        onChange={() => null}
+                    />{" "}
+                    <label>{props.label}</label>
+                </components.Option>
+            </div>
+        );
+    };
+
+    const handleChange = (e) => {
+        setOptionSelected(e)
+    }
+
+
     return (
         <div className="calculate3_container">
             <Navbar />
@@ -99,11 +185,28 @@ function CalculateFilters() {
                         <div className="pane_1">
                             <div className="filter_1">
                                 <label>Age group(s)</label>
-                                <Input className="filter_field" />
+                                <MySelect
+                                    options={ageGroup}
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    hideSelectedOptions={false}
+                                    components={{ Option, MultiValue }}
+                                    onChange={setOptionSelected}
+                                    allowSelectAll={true}
+                                    value={optionSelected}
+                                    className="filter_field_select"
+                                />
+                                {/* <Input className="filter_field" /> */}
                             </div>
                             <div className="filter_1">
-                                <label>Gender</label>
-                                <Input className="filter_field" />
+                                <label style={{ marginTop: '2.2rem' }}>Gender</label>
+                                <ReactSelect
+                                    options={genderOptions}
+                                    onChange={setGender}
+                                    value={gender}
+                                    className="filter_field_select"
+                                />
+                                {/* <Input className="filter_field" /> */}
                             </div>
                         </div>
                         <div className="pane_2_title">

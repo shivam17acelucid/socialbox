@@ -441,19 +441,19 @@ const InfluencersList = () => {
                 if (eRange.includes('eRange')) {
                     splitFoll = eRange.split('=');
                     splitFollArr = splitFoll[1].split('&');
-                    navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                    navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
                 }
                 else if (eRange.includes('followerRange')) {
-                    navigate(`/influencerslist//followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                    navigate(`/influencerslist//followerRange=${scale1(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
                 }
             }
             if (eRange && followerRange) {
                 splitFoll = eRange.split('=')
                 splitFollArr = splitFoll[1].split('&')
-                navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`);
+                navigate(`/influencerslist//eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`);
             }
             else if (!eRange && !followerRange) {
-                navigate(`/influencerslist//followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                navigate(`/influencerslist//followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
             }
         }
         else if (inputField) {
@@ -461,19 +461,19 @@ const InfluencersList = () => {
                 if (eRange.includes('eRange')) {
                     splitFoll = eRange.split('=');
                     splitFollArr = splitFoll[1].split('&');
-                    navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                    navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale1(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
                 }
                 else if (eRange.includes('followerRange')) {
-                    navigate(`/influencerslist/${inputField}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                    navigate(`/influencerslist/${inputField}/followerRange=${scale1(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
                 }
             }
             if (eRange && followerRange) {
                 splitFoll = eRange.split('=')
                 splitFollArr = splitFoll[1].split('&')
-                navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`);
+                navigate(`/influencerslist/${inputField}/eRange=${splitFollArr[0]}&${splitFollArr[1]}/followerRange=${scale1(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`);
             }
             else if (!eRange && !followerRange) {
-                navigate(`/influencerslist/${inputField}/followerRange=${scale(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
+                navigate(`/influencerslist/${inputField}/followerRange=${scale1(minRangeFollowers)}&${[scale(maxRangeFollowers)]}`)
             }
         }
     }

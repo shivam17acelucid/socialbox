@@ -18,6 +18,12 @@ function CalculateDeliverables() {
     const [swipeupStories, setSwipeupStories] = useState(0);
     const [igtv, setIgtv] = useState(0);
     const params = useParams();
+    const navigate = useNavigate();
+
+    const handleNextPage = () => {
+        navigate(`/calculate/${params.budget}/${params.followerRange}/deliverables=reel=${reels}&post=${posts}&stories=${stories}&swipeupStories=${swipeupStories}&videos=${videos}&igtv=${igtv}`);
+    }
+
     return (
         <div className='calculate_2_container'>
             <Navbar />
@@ -184,7 +190,7 @@ function CalculateDeliverables() {
                             </div>
                         </div>
                         <div>
-                            <Button>Next</Button>
+                            <Button onClick={handleNextPage}>Next</Button>
                         </div>
                     </div>
                     <div className='right_pane'>

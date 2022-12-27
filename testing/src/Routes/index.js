@@ -12,7 +12,8 @@ const UserLists = React.lazy(() => import("../Components/UserLists/lists"));
 const CompareInfluencers = React.lazy(() => import("../Components/Compare/CompareInfluencers/compareinfluencers"));
 const CompareLists = React.lazy(() => import("../Components/Compare/CompareList/comparelists"));
 const ProfileSettings = React.lazy(() => import("../Components/ProfileSettings/index"));
-const CalculateDeliverables = React.lazy(() => import('../Components/Calculator/Calculate2/index'))
+const CalculateDeliverables = React.lazy(() => import('../Components/Calculator/Calculate2/index'));
+const CalculateFilters = React.lazy(() => import('../Components/Calculator/Calculate3/index'));
 
 function RouteF() {
 
@@ -45,6 +46,7 @@ function RouteF() {
                     <Route path="/CompareLists/:lists" element={<CompareLists />} />
                     <Route path="/updateprofile/:id" element={<ProfileSettings />} />
                     <Route path="/calculate/:budget/:followerRange" element={<CalculateDeliverables />} />
+                    <Route path="/calculate/:budget/:followerRange/:deliverables" element={<CalculateFilters />} />
                 </Routes>
             </Suspense>
         </div>

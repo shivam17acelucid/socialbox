@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import bdayIcon from '../../../Assets/Images/bdayIcon.png';
 import categoryIcon from '../../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../../Assets/Images/locationIcon.png';
-
+import { Input } from 'reactstrap';
+import Button from '@mui/material/Button';
 
 
 function CalculateFilters() {
@@ -86,6 +87,61 @@ function CalculateFilters() {
                             <div className='cost_title'>Estimated Cost</div>
                             <div className='cost_value'> ₹ --</div>
                         </div>
+                    </div>
+                    <div className="content_pane">
+                        <div className='step_count'>Step3</div>
+                        <div className='step_title'>
+                            Target Demographies
+                        </div>
+                        <div className="content_title">
+                            Set the age and gender of your target audience
+                        </div>
+                        <div className="pane_1">
+                            <div className="filter_1">
+                                <label>Age group(s)</label>
+                                <Input className="filter_field" />
+                            </div>
+                            <div className="filter_1">
+                                <label>Gender</label>
+                                <Input className="filter_field" />
+                            </div>
+                        </div>
+                        <div className="pane_2_title">
+                            Set the age and gender of your target audience
+                        </div>
+                        <div className="pane_2">
+                            <div className="filter_2">
+                                <label>Categories / Keywords</label>
+                                <Input className="filter_field" />
+                            </div>
+                        </div>
+                        <div className="pane_3_title">
+                            Select the geographical region and/or major cities
+                            to target
+                        </div>
+                        <div className="pane_3">
+                            <div className="pane_3_filter">
+                                <Input type="checkbox" className="checkbox_input" />
+                                <label>Region</label>
+                                <Input className="filter_field" />
+                            </div>
+                            <div className="pane_3_filter">
+                                <Input type="checkbox" className="checkbox_input" />
+                                <label>Cities</label>
+                                <Input className="filter_field" />
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div>
+                            <Button>Next</Button>
+                        </div>
+                    </div>
+                    <div className="right_pane">
+                        <div className="image_1"></div>
+                        <div className="image_2"></div>
+                        <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
                     </div>
                 </div>
             </div>

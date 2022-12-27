@@ -871,77 +871,90 @@ function Lists() {
                                                     <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
                                                     <Label style={{ marginTop: '12px' }}>Deliverables</Label>
                                                     <div>
-                                                        <div className='deliverables_pane'>
-                                                            <label>Reels</label>
-                                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                                {
-                                                                    reel === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setReel(reel - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{reel}</span>
-                                                                <span onClick={() => { setReel(reel + 1) }}><RiAddFill /></span>
+                                                        <div className='deliverables_pane_align'>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Reels</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        reel === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setReel(reel - 1) }}>-</div>
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{reel}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setReel(reel + 1) }}>+</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Static Posts</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        post === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setPost(post - 1) }}>-</div>
 
-                                                            </div>
-                                                            <label>Static Post</label>
-                                                            <div>
-                                                                {
-                                                                    post === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setPost(post - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{post}</span>
-                                                                <span onClick={() => { setPost(post + 1) }}><RiAddFill /></span>
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{post}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setPost(post + 1) }}>+</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className='deliverables_pane'>
-                                                            <label>Stories</label>
-                                                            <div>
-                                                                {
-                                                                    story === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setStory(story - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{story}</span>
-                                                                <span onClick={() => { setStory(story + 1) }}><RiAddFill /></span>
+                                                        <div className='deliverables_pane_align'>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Videos</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        video === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => setVideo(video - 1)}>-</div>
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{video}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => setVideo(video + 1)}>+</div>
+                                                                </div>
                                                             </div>
-                                                            <label>Igtv</label>
-                                                            <div>
-                                                                {
-                                                                    igtv === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setIgtv(igtv - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{igtv}</span>
-                                                                <span onClick={() => { setIgtv(igtv + 1) }}><RiAddFill /></span>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Stories</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        story === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setStory(story - 1) }}>-</div>
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{story}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setStory(story + 1) }}>+</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className='deliverables_pane'>
-                                                            <label>Video</label>
-                                                            <div>
-                                                                {
-                                                                    video === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setVideo(video - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{video}</span>
-                                                                <span onClick={() => { setVideo(video + 1) }}><RiAddFill /></span>
+                                                        <div className='deliverables_pane_align'>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Swipeup Story</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        swipeUpStory === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory - 1)}>-</div>
+
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{swipeUpStory}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory + 1)}>+</div>
+                                                                </div>
                                                             </div>
-                                                            <label>Swipe up Stories</label>
-                                                            <div>
-                                                                {
-                                                                    swipeUpStory === 0 ?
-                                                                        <span><RiSubtractFill /></span>
-                                                                        :
-                                                                        <span onClick={() => { setswipeUpStory(swipeUpStory - 1) }}><RiSubtractFill /></span>
-                                                                }
-                                                                <span className='deliverable_value'>{swipeUpStory}</span>
-                                                                <span onClick={() => { setswipeUpStory(swipeUpStory + 1) }}><RiAddFill /></span>
+                                                            <div className='deliverables_box'>
+                                                                <div style={{width: '36px'}}>Igtv</div>
+                                                                <div className='deliverables_value'>
+                                                                    {
+                                                                        igtv === 0 ?
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }}>-</div>
+                                                                            :
+                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setIgtv(igtv - 1) }}>-</div>
+                                                                    }
+                                                                    <div style={{ width: '80px', textAlign: 'center' }}>{igtv}</div>
+                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '42px', textAlign: 'center' }} onClick={() => { setIgtv(igtv + 1) }}>+</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

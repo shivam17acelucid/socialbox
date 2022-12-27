@@ -45,7 +45,6 @@ function RouteF() {
                     <Route path="/CompareLists/:lists" element={<CompareLists />} />
                     <Route path="/updateprofile/:id" element={<ProfileSettings />} />
                     <Route path="/calculate/:budget/:followerRange" element={<CalculateDeliverables />} />
-                    <Route path="/calculate/:creators/:followerRange" element={<CalculateDeliverables />} />
                 </Routes>
             </Suspense>
         </div>

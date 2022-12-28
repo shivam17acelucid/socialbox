@@ -14,6 +14,7 @@ const CompareLists = React.lazy(() => import("../Components/Compare/CompareList/
 const ProfileSettings = React.lazy(() => import("../Components/ProfileSettings/index"));
 const CalculateDeliverables = React.lazy(() => import('../Components/Calculator/Calculate2/index'));
 const CalculateFilters = React.lazy(() => import('../Components/Calculator/Calculate3/index'));
+const CalculateTotal = React.lazy(()=> import('../Components/Calculator/CalculateResults/index'));
 
 function RouteF() {
 
@@ -47,6 +48,7 @@ function RouteF() {
                     <Route path="/updateprofile/:id" element={<ProfileSettings />} />
                     <Route path="/calculate/:budget/:followerRange" element={<CalculateDeliverables />} />
                     <Route path="/calculate/:budget/:followerRange/:deliverables" element={<CalculateFilters />} />
+                    <Route path="/calculate/:budget/:followerRange/:deliverables/:demography" element={<CalculateTotal />} />
                 </Routes>
             </Suspense>
         </div>

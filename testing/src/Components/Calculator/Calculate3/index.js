@@ -3,7 +3,7 @@ import TopBar from "../../../Common/TopBar";
 import Navbar from "../../../Common/Sidebar/sidebar";
 import './index.scss';
 import NFormatter from "../../../Common/NumberFormatter/numFormatter";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import bdayIcon from '../../../Assets/Images/bdayIcon.png';
 import categoryIcon from '../../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../../Assets/Images/locationIcon.png';
@@ -27,11 +27,41 @@ const genderOptions = [
     { value: "Others", label: "Others" },
 ]
 
+const categoryOptions = [
+    { value: 'Sports', label: 'Sports' },
+    { value: 'Art', label: 'Art' },
+    { value: 'Bollywood', label: 'Bollywood' },
+    { value: 'Cinema', label: 'Cinema' },
+    { value: 'Beauty', label: 'Beauty' },
+]
+
+const regionOptions = [
+    {}
+]
+
+const cityOptions = [
+    {}
+]
+
 function CalculateFilters() {
 
     const [optionSelected, setOptionSelected] = useState(null);
-    const [gender, setGender] = useState(null)
+    const [gender, setGender] = useState('');
+    const [categories, setCategories] = useState(null);
+    const [region, setRegion] = useState(null);
+    const [city, setCity] = useState(null);
     const params = useParams();
+    const navigate = useNavigate();
+
+    const handleNext = () => {
+        let str = '';
+        if (optionSelected.length > 0) {
+            optionSelected.map((item) => {
+                str += `&${item.value}`
+            })
+        }
+        navigate(`/calculate/${params.budget}/${params.followerRange}/${params.deliverables}/demography=age=${str.substring(1)}&gender=${gender.value}`)
+    }
 
     const MySelect = props => {
         if (props.allowSelectAll) {
@@ -94,10 +124,6 @@ function CalculateFilters() {
             </div>
         );
     };
-
-    const handleChange = (e) => {
-        setOptionSelected(e)
-    }
 
 
     return (
@@ -194,6 +220,7 @@ function CalculateFilters() {
                                     onChange={setOptionSelected}
                                     allowSelectAll={true}
                                     value={optionSelected}
+                                    blurInputOnSelect={false}
                                     className="filter_field_select"
                                 />
                                 {/* <Input className="filter_field" /> */}
@@ -215,7 +242,13 @@ function CalculateFilters() {
                         <div className="pane_2">
                             <div className="filter_2">
                                 <label>Categories / Keywords</label>
-                                <Input className="filter_field" />
+                                <ReactSelect
+                                    options={categoryOptions}
+                                    onChange={setCategories}
+                                    value={categories}
+                                    className="filter_field_select"
+                                />
+                                {/* <Input className="filter_field" /> */}
                             </div>
                         </div>
                         <div className="pane_3_title">
@@ -226,18 +259,28 @@ function CalculateFilters() {
                             <div className="pane_3_filter">
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Region</label>
-                                <Input className="filter_field" />
+                                <ReactSelect
+                                    className="filter_field_select"
+                                    value={region}
+                                    onChange={setRegion}
+                                />
+                                {/* <Input className="filter_field" /> */}
                             </div>
                             <div className="pane_3_filter">
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Cities</label>
-                                <Input className="filter_field" />
+                                <ReactSelect
+                                    className="filter_field_select"
+                                    value={city}
+                                    onChange={setCity}
+                                />
+                                {/* <Input className="filter_field" /> */}
                             </div>
                         </div>
                         <div>
                         </div>
                         <div>
-                            <Button>Next</Button>
+                            <Button onClick={handleNext}>Next</Button>
                         </div>
                     </div>
                     <div className="right_pane">

@@ -115,7 +115,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 20px;
+                            font-size: 12px;
                             line-height: 27px;
                             color: #000000;
                             padding-left: 16px;
@@ -444,4 +444,12 @@ html {
     }
 
 
+}
+
+.css-13cymwt-control {
+    max-height: 4rem;
+
+    .css-3w2yfm-ValueContainer {
+        max-height: 4rem;
+    }
 }

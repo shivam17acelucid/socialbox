@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopBar from "../../../Common/TopBar";
 import Navbar from "../../../Common/Sidebar/sidebar";
 import './index.scss';
@@ -68,17 +68,15 @@ function CalculateFilters() {
     const [categories, setCategories] = useState(null);
     const [region, setRegion] = useState(null);
     const [city, setCity] = useState(null);
+    const [ageString, setAgeString] = useState('');
+    const [categoryString, setCategoryString] = useState('');
+    const [cityString, setCityString] = useState('');
+    const [regionString, setRegionString] = useState('')
     const params = useParams();
     const navigate = useNavigate();
 
     const handleNext = () => {
-        let str = '';
-        if (optionSelected.length > 0) {
-            optionSelected.map((item) => {
-                str += `&${item.value}`
-            })
-        }
-        navigate(`/calculate/${params.budget}/${params.followerRange}/${params.deliverables}/demography=age=${str.substring(1)}&gender=${gender.value}`)
+        navigate(`/calculate/${params.budget}/${params.followerRange}/${params.deliverables}/demography=age=${ageString}&gender=${gender.value}&category=${categoryString}&city=${cityString}&region=${regionString}`)
     }
 
     const MySelect = props => {
@@ -143,6 +141,66 @@ function CalculateFilters() {
         );
     };
 
+    useEffect(() => {
+        let str = '';
+        if (optionSelected) {
+            if (optionSelected.length > 0) {
+                optionSelected.map((item) => {
+                    str += `&${item.value}`
+                    setAgeString(str.substring(1))
+                })
+            }
+        }
+        else if (!optionSelected) {
+            setAgeString('none')
+        }
+    }, [optionSelected])
+
+    useEffect(() => {
+        let str = '';
+        if (categories) {
+            if (categories.length > 0) {
+                categories.map((item) => {
+                    str += `&${item.value}`
+                    setCategoryString(str.substring(1))
+                })
+            }
+        }
+        else if (!categories) {
+            setCategoryString('none')
+        }
+    }, [categories])
+
+    useEffect(() => {
+        let str = '';
+        if (region) {
+            if (region.length > 0) {
+                region.map((item) => {
+                    str += `&${item.value}`
+                    setRegionString(str.substring(1))
+                })
+            }
+        }
+        else if (!region) {
+            setRegionString('none')
+        }
+    }, [region])
+
+    useEffect(() => {
+        let str = '';
+        if (city) {
+            if (city.length > 0) {
+                city.map((item) => {
+                    str += `&${item.value}`
+                    setCityString(str.substring(1))
+                })
+            }
+            else if (!city) {
+                setCityString('none')
+            }
+        }
+    }, [city])
+
 
     return (
         <div className="calculate3_container">
@@ -200,13 +258,31 @@ function CalculateFilters() {
                                 </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737' }}>
+                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '4px' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
-                                <img src={bdayIcon} /><div className='filter_value'> --, {gender.value}</div>
+                                <img src={bdayIcon} /><div className='filter_value'>
+                                    {
+                                        optionSelected ?
+                                            optionSelected.length > 0 ?
+                                                optionSelected.length + 'age group'
+                                                :
+                                                '--'
+                                            :
+                                            null
+                                    }
+                                    , {gender.value}</div>
                             </div>
                             <div className='filter_pane'>
-                                <img src={categoryIcon} /><div className='filter_value'> -- </div>
+                                <img src={categoryIcon} /><div className='filter_value'>
+                                    {categories ?
+                                        categories.length > 0 ?
+                                            categories.length + 'categories'
+                                            :
+                                            '--'
+                                        : null
+                                    }
+                                </div>
                             </div>
                             <div className='filter_pane'>
                                 <img src={locationIcon} /><div className='filter_value'> -- </div>

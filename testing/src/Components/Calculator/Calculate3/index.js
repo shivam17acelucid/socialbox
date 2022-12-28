@@ -185,7 +185,7 @@ function CalculateFilters() {
                         <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
-                                <img src={bdayIcon} /><div className='filter_value'> -- </div>
+                                <img src={bdayIcon} /><div className='filter_value'> --, {gender.value}</div>
                             </div>
                             <div className='filter_pane'>
                                 <img src={categoryIcon} /><div className='filter_value'> -- </div>
@@ -201,7 +201,7 @@ function CalculateFilters() {
                         </div>
                     </div>
                     <div className="content_pane">
-                        <div className='step_count'>Step3</div>
+                        <div className='step_count'>STEP 3</div>
                         <div className='step_title'>
                             Target Demographies
                         </div>
@@ -242,10 +242,15 @@ function CalculateFilters() {
                         <div className="pane_2">
                             <div className="filter_2">
                                 <label>Categories / Keywords</label>
-                                <ReactSelect
+                                <MySelect
                                     options={categoryOptions}
                                     onChange={setCategories}
                                     value={categories}
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    hideSelectedOptions={false}
+                                    components={{ Option, MultiValue }}
+                                    allowSelectAll={true}
                                     className="filter_field_select"
                                 />
                                 {/* <Input className="filter_field" /> */}
@@ -259,17 +264,29 @@ function CalculateFilters() {
                             <div className="pane_3_filter">
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Region</label>
-                                <ReactSelect
+                                <MySelect
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    hideSelectedOptions={false}
+                                    components={{ Option, MultiValue }}
                                     className="filter_field_select"
                                     value={region}
+                                    allowSelectAll={true}
                                     onChange={setRegion}
+                                    options={regionOptions}
                                 />
                                 {/* <Input className="filter_field" /> */}
                             </div>
                             <div className="pane_3_filter">
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Cities</label>
-                                <ReactSelect
+                                <MySelect
+                                    options={cityOptions}
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    hideSelectedOptions={false}
+                                    components={{ Option, MultiValue }}
+                                    allowSelectAll={true}
                                     className="filter_field_select"
                                     value={city}
                                     onChange={setCity}

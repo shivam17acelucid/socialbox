@@ -100,7 +100,7 @@ function CalculateDeliverables() {
                     </div>
                     <div className='content_pane'>
                         <div className='step_count'>
-                            Step 2
+                            STEP 2
                         </div>
                         <div className='step_title'>
                             Deliverables

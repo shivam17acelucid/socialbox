@@ -400,7 +400,7 @@ function CalculateCost() {
                         </div>
                     </div>
                     <div className='content_pane'>
-                        <div className='steps_title'>Step 1</div>
+                        <div className='steps_title'>STEP 1</div>
                         <div className='pane_title'>Influencer Stats</div>
                         <div className='filter_content'>
                             Adjust sliders for the followers count needed for

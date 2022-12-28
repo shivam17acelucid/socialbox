@@ -6,6 +6,8 @@ import NFormatter from "../../../Common/NumberFormatter/numFormatter";
 import bdayIcon from '../../../Assets/Images/bdayIcon.png';
 import categoryIcon from '../../../Assets/Images/categoryIcon.png';
 import locationIcon from '../../../Assets/Images/locationIcon.png';
+import { Input } from 'reactstrap';
+import Button from '@mui/material/Button';
 import './index.scss';
 
 function CalculateTotal() {
@@ -92,8 +94,66 @@ function CalculateTotal() {
                             Estimate
                         </div>
                         <div className="content_title">
-                            Set the age and gender of your target audience
+                            The estimated cost for influencer marketing as per selected parameters is
                         </div>
+                        <div className="estimated_field_pane">
+                            <div className="field_pane" style={{ marginLeft: 0 }}>
+                                <div className="field_label">Est Cost</div>
+                                <div className="field_value">₹2000000</div>
+                            </div>
+                            <div className="field_pane">
+                                <div className="field_label">No of Creators</div>
+                                <div className="field_value">10-12</div>
+                            </div>
+                        </div>
+                        <div className="estimated_field_pane_2">
+                            <div className="field_pane_2" style={{ marginLeft: 0 }}>
+                                <div className="field_label">Est Likes</div>
+                                <div className="field_value">50000</div>
+                            </div>
+                            <div className="field_pane_2">
+                                <div className="field_label">Est Comments</div>
+                                <div className="field_value">20000</div>
+                            </div>
+                            <div className="field_pane_2">
+                                <div className="field_label">Est Views</div>
+                                <div className="field_value">55000</div>
+                            </div>
+                            <div className="field_pane_2">
+                                <div className="field_label">Eng Rate</div>
+                                <div className="field_value">8%</div>
+                            </div>
+                        </div>
+                        <div className="result_pane_2_title">
+                            For a tailor-made solution as per your needs, call (+91) 98765 43210, or submit your details for a call later.
+                        </div>
+                        <div className="enquiry_form">
+                            <div className="name_pane">
+                                <Input className="enquiry_field" />
+                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} />
+                            </div>
+                            <div className="email_pane">
+                                <Input className="enquiry_field_2" />
+                            </div>
+                            <div className="mobile_pane">
+                                <Input className="enquiry_field_2" />
+                            </div>
+                            <div className="message_pane">
+                                <Input className="enquiry_field_3" />
+                            </div>
+                        </div>
+                        <div className="bottom_title">
+                            You can change the parameters to update your estimate
+                        </div>
+                        <div>
+                            <Button>Submit</Button>
+                        </div>
+                    </div>
+                    <div className="right_pane">
+                        <div className="image_1"></div>
+                        <div className="image_2"></div>
+                        <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
                     </div>
                 </div>
             </div>

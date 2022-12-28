@@ -33,16 +33,6 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            miniMacroFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
             macroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
@@ -87,16 +77,6 @@ let calculatorSchema = new Schema(
                 LikesComment: Number,
             },
             midTierFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
-            miniMacroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
                 budgetperFollowersRange: Number,
@@ -159,16 +139,6 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            miniMacroFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
             macroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
@@ -213,16 +183,6 @@ let calculatorSchema = new Schema(
                 LikesComment: Number,
             },
             midTierFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
-            miniMacroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
                 budgetperFollowersRange: Number,
@@ -285,16 +245,6 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            miniMacroFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
             macroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
@@ -318,7 +268,6 @@ let calculatorSchema = new Schema(
         },
 
         video: {
-
             nanoFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
@@ -340,16 +289,6 @@ let calculatorSchema = new Schema(
                 LikesComment: Number,
             },
             midTierFollowers: {
-                minFollowersRange: Number,
-                maxFollowersRange: Number,
-                budgetperFollowersRange: Number,
-                creatorsCount: Number,
-                multipleForBudgetReach: Number,
-                multipleForBudgetLikesComment: Number,
-                reach: Number,
-                LikesComment: Number,
-            },
-            miniMacroFollowers: {
                 minFollowersRange: Number,
                 maxFollowersRange: Number,
                 budgetperFollowersRange: Number,

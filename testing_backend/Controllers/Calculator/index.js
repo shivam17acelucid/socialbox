@@ -14,7 +14,6 @@ exports.setBasicFieldsForReel = (req, res) => {
     let nanoFollowers = {};
     let microFollowers = {};
     let midTierFollowers = {};
-    let miniMacroFollowers = {};
     let macroFollowers = {};
     let megaFollowers = {};
 

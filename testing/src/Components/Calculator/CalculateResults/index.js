@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from "../../../Common/Sidebar/sidebar";
 import TopBar from "../../../Common/TopBar";
@@ -12,7 +12,33 @@ import './index.scss';
 
 function CalculateTotal() {
 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
     const params = useParams();
+
+    const handleSubmitQuery = () => {
+        const url = 'http://localhost:4000/submitQuery';
+        fetch((url), {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ firstName, lastName, email, phone, message })
+        })
+            .then((data) => {
+                if (data) {
+                    console.log("done");
+                    setEmail('');
+                    setMessage('');
+                    setPhone('');
+                    setFirstName('');
+                    setLastName('')
+                }
+            })
+    }
 
     return (
         <div className="calculate_4_container">
@@ -129,24 +155,24 @@ function CalculateTotal() {
                         </div>
                         <div className="enquiry_form">
                             <div className="name_pane">
-                                <Input className="enquiry_field" placeholder="First Name" />
-                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} placeholder="Last Name" />
+                                <Input className="enquiry_field" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} placeholder="Last Name" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
                             </div>
                             <div className="email_pane">
-                                <Input className="enquiry_field_2" placeholder="Email" />
+                                <Input className="enquiry_field_2" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                             </div>
                             <div className="mobile_pane">
-                                <Input className="enquiry_field_2" placeholder="Phone no" />
+                                <Input className="enquiry_field_2" placeholder="Phone no" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
                             </div>
                             <div className="message_pane">
-                                <Input className="enquiry_field_3" placeholder="Message" />
+                                <Input className="enquiry_field_3" placeholder="Message" value={message} onChange={(e) => { setMessage(e.target.value) }} />
                             </div>
                         </div>
                         <div className="bottom_title">
                             You can change the parameters to update your estimate
                         </div>
                         <div>
-                            <Button>Submit</Button>
+                            <Button onClick={handleSubmitQuery}>Submit</Button>
                         </div>
                     </div>
                     <div className="right_pane">

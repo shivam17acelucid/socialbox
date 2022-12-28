@@ -111,7 +111,14 @@ function CalculateTotal() {
                         <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #7662DC' }}>
                             <div className='steps_pane_title'>Step 4</div>
                             <div className='cost_title'>Estimated Cost</div>
-                            <div className='cost_value'> ₹ --</div>
+                            <div className='cost_value'>
+                                {
+                                    params.budget.includes('budget') ?
+                                        '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
+                                        :
+                                        '₹' + null
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="content_pane">
@@ -125,7 +132,14 @@ function CalculateTotal() {
                         <div className="estimated_field_pane">
                             <div className="field_pane" style={{ marginLeft: 0 }}>
                                 <div className="field_label">Est Cost</div>
-                                <div className="field_value">₹2000000</div>
+                                <div className="field_value">
+                                    {
+                                        params.budget.includes('budget') ?
+                                            '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
+                                            :
+                                            '₹' + 50000000
+                                    }
+                                </div>
                             </div>
                             <div className="field_pane">
                                 <div className="field_label">No of Creators</div>

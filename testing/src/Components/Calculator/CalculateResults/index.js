@@ -118,7 +118,20 @@ function CalculateTotal() {
                                 </div>
                             </div>
                             <div className='filter_pane'>
-                                <img src={categoryIcon} /><div className='filter_value'> -- </div>
+                                <img src={categoryIcon} />
+                                <div className='filter_value'>
+                                    {
+                                        params.demography.includes('category') ?
+                                            (
+                                                params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&')[0] === 'none' ?
+                                                    '--'
+                                                    :
+                                                    params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 + ' categories'
+                                            )
+                                            :
+                                            null
+                                    }
+                                </div>
                             </div>
                             <div className='filter_pane'>
                                 <img src={locationIcon} /><div className='filter_value'> -- </div>

@@ -20,13 +20,20 @@ function CalculateTotal() {
     const params = useParams();
 
     const handleSubmitQuery = () => {
+        let estimatedCost = 0;
+        {
+            params.budget.includes('budget') ?
+                estimatedCost = params.budget.substring(params.budget.indexOf('=') + 1)
+                :
+                estimatedCost = 0
+        }
         const url = 'http://localhost:4000/submitQuery';
         fetch((url), {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            body: JSON.stringify({ firstName, lastName, email, phone, message })
+            body: JSON.stringify({ firstName, lastName, email, phone, message, estimatedCost })
         })
             .then((data) => {
                 if (data) {

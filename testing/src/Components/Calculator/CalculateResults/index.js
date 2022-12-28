@@ -129,17 +129,17 @@ function CalculateTotal() {
                         </div>
                         <div className="enquiry_form">
                             <div className="name_pane">
-                                <Input className="enquiry_field" />
-                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} />
+                                <Input className="enquiry_field" placeholder="First Name" />
+                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} placeholder="Last Name" />
                             </div>
                             <div className="email_pane">
-                                <Input className="enquiry_field_2" />
+                                <Input className="enquiry_field_2" placeholder="Email" />
                             </div>
                             <div className="mobile_pane">
-                                <Input className="enquiry_field_2" />
+                                <Input className="enquiry_field_2" placeholder="Phone no" />
                             </div>
                             <div className="message_pane">
-                                <Input className="enquiry_field_3" />
+                                <Input className="enquiry_field_3" placeholder="Message" />
                             </div>
                         </div>
                         <div className="bottom_title">

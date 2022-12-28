@@ -19,13 +19,6 @@ const options = [
     { value: 'Macro(100K-1M Followers)', label: 'Macro(100K-1M Followers)' },
     { value: 'Mega(1M + Followers)', label: 'Mega(1M + Followers)' },
 ];
-const options1 = [
-    { value: 'Nano(1K-10K Followers)', label: 'Nano(1K-10K Followers)' },
-    { value: 'Micro(10K-50K Followers)', label: 'Micro(10K-50K Followers)' },
-    { value: 'Mid-Tier(50K-100K Followers)', label: 'Mid-Tier(50K-100K Followers)' },
-    { value: 'Macro(100K-1M Followers)', label: 'Macro(100K-1M Followers)' },
-    { value: 'Mega(1M + Followers)', label: 'Mega(1M + Followers)' },
-];
 
 function CalculateCost() {
     const [budget, setBudget] = useState(0);
@@ -79,12 +72,12 @@ function CalculateCost() {
 
     const scale = value => {
         const previousMarkIndex = Math.floor(value / 25);
-        const previousMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange)[previousMarkIndex];
+        const previousMark = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange)[previousMarkIndex];
         const remainder = value % 25;
         if (remainder === 0) {
             return previousMark.scaledValue;
         }
-        const nextMark = (megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange)[previousMarkIndex + 1];
+        const nextMark = (megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange)[previousMarkIndex + 1];
         const increment = (nextMark.scaledValue - previousMark.scaledValue) / 25;
         return remainder * increment + previousMark.scaledValue;
     };
@@ -292,46 +285,6 @@ function CalculateCost() {
         console.log(nanoClicked);
     }, [selectedOption])
 
-    useEffect(() => {
-        if (selectedOption1 !== null) {
-            if (selectedOption1.label.includes('Mega(1M + Followers)')) {
-                setMegaMaxClicked(true);
-                setMicroMaxClicked(false);
-                setMidTierMaxClicked(false);
-                setMacroMaxClicked(false);
-                setNanoMaxClicked(false);
-            }
-            else if (selectedOption1.label.includes('Macro(100K-1M Followers)')) {
-                setMacroMaxClicked(true);
-                setMicroMaxClicked(false);
-                setMidTierMaxClicked(false);
-                setMegaMaxClicked(false);
-                setNanoMaxClicked(false);
-            }
-            else if (selectedOption1.label.includes('Mid-Tier(50K-100K Followers)')) {
-                setMidTierMaxClicked(true)
-                setMicroMaxClicked(false);
-                setMacroMaxClicked(false);
-                setMegaMaxClicked(false);
-                setNanoMaxClicked(false);
-            }
-            else if (selectedOption1.label.includes('Micro(10K-50K Followers)')) {
-                setMicroMaxClicked(true)
-                setMidTierMaxClicked(false);
-                setMacroMaxClicked(false);
-                setMegaMaxClicked(false);
-                setNanoMaxClicked(false);
-            }
-            else if (selectedOption1.label.includes('Nano(1K-10K Followers)')) {
-                setNanoMaxClicked(true)
-                setMidTierMaxClicked(false);
-                setMacroMaxClicked(false);
-                setMegaMaxClicked(false);
-                setMicroMaxClicked(false);
-            }
-        }
-    }, [selectedOption1])
-
     return (
         <div className='calculate_container'>
             <Navbar />
@@ -414,9 +367,9 @@ function CalculateCost() {
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                         {
                                             silderRolled === true ?
-                                                <div className="followers_count_1">{numFormatter(scale1(minRangeFollowers))}</div>
+                                                <div className="followers_count_1">{scale1(minRangeFollowers)}</div>
                                                 :
-                                                <div className="followers_count_1">{numFormatter(minRangeFollowers)}</div>
+                                                <div className="followers_count_1">{minRangeFollowers}</div>
                                         }
                                         <div style={{ display: 'flex', justifyContent: "flex-end" }}>
                                             <Select
@@ -444,16 +397,11 @@ function CalculateCost() {
                                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             {
                                                 sliderRolled1 === true ?
-                                                    <div className="followers_count">{numFormatter(scale(maxRangeFollowers))}</div>
+                                                    <div className="followers_count">{scale(maxRangeFollowers)}</div>
                                                     :
-                                                    <div className="followers_count">{numFormatter(maxRangeFollowers)}</div>
+                                                    <div className="followers_count">{maxRangeFollowers}</div>
                                             }
                                             <div style={{ display: 'flex', justifyContent: "flex-end" }}>
-                                                <Select
-                                                    defaultValue={selectedOption1}
-                                                    onChange={setSelectedOption1}
-                                                    options={options1}
-                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -463,7 +411,7 @@ function CalculateCost() {
                                             setMaxRangeFollowers(data)
                                             setSlider1Rolled(true);
                                         }}
-                                        marks={megaMaxClicked ? megaRange : macroMaxClicked ? macroRange : midTierMaxClicked ? midTierRange : microMaxClicked ? microRange : nanoMaxClicked ? nanoRange : nanoRange}
+                                        marks={megaClicked ? megaRange : macroClicked ? macroRange : midTierClicked ? midTierRange : microClicked ? microRange : nanoClicked ? nanoRange : nanoRange}
                                         min={0}
                                         max={100}
                                         step={1}

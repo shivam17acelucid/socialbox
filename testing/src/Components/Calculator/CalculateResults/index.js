@@ -96,10 +96,26 @@ function CalculateTotal() {
                                 </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #32A737' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '4px' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
-                                <img src={bdayIcon} /><div className='filter_value'> -- </div>
+                                <img src={bdayIcon} />
+                                <div className='filter_value' style={{ fontSize: '12px' }}>
+                                    {
+                                        params.demography.includes('age') ?
+                                            (
+                                                params.demography.substring(params.demography.indexOf('age')).split('=')[1].split('&')[0] === 'none' ?
+                                                    '--'
+                                                    :
+                                                    params.demography.substring(params.demography.indexOf('gender')).split('=')[1].split('&')[0] === 'undefined' ?
+                                                        params.demography.substring(params.demography.indexOf('age')).split('=')[1].split('&').length - 1 + 'age group'
+                                                        :
+                                                        params.demography.substring(params.demography.indexOf('age')).split('=')[1].split('&').length - 1 + 'age group ,' + params.demography.substring(params.demography.indexOf('gender')).split('=')[1].split('&')[0]
+                                            )
+                                            :
+                                            null
+                                    }
+                                </div>
                             </div>
                             <div className='filter_pane'>
                                 <img src={categoryIcon} /><div className='filter_value'> -- </div>

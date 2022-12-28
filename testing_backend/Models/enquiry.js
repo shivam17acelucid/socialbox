@@ -20,6 +20,24 @@ let enquirySchema = new Schema(
         message: {
             type: String,
             trim: true
+        },
+        estimatedCost: {
+            type: String,
+        },
+        creatorsCount: {
+            type: String,
+        },
+        estimatedLikes: {
+            type: Number,
+        },
+        estimatedComment: {
+            type: Number,
+        },
+        estimatedViews: {
+            type: Number,
+        },
+        estimatedEr: {
+            type: Number,
         }
     },
     {

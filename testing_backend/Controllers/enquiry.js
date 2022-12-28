@@ -4,7 +4,17 @@ const emailRegxp =
 
 
 exports.submitQuery = (req, res, next) => {
-    let { firstName, lastName, phone, email, message } = req.body;
+    let { firstName,
+        lastName,
+        phone,
+        email,
+        message,
+        estimatedLikes,
+        estimatedComment,
+        estimatedViews,
+        estimatedEr,
+        estimatedCost,
+        creatorsCount } = req.body;
     let errors = [];
     if (!emailRegxp.test(email)) {
         errors.push("invalid email");
@@ -17,7 +27,13 @@ exports.submitQuery = (req, res, next) => {
         lastName: lastName,
         email: email,
         phone: phone,
-        message: message
+        message: message,
+        estimatedComment: estimatedComment,
+        estimatedCost: estimatedCost,
+        estimatedEr: estimatedEr,
+        estimatedLikes: estimatedLikes,
+        estimatedViews: estimatedViews,
+        creatorsCount: creatorsCount
     })
     enquiry.save()
         .then((data) => {

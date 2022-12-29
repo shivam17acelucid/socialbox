@@ -14,7 +14,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
 
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
@@ -61,7 +61,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
 
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
@@ -108,7 +108,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
 
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
@@ -152,7 +152,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
                 multipleForBudgetReach: Number,
@@ -195,7 +195,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
                 multipleForBudgetReach: Number,
@@ -238,7 +238,7 @@ let calculatorSchema = new Schema(
                 reach: Number,
                 LikesComment: Number,
             },
-            microFolowers: {
+            microFollowers: {
                 budgetperFollowersRange: Number,
                 creatorsCount: Number,
                 multipleForBudgetReach: Number,

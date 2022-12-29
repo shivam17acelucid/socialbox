@@ -10,7 +10,7 @@ const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers
 const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
-const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv } = require('../Controllers/Calculator/index');
+const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 
 
 router.post("/signup", signup);
@@ -63,4 +63,5 @@ router.post('/setBasicFieldsForStories', setBasicFieldsForStories)
 router.post('/setBasicFieldsForIgtv', setBasicFieldsForIgtv)
 router.post('/setBasicFieldsForSwipeUpStories', setBasicFieldsForSwipeUpStories)
 router.post('/setBasicFieldsForVideos', setBasicFieldsForVideos)
+router.get('/calculateBudget', calculateBudget)
 module.exports = router;

@@ -677,169 +677,169 @@ exports.calculateBudget = (req, res) => {
                 if (item.deliverableType === 'Reel') {
                     if (followersRange === 'Nano') {
                         reelBudget = creatorsCount * item.reel.nanoFollowers.budgetperFollowersRange;
-                        reach = creatorsCount * item.reel.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.reel.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.reel.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.reel.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         reelBudget = creatorsCount * item.reel.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.reel.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.reel.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.reel.microFollowers.reach;
+                        LikesComment = creatorsCount * item.reel.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         reelBudget = creatorsCount * item.reel.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.reel.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.reel.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.reel.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.reel.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         reelBudget = creatorsCount * item.reel.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.reel.macroFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.reel.macroFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.reel.macroFollowers.reach;
+                        LikesComment = creatorsCount * item.reel.macroFollowers.LikesComment;
                     }
 
                     else if (followersRange === 'Mega') {
                         reelBudget = creatorsCount * item.reel.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.reel.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.reel.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.reel.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.reel.megaFollowers.LikesComment;
                     }
 
                 }
                 else if (item.deliverableType === 'Post') {
                     if (followersRange === 'Nano') {
                         postBudget = creatorsCount * item.post.nanoFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.post.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.post.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.post.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.post.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         postBudget = creatorsCount * item.post.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.post.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.post.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.post.microFollowers.reach;
+                        LikesComment = creatorsCount * item.post.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         postBudget = creatorsCount * item.post.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.post.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.post.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.post.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.post.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         postBudget = creatorsCount * item.post.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.post.macroFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.post.macroFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.post.macroFollowers.reach;
+                        LikesComment = creatorsCount * item.post.macroFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mega') {
                         postBudget = creatorsCount * item.post.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.post.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.post.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.post.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.post.megaFollowers.LikesComment;
                     }
                 }
                 else if (item.deliverableType === 'Story') {
                     if (followersRange === 'Nano') {
                         storyBudget = creatorsCount * item.story.nanoFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.story.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         storyBudget = creatorsCount * item.story.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.microFollowers.reach;
+                        LikesComment = creatorsCount * item.story.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         storyBudget = creatorsCount * item.story.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.story.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         storyBudget = creatorsCount * item.story.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.macroFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.macroFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.macroFollowers.reach;
+                        LikesComment = creatorsCount * item.story.macroFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mega') {
                         storyBudget = creatorsCount * item.story.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.story.megaFollowers.LikesComment;
                     }
                 }
                 else if (item.deliverableType === 'Swipeup Story') {
                     if (followersRange === 'Nano') {
                         swipeUpBudget = creatorsCount * item.swipeupStory.nanoFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.swipeupStory.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.swipeupStory.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.swipeupStory.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.swipeupStory.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         swipeUpBudget = creatorsCount * item.swipeupStory.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.swipeupStory.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.swipeupStory.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.swipeupStory.microFollowers.reach;
+                        LikesComment = creatorsCount * item.swipeupStory.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         swipeUpBudget = creatorsCount * item.swipeupStory.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.swipeupStory.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.swipeupStory.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.swipeupStory.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.swipeupStory.megaFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         swipeUpBudget = creatorsCount * item.swipeupStory.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.story.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.story.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.story.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.story.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mega') {
                         swipeUpBudget = creatorsCount * item.swipeupStory.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.swipeupStory.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.swipeupStory.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.swipeupStory.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.swipeupStory.megaFollowers.LikesComment;
                     }
                 }
                 else if (item.deliverableType === 'Igtv') {
                     if (followersRange === 'Nano') {
                         igtvBudget = creatorsCount * item.igtv.nanoFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.igtv.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.igtv.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.igtv.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.igtv.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         igtvBudget = creatorsCount * item.igtv.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.igtv.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.igtv.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.igtv.microFollowers.reach;
+                        LikesComment = creatorsCount * item.igtv.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         igtvBudget = creatorsCount * item.igtv.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.igtv.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.igtv.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.igtv.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.igtv.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         igtvBudget = creatorsCount * item.igtv.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.igtv.macroFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.igtv.macroFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.igtv.macroFollowers.reach;
+                        LikesComment = creatorsCount * item.igtv.macroFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mega') {
                         igtvBudget = creatorsCount * item.igtv.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.igtv.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.igtv.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.igtv.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.igtv.megaFollowers.LikesComment;
                     }
                 }
                 else if (item.deliverableType === 'Video') {
                     if (followersRange === 'Nano') {
                         videoBudget = creatorsCount * item.video.nanoFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.video.nanoFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.video.nanoFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.video.nanoFollowers.reach;
+                        LikesComment = creatorsCount * item.video.nanoFollowers.LikesComment;
                     }
                     else if (followersRange === 'Micro') {
                         videoBudget = creatorsCount * item.video.microFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.video.microFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.video.microFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.video.microFollowers.reach;
+                        LikesComment = creatorsCount * item.video.microFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mid-Tier') {
                         videoBudget = creatorsCount * item.video.midTierFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.video.midTierFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.video.midTierFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.video.midTierFollowers.reach;
+                        LikesComment = creatorsCount * item.video.midTierFollowers.LikesComment;
                     }
                     else if (followersRange === 'Macro') {
                         videoBudget = creatorsCount * item.video.macroFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.video.macroFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.video.macroFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.video.macroFollowers.reach;
+                        LikesComment = creatorsCount * item.video.macroFollowers.LikesComment;
                     }
                     else if (followersRange === 'Mega') {
                         videoBudget = creatorsCount * item.video.megaFollowers.budgetperFollowersRange
-                        reach = creatorsCount * item.video.megaFollowers.multipleForBudgetLikesComment;
-                        LikesComment = creatorsCount * item.video.megaFollowers.multipleForBudgetLikesComment;
+                        reach = creatorsCount * item.video.megaFollowers.reach;
+                        LikesComment = creatorsCount * item.video.megaFollowers.LikesComment;
                     }
                 }
             })
-            res.json({ reelBudget, postBudget, storyBudget, swipeUpBudget, igtvBudget, videoBudget })
+            res.json({ reelBudget, postBudget, storyBudget, swipeUpBudget, igtvBudget, videoBudget, LikesComment, reach })
         })
 
 }

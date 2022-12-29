@@ -10,6 +10,7 @@ const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers
 const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
+const { setBasicFieldsForReel } = require('../Controllers/Calculator/index');
 
 
 router.post("/signup", signup);
@@ -56,4 +57,5 @@ router.get('/erfilteredBasketData', erfilteredBasketData);
 router.post("/upload-csv", uploadCsv, uploadcsv);
 router.get("/downloadcsv", downloadcsv);
 router.post('/submitQuery', submitQuery);
+router.post('/setBasicFieldsForReel', setBasicFieldsForReel)
 module.exports = router;

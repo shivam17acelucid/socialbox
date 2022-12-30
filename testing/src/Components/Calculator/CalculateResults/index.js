@@ -19,9 +19,10 @@ function CalculateTotal() {
     const [message, setMessage] = useState('');
     const [basicCost, setBasicCost] = useState(null);
     const [followersRange, setFollowersRange] = useState('');
-    const [estimatedBudget, setEstimatedBudget] = useState('');
-    const [estimatedLikesComment, setEstimatedLikesComment] = useState('');
-    const [estimatedReach, setEstimatedReach] = useState('');
+    const [estimatedBudget, setEstimatedBudget] = useState(0);
+    const [estimatedLikesComment, setEstimatedLikesComment] = useState(0);
+    const [estimatedReach, setEstimatedReach] = useState(0);
+    const [apiCalled, setApiCalled] = useState(false);
     const params = useParams();
 
     const handleSubmitQuery = () => {
@@ -61,6 +62,7 @@ function CalculateTotal() {
                     res.json()
                         .then((data) => {
                             setBasicCost(data)
+                            setApiCalled(true)
                         })
                 })
         }
@@ -72,15 +74,67 @@ function CalculateTotal() {
                     res.json()
                         .then((data) => {
                             setBasicCost(data)
+                            setApiCalled(true)
                         })
                 })
         }
 
     }
 
+    const calculateCost = () => {
+        let estimatedbud;
+        let estimatedlikescmt;
+        let estimatedViews;
+        if (apiCalled === true) {
+            estimatedbud = (
+                (params.deliverables.substring(params.deliverables.indexOf('l=') + 2)[0] * basicCost.reelBudget)
+                +
+                ((params.deliverables.substring(params.deliverables.indexOf('t=') + 2)[0]) * basicCost.postBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('os=') + 3)[0] * basicCost.videoBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('stories=') + 8)[0] * basicCost.storyBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('swipeupStories=') + 15)[0] * basicCost.swipeUpBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0] * basicCost.igtvBudget)
+            )
+            setEstimatedBudget(estimatedbud)
+
+            estimatedlikescmt = (
+                (params.deliverables.substring(params.deliverables.indexOf('l=') + 2)[0] * basicCost.LikesCommentOfReel)
+                +
+                ((params.deliverables.substring(params.deliverables.indexOf('t=') + 2)[0]) * basicCost.LikesCommentOfPost)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('os=') + 3)[0] * basicCost.LikesCommentOfVideo)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('stories=') + 8)[0] * basicCost.LikesCommentOfStory)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('swipeupStories=') + 15)[0] * basicCost.LikesCommentOfSwipeup)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0] * basicCost.LikesCommentOfIgtv)
+            )
+            setEstimatedLikesComment(estimatedlikescmt)
+
+            estimatedViews = (
+                (params.deliverables.substring(params.deliverables.indexOf('l=') + 2)[0] * basicCost.reachOfReel)
+                +
+                ((params.deliverables.substring(params.deliverables.indexOf('t=') + 2)[0]) * basicCost.reachOfPost)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('os=') + 3)[0] * basicCost.reachOfVideo)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('stories=') + 8)[0] * basicCost.reachOfStory)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('swipeupStories=') + 15)[0] * basicCost.reachOfSwipeup)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0] * basicCost.reachOfIgtv)
+            )
+            setEstimatedReach(estimatedViews);
+        }
+    }
+
     useEffect(() => {
         let follower = params.followerRange.substring(params.followerRange.indexOf('=') + 1).split('&')[1];
-
         if (follower > 1000 && follower < 10000) {
             setFollowersRange('Nano')
         }
@@ -96,24 +150,14 @@ function CalculateTotal() {
         else if (follower > 1000000) {
             setFollowersRange('Mega')
         }
-        fetchBasicRates();
-        if (basicCost) {
-            let estimatedbud = (
-                (params.deliverables.substring(params.deliverables.indexOf('l=') + 2)[0] * basicCost.reelBudget)
-                +
-                ((params.deliverables.substring(params.deliverables.indexOf('t=') + 2)[0]) * basicCost.postBudget)
-                +
-                (params.deliverables.substring(params.deliverables.indexOf('os=') + 3)[0] * basicCost.videoBudget)
-                +
-                (params.deliverables.substring(params.deliverables.indexOf('stories=') + 8)[0] * basicCost.storyBudget)
-                +
-                (params.deliverables.substring(params.deliverables.indexOf('swipeupStories=') + 15)[0] * basicCost.swipeUpBudget)
-                +
-                (params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0] * basicCost.igtvBudget)
-            )
-            setEstimatedBudget(estimatedbud)
+        if (followersRange) {
+            fetchBasicRates();
         }
     }, [followersRange])
+
+    useEffect(() => {
+        calculateCost();
+    }, [apiCalled])
 
     return (
         <div className="calculate_4_container">
@@ -217,6 +261,7 @@ function CalculateTotal() {
                             <div className='cost_title'>Estimated Cost</div>
                             <div className='cost_value'>
                                 {
+
                                     params.budget.includes('budget') ?
                                         '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
                                         :
@@ -248,7 +293,7 @@ function CalculateTotal() {
                             <div className="field_pane">
                                 <div className="field_label">No of Creators</div>
                                 <div className="field_value">
-                                {
+                                    {
                                         params.budget.includes('budget') ?
                                             '-'
                                             :
@@ -259,16 +304,12 @@ function CalculateTotal() {
                         </div>
                         <div className="estimated_field_pane_2">
                             <div className="field_pane_2" style={{ marginLeft: 0 }}>
-                                <div className="field_label">Est Likes</div>
-                                <div className="field_value">50000</div>
-                            </div>
-                            <div className="field_pane_2">
-                                <div className="field_label">Est Comments</div>
-                                <div className="field_value">20000</div>
+                                <div className="field_label">Est Likes & Comment</div>
+                                <div className="field_value">{estimatedLikesComment}</div>
                             </div>
                             <div className="field_pane_2">
                                 <div className="field_label">Est Views</div>
-                                <div className="field_value">55000</div>
+                                <div className="field_value">{estimatedReach}</div>
                             </div>
                         </div>
                         <div className="result_pane_2_title">

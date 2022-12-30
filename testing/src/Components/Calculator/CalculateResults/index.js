@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from "../../../Common/Sidebar/sidebar";
 import TopBar from "../../../Common/TopBar";
@@ -17,6 +17,11 @@ function CalculateTotal() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
+    const [basicCost, setBasicCost] = useState(null);
+    const [followersRange, setFollowersRange] = useState('');
+    const [estimatedBudget, setEstimatedBudget] = useState('');
+    const [estimatedLikesComment, setEstimatedLikesComment] = useState('');
+    const [estimatedReach, setEstimatedReach] = useState('');
     const params = useParams();
 
     const handleSubmitQuery = () => {
@@ -46,6 +51,69 @@ function CalculateTotal() {
                 }
             })
     }
+
+    const fetchBasicRates = () => {
+        if (params.budget.includes('budget')) {
+            let budget = params.budget.substring(params.budget.indexOf('=') + 1)
+            let url = `http://localhost:4000/calculateBudget?followersRange=${followersRange}&budget=${budget}`;
+            fetch(url)
+                .then((res) => {
+                    res.json()
+                        .then((data) => {
+                            setBasicCost(data)
+                        })
+                })
+        }
+        else if (params.budget.includes('creators')) {
+            let creators = params.budget.substring(params.budget.indexOf('=') + 1);
+            let url = `http://localhost:4000/calculateBudget?followersRange=${followersRange}&creatorsCount=${creators}`;
+            fetch(url)
+                .then((res) => {
+                    res.json()
+                        .then((data) => {
+                            setBasicCost(data)
+                        })
+                })
+        }
+
+    }
+
+    useEffect(() => {
+        let follower = params.followerRange.substring(params.followerRange.indexOf('=') + 1).split('&')[1];
+
+        if (follower > 1000 && follower < 10000) {
+            setFollowersRange('Nano')
+        }
+        else if (follower > 10000 && follower < 50000) {
+            setFollowersRange('Micro')
+        }
+        else if (follower > 50000 && follower < 100000) {
+            setFollowersRange('Mid-Tier')
+        }
+        else if (follower > 100000 && follower < 1000000) {
+            setFollowersRange('Macro')
+        }
+        else if (follower > 1000000) {
+            setFollowersRange('Mega')
+        }
+        fetchBasicRates();
+        if (basicCost) {
+            let estimatedbud = (
+                (params.deliverables.substring(params.deliverables.indexOf('l=') + 2)[0] * basicCost.reelBudget)
+                +
+                ((params.deliverables.substring(params.deliverables.indexOf('t=') + 2)[0]) * basicCost.postBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('os=') + 3)[0] * basicCost.videoBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('stories=') + 8)[0] * basicCost.storyBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('swipeupStories=') + 15)[0] * basicCost.swipeUpBudget)
+                +
+                (params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0] * basicCost.igtvBudget)
+            )
+            setEstimatedBudget(estimatedbud)
+        }
+    }, [followersRange])
 
     return (
         <div className="calculate_4_container">
@@ -152,7 +220,7 @@ function CalculateTotal() {
                                     params.budget.includes('budget') ?
                                         '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
                                         :
-                                        '₹' + null
+                                        '₹' + estimatedBudget
                                 }
                             </div>
                         </div>
@@ -173,13 +241,20 @@ function CalculateTotal() {
                                         params.budget.includes('budget') ?
                                             '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
                                             :
-                                            '₹' + 50000000
+                                            '₹' + estimatedBudget
                                     }
                                 </div>
                             </div>
                             <div className="field_pane">
                                 <div className="field_label">No of Creators</div>
-                                <div className="field_value">10-12</div>
+                                <div className="field_value">
+                                {
+                                        params.budget.includes('budget') ?
+                                            '-'
+                                            :
+                                            params.budget.substring(params.budget.indexOf('=') + 1)
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div className="estimated_field_pane_2">
@@ -194,10 +269,6 @@ function CalculateTotal() {
                             <div className="field_pane_2">
                                 <div className="field_label">Est Views</div>
                                 <div className="field_value">55000</div>
-                            </div>
-                            <div className="field_pane_2">
-                                <div className="field_label">Eng Rate</div>
-                                <div className="field_value">8%</div>
                             </div>
                         </div>
                         <div className="result_pane_2_title">

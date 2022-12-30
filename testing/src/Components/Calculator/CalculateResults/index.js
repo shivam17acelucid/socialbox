@@ -23,23 +23,90 @@ function CalculateTotal() {
     const [estimatedLikesComment, setEstimatedLikesComment] = useState(0);
     const [estimatedReach, setEstimatedReach] = useState(0);
     const [apiCalled, setApiCalled] = useState(false);
+    const [metrics, setMetrics] = useState(0);
     const params = useParams();
 
+    // const calculateMetrics = () => {
+    //     let count0 = 0;
+    //     let count = 0;
+    //     if (params.budget.includes('budget') && params.deliverables && params.demography) {
+    //         setMetrics(15);
+    //         const a = params.deliverables.split('&')
+    //         for (let i = 0; i < a.length; i++) {
+    //             console.log(a[i].substring(a[i].length - 1))
+    //             if (a[i].substring(a[i].length - 1) === '0') {
+    //                 count0++;
+    //             }
+    //             else {
+    //                 count++;
+    //             }
+    //         }
+    //         if (count === 6) {
+    //             setMetrics(16)
+    //         }
+    //         else if (count === 5) {
+    //             setMetrics(17)
+    //         }
+    //         else if (count === 4) {
+    //             setMetrics(19)
+    //         }
+    //         else if (count === 3) {
+    //             setMetrics(21)
+    //         }
+    //         else if (count === 2) {
+    //             setMetrics(23)
+    //         }
+    //         else if (count === 1) {
+    //             setMetrics(25)
+    //         }
+    //         else if (count === 0) {
+    //             setMetrics(15)
+    //         }
+    //     }
+    //     else if (params.budget.includes('creators') && params.deliverables && params.demography) {
+    //         setMetrics(10);
+    //         const a = params.deliverables.split('&')
+    //         for (let i = 0; i < a.length; i++) {
+    //             console.log(a[i].substring(a[i].length - 1))
+    //             if (a[i].substring(a[i].length - 1) === '0') {
+    //                 count0++;
+    //             }
+    //             else {
+    //                 count++;
+    //             }
+    //         }
+    //         if (count === 6) {
+    //             setMetrics(11)
+    //         }
+    //         else if (count === 5) {
+    //             setMetrics(12)
+    //         }
+    //         else if (count === 4) {
+    //             setMetrics(14)
+    //         }
+    //         else if (count === 3) {
+    //             setMetrics(16)
+    //         }
+    //         else if (count === 2) {
+    //             setMetrics(18)
+    //         }
+    //         else if (count === 1) {
+    //             setMetrics(20)
+    //         }
+    //         else if (count === 0) {
+    //             setMetrics(10)
+    //         }
+    //     }
+    // }
+
     const handleSubmitQuery = () => {
-        let estimatedCost = 0;
-        {
-            params.budget.includes('budget') ?
-                estimatedCost = params.budget.substring(params.budget.indexOf('=') + 1)
-                :
-                estimatedCost = 0
-        }
         const url = 'http://localhost:4000/submitQuery';
         fetch((url), {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            body: JSON.stringify({ firstName, lastName, email, phone, message, estimatedCost })
+            body: JSON.stringify({ firstName, lastName, email, phone, message, estimatedBudget, estimatedLikesComment, estimatedReach })
         })
             .then((data) => {
                 if (data) {

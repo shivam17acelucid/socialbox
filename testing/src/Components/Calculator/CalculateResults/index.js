@@ -286,7 +286,7 @@ function CalculateTotal() {
                                         params.budget.includes('budget') ?
                                             '₹' + params.budget.substring(params.budget.indexOf('=') + 1)
                                             :
-                                            '₹' + estimatedBudget
+                                            '₹' + NFormatter(estimatedBudget)
                                     }
                                 </div>
                             </div>
@@ -305,11 +305,11 @@ function CalculateTotal() {
                         <div className="estimated_field_pane_2">
                             <div className="field_pane_2" style={{ marginLeft: 0 }}>
                                 <div className="field_label">Est Likes & Comment</div>
-                                <div className="field_value">{estimatedLikesComment}</div>
+                                <div className="field_value">{NFormatter(estimatedLikesComment)}</div>
                             </div>
                             <div className="field_pane_2">
                                 <div className="field_label">Est Views</div>
-                                <div className="field_value">{estimatedReach}</div>
+                                <div className="field_value">{NFormatter(estimatedReach)}</div>
                             </div>
                         </div>
                         <div className="result_pane_2_title">

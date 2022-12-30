@@ -11,9 +11,9 @@ exports.submitQuery = (req, res, next) => {
         message,
         estimatedLikes,
         estimatedComment,
-        estimatedViews,
-        estimatedEr,
-        estimatedCost,
+        estimatedReach,
+        estimatedBudget,
+        estimatedLikesComment,
         creatorsCount } = req.body;
     let errors = [];
     if (!emailRegxp.test(email)) {
@@ -28,12 +28,10 @@ exports.submitQuery = (req, res, next) => {
         email: email,
         phone: phone,
         message: message,
-        estimatedComment: estimatedComment,
-        estimatedCost: estimatedCost,
-        estimatedEr: estimatedEr,
-        estimatedLikes: estimatedLikes,
-        estimatedViews: estimatedViews,
-        creatorsCount: creatorsCount
+        estimatedBudget: estimatedBudget,
+        estimatedReach: estimatedReach,
+        creatorsCount: creatorsCount,
+        estimatedLikesComment: estimatedLikesComment
     })
     enquiry.save()
         .then((data) => {

@@ -101,7 +101,7 @@ function UserLists() {
                 setIsDeliverablesEdited(true)
                 handleEditDeliverables();
                 navigate(`/userLists/${newListName}`)
-                setListName('');
+                // setListName('');
                 setDescription('');
                 setReel(reel);
                 setPost(post);
@@ -181,7 +181,7 @@ function UserLists() {
                                                 <div className='overlay'>
                                                     <div className='addList_section'>
                                                         <Label> Edit List</Label>
-                                                        <Input type="text" placeholder="List Name" value={item.item.listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
+                                                        <Input type="text" placeholder="List Name" defaultValue={item.item.listName} onChange={(e) => { setListName(e.target.value) }} className="input_listname" />
                                                         <Input type='text' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} className="input_description" />
                                                         <Label style={{ marginTop: '12px' }}>Deliverables</Label>
                                                         <div>

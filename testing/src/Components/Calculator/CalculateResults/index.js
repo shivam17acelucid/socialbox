@@ -23,81 +23,14 @@ function CalculateTotal() {
     const [estimatedLikesComment, setEstimatedLikesComment] = useState(0);
     const [estimatedReach, setEstimatedReach] = useState(0);
     const [apiCalled, setApiCalled] = useState(false);
-    const [metrics, setMetrics] = useState(0);
+    const [metricsBudget, setMetricsBudget] = useState(0);
+    const [metricsDeliverable, setMetricsDeliverable] = useState(0);
+    const [metricsDemographyAge, setMetricsDemographyAge] = useState(0);
+    const [metricsDemography, setMetricsDemography] = useState(0);
+    const [metricsDemographyGender, setMetricsDemographyGender] = useState(0);
+    const [metricsDemographyCategory, setMetricsDemographyCategory] = useState(0);
+    const [metricsTotal, setMetricsTotal] = useState(0);
     const params = useParams();
-
-    // const calculateMetrics = () => {
-    //     let count0 = 0;
-    //     let count = 0;
-    //     if (params.budget.includes('budget') && params.deliverables && params.demography) {
-    //         setMetrics(15);
-    //         const a = params.deliverables.split('&')
-    //         for (let i = 0; i < a.length; i++) {
-    //             console.log(a[i].substring(a[i].length - 1))
-    //             if (a[i].substring(a[i].length - 1) === '0') {
-    //                 count0++;
-    //             }
-    //             else {
-    //                 count++;
-    //             }
-    //         }
-    //         if (count === 6) {
-    //             setMetrics(16)
-    //         }
-    //         else if (count === 5) {
-    //             setMetrics(17)
-    //         }
-    //         else if (count === 4) {
-    //             setMetrics(19)
-    //         }
-    //         else if (count === 3) {
-    //             setMetrics(21)
-    //         }
-    //         else if (count === 2) {
-    //             setMetrics(23)
-    //         }
-    //         else if (count === 1) {
-    //             setMetrics(25)
-    //         }
-    //         else if (count === 0) {
-    //             setMetrics(15)
-    //         }
-    //     }
-    //     else if (params.budget.includes('creators') && params.deliverables && params.demography) {
-    //         setMetrics(10);
-    //         const a = params.deliverables.split('&')
-    //         for (let i = 0; i < a.length; i++) {
-    //             console.log(a[i].substring(a[i].length - 1))
-    //             if (a[i].substring(a[i].length - 1) === '0') {
-    //                 count0++;
-    //             }
-    //             else {
-    //                 count++;
-    //             }
-    //         }
-    //         if (count === 6) {
-    //             setMetrics(11)
-    //         }
-    //         else if (count === 5) {
-    //             setMetrics(12)
-    //         }
-    //         else if (count === 4) {
-    //             setMetrics(14)
-    //         }
-    //         else if (count === 3) {
-    //             setMetrics(16)
-    //         }
-    //         else if (count === 2) {
-    //             setMetrics(18)
-    //         }
-    //         else if (count === 1) {
-    //             setMetrics(20)
-    //         }
-    //         else if (count === 0) {
-    //             setMetrics(10)
-    //         }
-    //     }
-    // }
 
     const handleSubmitQuery = () => {
         const url = 'http://localhost:4000/submitQuery';
@@ -200,6 +133,133 @@ function CalculateTotal() {
         }
     }
 
+    const calculateMetricsBudget = () => {
+        if (params.budget.includes('budget') && params.deliverables && params.demography) {
+            setMetricsBudget(15);
+        }
+        else if (params.budget.includes('creators') && params.deliverables && params.demography) {
+            setMetricsBudget(10);
+        }
+    }
+
+    const calculateMetricsDeliverables = () => {
+        let count0 = 0;
+        let count = 0;
+        const a = params.deliverables.split('&')
+        for (let i = 0; i < a.length; i++) {
+            if (a[i].substring(a[i].length - 1) === '0') {
+                count0++;
+            }
+            else {
+                count++;
+            }
+        }
+        if (count === 6) {
+            setMetricsDeliverable(1)
+        }
+        else if (count === 5) {
+            setMetricsDeliverable(2)
+        }
+        else if (count === 4) {
+            setMetricsDeliverable(4)
+        }
+        else if (count === 3) {
+            setMetricsDeliverable(6)
+        }
+        else if (count === 2) {
+            setMetricsDeliverable(8)
+        }
+        else if (count === 1) {
+            setMetricsDeliverable(10)
+        }
+        else if (count === 0) {
+            setMetricsDeliverable(0)
+        }
+    }
+
+    const calculateMetricsDemographyAgeGender = () => {
+        let ageCount = 0;
+        if (params.demography.substring(params.demography.indexOf('age')).split('=')[1].split('&')[0] === 'none') {
+            setMetricsDemographyAge(0);
+            if (params.demography.substring(params.demography.indexOf('gender')).split('=')[1].split('&')[0] === 'undefined') {
+                setMetricsDemographyGender(0)
+            }
+            else {
+                setMetricsDemographyGender(10);
+            }
+        }
+        else if (params.demography.substring(params.demography.indexOf('age')).split('=')[1].split('&')[0] !== 'none') {
+            let url = params.demography.substring(params.demography.indexOf('=') + 1);
+            let ageUrl = url.split('&')
+            ageUrl.forEach((item) => {
+                if (item.includes('-')) {
+                    ageCount++;
+                }
+            })
+            if (ageCount === 1) {
+                setMetricsDemographyAge(5)
+            }
+            else if (ageCount === 2) {
+                setMetricsDemographyAge(4)
+            }
+            else if (ageCount === 3) {
+                setMetricsDemographyAge(3)
+            }
+            else if (ageCount === 4) {
+                setMetricsDemographyAge(2)
+            }
+            else if (ageCount === 5) {
+                setMetricsDemographyAge(1)
+            }
+            if (params.demography.substring(params.demography.indexOf('gender')).split('=')[1].split('&')[0] === 'undefined') {
+                setMetricsDemographyGender(0)
+            }
+            else {
+                setMetricsDemographyGender(10);
+            }
+        }
+    }
+
+    const calculateMetricsDemographyCategory = () => {
+        if (params.demography.includes('category')) {
+            if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&')[0] === 'none') {
+                setMetricsDemographyCategory(0);
+            }
+            else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&')[0] !== 'none') {
+                if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 1) {
+                    setMetricsDemographyCategory(10);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 2) {
+                    setMetricsDemographyCategory(9);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 3) {
+                    setMetricsDemographyCategory(8);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 4) {
+                    setMetricsDemographyCategory(7);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 5) {
+                    setMetricsDemographyCategory(6);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 6) {
+                    setMetricsDemographyCategory(5);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 7) {
+                    setMetricsDemographyCategory(4);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 8) {
+                    setMetricsDemographyCategory(3);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 === 9) {
+                    setMetricsDemographyCategory(2);
+                }
+                else if (params.demography.substring(params.demography.indexOf('category')).split('=')[1].split('&').length - 1 >= 10) {
+                    setMetricsDemographyCategory(1);
+                }
+            }
+        }
+    }
+
     useEffect(() => {
         let follower = params.followerRange.substring(params.followerRange.indexOf('=') + 1).split('&')[1];
         if (follower > 1000 && follower < 10000) {
@@ -225,6 +285,14 @@ function CalculateTotal() {
     useEffect(() => {
         calculateCost();
     }, [apiCalled])
+
+    useEffect(() => {
+        calculateMetricsBudget();
+        calculateMetricsDeliverables();
+        calculateMetricsDemographyAgeGender();
+        calculateMetricsDemographyCategory();
+        setMetricsTotal(metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory)
+    }, [metricsDeliverable, metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory])
 
     return (
         <div className="calculate_4_container">
@@ -409,6 +477,7 @@ function CalculateTotal() {
                         <div className="image_2"></div>
                         <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
                         <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        <div>{metricsTotal}</div>
                     </div>
                 </div>
             </div>

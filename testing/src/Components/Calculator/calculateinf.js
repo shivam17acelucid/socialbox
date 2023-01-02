@@ -50,19 +50,45 @@ function CalculateCost() {
 
     const handleNextPage = () => {
         if (isChecked === true) {
-            if (((silderRolled ?
-                scale1(minRangeFollowers)
-                :
-                minRangeFollowers) > budget)
-                &&
-                ((sliderRolled1 ?
-                    scale(maxRangeFollowers)
-                    :
-                    maxRangeFollowers) > budget)) {
-                setError(true)
+            if ((silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) > 1000 && (silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) < 10000) {
+                if (budget < 2000) {
+                    setError(true)
+                }
+                else {
+                    navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+                }
             }
-            else {
-                navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+            else if ((silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) > 10000 && (silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) < 50000) {
+                if (budget < 7000) {
+                    setError(true)
+                }
+                else {
+                    navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+                }
+            }
+            else if ((silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) > 50000 && (silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) < 100000) {
+                if (budget < 24500) {
+                    setError(true)
+                }
+                else {
+                    navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+                }
+            }
+            else if ((silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) > 100000 && (silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) < 1000000) {
+                if (budget < 85750) {
+                    setError(true)
+                }
+                else {
+                    navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+                }
+            }
+            else if ((silderRolled ? scale1(minRangeFollowers) : minRangeFollowers) > 1000000) {
+                if (budget < 300125) {
+                    setError(true)
+                }
+                else {
+                    navigate(`/calculate/budget=${budget}/followerRange=${scale1(minRangeFollowers)}&${scale(maxRangeFollowers)}`)
+                }
             }
         }
         else if (isInfluencerChecked === true) {

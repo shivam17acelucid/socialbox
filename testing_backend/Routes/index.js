@@ -65,5 +65,5 @@ router.post('/setBasicFieldsForIgtv', setBasicFieldsForIgtv)
 router.post('/setBasicFieldsForSwipeUpStories', setBasicFieldsForSwipeUpStories)
 router.post('/setBasicFieldsForVideos', setBasicFieldsForVideos)
 router.get('/calculateBudget', calculateBudget)
-router.put('/editProfile', editProfile)
+router.put('/editProfile/:id', editProfile)
 module.exports = router;

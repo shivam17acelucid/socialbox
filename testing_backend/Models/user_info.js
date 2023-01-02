@@ -40,6 +40,10 @@ let userinfoSchema = new Schema(
       type: String,
       trim: true,
     },
+    linkedInProfile: {
+      type: String,
+      trim: true,
+    },
     list: [{
       listName: String,
       deliverables: Array,
@@ -62,39 +66,46 @@ let userinfoSchema = new Schema(
     },
     building: {
       type: String,
+      trim: true,
     },
-    landnmark: {
+    landmark: {
       type: String,
+      trim: true,
     },
     locality: {
       type: String,
+      trim: true,
     },
     city: {
       type: String,
+      trim: true,
     },
     state: {
       type: String,
+      trim: true,
     },
     pin: {
       type: String,
+      trim: true,
     },
     designation: {
       type: String,
+      trim: true,
     },
     company: {
-      type: String
+      type: String,
+      trim: true,
     },
     website: {
       type: String
     },
-    linkedInProfile: {
-      type: String,
-    },
     facebookProfile: {
-      type: String
+      type: String,
+      trim: true,
     },
     instagramProfile: {
-      type: String
+      type: String,
+      trim: true,
     },
     createdAt: { type: Date, default: Date.now(), index: { expiresIn: 300 } },
     source: { type: String },

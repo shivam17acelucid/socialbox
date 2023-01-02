@@ -46,6 +46,7 @@ function UserLists() {
     const [bundlesIconSelected, setBundlesIconSelected] = useState(false);
     const [basketData, setBasketData] = useState([]);
     const [changeBasket, setChangeBasket] = useState(false);
+    const [userRestored, setUserRestored] = useState(false);
 
     let { listname } = useParams();
 
@@ -54,6 +55,17 @@ function UserLists() {
 
     const redirectProfile = (data) => {
         navigate(`/profile/${data.username}`)
+    }
+
+    const handleRestore = (data) => {
+        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${listname}&username=${data.username}`
+        fetch((url), {
+            method: 'POST',
+        })
+            .then((data) => { data.json() })
+            .then((res) => {
+                setUserRestored(!userRestored)
+            })
     }
 
     const handleEditDeliverables = () => {
@@ -135,7 +147,7 @@ function UserLists() {
 
     useEffect(() => {
         handleListClick();
-    }, [isDataDeleted]);
+    }, [isDataDeleted, userRestored]);
 
     useEffect(() => {
         listname = listName;
@@ -420,8 +432,13 @@ function UserLists() {
                                                 <div className='box_name'>
                                                     {data.full_name}
                                                 </div>
-                                                <div className='view_box' onClick={() => redirectProfile(data)}>
-                                                    View
+                                                <div style={{ display: 'flex' }}>
+                                                    <div className='view_box' onClick={() => redirectProfile(data)}>
+                                                        View
+                                                    </div>
+                                                    <div className='view_box' onClick={() => handleRestore(data)} style={{ marginLeft: '1rem', width: '5rem' }}>
+                                                        Restore
+                                                    </div>
                                                 </div>
                                             </div>
                                         )

@@ -10,7 +10,7 @@ function ProfileSettings() {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [mobile, setMobile] = useState('');
+    const [phone, setPhone] = useState('');
     const [building, setBuilding] = useState('');
     const [locality, setLocality] = useState('');
     const [landmark, setLandmark] = useState('');
@@ -53,7 +53,7 @@ function ProfileSettings() {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            body: JSON.stringify({ name, email, mobile, building, locality, landmark, city, state, pin, designation, company, website, linkedInProfile, instagramProfile, facebookProfile })
+            body: JSON.stringify({ name, email, phone, building, locality, landmark, city, state, pin, designation, company, website, linkedInProfile, instagramProfile, facebookProfile })
         })
             .then((res) => {
                 setProfileUpdated(true);
@@ -115,9 +115,9 @@ function ProfileSettings() {
                                                 type='tel'
                                                 placeholder='Mobile'
                                                 // value={mobile}
-                                                onChange={(e) => { setMobile(e.target.value) }}
+                                                onChange={(e) => { setPhone(e.target.value) }}
                                                 className="update_input_fields"
-                                                defaultValue={item.mobile}
+                                                defaultValue={item.phone}
                                             />
                                             <div className='label_1' style={{ marginTop: '24px' }}>
                                                 Adress

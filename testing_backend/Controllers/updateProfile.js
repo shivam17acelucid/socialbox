@@ -14,9 +14,9 @@ exports.editProfile = (req, res, next) => {
                 data.phone = phone;
             }
             if (city) {
-                data.city = data.city;
+                data.city = city;
             }
-            if (data.state) {
+            if (state) {
                 data.state = state;
             }
             if (pin) {

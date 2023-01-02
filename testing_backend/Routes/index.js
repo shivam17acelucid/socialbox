@@ -11,6 +11,7 @@ const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForSt
 const rolehandler = require("../controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
+const { editProfile } = require('../Controllers/updateProfile');
 
 
 router.post("/signup", signup);
@@ -64,4 +65,5 @@ router.post('/setBasicFieldsForIgtv', setBasicFieldsForIgtv)
 router.post('/setBasicFieldsForSwipeUpStories', setBasicFieldsForSwipeUpStories)
 router.post('/setBasicFieldsForVideos', setBasicFieldsForVideos)
 router.get('/calculateBudget', calculateBudget)
+router.put('/editProfile', editProfile)
 module.exports = router;

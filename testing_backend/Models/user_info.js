@@ -60,6 +60,42 @@ let userinfoSchema = new Schema(
     otp: {
       type: String,
     },
+    building: {
+      type: String,
+    },
+    landnmark: {
+      type: String,
+    },
+    locality: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    pin: {
+      type: String,
+    },
+    designation: {
+      type: String,
+    },
+    company: {
+      type: String
+    },
+    website: {
+      type: String
+    },
+    linkedInProfile: {
+      type: String,
+    },
+    facebookProfile: {
+      type: String
+    },
+    instagramProfile: {
+      type: String
+    },
     createdAt: { type: Date, default: Date.now(), index: { expiresIn: 300 } },
     source: { type: String },
   },

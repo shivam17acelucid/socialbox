@@ -30,6 +30,7 @@ function CalculateTotal() {
     const [metricsDemographyGender, setMetricsDemographyGender] = useState(0);
     const [metricsDemographyCategory, setMetricsDemographyCategory] = useState(0);
     const [metricsTotal, setMetricsTotal] = useState(0);
+    const [calculatedCreatorsCount, setCalculatedCreatorsCount] = useState(0);
     const params = useParams();
 
     const handleSubmitQuery = () => {
@@ -51,6 +52,25 @@ function CalculateTotal() {
                     setLastName('')
                 }
             })
+    }
+
+    const calculateCreatorsCountBasedOnFollowersRange = () => {
+        if (params.budget.substring(params.budget.indexOf('=') + 1) < 10000) {
+            setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 2000))
+        }
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 10000 && params.budget.substring(params.budget.indexOf('=') + 1) < 50000) {
+            setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 7000))
+        }
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 50000 && params.budget.substring(params.budget.indexOf('=') + 1) < 100000) {
+            setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 24500))
+        }
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 100000 && params.budget.substring(params.budget.indexOf('=') + 1) < 1000000) {
+            setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 85750))
+        }
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 1000000) {
+            setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 300125))
+        }
+
     }
 
     const fetchBasicRates = () => {
@@ -284,6 +304,7 @@ function CalculateTotal() {
 
     useEffect(() => {
         calculateCost();
+        calculateCreatorsCountBasedOnFollowersRange();
     }, [apiCalled])
 
     useEffect(() => {
@@ -430,7 +451,7 @@ function CalculateTotal() {
                                 <div className="field_value">
                                     {
                                         params.budget.includes('budget') ?
-                                            '-'
+                                            calculatedCreatorsCount
                                             :
                                             params.budget.substring(params.budget.indexOf('=') + 1)
                                     }

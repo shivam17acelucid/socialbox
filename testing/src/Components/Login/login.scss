@@ -9,7 +9,7 @@ html {
 
 .login_container {
     height: 100%;
-    margin: 0px;
+    margin: 0;
     background-color: #FFF;
     display: flex;
 
@@ -54,7 +54,7 @@ html {
             font-style: normal;
             font-weight: 500;
             font-size: 1rem;
-            line-height: 24px;
+            line-height: 1.5rem;
             color: rgba(0, 0, 0, 0.4);
         }
 
@@ -76,8 +76,8 @@ html {
                 border: 1px solid #808080;
                 border-radius: 5px;
                 box-sizing: border-box;
-                margin-top: 4px;
-                margin-bottom: 4px;
+                margin-top: 0.25rem;
+                margin-bottom: 0.25rem;
                 width: 20rem;
                 height: 2.5rem;
                 padding-left: 1rem;
@@ -101,7 +101,7 @@ html {
                 color: #007DA8;
                 margin-left: 12rem;
                 cursor: pointer;
-                padding-top: 20px;
+                padding-top: 1.25rem;
             }
 
             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
@@ -140,7 +140,7 @@ html {
             font-style: normal;
             font-weight: 400;
             font-size: 0.875rem;
-            line-height: 17px;
+            line-height: 1.063rem;
             text-align: center;
             color: rgba(0, 0, 0, 0.4);
         }
@@ -161,7 +161,7 @@ html {
                 font-style: normal;
                 font-weight: 500;
                 font-size: 1.5rem;
-                line-height: 36px;
+                line-height: 2.25rem;
 
                 color: #000000;
             }

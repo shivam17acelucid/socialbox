@@ -19,11 +19,11 @@ html {
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             height: 38rem;
-            margin: 32px;
+            margin: 2rem;
             display: flex;
 
             .steps_pane {
-                width: 230px;
+                width: 14.375rem;
 
                 .steps_pane_part {
                     // height: 9.5rem;
@@ -31,7 +31,7 @@ html {
                     border-left: solid 5px #357AFF;
                     border-radius: 1px;
                     border-right: solid 2px #D9D9D9;
-                    padding: 16px 36px 3px;
+                    padding: 1rem 2.25rem 0.188rem;
                     border-bottom: 1px solid #CCCCCC;
 
                     .steps_pane_title {
@@ -58,7 +58,7 @@ html {
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
                     }
 
@@ -69,7 +69,7 @@ html {
                         font-size: 0.875rem;
                         line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
-                        padding-top: 10px;
+                        padding-top: 0.625rem;
                     }
 
                     .budget_influencers_value {
@@ -77,9 +77,9 @@ html {
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
-                        padding-left: 10px;
+                        padding-left: 0.625rem;
                     }
 
                     .deliverables {
@@ -99,8 +99,8 @@ html {
                             font-style: normal;
                             font-weight: 500;
                             font-size: 0.688rem;
-                            line-height: 15px;
-                            max-width: 30px;
+                            line-height: 0.938rem;
+                            max-width: 1.875rem;
                             color: rgba(0, 0, 0, 0.6);
                         }
                     }
@@ -109,21 +109,21 @@ html {
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
-                        padding: 5px 0 4px;
+                        padding: 0.313rem 0 0.25rem;
 
                         .filter_value {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
                             font-size: 0.75rem;
-                            line-height: 27px;
+                            line-height: 1.688rem;
                             color: #000000;
-                            padding-left: 16px;
+                            padding-left: 1rem;
                         }
                     }
 
                     .cost_title {
-                        padding: 25px 0 2px;
+                        padding: 1.563rem 0 0.125rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
@@ -133,7 +133,7 @@ html {
                     }
 
                     .cost_title {
-                        padding: 25px 0 2px;
+                        padding: 1.563rem 0 0.125rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
@@ -143,12 +143,12 @@ html {
                     }
 
                     .cost_value {
-                        padding: 0 0 36px;
+                        padding: 0 0 1rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
                     }
                 }
@@ -156,11 +156,11 @@ html {
                 .steps_pane_part_inactive {
                     // height: 9.5rem;
                     background: #D9D9D9;
-                    padding: 16px 36px 7px;
+                    padding: 1rem 2.25rem 0.438rem;
                     border-left: solid 5px #B6B6B6;
                     border-radius: 1px;
                     border-right: solid 2px #D9D9D9;
-                    padding: 16px 36px 3px;
+                    padding: 1rem 2.25rem 0.188rem;
                     border-bottom: 1px solid #CCCCCC;
 
                     .steps_pane_title {
@@ -187,7 +187,7 @@ html {
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
                     }
 
@@ -198,7 +198,7 @@ html {
                         font-size: 0.875rem;
                         line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
-                        padding-top: 10px;
+                        padding-top: 0.625rem;
                     }
 
                     .budget_influencers_value {
@@ -206,7 +206,7 @@ html {
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
                     }
 
@@ -227,8 +227,8 @@ html {
                             font-style: normal;
                             font-weight: 500;
                             font-size: 0.688rem;
-                            line-height: 15px;
-                            max-width: 30px;
+                            line-height: 0.938rem;
+                            max-width: 1.875rem;
                             color: rgba(0, 0, 0, 0.6);
                         }
                     }
@@ -237,21 +237,21 @@ html {
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
-                        padding: 5px 0 4px;
+                        padding: 0.313rem 0 0.25rem;
 
                         .filter_value {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
                             font-size: 1.25rem;
-                            line-height: 27px;
+                            line-height: 1.688rem;
                             color: #000000;
-                            padding-left: 16px;
+                            padding-left: 1rem;
                         }
                     }
 
                     .cost_title {
-                        padding: 25px 0 2px;
+                        padding: 1.563rem 0 0.125rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
@@ -261,12 +261,12 @@ html {
                     }
 
                     .cost_value {
-                        padding: 0 0 36px;
+                        padding: 0 0 1rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
                         font-size: 1.25rem;
-                        line-height: 27px;
+                        line-height: 1.688rem;
                         color: #000000;
                     }
                 }
@@ -275,7 +275,7 @@ html {
             .content_pane {
                 display: flex;
                 flex-direction: column;
-                padding: 16px 32px;
+                padding: 1rem 2rem;
 
                 .step_count {
                     font-family: 'Noto Sans';
@@ -292,7 +292,7 @@ html {
                     font-style: normal;
                     font-weight: 500;
                     font-size: 1.5rem;
-                    line-height: 33px;
+                    line-height: 2.063rem;
                     color: #000000;
                 }
 
@@ -301,7 +301,7 @@ html {
                     font-style: normal;
                     font-weight: 500;
                     font-size: 1rem;
-                    line-height: 22px;
+                    line-height: 1.375rem;
                     color: #000000;
                     margin-top: 0.8rem;
                 }
@@ -352,7 +352,7 @@ html {
                     font-style: normal;
                     font-weight: 500;
                     font-size: 1rem;
-                    line-height: 22px;
+                    line-height: 1.375rem;
                     color: #000000;
                 }
 
@@ -399,16 +399,16 @@ html {
 
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                     background: #7662DC;
-                    border-radius: 3px;
+                    border-radius: 0.188rem;
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
                     font-size: 0.75rem;
-                    line-height: 16px;
+                    line-height: 1rem;
                     text-align: center;
                     color: #FFFFFF;
-                    width: 124px;
-                    height: 36px;
+                    width: 7.75rem;
+                    height: 2.25rem;
                     margin-top: 2rem;
                     cursor: pointer;
                 }
@@ -436,7 +436,7 @@ html {
                     font-style: normal;
                     font-weight: 700;
                     font-size: 0.75rem;
-                    line-height: 16px;
+                    line-height: 1rem;
                     color: rgba(0, 0, 0, 0.3);
                 }
             }

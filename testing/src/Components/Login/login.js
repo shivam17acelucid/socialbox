@@ -75,7 +75,7 @@ function Login() {
                     <span className="form_forgot_text">Forgot Password</span>
                     <Button onClick={handleLogin}><span className="form_login_btn">Log in</span></Button>
                     <div className="social_login_btn">
-                        <img src={google} height="14px" /><span style={{ marginLeft: '12px' }}>Log in with Google</span>
+                        <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                     </div>
                 </div>
                 <div className="signup_link">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>

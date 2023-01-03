@@ -227,7 +227,7 @@ function CompareInfluencers() {
                                 {
                                     item.category_enum ?
 
-                                        <div style={{ padding: '12px' }}>
+                                        <div style={{ padding: '0.75rem' }}>
                                             <div className='profile_category'>{item.category_enum}</div>
                                         </div>
                                         : null
@@ -253,7 +253,7 @@ function CompareInfluencers() {
                                                             Select the list to which you want to add the
                                                             influencer.
                                                         </div>
-                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
                                                             {listData.map((element) =>
                                                                 <div className="list_options" onClick={() => { addInfluencerToList(elm, element) }}>
                                                                     {element.listName}
@@ -272,7 +272,7 @@ function CompareInfluencers() {
                                     <div className='recent_posts_title'>Recent Posts</div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
-                                        <div style={{ paddingLeft: '8px' }}>
+                                        <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
                                             <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[1]?.node.video_view_count)}</span></div>
@@ -280,7 +280,7 @@ function CompareInfluencers() {
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
-                                        <div style={{ paddingLeft: '8px' }}>
+                                        <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
                                             <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[2]?.node.video_view_count)}</span></div>
@@ -288,7 +288,7 @@ function CompareInfluencers() {
                                     </div>
                                     <div className='recent_post_box'>
                                         <img src={Testing} />
-                                        <div style={{ paddingLeft: '8px' }}>
+                                        <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>
                                             <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[3]?.node.video_view_count)}</span></div>

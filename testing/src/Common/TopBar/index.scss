@@ -21,8 +21,8 @@ html {
         font-family: 'Noto Sans';
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
-        line-height: 27px;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
         margin-left: 2rem;
         // padding-top: 16px;
 
@@ -32,8 +32,8 @@ html {
             font-family: 'Noto Sans';
             font-style: normal;
             font-weight: 600;
-            font-size: 16px;
-            line-height: 22px;
+            font-size: 1rem;
+            line-height: 1.375rem;
             color: #4D38B9;
             text-decoration: none;
 
@@ -41,7 +41,7 @@ html {
     }
 
     .page_title_compared {
-        padding-top: 16px;
+        padding-top: 1rem;
     }
 
     .topbar_help_icon {
@@ -50,16 +50,16 @@ html {
     }
 
     .topbar_user_icon {
-        height: 24px;
+        height: 1.5rem;
     }
 
     .topbar_username {
         font-family: 'Noto Sans';
         font-style: normal;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 1rem;
         text-transform: capitalize;
-        line-height: 16px;
+        line-height: 1rem;
         color: rgba(0, 0, 0, 0.7);
 
     }
@@ -86,8 +86,8 @@ html {
         font-family: 'Noto Sans';
         font-style: normal;
         font-weight: 500;
-        font-size: 14px;
-        line-height: 19px;
+        font-size: 0.875rem;
+        line-height: 1.188rem;
         color: rgba(0, 0, 0, 0.7);
     }
 }

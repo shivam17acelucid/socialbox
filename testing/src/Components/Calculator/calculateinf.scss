@@ -19,11 +19,11 @@ html {
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             height: 38rem;
-            margin: 32px;
+            margin: 2rem;
             display: flex;
 
             .steps_pane {
-                width: 230px;
+                width: 14.375rem;
 
                 .steps_pane_part {
                     // height: 9.5rem;
@@ -31,15 +31,15 @@ html {
                     border-left: solid 5px #357AFF;
                     border-radius: 1px;
                     border-right: solid 2px #D9D9D9;
-                    padding: 16px 36px 3px;
+                    padding: 0.5rem 1rem 0.188rem;
                     border-bottom: 1px solid #CCCCCC;
 
                     .steps_pane_title {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6)
                     }
 
@@ -47,17 +47,17 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
-                        padding-top: 8px;
+                        padding-top: 0.5rem;
                     }
 
                     .followers_count {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                     }
@@ -66,8 +66,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
                         padding-top: 10px;
                     }
@@ -76,7 +76,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                         padding-left: 10px;
@@ -90,7 +90,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 24px;
+                            font-size: 1.5rem;
                             color: #000000;
                         }
 
@@ -98,7 +98,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 11px;
+                            font-size: 0.688rem;
                             line-height: 15px;
                             max-width: 30px;
                             color: rgba(0, 0, 0, 0.6);
@@ -115,7 +115,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 20px;
+                            font-size: 1.25rem;
                             line-height: 27px;
                             color: #000000;
                             padding-left: 16px;
@@ -127,8 +127,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
                     }
 
@@ -137,8 +137,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
                     }
 
@@ -147,7 +147,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                     }
@@ -167,8 +167,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6)
                     }
 
@@ -176,17 +176,17 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
-                        padding-top: 8px;
+                        padding-top: 0.5rem;
                     }
 
                     .followers_count {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                     }
@@ -195,8 +195,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
                         padding-top: 10px;
                     }
@@ -205,7 +205,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                         padding-left: 10px;
@@ -219,7 +219,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 24px;
+                            font-size: 1.5rem;
                             color: #000000;
                         }
 
@@ -227,7 +227,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 11px;
+                            font-size: 0.688rem;
                             line-height: 15px;
                             max-width: 30px;
                             color: rgba(0, 0, 0, 0.6);
@@ -244,7 +244,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 20px;
+                            font-size: 1.25rem;
                             line-height: 27px;
                             color: #000000;
                             padding-left: 16px;
@@ -256,8 +256,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.6);
                     }
 
@@ -266,7 +266,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                         line-height: 27px;
                         color: #000000;
                     }
@@ -282,8 +282,8 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 14px;
-                    line-height: 19px;
+                    font-size: 0.875rem;
+                    line-height: 1.188rem;
                     color: rgba(0, 0, 0, 0.7);
                 }
 
@@ -291,17 +291,17 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 500;
-                    font-size: 24px;
+                    font-size: 1.5rem;
                     line-height: 33px;
                     color: #000000;
-                    padding-top: 8px;
+                    padding-top: 0.5rem;
                 }
 
                 .filter_content {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 500;
-                    font-size: 16px;
+                    font-size: 1rem;
                     line-height: 22px;
                     color: #000000;
                     padding-top: 24px;
@@ -321,7 +321,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 16px;
+                            font-size: 1rem;
                             line-height: 22px;
                             color: #000000;
                         }
@@ -330,8 +330,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 14px;
-                            line-height: 19px;
+                            font-size: 0.875rem;
+                            line-height: 1.188rem;
                             color: RGB(0, 0, 0, 0.5);
                             padding-top: 1rem;
                         }
@@ -351,8 +351,8 @@ html {
                             font-family: 'Inter';
                             font-style: normal;
                             font-weight: 400;
-                            font-size: 16px;
-                            line-height: 19px;
+                            font-size: 1rem;
+                            line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.4);
                             padding-left: 12px;
 
@@ -360,8 +360,8 @@ html {
                                 font-family: 'Inter';
                                 font-style: normal;
                                 font-weight: 400;
-                                font-size: 16px;
-                                line-height: 19px;
+                                font-size: 1rem;
+                                line-height: 1.188rem;
                                 color: rgba(0, 0, 0, 0.8);
                             }
                         }
@@ -374,11 +374,11 @@ html {
                         }
 
                         .css-yafthl-MuiSlider-markLabel {
-                            font-size: 10px;
+                            font-size: 0.625rem;
                         }
 
                         .css-1eoe787-MuiSlider-markLabel {
-                            font-size: 10px;
+                            font-size: 0.625rem;
                         }
 
                         .css-14pt78w-MuiSlider-rail {
@@ -397,7 +397,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 20px;
+                            font-size: 1.25rem;
                             line-height: 27px;
                             color: rgba(0, 0, 0, 0.7);
                             margin-top: 5px;
@@ -415,7 +415,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 12px;
+                            font-size: 0.75rem;
                             line-height: 16px;
                             text-align: center;
                             color: #FFFFFF;
@@ -433,7 +433,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
+                        font-size: 1rem;
                         line-height: 22px;
                         color: #000000;
                     }
@@ -442,8 +442,8 @@ html {
                         font-family: 'Inter';
                         font-style: normal;
                         font-weight: 400;
-                        font-size: 16px;
-                        line-height: 19px;
+                        font-size: 1rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.8);
                     }
 
@@ -462,8 +462,8 @@ html {
                     font-family: 'Inter';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 16px;
-                    line-height: 19px;
+                    font-size: 1rem;
+                    line-height: 1.188rem;
                     color: #D72828;
                     width: 650px;
                 }
@@ -474,7 +474,7 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 12px;
+                    font-size: 0.75rem;
                     line-height: 16px;
                     text-align: center;
                     color: #FFFFFF;
@@ -505,7 +505,7 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 12px;
+                    font-size: 0.75rem;
                     line-height: 16px;
                     color: rgba(0, 0, 0, 0.3);
                 }

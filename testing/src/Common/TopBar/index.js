@@ -62,11 +62,11 @@ function TopBar() {
                 <div className={comparedPageVisited === true ? "page_title_compared" : "page_title"}>
                     {textToShow}
                     {textToShow === 'Compare Influencers' || textToShow === 'Compare Lists' ?
-                        <div style={{ display: 'flex', paddingTop: '16px' }}>
-                            <div style={{ paddingLeft: '20px' }}>
+                        <div style={{ display: 'flex', paddingTop: '1rem' }}>
+                            <div style={{ paddingLeft: '1.25rem' }}>
                                 <Link to="/CompareInfluencers" className="tab_text">Influencers</Link>
                             </div>
-                            <div style={{ paddingLeft: '56px' }}>
+                            <div style={{ paddingLeft: '3.5rem' }}>
                                 <Link to="/CompareLists" className="tab_text">List</Link>
                             </div>
                         </div>

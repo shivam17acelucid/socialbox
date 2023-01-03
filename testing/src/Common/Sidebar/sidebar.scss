@@ -49,11 +49,11 @@ html {
 ul {
     display: block;
     list-style-type: disc;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
 }
 
 .nav-menu-active {
@@ -70,15 +70,15 @@ ul {
     justify-content: flex-start;
     align-items: center;
     list-style: none;
-    height: 60px;
+    height: 3.8rem;
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
 
     span {
-        font-size: 14px;
+        font-size: 0.8125rem;
     }
 
 }
@@ -94,8 +94,8 @@ ul {
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    border-radius: 4px;
+    padding: 0 1rem;
+    border-radius: 0.25rem;
 }
 
 .nav-menu-items {
@@ -105,7 +105,7 @@ ul {
 
 .navbar-toggle {
     width: 100%;
-    height: 80px;
+    height: 5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -128,12 +128,12 @@ span {
     justify-content: flex-start;
     align-items: center;
     list-style: none;
-    height: 60px;
+    height: 2.8rem;
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
 }
 
 .nav-nested:hover {
@@ -147,11 +147,11 @@ span {
     height: auto !important;
     display: block;
     align-items: center;
-    padding: 0 16px;
-    border-radius: 4px;
+    padding: 0 1rem;
+    border-radius: 0.25rem;
 
     svg {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 }
 

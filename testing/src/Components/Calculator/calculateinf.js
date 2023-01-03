@@ -418,7 +418,7 @@ function CalculateCost() {
                                         scale={scale1}
                                         valueLabelFormat={numFormatter}
                                     />
-                                    <div style={{ paddingTop: '18px' }}>
+                                    <div style={{ paddingTop: '1.125rem' }}>
                                         <div className="label_slider">Maximum</div>
                                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             {
@@ -456,12 +456,12 @@ function CalculateCost() {
                                 Select the budget or the number of influencers
                                 required for marketing
                             </div>
-                            <div style={{ paddingTop: '12px' }}>
+                            <div style={{ paddingTop: '0.75rem' }}>
                                 <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} style={{ cursor: 'pointer' }} />
                                 <label>Budegt (INR)</label>
                                 <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' type='number' value={budget} onChange={(e) => setBudget(e.target.value)} disabled={isInfluencerChecked === true ? true : false} /></span>
                             </div>
-                            <div style={{ paddingTop: '12px' }}>
+                            <div style={{ paddingTop: '0.75rem' }}>
                                 <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} style={{ cursor: 'pointer' }} />
                                 <label>No of influencers</label>
                                 <span><Input className='input_box' type='number' value={creatorsCount} onChange={(e) => { setCreatorsCount(e.target.value) }} disabled={isChecked === true ? true : false} /></span>
@@ -470,7 +470,7 @@ function CalculateCost() {
                         {
                             error ?
                                 <div className='error_pane'>
-                                    <img src={errorIcon} height='12px' /> The followers count does not correspond to the budget.
+                                    <img src={errorIcon} height='0.75rem' /> The followers count does not correspond to the budget.
                                     Please change the budget or followers count to a reasonable range and try again.
                                 </div>
                                 : null

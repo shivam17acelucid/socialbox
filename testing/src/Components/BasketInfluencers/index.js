@@ -437,7 +437,7 @@ function BasketInfluencers() {
                                                             <TableCell align="center">{data.city_name}</TableCell>
                                                             <TableCell key={index} >
                                                                 <div style={{ display: 'flex', cursor: 'pointer' }}>
-                                                                    <img src={CostIcon} style={{ marginLeft: '10px', marginRight: '10px' }} onClick={(e) => { handleCostClicked(data) }} />
+                                                                    <img src={CostIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={(e) => { handleCostClicked(data) }} />
                                                                     {
                                                                         costModalOpened === true ?
                                                                             costUser === data.username ?
@@ -507,7 +507,7 @@ function BasketInfluencers() {
                                                                             :
                                                                             null
                                                                     }
-                                                                    <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '10px', marginRight: '10px' }} />
+                                                                    <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} />
                                                                     {addToListTableClicked === true ?
                                                                         [data].map((item) =>
                                                                             item.username == rowClickedData ?
@@ -519,7 +519,7 @@ function BasketInfluencers() {
                                                                                             Select the list to which you want to add the
                                                                                             influencer.
                                                                                         </div>
-                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
                                                                                             {listData.map((item) =>
                                                                                                 <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
                                                                                                     {item.listName}
@@ -532,7 +532,7 @@ function BasketInfluencers() {
                                                                         )
 
                                                                         : null}
-                                                                    <img src={CompareIcon} style={{ marginLeft: '10px', marginRight: '10px' }} onClick={() => handleAddToCompare(data)} />
+                                                                    <img src={CompareIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={() => handleAddToCompare(data)} />
                                                                     {
                                                                         addToCompareClicked === true ?
 

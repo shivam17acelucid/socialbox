@@ -42,7 +42,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 24px;
+                font-size: 1.5rem;
                 line-height: 33px;
                 text-align: center;
                 color: #000000;
@@ -55,7 +55,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 12px;
+                font-size: 0.75rem;
                 line-height: 16px;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.5);
@@ -65,8 +65,8 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 14px;
-                line-height: 19px;
+                font-size: 0.875rem;
+                line-height: 1.188rem;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.8);
 
@@ -78,7 +78,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 12px;
+                font-size: 0.75rem;
                 line-height: 16px;
                 text-align: center;
                 color: #FFFFFF;
@@ -93,7 +93,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 20px;
+                font-size: 1.25rem;
                 line-height: 27px;
                 text-align: center;
                 color: #000000;
@@ -117,7 +117,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
+                        font-size: 1rem;
                         line-height: 22px;
                         display: flex;
                         align-items: flex-end;
@@ -139,7 +139,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
+                        font-size: 1rem;
                         line-height: 22px;
                         display: flex;
                         align-items: flex-end;
@@ -162,8 +162,8 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 14px;
-                line-height: 19px;
+                font-size: 0.875rem;
+                line-height: 1.188rem;
                 color: #007DA8;
 
                 .addList_section {
@@ -191,7 +191,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 16px;
+                            font-size: 1rem;
                             line-height: 22px;
                             color: #000000;
                         }
@@ -200,8 +200,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 14px;
-                            line-height: 19px;
+                            font-size: 0.875rem;
+                            line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.7);
                             margin-top: 8px;
                         }
@@ -210,10 +210,10 @@ html {
                             font-family: 'Inter';
                             font-style: normal;
                             font-weight: 400;
-                            font-size: 16px;
-                            line-height: 19px;
+                            font-size: 1rem;
+                            line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.8);
-                            padding-top: 8px;
+                            padding-top: 0.5rem;
                             padding-bottom: 8px;
                         }
                     }
@@ -227,7 +227,7 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 12px;
+                    font-size: 0.75rem;
                     line-height: 16px;
                     color: rgba(0, 0, 0, 0.6);
                     padding: 8px;
@@ -272,7 +272,7 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 128px;
+                font-size: 8rem;
                 line-height: 174px;
                 text-align: center;
                 margin-top: 12rem;
@@ -284,8 +284,8 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 14px;
-                line-height: 19px;
+                font-size: 0.875rem;
+                line-height: 1.188rem;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.4);
                 cursor: pointer;
@@ -329,7 +329,7 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
+                        font-size: 1rem;
                         line-height: 22px;
                         color: #000000;
                     }
@@ -338,8 +338,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.7);
                         margin-top: 1rem;
                     }
@@ -392,7 +392,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 12px;
+                            font-size: 0.75rem;
                             line-height: 16px;
                             color: rgba(0, 0, 0, 0.7);
                         }
@@ -401,7 +401,7 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 14px;
+                            font-size: 0.875rem;
                             line-height: 16px;
                             color: #007DA8;
                             margin-top: 8px;
@@ -420,7 +420,7 @@ html {
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;
-                                font-size: 12px;
+                                font-size: 0.75rem;
                                 line-height: 16px;
                                 text-align: center;
                                 color: #FFFFFF;
@@ -433,7 +433,7 @@ html {
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;
-                                font-size: 12px;
+                                font-size: 0.75rem;
                                 line-height: 16px;
                                 text-align: center;
                                 color: #595959;

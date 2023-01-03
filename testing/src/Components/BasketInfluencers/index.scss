@@ -32,8 +32,8 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 24px;
-                line-height: 33px;
+                font-size: 1.5rem;
+                line-height: 2.063rem;
                 color: #000000;
             }
 
@@ -41,8 +41,8 @@ html {
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 12px;
-                line-height: 16px;
+                font-size: 0.75rem;
+                line-height: 1rem;
                 padding-left: 1rem;
                 color: rgba(0, 0, 0, 0.6);
             }
@@ -59,8 +59,8 @@ html {
                     font-family: 'Poppins';
                     font-style: normal;
                     font-weight: 400;
-                    font-size: 14px;
-                    line-height: 21px;
+                    font-size: 0.875rem;
+                    line-height: 1.313rem;
 
                 }
 
@@ -77,11 +77,11 @@ html {
 
                     .modal_option {
                         padding: 2rem;
-                        max-height: 342px;
+                        max-height: 21.375rem;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        border-radius: 8px;
+                        border-radius: 0.5rem;
                         background-color: #f6f6f6;
                         box-shadow: var(--box-shadow-primary);
                         cursor: pointer;
@@ -92,7 +92,7 @@ html {
                         }
 
                         input {
-                            margin: 12px;
+                            margin: 0.75rem;
                         }
                     }
                 }
@@ -100,7 +100,7 @@ html {
 
             .list_category_data {
                 margin-top: 2rem;
-                margin-left: 4px;
+                margin-left: 0.25rem;
 
                 .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
                     background-color: #fff;
@@ -118,8 +118,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 14px;
-                            line-height: 16px;
+                            font-size: 0.875rem;
+                            line-height: 1rem;
                             color: rgba(0, 0, 0, 0.5);
                             background: #D9D9D9;
                             z-index: 0;
@@ -129,8 +129,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 14px;
-                            line-height: 16px;
+                            font-size: 0.875rem;
+                            line-height: 1rem;
                             color: rgba(0, 0, 0, 0.5);
                             background: #D9D9D9;
                             z-index: 1;
@@ -140,8 +140,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 16px;
-                            line-height: 19px;
+                            font-size: 1rem;
+                            line-height: 1.188rem;
                             color: #000000;
                             background: #fff;
                         }
@@ -150,8 +150,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 14px;
-                            line-height: 19px;
+                            font-size: 0.875rem;
+                            line-height: 1.188rem;
                             color: #000000;
                             background: #fff;
                         }
@@ -167,20 +167,20 @@ html {
                     background: #FFFFFF;
                     border: 1px solid rgba(0, 0, 0, 0.2);
                     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-                    border-radius: 5px;
-                    width: 365px;
+                    border-radius: 0.313rem;
+                    width: 22.813rem;
                     height: 26rem;
                     top: 40%;
                     left: 55%;
-                    padding-bottom: 16px;
+                    padding-bottom: 1rem;
 
                     .modal_title {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
-                        line-height: 22px;
-                        padding: 16px 24px;
+                        font-size: 1rem;
+                        line-height: 1.375rem;
+                        padding: 1rem 1.5rem;
                         color: #000000;
                     }
 
@@ -189,15 +189,15 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
-                        padding: 0 24px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
+                        padding: 0 1.5rem;
                         color: rgba(0, 0, 0, 0.7);
                     }
 
                     .cost_box {
                         display: flex;
-                        padding: 8px 24px;
+                        padding: 0.5rem 1.5rem;
 
                         .cost_value {
                             padding-left: 4rem;
@@ -208,11 +208,11 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
-                        padding: 0 24px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
+                        padding: 0 1.5rem;
                         color: rgba(0, 0, 0, 0.7);
-                        padding: 24px 24px 0;
+                        padding: 1.5rem 1.5rem 0;
 
                     }
 
@@ -222,21 +222,21 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 12px;
-                        line-height: 16px;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
                         text-align: center;
                         color: #595959;
-                        width: 124px;
-                        height: 36px;
-                        margin: 16px 24px;
+                        width: 7.75rem;
+                        height: 2rem;
+                        margin: 1rem 1.5rem;
                     }
                 }
 
                 .addList_section {
-                    max-height: 350px;
+                    max-height: 21.875rem;
                     position: absolute;
                     z-index: 4;
-                    padding: 12px;
+                    padding: 0.75rem;
                     background: #FFFFFF;
                     border: 1px solid RGB(0, 0, 0, 0.2);
                     box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
@@ -245,11 +245,11 @@ html {
                     left: 70%;
 
                     .addList_option {
-                        max-height: 342px;
+                        max-height: 21.375rem;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        padding: 10px;
+                        padding: 0.625rem;
                         border-radius: 8px;
                         cursor: pointer;
 
@@ -257,8 +257,8 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 16px;
-                            line-height: 22px;
+                            font-size: 1rem;
+                            line-height: 1.375rem;
                             color: #000000;
                         }
 
@@ -266,21 +266,21 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 14px;
-                            line-height: 19px;
+                            font-size: 0.875rem;
+                            line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.7);
-                            margin-top: 8px;
+                            margin-top: 0.5rem;
                         }
 
                         .list_options {
                             font-family: 'Inter';
                             font-style: normal;
                             font-weight: 400;
-                            font-size: 16px;
-                            line-height: 19px;
+                            font-size: 1rem;
+                            line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.8);
-                            padding-top: 8px;
-                            padding-bottom: 8px;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
                         }
                     }
                 }
@@ -296,8 +296,8 @@ html {
                     box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
                     border-radius: 5px;
                     box-sizing: border-box;
-                    width: 400px;
-                    min-height: 363px;
+                    width: 25rem;
+                    min-height: 22.688rem;
                     top: 70%;
                     left: 85%;
 
@@ -310,8 +310,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 16px;
-                        line-height: 22px;
+                        font-size: 1rem;
+                        line-height: 1.375rem;
                         color: #000000;
                     }
 
@@ -319,8 +319,8 @@ html {
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 14px;
-                        line-height: 19px;
+                        font-size: 0.875rem;
+                        line-height: 1.188rem;
                         color: rgba(0, 0, 0, 0.7);
                         margin-top: 1rem;
                     }
@@ -330,9 +330,9 @@ html {
                         border: 1px solid rgba(0, 0, 0, 0.5);
                         border-radius: 5px;
                         width: 19rem;
-                        height: 36px;
+                        height: 2rem;
                         box-sizing: border-box;
-                        margin-top: 8px;
+                        margin-top: 0.5rem;
                     }
 
                     .suggestions {
@@ -342,17 +342,17 @@ html {
                         border-radius: 5px;
                         z-index: 9999;
                         width: 19rem;
-                        max-height: 150px;
+                        max-height: 9.375rem;
                         overflow-y: scroll;
                         top: 40%;
                         left: 6%;
 
                         .active_inf {
-                            padding: 12px;
+                            padding: 0.75rem;
                         }
 
                         .non_active {
-                            padding: 12px;
+                            padding: 0.75rem;
                         }
                     }
 
@@ -360,30 +360,30 @@ html {
 
                         .added_influencer {
                             background: #D9D9D9;
-                        border-radius: 10px;
-                        width: 17rem;
-                        display: flex;
-                        align-content: center;
-                        align-items: center;
-                        padding: 12px;
-                        justify-content: space-between;
-                        margin-top: 8px;
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 12px;
-                        line-height: 16px;
-                        color: rgba(0, 0, 0, 0.7);
+                            border-radius: 10px;
+                            width: 17rem;
+                            display: flex;
+                            align-content: center;
+                            align-items: center;
+                            padding: 0.75rem;
+                            justify-content: space-between;
+                            margin-top: 0.5rem;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 0.75rem;
+                            line-height: 1rem;
+                            color: rgba(0, 0, 0, 0.7);
                         }
 
                         .clear_all {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 14px;
-                            line-height: 16px;
+                            font-size: 0.875rem;
+                            line-height: 1rem;
                             color: #007DA8;
-                            margin-top: 8px;
+                            margin-top: 0.5rem;
                         }
 
                         .btn_pane {
@@ -397,8 +397,8 @@ html {
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;
-                                font-size: 12px;
-                                line-height: 16px;
+                                font-size: 0.75rem;
+                                line-height: 1rem;
                                 text-align: center;
                                 color: #FFFFFF;
                                 height: 2rem;
@@ -410,8 +410,8 @@ html {
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;
-                                font-size: 12px;
-                                line-height: 16px;
+                                font-size: 0.75rem;
+                                line-height: 1rem;
                                 text-align: center;
                                 color: #595959;
                             }
@@ -427,7 +427,7 @@ html {
             width: 100%;
             box-shadow: 0px 0 4px 0 #edecf4;
             z-index: 1 !important;
-            max-width: 320px;
+            max-width: 20rem;
             background: #FBFBFB;
             border: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -439,7 +439,7 @@ html {
                     justify-content: space-around;
 
                     img {
-                        height: 18px;
+                        height: 1.125rem;
                     }
                 }
 
@@ -451,38 +451,38 @@ html {
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 500;
-                    font-size: 20px;
-                    line-height: 27px;
+                    font-size: 1.25rem;
+                    line-height: 1.688rem;
                     color: #000000;
                     margin-top: 2rem;
                 }
 
                 .bundle_box {
                     display: flex;
-                    margin: 2rem 0 2rem 12px;
+                    margin: 2rem 0 2rem 0.75rem;
                     background: #FFFFFF;
                     box-shadow: 0px 2px 4px RGB(0 0 0 / 25%);
                     border-radius: 5px;
-                    width: 256px;
-                    height: 132px;
+                    width: 16rem;
+                    height: 8.25rem;
 
                     .influencers_image {
                         img {
-                            height: 85px;
+                            height: 5.313rem;
                         }
 
-                        width: 100px;
+                        width: 6.25rem;
                     }
 
                     .bundle_desc {
-                        padding: 16px;
+                        padding: 1rem;
 
                         .bundle_title {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
-                            font-size: 16px;
-                            line-height: 22px;
+                            font-size: 1rem;
+                            line-height: 1.375rem;
                             color: #000000;
 
                         }
@@ -491,18 +491,18 @@ html {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
-                            font-size: 10px;
-                            line-height: 14px;
+                            font-size: 0.625rem;
+                            line-height: 0.875rem;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             color: #FFFFFF;
                             height: 2rem;
-                            width: 62px;
+                            width: 3.875rem;
                             background: #7662DC;
                             border-radius: 3px;
-                            margin-top: 10px;
-                            margin-bottom: 20px;
+                            margin-top: 0.625rem;
+                            margin-bottom: 1.25rem;
                         }
                     }
                 }

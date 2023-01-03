@@ -54,7 +54,42 @@ const categoryOptions = [
 ]
 
 const regionOptions = [
-    {}
+    { label: 'AndhraPradesh', value: 'AndhraPradesh' },
+    { label: 'Rajasthan', value: 'Rajasthan' },
+    { label: 'Andaman&NicobarIslands', value: 'Andaman&NicobarIslands' },
+    { label: 'ArunāchalPradesh', value: 'ArunāchalPradesh' },
+    { label: 'Assam', value: 'Assam' },
+    { label: 'Bihār', value: 'Bihār' },
+    { label: 'Chandīgarh', value: 'Chandīgarh' },
+    { label: 'Chhattīsgarh', value: 'Chhattīsgarh' },
+    { label: 'Dādra&NagarHaveli', value: 'Dādra&NagarHaveli' },
+    { label: 'TamilNādu', value: 'TamilNādu' },
+    { label: 'Karnātaka', value: 'Karnātaka' },
+    { label: 'Haryāna', value: 'Haryāna' },
+    { label: 'Jhārkhand', value: 'Jhārkhand' },
+    { label: 'Jammu&Kashmīr', value: 'Jammu&Kashmīr' },
+    { label: 'HimāchalPradesh', value: 'HimāchalPradesh' },
+    { label: 'Gujarāt', value: 'Gujarāt' },
+    { label: 'Goa', value: 'Goa' },
+    { label: 'Delhi', value: 'Delhi' },
+    { label: 'Telangana', value: 'Telangana' },
+    { label: 'Kerala', value: 'Kerala' },
+    { label: 'Ladakh', value: 'Ladakh' },
+    { label: 'Lakshadweep', value: 'Lakshadweep' },
+    { label: 'MadhyaPradesh', value: 'MadhyaPradesh' },
+    { label: 'Mahārāshtra', value: 'Mahārāshtra' },
+    { label: 'Manipur', value: 'Manipur' },
+    { label: 'Meghālaya', value: 'Meghālaya' },
+    { label: 'Mizoram', value: 'Mizoram' },
+    { label: 'Nāgāland', value: 'Nāgāland' },
+    { label: 'Odisha(Orissa)', value: 'Odisha(Orissa)' },
+    { label: 'Puducherry(Pondicherry)', value: 'Puducherry(Pondicherry)' },
+    { label: 'Punjab', value: 'Punjab' },
+    { label: 'Sikkim', value: 'Sikkim' },
+    { label: 'Tripura', value: 'Tripura' },
+    { label: 'Uttarākhand(Uttaranchal)', value: 'Uttarākhand(Uttaranchal)' },
+    { label: 'UttarPradesh', value: 'UttarPradesh' },
+    { label: 'Westbengal', value: 'Westbengal' },
 ]
 
 const cityOptions = [
@@ -258,7 +293,7 @@ function CalculateFilters() {
                                 </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '4px' }}>
+                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '0.25rem' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
                                 <img src={bdayIcon} /><div className='filter_value'>

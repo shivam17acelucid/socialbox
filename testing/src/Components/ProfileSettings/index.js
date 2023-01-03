@@ -80,8 +80,8 @@ function ProfileSettings() {
                                         <div className='avatar_section'>
                                             <div className='avatar_title_modal'>Change Avatar </div>
                                             <div className='btn_pane'>
-                                                <Button style={{ marginLeft: '24px' }}>Select</Button>
-                                                <Button style={{ marginLeft: '20px' }} className="clr_btn " onClick={handleChangeAvatar}>Clear</Button>
+                                                <Button style={{ marginLeft: '2.5rem' }}>Select</Button>
+                                                <Button style={{ marginLeft: '2.25rem' }} className="clr_btn " onClick={handleChangeAvatar}>Clear</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +119,7 @@ function ProfileSettings() {
                                                 className="update_input_fields"
                                                 defaultValue={item.phone}
                                             />
-                                            <div className='label_1' style={{ marginTop: '24px' }}>
+                                            <div className='label_1' style={{ marginTop: '2.5rem' }}>
                                                 Adress
                                             </div>
                                             <Input
@@ -195,7 +195,7 @@ function ProfileSettings() {
                                                 onChange={(e) => { setWebsite(e.target.value) }}
                                             />
 
-                                            <div className='label_1' style={{ paddingTop: '24px' }}>Social Media</div>
+                                            <div className='label_1' style={{ paddingTop: '2.5rem' }}>Social Media</div>
                                             <Input
                                                 type='text'
                                                 placeholder='Linked-in Profile'

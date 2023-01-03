@@ -958,11 +958,11 @@ const InfluencersList = () => {
             <>
                 <div className="suggestions_influencer">
                     <div style={{
-                        margin: '5px', padding: 0, fontFamily: 'Noto Sans',
+                        margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
                         fontStyle: 'normal',
                         fontWeight: 700,
-                        fontSize: '18px',
-                        lineHeight: '16px',
+                        fontSize: '1.125rem',
+                        lineHeight: '1rem',
                         color: 'rgba(0, 0, 0, 0.7)'
                     }}>Influencers</div>
                     {suggestions1.map((suggestion, index) => {
@@ -1049,8 +1049,8 @@ const InfluencersList = () => {
                                                     style={{
                                                         background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                         fontWeight: 600,
-                                                        fontSize: '12px',
-                                                        lineHeight: '16px',
+                                                        fontSize: '0.75rem',
+                                                        lineHeight: '1rem',
                                                         textAlign: 'center',
                                                         color: '#595959'
                                                     }}
@@ -1087,8 +1087,8 @@ const InfluencersList = () => {
                                                         style={{
                                                             background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                             fontWeight: 600,
-                                                            fontSize: '12px',
-                                                            lineHeight: '16px',
+                                                            fontSize: '0.75rem',
+                                                            lineHeight: '1rem',
                                                             textAlign: 'center',
                                                             color: '#595959'
                                                         }}
@@ -1126,7 +1126,7 @@ const InfluencersList = () => {
                                                         scale={scale1}
                                                         valueLabelFormat={numFormatter}
                                                     />
-                                                    <div style={{ paddingTop: '36px' }}>
+                                                    <div style={{ paddingTop: '2.25rem' }}>
                                                         <div className="label_slider">Maximum</div>
                                                         <div style={{ display: 'flex', justifyContent: "flex-end" }}>
                                                             <Select
@@ -1176,8 +1176,8 @@ const InfluencersList = () => {
                                                             style={{
                                                                 background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                                 fontWeight: 600,
-                                                                fontSize: '12px',
-                                                                lineHeight: '16px',
+                                                                fontSize: '0.75rem',
+                                                                lineHeight: '1rem',
                                                                 textAlign: 'center',
                                                                 color: '#595959'
                                                             }}
@@ -1343,7 +1343,7 @@ const InfluencersList = () => {
                                                                                             Select the list to which you want to add the
                                                                                             influencer.
                                                                                         </div>
-                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
                                                                                             {listData.map((item) =>
                                                                                                 <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
                                                                                                     {item.listName}

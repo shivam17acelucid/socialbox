@@ -15,7 +15,7 @@ html {
 
         .social_logo {
             width: 10rem;
-            padding-top: 25px;
+            padding-top: 1.563rem;
             padding-left: 1rem;
         }
 
@@ -25,14 +25,14 @@ html {
             align-content: center;
             justify-content: center;
             align-items: center;
-            padding-top: 90px;
+            padding-top: 5.625rem;
 
             .signup_header {
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 48px;
-                line-height: 58px;
+                font-size: 3rem;
+                line-height: 3.625rem;
                 color: rgba(0, 0, 0, 0.8);
             }
 
@@ -44,7 +44,7 @@ html {
                 line-height: 1.188rem;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.8);
-                margin-top: 10px;
+                margin-top: 0.625rem;
             }
 
             .input_boxes {
@@ -65,8 +65,8 @@ html {
                     border: 1px solid #808080;
                     border-radius: 5px;
                     box-sizing: border-box;
-                    margin-top: 4px;
-                    margin-bottom: 4px;
+                    margin-top: 0.25rem;
+                    margin-bottom: 0.25rem;
                     height: 2.2rem;
                     padding-left: 1rem;
                 }
@@ -126,7 +126,7 @@ html {
             font-style: normal;
             font-weight: 400;
             font-size: 0.875rem;
-            line-height: 17px;
+            line-height: 1.063rem;
             text-align: center;
             color: rgba(0, 0, 0, 0.4);
         }
@@ -141,7 +141,7 @@ html {
             font-family: 'Poppins';
             font-style: normal;
             font-size: 1.25rem;
-            line-height: 36px;
+            line-height: 2.25rem;
             color: #000000;
             position: absolute;
             bottom: 10%;

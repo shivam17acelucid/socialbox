@@ -108,7 +108,7 @@ const ProfileData = () => {
                                                                     Select the list to which you want to add the
                                                                     influencer.
                                                                 </div>
-                                                                <div style={{ overflowY: 'scroll', height: '20vh', padding: '12px' }}>
+                                                                <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
                                                                     {listData.map((item) =>
                                                                         <div className="list_options" onClick={() => { handleAddInfluencerToList(data, item) }}>
                                                                             {item.listName}

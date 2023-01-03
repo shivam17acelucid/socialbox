@@ -64,7 +64,7 @@ function Signup() {
                     Already have an Account? <span onClick={handleLogin} style={{ cursor: 'pointer' }}>Log in</span>
                 </div>
                 <div className="social_login_btn">
-                    <img src={google} height="14px" /><span style={{ marginLeft: '12px' }}>Log in with Google</span>
+                    <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                 </div>
                 <div className="signup_footer">
                     ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy

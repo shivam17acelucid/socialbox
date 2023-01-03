@@ -1047,7 +1047,7 @@ const InfluencersList = () => {
                                                     color="primary"
                                                     onClick={handleErFilterClicked}
                                                     style={{
-                                                        background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                        background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                         fontWeight: 600,
                                                         fontSize: '0.75rem',
                                                         lineHeight: '1rem',
@@ -1085,7 +1085,7 @@ const InfluencersList = () => {
                                                         color="primary"
                                                         onClick={handleCategoryFilterClicked}
                                                         style={{
-                                                            background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                            background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                             fontWeight: 600,
                                                             fontSize: '0.75rem',
                                                             lineHeight: '1rem',
@@ -1174,7 +1174,7 @@ const InfluencersList = () => {
                                                             color="primary"
                                                             onClick={handleFollowerFilterClicked}
                                                             style={{
-                                                                background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                                background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                                 fontWeight: 600,
                                                                 fontSize: '0.75rem',
                                                                 lineHeight: '1rem',

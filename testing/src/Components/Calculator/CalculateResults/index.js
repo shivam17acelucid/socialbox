@@ -322,7 +322,7 @@ function CalculateTotal() {
                 <TopBar />
                 <div className='middle_pane_content'>
                     <div className='steps_pane'>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #357AFF' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
                                 Followers
@@ -340,7 +340,7 @@ function CalculateTotal() {
                                 }
                             </div>
                         </div>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #D04B4B' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #D04B4B' }}>
                             <div className='steps_pane_title'>Step 2</div>
                             <div className='deliverables'>
                                 <div className='deliverables_pane'>
@@ -371,11 +371,11 @@ function CalculateTotal() {
                                 </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '4px' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '0.25rem' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
                                 <img src={bdayIcon} />
-                                <div className='filter_value' style={{ fontSize: '12px' }}>
+                                <div className='filter_value' style={{ fontSize: '0.75rem' }}>
                                     {
                                         params.demography.includes('age') ?
                                             (
@@ -412,7 +412,7 @@ function CalculateTotal() {
                                 <img src={locationIcon} /><div className='filter_value'> -- </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #7662DC' }}>
+                        <div className='steps_pane_part' style={{ borderLeft: 'solid 0.313rem #7662DC' }}>
                             <div className='steps_pane_title'>Step 4</div>
                             <div className='cost_title'>Estimated Cost</div>
                             <div className='cost_value'>
@@ -474,7 +474,7 @@ function CalculateTotal() {
                         <div className="enquiry_form">
                             <div className="name_pane">
                                 <Input className="enquiry_field" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                                <Input className="enquiry_field" style={{ marginLeft: '4px' }} placeholder="Last Name" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+                                <Input className="enquiry_field" style={{ marginLeft: '0.25rem' }} placeholder="Last Name" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
                             </div>
                             <div className="email_pane">
                                 <Input className="enquiry_field_2" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />

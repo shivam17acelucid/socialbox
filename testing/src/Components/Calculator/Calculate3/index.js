@@ -244,7 +244,7 @@ function CalculateFilters() {
                 <TopBar />
                 <div className='middle_pane_content'>
                     <div className='steps_pane'>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #357AFF' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
                                 Followers
@@ -262,7 +262,7 @@ function CalculateFilters() {
                                 }
                             </div>
                         </div>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #D04B4B' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #D04B4B' }}>
                             <div className='steps_pane_title'>Step 2</div>
                             <div className='deliverables'>
                                 <div className='deliverables_pane'>
@@ -293,7 +293,7 @@ function CalculateFilters() {
                                 </div>
                             </div>
                         </div>
-                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '0.25rem' }}>
+                        <div className='steps_pane_part' style={{ borderLeft: 'solid 0.313rem #32A737', paddingLeft: '2rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '0.25rem' }}>
                             <div className='steps_pane_title'>Step 3</div>
                             <div className='filter_pane'>
                                 <img src={bdayIcon} /><div className='filter_value'>

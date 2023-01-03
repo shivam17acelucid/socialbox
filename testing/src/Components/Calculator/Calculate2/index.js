@@ -31,7 +31,7 @@ function CalculateDeliverables() {
                 <Topbar />
                 <div className='middle_pane_content'>
                     <div className='steps_pane'>
-                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 5px #357AFF' }}>
+                        <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
                                 Followers
@@ -49,7 +49,7 @@ function CalculateDeliverables() {
                                 }
                             </div>
                         </div>
-                        <div className='steps_pane_part' style={{ borderLeft: 'solid 5px #D04B4B' }}>
+                        <div className='steps_pane_part' style={{ borderLeft: 'solid 0.313rem #D04B4B' }}>
                             <div className='steps_pane_title'>Step 2</div>
                             <div className='deliverables'>
                                 <div className='deliverables_pane'>
@@ -114,12 +114,12 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     reels === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReels(reels - 1) }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReels(reels - 1) }}>-</div>
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{reels}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReels(reels + 1) }}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReels(reels + 1) }}>+</div>
                             </div>
                         </div>
                         <div className='deliverables_box'>
@@ -127,13 +127,13 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     posts === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPosts(posts - 1) }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPosts(posts - 1) }}>-</div>
 
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{posts}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPosts(posts + 1) }}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPosts(posts + 1) }}>+</div>
                             </div>
                         </div>
                         <div className='deliverables_box'>
@@ -141,12 +141,12 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     videos === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideos(videos - 1)}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideos(videos - 1)}>-</div>
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{videos}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideos(videos + 1)}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideos(videos + 1)}>+</div>
                             </div>
                         </div>
                         <div className='deliverables_box'>
@@ -154,12 +154,12 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     stories === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStories(stories - 1) }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStories(stories - 1) }}>-</div>
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{stories}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStories(stories + 1) }}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStories(stories + 1) }}>+</div>
                             </div>
                         </div>
                         <div className='deliverables_box'>
@@ -167,13 +167,13 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     swipeupStories === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setSwipeupStories(swipeupStories - 1)}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setSwipeupStories(swipeupStories - 1)}>-</div>
 
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{swipeupStories}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setSwipeupStories(swipeupStories + 1)}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setSwipeupStories(swipeupStories + 1)}>+</div>
                             </div>
                         </div>
                         <div className='deliverables_box'>
@@ -181,12 +181,12 @@ function CalculateDeliverables() {
                             <div className='deliverables_value'>
                                 {
                                     igtv === 0 ?
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                         :
-                                        <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv - 1) }}>-</div>
+                                        <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv - 1) }}>-</div>
                                 }
                                 <div style={{ width: '5rem', textAlign: 'center' }}>{igtv}</div>
-                                <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv + 1) }}>+</div>
+                                <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv + 1) }}>+</div>
                             </div>
                         </div>
                         <div>

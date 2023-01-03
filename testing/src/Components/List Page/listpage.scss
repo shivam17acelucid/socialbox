@@ -32,7 +32,7 @@ html {
                     width: 55rem;
                     height: 3rem;
                     background: #FFFFFF;
-                    box-shadow: 0px 0.938rem 2.25rem rgba(108, 108, 108, 0.15);
+                    box-shadow: 0 0.938rem 2.25rem rgba(108, 108, 108, 0.15);
                     border: none;
                     border-radius: 2.25rem;
                     font-family: 'Noto Sans';
@@ -42,8 +42,8 @@ html {
                     line-height: 1rem;
                     color: rgba(0, 0, 0, 0.2);
                     padding-left: 1rem;
-                    border: 1px solid rgba(0, 0, 0, 0.2);
-                    border-radius: 5px;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    border-radius: 0.313rem;
                     color: rgba(0, 0, 0, 0.7);
                 }
 
@@ -52,7 +52,7 @@ html {
                     box-sizing: border-box;
                     height: 3rem;
                     background: linear-gradient(93.45deg, #FFFFFF 6.25%, rgba(255, 255, 255, 0) 99.35%);
-                    border: 2px solid;
+                    border: 0.125rem solid;
                     border-radius: 0.625rem;
                 }
 
@@ -62,8 +62,8 @@ html {
 
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                     background: #FFFFFF;
-                    border: 1px solid rgba(0, 0, 0, 0.2);
-                    border-radius: 5px;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    border-radius: 0.313rem;
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 400;
@@ -82,9 +82,9 @@ html {
                     width: 24rem;
                     border-radius: 0.5rem;
                     background: #FFFFFF;
-                    border: 1px solid rgba(0, 0, 0, 0.2);
-                    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-                    border-radius: 5px;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    box-shadow: 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+                    border-radius: 0.313rem;
                     padding-left: 1rem;
                     padding-right: 3rem;
                     padding-top: 1rem;
@@ -124,8 +124,8 @@ html {
 
                         .slider_dropdown {
                             background: #FFFFFF;
-                            border: 1px solid rgba(0, 0, 0, 0.5);
-                            border-radius: 5px;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                            border-radius: 0.313rem;
                             box-sizing: border-box;
                             height: 2.25rem;
                             width: 16.25rem;
@@ -150,7 +150,7 @@ html {
 
                         .css-1aznpnh-MuiSlider-root {
                             color: #7662DC;
-                            border-radius: 5px;
+                            border-radius: 0.313rem;
                             margin: 0;
                             margin-top: 1rem;
                         }
@@ -165,13 +165,13 @@ html {
 
                         .css-14pt78w-MuiSlider-rail {
                             background: #D9D9D9;
-                            border-radius: 5px;
+                            border-radius: 0.313rem;
                         }
 
                         .css-eg0mwd-MuiSlider-thumb {
                             background: #FFFFFF;
-                            border: 1px solid RGB(0, 0, 0, 0.2);
-                            box-shadow: 0px 1px 2px RGB(0 0 0 / 25%);
+                            border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 0 0.063rem 0.125rem RGB(0 0 0 / 25%);
                         }
 
                         .followers_count {
@@ -200,7 +200,7 @@ html {
 
                         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                             background: #7662DC;
-                            border-radius: 3px;
+                            border-radius: 0.188rem;
                             width: 7.75rem;
                             height: 2.25rem;
                             font-family: 'Noto Sans';
@@ -244,8 +244,8 @@ html {
 
                         .basket_search {
                             background: #FFFFFF;
-                            border: 1px solid rgba(0, 0, 0, 0.2);
-                            border-radius: 5px;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                            border-radius: 0.313rem;
                             box-sizing: border-box;
                             height: 2rem;
                             width: 22.188rem;
@@ -303,12 +303,12 @@ html {
                         box-sizing: border-box;
                         width: 25.625;
                         height: 11.875rem;
-                        border-radius: 20px;
+                        border-radius: 1.25rem;
                         margin-right: 1.5rem;
                         margin-top: 1.25rem;
                         background: #FFFFFF;
-                        box-shadow: 0px 2px 2px RGB(0 0 0 / 25%);
-                        border-radius: 5px;
+                        box-shadow: 0 0.125rem 0.125rem RGB(0 0 0 / 25%);
+                        border-radius: 0.313rem;
                         display: flex;
 
                         .influencers_image {
@@ -352,7 +352,7 @@ html {
                                 display: flex;
                                 justify-content: center;
                                 background: #7662DC;
-                                border-radius: 3px;
+                                border-radius: 0.188rem;
                                 margin: 0.875rem 0.875rem 0;
                             }
 
@@ -380,11 +380,11 @@ html {
 
     .list_bar {
         width: 100%;
-        box-shadow: 0px 0 4px 0 #edecf4;
+        box-shadow: 0 0 0.25rem 0 #edecf4;
         z-index: 1 !important;
         max-width: 20rem;
         background: #FBFBFB;
-        border: 1px solid rgba(0, 0, 0, 0.2);
+        border: 0.063rem solid rgba(0, 0, 0, 0.2);
         overflow-y: scroll;
         height: 93vh;
         overflow-x: hidden;
@@ -454,8 +454,8 @@ html {
 
                     .input_listname {
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                        border-radius: 0.313rem;
                         width: 15rem;
                         height: 2.5rem;
                         margin-top: 0.75rem;
@@ -471,8 +471,8 @@ html {
                         width: 27.313rem;
                         height: 4.688rem;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                        border-radius: 0.313rem;
                         margin-top: 0.625rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
@@ -496,8 +496,8 @@ html {
                             .deliverables_value {
                                 display: flex;
                                 background: #FFFFFF;
-                                border: 1px solid rgba(0, 0, 0, 0.5);
-                                border-radius: 5px;
+                                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                                border-radius: 0.313rem;
                                 width: 9.625rem;
                                 height: 2.25rem;
                                 align-items: center;
@@ -510,7 +510,7 @@ html {
                     .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
                         margin-top: 1rem;
                         background: #7662DC;
-                        border-radius: 3px;
+                        border-radius: 0.188rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
@@ -524,7 +524,7 @@ html {
                     .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                         margin-top: 1rem;
                         background: #D7D7D7;
-                        border-radius: 3px;
+                        border-radius: 0.188rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 700;
@@ -587,9 +587,9 @@ html {
                 -webkit-box-pack: justify;
                 justify-content: space-between;
                 box-sizing: border-box;
-                // height: 61px;
+                // height: 60.063rem;
                 background: #FFFFFF;
-                box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+                box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
                 border-radius: 0.625rem;
 
                 .list_head {
@@ -626,7 +626,7 @@ html {
                     .list_view {
                         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                             background: #7662DC;
-                            border-radius: 3px;
+                            border-radius: 0.188rem;
                             color: #fff;
                         }
                     }
@@ -649,9 +649,9 @@ html {
 
 .suggestions {
     background: #FFFFFF;
-    border: 1px solid RGB(0, 0, 0, 0.2);
-    box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
-    border-radius: 5px;
+    border: 0.063rem solid RGB(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
+    border-radius: 0.313rem;
     width: 55rem;
     max-height: 15rem;
     position: absolute;

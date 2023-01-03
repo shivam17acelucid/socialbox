@@ -16,7 +16,7 @@ html {
 
         .middle_pane_content {
             background: #FFFFFF;
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            border: 0.063rem solid rgba(0, 0, 0, 0.2);
             border-radius: 0.313rem;
             height: 38rem;
             margin: 2rem;
@@ -29,10 +29,10 @@ html {
                     // height: 9.5rem;
                     background: #fff;
                     border-left: solid 0.313rem #357AFF;
-                    border-radius: 1px;
-                    border-right: solid 2px #D9D9D9;
+                    border-radius: 0.063rem;
+                    border-right: solid 0.125rem #D9D9D9;
                     padding: 1rem 2.25rem 0.188rem;
-                    border-bottom: 1px solid #CCCCCC;
+                    border-bottom: 0.063rem solid #CCCCCC;
 
                     .steps_pane_title {
                         font-family: 'Noto Sans';
@@ -158,10 +158,10 @@ html {
                     background: #D9D9D9;
                     padding: 1rem 2.25rem 0.438rem;
                     border-left: solid 0.313rem #B6B6B6;
-                    border-radius: 1px;
-                    border-right: solid 2px #D9D9D9;
+                    border-radius: 0.063rem;
+                    border-right: solid 0.125rem #D9D9D9;
                     padding: 1rem 2.25rem 0.188rem;
-                    border-bottom: 1px solid #CCCCCC;
+                    border-bottom: 0.063rem solid #CCCCCC;
 
                     .steps_pane_title {
                         font-family: 'Noto Sans';
@@ -316,7 +316,7 @@ html {
                     .deliverables_value {
                         display: flex;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
                         border-radius: 0.313rem;
                         width: 9.625rem;
                         height: 2.25rem;

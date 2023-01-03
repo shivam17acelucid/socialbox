@@ -687,7 +687,7 @@ function Lists() {
                                                             color="primary"
                                                             onClick={handleErFilterClicked}
                                                             style={{
-                                                                background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                                background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                                 fontWeight: 600,
                                                                 fontSize: '0.75rem',
                                                                 lineHeight: '1rem',
@@ -776,7 +776,7 @@ function Lists() {
                                                                 color="primary"
                                                                 onClick={handleFollowerFilterClicked}
                                                                 style={{
-                                                                    background: '#D7D7D7', borderRadius: '3px', fontFamily: 'Noto Sans', fontStyle: 'normal',
+                                                                    background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
                                                                     fontWeight: 600,
                                                                     fontSize: '0.75rem',
                                                                     lineHeight: '1rem',
@@ -877,12 +877,12 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         reel === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReel(reel - 1) }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReel(reel - 1) }}>-</div>
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{reel}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReel(reel + 1) }}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReel(reel + 1) }}>+</div>
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
@@ -890,13 +890,13 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         post === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPost(post - 1) }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPost(post - 1) }}>-</div>
 
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{post}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPost(post + 1) }}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPost(post + 1) }}>+</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -906,12 +906,12 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         video === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideo(video - 1)}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideo(video - 1)}>-</div>
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{video}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideo(video + 1)}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideo(video + 1)}>+</div>
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
@@ -919,12 +919,12 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         story === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStory(story - 1) }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStory(story - 1) }}>-</div>
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{story}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStory(story + 1) }}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStory(story + 1) }}>+</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -934,13 +934,13 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         swipeUpStory === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory - 1)}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory - 1)}>-</div>
 
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{swipeUpStory}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory + 1)}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setswipeUpStory(swipeUpStory + 1)}>+</div>
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
@@ -948,12 +948,12 @@ function Lists() {
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         igtv === 0 ?
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
                                                                             :
-                                                                            <div style={{ borderRight: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv - 1) }}>-</div>
+                                                                            <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv - 1) }}>-</div>
                                                                     }
                                                                     <div style={{ width: '5rem', textAlign: 'center' }}>{igtv}</div>
-                                                                    <div style={{ borderLeft: '1px solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv + 1) }}>+</div>
+                                                                    <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setIgtv(igtv + 1) }}>+</div>
                                                                 </div>
                                                             </div>
                                                         </div>

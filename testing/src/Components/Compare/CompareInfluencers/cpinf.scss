@@ -21,8 +21,8 @@ html {
 
         .results {
             background: #FFFFFF;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
+            border: 0.063rem solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.313rem;
             width: 15rem;
             height: 58rem;
             margin-left: 1rem;
@@ -74,7 +74,7 @@ html {
 
             .profile_category {
                 background: #4D38B9;
-                border-radius: 3px;
+                border-radius: 0.188rem;
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 700;
@@ -172,9 +172,9 @@ html {
                     z-index: 4;
                     padding: 0.75rem;
                     background: #FFFFFF;
-                    border: 1px solid RGB(0, 0, 0, 0.2);
-                    box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
-                    border-radius: 5px;
+                    border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                    box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
+                    border-radius: 0.313rem;
                     top: 60%;
                     left: 15%;
 
@@ -184,7 +184,7 @@ html {
                         flex-direction: column;
                         justify-content: space-between;
                         padding: 0.625rem;
-                        border-radius: 8px;
+                        border-radius: 0.5rem;
                         cursor: pointer;
 
                         .section_dropdown_header {
@@ -265,7 +265,7 @@ html {
             background: #EBEBEB;
             width: 15rem;
             height: 58rem;
-            border-radius: 5px;
+            border-radius: 0.313rem;
             margin-left: 1rem;
 
             .add_btn {
@@ -310,9 +310,9 @@ html {
                     background-color: white;
                     padding: 1rem 1.5rem;
                     background: #FFFFFF;
-                    border: 1px solid RGB(0, 0, 0, 0.2);
-                    box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
-                    border-radius: 5px;
+                    border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                    box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
+                    border-radius: 0.313rem;
                     box-sizing: border-box;
                     width: 25rem;
                     min-height: 22.688rem;
@@ -346,8 +346,8 @@ html {
 
                     .compare_input {
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                        border-radius: 0.313rem;
                         width: 19rem;
                         height: 2.25rem;
                         box-sizing: border-box;
@@ -357,8 +357,8 @@ html {
                     .suggestions {
                         position: absolute;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                        border-radius: 0.313rem;
                         z-index: 9999;
                         width: 19rem;
                         max-height: 9.375rem;
@@ -416,7 +416,7 @@ html {
 
                             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                                 background: #7662DC;
-                                border-radius: 3px;
+                                border-radius: 0.188rem;
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;
@@ -429,7 +429,7 @@ html {
 
                             .clear_btn {
                                 background: #D7D7D7;
-                                border-radius: 3px;
+                                border-radius: 0.188rem;
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 700;

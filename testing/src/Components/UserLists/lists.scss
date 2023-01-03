@@ -21,7 +21,7 @@ html {
 
             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                 background: #7662DC;
-                border-radius: 3px;
+                border-radius: 0.188rem;
                 color: #fff;
                 font-family: 'Noto Sans';
                 font-style: normal;
@@ -104,7 +104,7 @@ html {
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        border-radius: 8px;
+                        border-radius: 0.5rem;
                         background-color: #f6f6f6;
                         box-shadow: var(--box-shadow-primary);
                         cursor: pointer;
@@ -122,8 +122,8 @@ html {
 
                         .input_listname {
                             background: #FFFFFF;
-                            border: 1px solid rgba(0, 0, 0, 0.5);
-                            border-radius: 5px;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                            border-radius: 0.313rem;
                             width: 15rem;
                             height: 2.5rem;
                             margin-top: 0.75rem;
@@ -139,8 +139,8 @@ html {
                             width: 27.313rem;
                             height: 4.688rem;
                             background: #FFFFFF;
-                            border: 1px solid rgba(0, 0, 0, 0.5);
-                            border-radius: 5px;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                            border-radius: 0.313rem;
                             margin-top: 0.75rem;
                             font-family: 'Noto Sans';
                             font-style: normal;
@@ -164,8 +164,8 @@ html {
                                 .deliverables_value {
                                     display: flex;
                                     background: #FFFFFF;
-                                    border: 1px solid rgba(0, 0, 0, 0.5);
-                                    border-radius: 5px;
+                                    border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                                    border-radius: 0.313rem;
                                     width: 9.625rem;
                                     height: 2.25rem;
                                     align-items: center;
@@ -178,7 +178,7 @@ html {
                         .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
                             margin-top: 1rem;
                             background: #7662DC;
-                            border-radius: 3px;
+                            border-radius: 0.188rem;
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
@@ -192,7 +192,7 @@ html {
                         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                             margin-top: 1rem;
                             background: #D7D7D7;
-                            border-radius: 3px;
+                            border-radius: 0.188rem;
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 700;
@@ -290,14 +290,14 @@ html {
 
         .right_pane {
             width: 100%;
-            box-shadow: 0px 0 4px 0 #edecf4;
+            box-shadow: 0 0 0.25rem 0 #edecf4;
             z-index: 1 !important;
             max-width: 20rem;
             overflow-y: scroll;
             height: 95vh;
             overflow-x: hidden;
             background: #FBFBFB;
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            border: 0.063rem solid rgba(0, 0, 0, 0.2);
 
             .icons_pane {
                 display: flex;
@@ -337,8 +337,8 @@ html {
                 padding: 1rem 2.5rem;
                 margin: 1rem 1rem;
                 background: #FFFFFF;
-                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 5px;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+                border-radius: 0.313rem;
 
                 .box_name {
                     font-family: 'Poppins';
@@ -362,7 +362,7 @@ html {
                     margin-top: 1rem;
                     cursor: pointer;
                     background: #7662DC;
-                    border-radius: 3px;
+                    border-radius: 0.188rem;
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 700;
@@ -392,8 +392,8 @@ html {
                 display: flex;
                 margin: 2rem 0 2rem 0.75rem;
                 background: #FFFFFF;
-                box-shadow: 0px 2px 4px RGB(0 0 0 / 25%);
-                border-radius: 5px;
+                box-shadow: 0 0.125rem 0.25rem RGB(0 0 0 / 25%);
+                border-radius: 0.313rem;
                 width: 16rem;
                 height: 8.25rem;
 
@@ -431,7 +431,7 @@ html {
                         height: 2rem;
                         width: 3.875rem;
                         background: #7662DC;
-                        border-radius: 3px;
+                        border-radius: 0.188rem;
                         margin-top: 0.75rem;
                         margin-bottom: 1.25rem;
                     }

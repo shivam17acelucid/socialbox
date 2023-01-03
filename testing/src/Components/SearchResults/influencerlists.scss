@@ -34,8 +34,8 @@ html {
 
                     input {
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.2);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                        border-radius: 0.313rem;
                         box-sizing: border-box;
                         width: 50.625rem;
                         height: 3rem;
@@ -65,8 +65,8 @@ html {
                         margin-right: 1rem;
                         margin-bottom: 2rem;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.2);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                        border-radius: 0.313rem;
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 400;
@@ -86,9 +86,9 @@ html {
                         width: 24rem;
                         border-radius: 0.5rem;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.2);
-                        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                        box-shadow: 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+                        border-radius: 0.313rem;
                         padding-left: 1rem;
                         padding-right: 3rem;
                         padding-top: 1rem;
@@ -128,8 +128,8 @@ html {
 
                             .slider_dropdown {
                                 background: #FFFFFF;
-                                border: 1px solid rgba(0, 0, 0, 0.5);
-                                border-radius: 5px;
+                                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                                border-radius: 0.313rem;
                                 box-sizing: border-box;
                                 height: 2.25rem;
                                 width: 16.25rem;
@@ -154,7 +154,7 @@ html {
 
                             .css-1aznpnh-MuiSlider-root {
                                 color: #7662DC;
-                                border-radius: 5px;
+                                border-radius: 0.313rem;
                                 margin: 0;
                                 margin-top: 1rem;
                             }
@@ -169,13 +169,13 @@ html {
 
                             .css-14pt78w-MuiSlider-rail {
                                 background: #D9D9D9;
-                                border-radius: 5px;
+                                border-radius: 0.313rem;
                             }
 
                             .css-eg0mwd-MuiSlider-thumb {
                                 background: #FFFFFF;
-                                border: 1px solid RGB(0, 0, 0, 0.2);
-                                box-shadow: 0px 1px 2px RGB(0 0 0 / 25%);
+                                border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                                box-shadow: 0 0.063rem 0.125rem RGB(0 0 0 / 25%);
                             }
 
                             .followers_count {
@@ -204,7 +204,7 @@ html {
 
                             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                                 background: #7662DC;
-                                border-radius: 3px;
+                                border-radius: 0.188rem;
                                 width: 7.75rem;
                                 height: 2.25rem;
                                 font-family: 'Noto Sans';
@@ -231,7 +231,7 @@ html {
                     color: rgba(0, 0, 0, 0.87);
                     -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-                    border-radius: 4px;
+                    border-radius: 0.25rem;
                     box-shadow: none;
                     width: 100%;
                 }
@@ -331,9 +331,9 @@ html {
                         .cost_modal {
                             position: absolute;
                             background: #FFFFFF;
-                            border: 1px solid rgba(0, 0, 0, 0.2);
-                            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 5px;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                            box-shadow: 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+                            border-radius: 0.313rem;
                             width: 22.813rem;
                             height: 22.938rem;
                             top: 40%;
@@ -384,7 +384,7 @@ html {
 
                             .close_btn {
                                 background: #D7D7D7;
-                                border-radius: 3px;
+                                border-radius: 0.188rem;
                                 font-family: 'Noto Sans';
                                 font-style: normal;
                                 font-weight: 600;
@@ -404,9 +404,9 @@ html {
                             z-index: 4;
                             padding: 0.75rem;
                             background: #FFFFFF;
-                            border: 1px solid RGB(0, 0, 0, 0.2);
-                            box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
-                            border-radius: 5px;
+                            border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
+                            border-radius: 0.313rem;
                             top: 50%;
                             left: 70%;
 
@@ -458,9 +458,9 @@ html {
                             background-color: white;
                             padding: 1rem 1.5rem;
                             background: #FFFFFF;
-                            border: 1px solid RGB(0, 0, 0, 0.2);
-                            box-shadow: 2px 4px 4px RGB(0 0 0 / 25%);
-                            border-radius: 5px;
+                            border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                            box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
+                            border-radius: 0.313rem;
                             box-sizing: border-box;
                             width: 25rem;
                             min-height: 22.688rem;
@@ -493,8 +493,8 @@ html {
 
                             .compare_input {
                                 background: #FFFFFF;
-                                border: 1px solid rgba(0, 0, 0, 0.5);
-                                border-radius: 5px;
+                                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                                border-radius: 0.313rem;
                                 width: 19rem;
                                 height: 2.25rem;
                                 box-sizing: border-box;
@@ -504,8 +504,8 @@ html {
                             .suggestions {
                                 position: absolute;
                                 background: #FFFFFF;
-                                border: 1px solid rgba(0, 0, 0, 0.5);
-                                border-radius: 5px;
+                                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                                border-radius: 0.313rem;
                                 z-index: 9999;
                                 width: 19rem;
                                 max-height: 9.375rem;
@@ -559,7 +559,7 @@ html {
 
                                     .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                                         background: #7662DC;
-                                        border-radius: 3px;
+                                        border-radius: 0.188rem;
                                         font-family: 'Noto Sans';
                                         font-style: normal;
                                         font-weight: 700;
@@ -572,7 +572,7 @@ html {
 
                                     .clear_btn {
                                         background: #D7D7D7;
-                                        border-radius: 3px;
+                                        border-radius: 0.188rem;
                                         font-family: 'Noto Sans';
                                         font-style: normal;
                                         font-weight: 700;
@@ -607,9 +607,9 @@ html {
 
 .suggestions_influencer {
     background: #FFFFFF;
-    border: 1px solid RGB(0, 0, 0, 0.2);
-    box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
-    border-radius: 5px;
+    border: 0.063rem solid RGB(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
+    border-radius: 0.313rem;
     width: 50.5rem;
     max-height: 15rem;
     position: absolute;

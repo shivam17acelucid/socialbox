@@ -25,7 +25,7 @@
     // .add_btn {
 
     //     background: linear-gradient(180deg, #E95950 0%, #FAA300 100%);
-    //     box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+    //     box-shadow: 0px 0.25rem 0.25rem RGB(0 0 0 / 25%);
     //     border-radius: 20px;
     //     padding: 16px;
     //     cursor: pointer;
@@ -84,8 +84,8 @@
 
             .input_listname {
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 0, 0, 0.5);
-                border-radius: 5px;
+                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                border-radius: 0.313rem;
                 width: 15rem;
                 height: 2.5rem;
                 margin-top: 0.75rem;
@@ -101,8 +101,8 @@
                 width: 27.313rem;
                 height: 4.688rem;
                 background: #FFFFFF;
-                border: 1px solid rgba(0, 0, 0, 0.5);
-                border-radius: 5px;
+                border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                border-radius: 0.313rem;
                 margin-top: 0.625rem;
                 font-family: 'Noto Sans';
                 font-style: normal;
@@ -126,8 +126,8 @@
                     .deliverables_value {
                         display: flex;
                         background: #FFFFFF;
-                        border: 1px solid rgba(0, 0, 0, 0.5);
-                        border-radius: 5px;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                        border-radius: 0.313rem;
                         width: 9.625rem;
                         height: 2.25rem;
                         align-items: center;
@@ -140,7 +140,7 @@
             .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
                 margin-top: 1rem;
                 background: #7662DC;
-                border-radius: 3px;
+                border-radius: 0.188rem;
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 700;
@@ -154,7 +154,7 @@
             .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                 margin-top: 1rem;
                 background: #D7D7D7;
-                border-radius: 3px;
+                border-radius: 0.188rem;
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 700;
@@ -217,9 +217,9 @@
         -webkit-box-pack: justify;
         justify-content: space-between;
         box-sizing: border-box;
-        // height: 61px;
+        // height: 60.063rem;
         background: #FFFFFF;
-        box-shadow: 0px 4px 4px RGB(0 0 0 / 25%);
+        box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
         border-radius: 0.625rem;
 
         .list_head {
@@ -256,7 +256,7 @@
             .list_view {
                 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
                     background: #7662DC;
-                    border-radius: 3px;
+                    border-radius: 0.188rem;
                     color: #fff;
                 }
             }

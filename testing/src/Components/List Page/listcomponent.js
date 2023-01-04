@@ -624,28 +624,33 @@ function Lists() {
 
     return (
         <>
-            <div className='list_container'>
-                <Navbar />
-                <div className='lists_content'>
-                    <TopBar />
-                    <div style={{ display: 'flex' }}>
-                        <div className='middle_pane_lists'>
-                            <div className='list_headers'>
-                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className='list_container row no-gutters'>
+                <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                    <Navbar />
+                </div>
+                <div className='lists_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
+                    <div className='row no-gutters'>
+                        <div className='col-lg-12 col-sm-12 col-md-12 col-xs-12 col-12 '>
+                            <TopBar />
+                        </div>
+                    </div>
+                    <div className='row no-gutters'>
+                        <div className='middle_pane_lists col-lg-9 col-md-9 col-sm-9 col-xs-9 col-9 '>
+                            <div className='list_headers row no-gutters'>
+                                <div className='search_container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                                     <input
                                         type="text"
                                         value={value}
                                         onChange={handleChange}
                                         placeholder='Search for influencers, categories...'
-                                        className='input_search'
+                                        className='input_search col-lg-10 col-md-8 col-sm-6 col-xs-6 col-6'
                                     />
                                     {suggestionsActive && <Suggestions />}
-                                    {/* <input type='text' value={inputField} onChange={(e) => setInputField(e.target.value)} placeholder='Search for influencers, categoriest, topics...' className='input_search' /> */}
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
-                                <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '7rem', paddingTop: '0.625rem' }}>
-                                    <Button style={{ marginRight: '0.75rem', minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
-                                    <Button style={{ minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
+                                <div className='row filterContainer'>
+                                    <Button onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
+                                    <Button onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?
                                             <section className="modal_section">
@@ -791,14 +796,15 @@ function Lists() {
                                                 </section>
                                                 : null
                                     }
-                                    <Button style={{ marginLeft: '0.75rem', minWidth: '10rem', display: 'flex', justifyContent: 'space-around' }} onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>
+                                    <Button onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>
+
                                 </div>
                             </div>
                             <div className='middle_pane_content'>
                                 <div className='categorised_inf'>
-                                    <div className='basket_top'>
-                                        <div className='categorised_heading'>Top Trending Influencers Baskets</div>
-                                        <div>
+                                    <div className='basket_top row'>
+                                        <div className='categorised_heading col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Top Trending Influencers Baskets</div>
+                                        <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 pr-4'>
                                             <Input className='basket_search' placeholder='Search bundles, categories...' onChange={handleChangeBasketValue} value={basketName} />
                                         </div>
                                     </div>
@@ -808,11 +814,11 @@ function Lists() {
                                         )}
                                     </div>
                                 </div>
-                                <div className='influencers_basket'>
+                                <div className='influencers_basket row'>
                                     {
                                         sortingBaskets === true ?
                                             sortedBaskets.map((item) =>
-                                                <div className='influencers_basket_box'>
+                                                <div className='influencers_basket_box col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                     <div className='influencers_image'>
                                                         <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
                                                     </div>
@@ -853,7 +859,7 @@ function Lists() {
                             </div>
 
                         </div>
-                        <div className="list_bar">
+                        <div className="list_bar col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3 ">
                             <>
                                 <div className="headers_title">
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -873,7 +879,7 @@ function Lists() {
                                                     <div>
                                                         <div className='deliverables_pane_align'>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Reels</div>
+                                                                <div style={{ width: '2.25rem' }}>Reels</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         reel === 0 ?
@@ -886,7 +892,7 @@ function Lists() {
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Static Posts</div>
+                                                                <div style={{ width: '2.25rem' }}>Static Posts</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         post === 0 ?
@@ -902,7 +908,7 @@ function Lists() {
                                                         </div>
                                                         <div className='deliverables_pane_align'>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Videos</div>
+                                                                <div style={{ width: '2.25rem' }}>Videos</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         video === 0 ?
@@ -915,7 +921,7 @@ function Lists() {
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Stories</div>
+                                                                <div style={{ width: '2.25rem' }}>Stories</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         story === 0 ?
@@ -930,7 +936,7 @@ function Lists() {
                                                         </div>
                                                         <div className='deliverables_pane_align'>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Swipeup Story</div>
+                                                                <div style={{ width: '2.25rem' }}>Swipeup Story</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         swipeUpStory === 0 ?
@@ -944,7 +950,7 @@ function Lists() {
                                                                 </div>
                                                             </div>
                                                             <div className='deliverables_box'>
-                                                                <div style={{width: '2.25rem'}}>Igtv</div>
+                                                                <div style={{ width: '2.25rem' }}>Igtv</div>
                                                                 <div className='deliverables_value'>
                                                                     {
                                                                         igtv === 0 ?

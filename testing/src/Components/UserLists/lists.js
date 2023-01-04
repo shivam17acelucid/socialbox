@@ -155,9 +155,11 @@ function UserLists() {
     }, [isDeliverablesEdited]);
 
     return (
-        <div className='users_list_container'>
-            <Navbar />
-            <div className='users_list_pane'>
+        <div className='users_list_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='users_list_pane col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
                 <div style={{ display: 'flex' }}>
                     {

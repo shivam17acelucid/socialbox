@@ -44,57 +44,6 @@ html {
                 color: rgba(0, 0, 0, 0.6);
             }
 
-            .filter_bar {
-                display: flex;
-                padding-top: 1rem;
-
-                .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-                    margin-left: 1rem;
-                    margin-right: 1rem;
-                    background-color: #0014C6;
-                    color: #fff;
-                    font-family: 'Poppins';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 0.875rem;
-                    line-height: 1.313rem;
-
-                }
-
-                .modal_section {
-                    position: absolute;
-                    z-index: 4;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background-color: white;
-                    padding: 1rem 1.5rem;
-                    width: 24rem;
-                    border-radius: 0.5rem;
-
-                    .modal_option {
-                        padding: 2rem;
-                        max-height: 21.375rem;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                        border-radius: 0.5rem;
-                        background-color: #f6f6f6;
-                        box-shadow: var(--box-shadow-primary);
-                        cursor: pointer;
-
-                        .close_btn {
-                            display: flex;
-                            justify-content: flex-end;
-                        }
-
-                        input {
-                            margin: 0.75rem;
-                        }
-                    }
-                }
-            }
-
             .list_category_data {
                 margin-top: 2rem;
                 margin-left: 0.25rem;

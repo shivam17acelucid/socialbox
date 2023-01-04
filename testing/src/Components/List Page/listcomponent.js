@@ -868,11 +868,11 @@ function Lists() {
                         <div className="list_bar col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3 ">
                             <>
                                 <div className="headers_title">
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <span className="headers">
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }} className='row'>
+                                        <div className="headers col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
                                             My Lists
-                                        </span>
-                                        <span className='add_list_btn' onClick={handleAddPlan}> + Add new</span>
+                                        </div>
+                                        <div className='add_list_btn col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12' onClick={handleAddPlan}> + Add new</div>
                                     </div>
                                     {
                                         newPlanClicked ?

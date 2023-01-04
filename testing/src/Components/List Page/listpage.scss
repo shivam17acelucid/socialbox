@@ -411,7 +411,7 @@ html {
                         // }
 
                         box-sizing: border-box;
-                        width:100%;
+                        width: 100%;
                         // height: 11.875rem;
                         border-radius: 1.25rem;
                         margin-right: 1.5rem;
@@ -427,10 +427,11 @@ html {
                             position: relative;
                             height: 100%;
                             width: 100%;
+
                             img {
                                 // height: 11.875rem;
                                 // width: 9.25rem;
-                                width:100%;
+                                width: 100%;
 
                             }
                         }
@@ -447,7 +448,7 @@ html {
                                 font-size: 1rem;
                                 line-height: 1.375rem;
                                 color: #000000;
-                                padding-bottom:10px;
+                                padding-bottom: 10px;
                             }
 
                             .basket_p {
@@ -772,6 +773,55 @@ html {
         }
     }
 }
+
 ::-webkit-scrollbar {
     width: 15px;
+}
+
+.col-lg-2 {
+    @media (min-width: 992px) {
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 12.666667%;
     }
+}
+
+// .col-md-2 {
+//     @media (min-width: 768px) {
+//         -ms-flex: 0 0 16.666667%;
+//         flex: 0 0 16.666667%;
+//         max-width: 12.666667%;
+//     }
+// }
+
+// .col-sm-2 {
+//     @media (min-width: 576px) {
+//         -ms-flex: 0 0 16.666667%;
+//         flex: 0 0 16.666667%;
+//         max-width: 12.666667%;
+//     }
+// }
+
+.col-lg-10 {
+    @media (min-width: 992px) {
+        -ms-flex: 0 0 87.333333%;
+        flex: 0 0 87.333333%;
+        max-width: 87.333333%;
+    }
+}
+
+// .col-md-10 {
+//     @media (min-width: 768px) {
+//         -ms-flex: 0 0 87.333333%;
+//         flex: 0 0 87.333333%;
+//         max-width: 87.333333%;
+//     }
+// }
+
+// .col-sm-10 {
+//     @media (min-width: 576px) {
+//         -ms-flex: 0 0 87.333333%;
+//         flex: 0 0 87.333333%;
+//         max-width: 87.333333%;
+//     }
+// }

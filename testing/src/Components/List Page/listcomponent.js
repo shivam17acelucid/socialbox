@@ -635,7 +635,7 @@ function Lists() {
                         </div>
                     </div>
                     <div className='row no-gutters'>
-                        <div className='middle_pane_lists col-lg-9 col-md-9 col-sm-9 col-xs-9 col-9 '>
+                        <div className='middle_pane_lists col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8 '>
                             <div className='list_headers row no-gutters'>
                                 <div className='search_container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                                     <input
@@ -865,7 +865,7 @@ function Lists() {
                             </div>
 
                         </div>
-                        <div className="list_bar col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3 ">
+                        <div className="list_bar col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4 ">
                             <>
                                 <div className="headers_title">
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }} className='row'>

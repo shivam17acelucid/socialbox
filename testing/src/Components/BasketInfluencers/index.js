@@ -289,12 +289,14 @@ function BasketInfluencers() {
 
 
     return (
-        <div className='basket_influencers_container'>
-            <Navbar />
-            <div className='basket_influencers_container_content'>
+        <div className='basket_influencers_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='basket_influencers_container_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
-                <div style={{ display: 'flex' }}>
-                    <div className='middle_pane_lists'>
+                <div className='row no-gutters'>
+                    <div className='middle_pane_lists col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8'>
                         <div className='list_category_header'>
                             Top {categoryName} Influencers
                         </div>
@@ -600,7 +602,7 @@ function BasketInfluencers() {
                             </TableContainer>
                         </div>
                     </div>
-                    <div className='side_influencers_bundle'>
+                    <div className='side_influencers_bundle col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
                         <div className='side_list_css'>
                             <div className='select_pane'>
                                 {bundleIconSelected === true ?

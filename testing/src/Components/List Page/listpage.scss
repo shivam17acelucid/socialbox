@@ -525,6 +525,14 @@ html {
             padding-top: 2rem;
 
             .headers {
+                @media (max-width: 1000px) {
+                    font-size: 1rem;
+                }
+
+                @media (max-width: 460px) {
+                    font-size: 0.5rem;
+                }
+
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
@@ -534,6 +542,14 @@ html {
             }
 
             .add_list_btn {
+                @media (max-width: 1000px) {
+                    font-size: 1rem;
+                }
+
+                @media (max-width: 460px) {
+                    font-size: 0.5rem;
+                }
+
                 font-family: 'Noto Sans';
                 font-style: normal;
                 font-weight: 500;
@@ -772,6 +788,14 @@ html {
 
                     .list_view {
                         .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                            @media (max-width: 1000px) {
+                                font-size: 0.5rem;
+                            }
+
+                            @media (max-width: 460px) {
+                                font-size: 0.5rem;
+                            }
+
                             background: #7662DC;
                             border-radius: 0.188rem;
                             color: #fff;
@@ -779,6 +803,14 @@ html {
                     }
 
                     .inf_count {
+                        @media (max-width: 1000px) {
+                            font-size: 0.5rem;
+                        }
+
+                        @media (max-width: 460px) {
+                            font-size: 0.5rem;
+                        }
+
                         font-family: 'Noto Sans';
                         font-style: normal;
                         font-weight: 600;

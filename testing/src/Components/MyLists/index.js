@@ -87,15 +87,11 @@ function MyLists() {
 
     return (
         <>
-            <div className="headers_title">
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span className="headers">
-                        My Lists
-                    </span>
-                    <span className='add_list_btn' onClick={handleAddPlan}> + Add new</span>
+            <div className="headers_title row">
+                <div className="headers col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
+                    My Lists
                 </div>
-                {/* <div className="add_btn"> */}
-                {/* <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div> */}
+                <div className='add_list_btn col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12' onClick={handleAddPlan}> + Add new</div>
                 {
                     newPlanClicked ?
                         <div className="overlay">
@@ -200,7 +196,6 @@ function MyLists() {
                         </div> :
                         null
                 }
-                {/* </div> */}
             </div>
             <div className="list_content">
                 {
@@ -214,11 +209,11 @@ function MyLists() {
                             <div className='list_desc'>
                                 {item.description}
                             </div>
-                            <div className='list_footer'>
-                                <div className='list_view'>
+                            <div className='list_footer row no-gutters'>
+                                <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                     <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
                                 </div>
-                                <div className='inf_count'>
+                                <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                     {item.influencersData.length} Influencers
                                 </div>
                             </div>

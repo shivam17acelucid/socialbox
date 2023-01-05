@@ -992,11 +992,11 @@ function Lists() {
                                                 <div className='list_desc'>
                                                     {item.description}
                                                 </div>
-                                                <div className='list_footer'>
-                                                    <div className='list_view'>
+                                                <div className='list_footer row no-gutters'>
+                                                    <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                         <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
                                                     </div>
-                                                    <div className='inf_count'>
+                                                    <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                         {item.influencersData.length} Influencers
                                                     </div>
                                                 </div>

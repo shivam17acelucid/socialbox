@@ -297,10 +297,10 @@ function BasketInfluencers() {
                 <TopBar />
                 <div className='row no-gutters'>
                     <div className='middle_pane_lists col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8'>
-                        <div className='list_category_header'>
+                        <div className='list_category_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                             Top {categoryName} Influencers
                         </div>
-                        <div className='list_desc'>
+                        <div className='list_desc col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                             Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit
                         </div>
                         <div className='list_category_data'>
@@ -551,11 +551,13 @@ function BasketInfluencers() {
                                             Top Bundles
                                         </div>
                                         {basketData.map((item) =>
-                                            <div className='bundle_box'>
-                                                <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
-                                                <div className='bundle_desc'>
-                                                    <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                    <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                            <div className='bundle_box row no-gutters'>
+                                                <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
+                                                    <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
+                                                </div>
+                                                <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
+                                                    <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                    <div className='bundle_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                 </div>
                                             </div>)}
                                     </>

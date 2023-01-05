@@ -704,6 +704,7 @@ html {
                 font-size: 1rem;
                 line-height: 1.375rem;
                 color: #000000;
+                overflow-wrap: break-word;
             }
 
             .list_content_inner {
@@ -722,6 +723,14 @@ html {
                 border-radius: 0.625rem;
 
                 .list_head {
+                    @media (max-width: 1000px) {
+                        font-size: 0.8rem;
+                    }
+
+                    @media (max-width: 460px) {
+                        font-size: 0.5rem;
+                    }
+
                     font-size: 1rem;
                     display: flex;
                     -webkit-box-align: center;
@@ -737,6 +746,14 @@ html {
                 }
 
                 .list_desc {
+                    @media (max-width: 1000px) {
+                        font-size: 0.5rem;
+                    }
+
+                    @media (max-width: 460px) {
+                        font-size: 0.5rem;
+                    }
+
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 400;
@@ -744,6 +761,7 @@ html {
                     line-height: 1rem;
                     color: rgba(0, 0, 0, 0.7);
                     margin-top: 0.5rem;
+                    overflow-wrap: break-word;
                 }
 
                 .list_footer {

@@ -44,12 +44,16 @@ function Signup() {
     }
 
     return (
-        <div className="signup_container">
-            <div className="left_pane">
-                <img src={logo1} className='social_logo' />
-                <div className="signup_form">
-                    <div className="signup_header">Sign up</div>
-                    <div className="signup_title">Let's Get Started with your free trial</div>
+        <div className="signup_container row">
+            <div className="left_pane col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+                <div className="row">
+                    <div className="col-lg-3 col-md-5 col-sm-7 col-xs-7 col-7">
+                        <img src={logo1} className='social_logo' />
+                    </div>
+                </div>
+                <div className="signup_form row">
+                    <div className="signup_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Sign up</div>
+                    <div className="signup_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Let's Get Started with your free trial</div>
                     <div className="input_boxes">
                         <Input className="registeration_fields" placeholder="Name" value={name} onChange={(e) => { setName(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
@@ -70,7 +74,7 @@ function Signup() {
                     ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
                 </div>
             </div>
-            <div className="right_pane">
+            <div className="right_pane col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
                 <div className="right_pane_text">
                     Get a brand ambassador
                     <span style={{ display: 'block' }}>to endorse your product.</span>

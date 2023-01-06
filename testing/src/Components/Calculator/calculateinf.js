@@ -312,12 +312,14 @@ function CalculateCost() {
     }, [selectedOption])
 
     return (
-        <div className='calculate_container'>
-            <Navbar />
-            <div className='middle_pane_calculate'>
+        <div className='calculate_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
-                <div className='middle_pane_content'>
-                    <div className='steps_pane'>
+                <div className='middle_pane_content row no-gutters'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-0 col-xs-0 col-0'>
                         <div className='steps_pane_part'>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -378,7 +380,7 @@ function CalculateCost() {
                             <div className='cost_value'> ₹ --</div>
                         </div>
                     </div>
-                    <div className='content_pane'>
+                    <div className='content_pane col-lg-6 col-md-9 col-sm-12 col-xs-12 col-12'>
                         <div className='steps_title'>STEP 1</div>
                         <div className='pane_title'>Influencer Stats</div>
                         <div className='filter_content'>
@@ -387,17 +389,17 @@ function CalculateCost() {
                         </div>
                         <div>
                             <section className="modal_section">
-                                <div className="modal_option">
+                                <div className="modal_option row no-gutters">
                                     <div className="modal_title">Followers Count</div>
                                     <div className="label_slider">Minimum</div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <div className=' row no-gutters justify-content-between'>
                                         {
                                             silderRolled === true ?
-                                                <div className="followers_count_1">{scale1(minRangeFollowers)}</div>
+                                                <div className="followers_count_1 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">{scale1(minRangeFollowers)}</div>
                                                 :
-                                                <div className="followers_count_1">{minRangeFollowers}</div>
+                                                <div className="followers_count_1 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">{minRangeFollowers}</div>
                                         }
-                                        <div style={{ display: 'flex', justifyContent: "flex-end" }}>
+                                        <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                             <Select
                                                 defaultValue={selectedOption}
                                                 onChange={setSelectedOption}
@@ -479,12 +481,12 @@ function CalculateCost() {
                             <Button onClick={handleNextPage}>Next</Button>
                         </div>
                     </div>
-                    <div className='right_pane'>
+                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0'>
                         <div className='image1'></div>
                         <div className='image2' style={{ opacity: '0.2' }}>
                         </div>
-                        <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        {/* <span className='indicator'>Specific</span>
+                        <span className='indicator'>Broad</span> */}
                     </div>
 
                 </div>

@@ -11,19 +11,27 @@ html {
     display: flex;
 
     .middle_pane_calculate {
-        flex: 1;
+        @media (max-width: 1280px) {
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
         background: #F8F8F8;
 
         .middle_pane_content {
             background: #FFFFFF;
             border: 0.063rem solid rgba(0, 0, 0, 0.2);
             border-radius: 0.313rem;
-            height: 38rem;
+            // height: 38rem;
             margin: 2rem;
             display: flex;
 
             .steps_pane {
-                width: 14.375rem;
+                @media (max-width: 500px) {
+                    display: none;
+                }
+
+                // width: 14.375rem;
 
                 .steps_pane_part {
                     // height: 9.5rem;
@@ -156,11 +164,12 @@ html {
                 .steps_pane_part_inactive {
                     // height: 9.5rem;
                     background: #D9D9D9;
-                    padding: 1rem 2.25rem 0.438rem;
+                    // padding: 1rem 2.25rem 0.438rem;
                     border-left: solid 0.313rem #B6B6B6;
                     border-radius: 0.063rem;
                     border-right: solid 0.125rem #D9D9D9;
                     border-bottom: 0.063rem solid #CCCCCC;
+                    padding: 2.25rem 2.25rem;
 
                     .steps_pane_title {
                         font-family: 'Noto Sans';
@@ -414,30 +423,39 @@ html {
             }
 
             .right_pane {
-                flex: 1;
-                padding-left: 10rem;
+                @media (max-width: 900px) {
+                    display: none;
+                }
+
+                @media (width: 1024px) {
+                    display: none;
+                }
 
                 .image_1 {
                     background-image: url('../../../Assets/Images/step3bg.png');
                     height: 45vh;
                     background-repeat: no-repeat;
                     margin-top: 2rem;
+                    background-size: contain;
                 }
 
                 .image_2 {
                     height: 25vh;
                     background-image: url('../../../Assets/Images/calculate2.png');
                     background-repeat: no-repeat;
+                    background-size: contain;
+                    margin-top: 4rem;
+                    opacity: 0.2;
                 }
 
-                .indicator {
-                    font-family: 'Noto Sans';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 0.75rem;
-                    line-height: 1rem;
-                    color: rgba(0, 0, 0, 0.3);
-                }
+                // .indicator {
+                //     font-family: 'Noto Sans';
+                //     font-style: normal;
+                //     font-weight: 700;
+                //     font-size: 0.75rem;
+                //     line-height: 1rem;
+                //     color: rgba(0, 0, 0, 0.3);
+                // }
             }
         }
     }
@@ -452,3 +470,53 @@ html {
         max-height: 4rem;
     }
 }
+
+.col-lg-2 {
+    @media (min-width: 992px) {
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 12.666667%;
+    }
+
+    height: 100vh;
+}
+
+// .col-md-2 {
+//     @media (min-width: 768px) {
+//         -ms-flex: 0 0 16.666667%;
+//         flex: 0 0 16.666667%;
+//         max-width: 12.666667%;
+//     }
+// }
+
+// .col-sm-2 {
+//     @media (min-width: 576px) {
+//         -ms-flex: 0 0 16.666667%;
+//         flex: 0 0 16.666667%;
+//         max-width: 12.666667%;
+//     }
+// }
+
+.col-lg-10 {
+    @media (min-width: 992px) {
+        -ms-flex: 0 0 87.333333%;
+        flex: 0 0 87.333333%;
+        max-width: 87.333333%;
+    }
+}
+
+// .col-md-10 {
+//     @media (min-width: 768px) {
+//         -ms-flex: 0 0 87.333333%;
+//         flex: 0 0 87.333333%;
+//         max-width: 87.333333%;
+//     }
+// }
+
+// .col-sm-10 {
+//     @media (min-width: 576px) {
+//         -ms-flex: 0 0 87.333333%;
+//         flex: 0 0 87.333333%;
+//         max-width: 87.333333%;
+//     }
+// }

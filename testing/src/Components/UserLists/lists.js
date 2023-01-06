@@ -155,38 +155,40 @@ function UserLists() {
     }, [isDeliverablesEdited]);
 
     return (
-        <div className='users_list_container'>
-            <Navbar />
-            <div className='users_list_pane'>
+        <div className='users_list_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='users_list_pane col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
-                <div style={{ display: 'flex' }}>
+                <div className='row no-gutters'>
                     {
                         listInfluencersData.map((item) =>
-                            <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                <div className='user_list_header'>
-                                    <div className='list_count'>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <div className='list_name'>
+                            <div className='col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8'>
+                                <div className='user_list_header row'>
+                                    <div className='list_count col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
+                                        <div className='row no-gutters'>
+                                            <div className='list_name col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                 {item.item.listName}
                                             </div>
-                                            <div>
+                                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                 <Button onClick={handleEditDeliverables}>Edit</Button>
                                             </div>
                                         </div>
-                                        <div className='list_desc'>
+                                        <div className='list_desc pl-1 pr-1'>
                                             {item.item.description}
                                         </div>
                                     </div>
-                                    <div className='deliverables_count'>
+                                    <div className='deliverables_count col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                                         {
-                                            <>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[0].reel}<span>Reels</span></div>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[1].post}<span>Posts</span></div>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[2].story}<span>Stories</span></div>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[3].igtv}<span>Igtv</span></div>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[4].swipeup}<span>Swipeup Stories</span></div>
-                                                <div className='deliverables_fields_value'>{item.item.deliverables[5].video}<span>Videos</span></div>
-                                            </>
+                                            <div className='row'>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[0].reel}<span>Reels</span></div>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[1].post}<span>Posts</span></div>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[2].story}<span>Stories</span></div>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[3].igtv}<span>Igtv</span></div>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[4].swipeup}<span>Swipeup Stories</span></div>
+                                                <div className='deliverables_fields_value col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4'>{item.item.deliverables[5].video}<span>Videos</span></div>
+                                            </div>
                                         }
                                         {
                                             editingDeliverables === true ?
@@ -378,7 +380,7 @@ function UserLists() {
                             </div>
                         )
                     }
-                    <div className='right_pane'>
+                    <div className='right_pane col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
                         <div className='icons_pane'>
                             {
                                 deleteIconSelected === true
@@ -421,29 +423,35 @@ function UserLists() {
                         </div>
                         {
                             deleteIconSelected === true ?
-                                <>
-                                    <div className='delete_header'>Recently Deleted</div>
-                                    <div className='delete_content'>
+                                <div className='row justify-content-center' style={{ paddingBottom: '2rem' }}>
+                                    <div className='delete_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>Recently Deleted</div>
+                                    <div className='delete_content col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                                         Deleted influencers will be retained for 30 days in the bin. After 30 days they will be permanently deleted.
                                     </div>
-                                    {listInfluencersData.map((item) =>
-                                        item.item.deletedInfluencers.map((data) =>
-                                            <div className='deleted_box'>
-                                                <div className='box_name'>
-                                                    {data.full_name}
-                                                </div>
-                                                <div style={{ display: 'flex' }}>
-                                                    <div className='view_box' onClick={() => redirectProfile(data)}>
-                                                        View
+                                    <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 col-8'>
+                                        <div className='row  justify-content-center'>
+                                            {listInfluencersData.map((item) =>
+                                                item.item.deletedInfluencers.map((data) =>
+                                                    <div className='deleted_box col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
+                                                        <div className='row'>
+                                                            <div className='box_name col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>
+                                                                {data.full_name}
+                                                            </div>
+                                                        </div>
+                                                        <div className='row'>
+                                                            <div className='view_box col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12' onClick={() => redirectProfile(data)}>
+                                                                View
+                                                            </div>
+                                                            <div className='view_box col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12' onClick={() => handleRestore(data)} style={{ marginLeft: '0.1rem' }}>
+                                                                Restore
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div className='view_box' onClick={() => handleRestore(data)} style={{ marginLeft: '1rem', width: '5rem' }}>
-                                                        Restore
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    )}
-                                </>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
                                 :
                                 listsIconSelected === true ?
                                     <MyLists />
@@ -454,11 +462,13 @@ function UserLists() {
                                                 Top Bundles
                                             </div>
                                             {basketData.map((item) =>
-                                                <div className='bundle_box'>
-                                                    <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
-                                                    <div className='bundle_desc'>
-                                                        <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                        <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                                <div className='bundle_box row no-gutters'>
+                                                    <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
+                                                        <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
+                                                    </div>
+                                                    <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
+                                                        <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                        <div className='bundle_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                     </div>
                                                 </div>)}
                                         </div>

@@ -165,9 +165,11 @@ function CompareLists() {
     }, [params])
 
     return (
-        <div className='compare_lists_container'>
-            <Navbar />
-            <div style={{ flex: 1, width: '100vh' }}>
+        <div className='compare_lists_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
                 <div className='result_pane'>
                     {
@@ -175,7 +177,7 @@ function CompareLists() {
                             <div className='results'>
                                 <div className='listname'>{item.listName}</div>
                                 <div className='inf_count'>{item.totalInfluencers} Influencers</div>
-                                <div className='list_view' onClick={() => {redirectToList(item)}}>View list </div>
+                                <div className='list_view' onClick={() => { redirectToList(item) }}>View list </div>
                                 <div className='category'>
                                     {item.totalCategory.map((data) =>
                                         data !== null ?

@@ -4,7 +4,7 @@ const Username = require('../models/username');
 const ProfileData = require('../models/profile_data');
 const InfluencersData = require('../models/influencer_details');
 const UserInfo = require('../models/user_info');
-const Testing = require('../Models/testing')
+const Testing = require('../models/testing')
 const axios = require('axios');
 
 const URLENCODED_HEADER = {

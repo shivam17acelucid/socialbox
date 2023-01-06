@@ -16,7 +16,6 @@ html {
             height: 100vh;
         }
 
-        flex: 1;
         background: #F8F8F8;
 
         .middle_pane_content {
@@ -28,7 +27,7 @@ html {
             display: flex;
 
             .steps_pane {
-                width: 14.375rem;
+                // width: 14.375rem;
 
                 .steps_pane_part {
                     // height: 9.5rem;
@@ -490,19 +489,20 @@ html {
             }
 
             .right_pane {
-                flex: 1;
 
                 .image1 {
                     background-image: url('../../Assets/Images/calculatebg1.png');
-                    height: 45vh;
+                    height: 45%;
                     background-repeat: no-repeat;
                     margin-top: 2rem;
+                    background-size: contain;
                 }
 
                 .image2 {
-                    height: 25vh;
+                    height: 25%;
                     background-image: url('../../Assets/Images/calculate2.png');
                     background-repeat: no-repeat;
+                    background-size: contain;
                 }
 
                 .indicator {

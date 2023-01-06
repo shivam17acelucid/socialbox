@@ -318,8 +318,8 @@ function CalculateCost() {
             </div>
             <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
-                <div className='middle_pane_content'>
-                    <div className='steps_pane'>
+                <div className='middle_pane_content row no-gutters'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-2 col-xs-2 col-2'>
                         <div className='steps_pane_part'>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -380,7 +380,7 @@ function CalculateCost() {
                             <div className='cost_value'> ₹ --</div>
                         </div>
                     </div>
-                    <div className='content_pane'>
+                    <div className='content_pane col-lg-6 col-md-9 col-sm-10 col-xs-10 col-10'>
                         <div className='steps_title'>STEP 1</div>
                         <div className='pane_title'>Influencer Stats</div>
                         <div className='filter_content'>
@@ -481,12 +481,12 @@ function CalculateCost() {
                             <Button onClick={handleNextPage}>Next</Button>
                         </div>
                     </div>
-                    <div className='right_pane'>
+                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0'>
                         <div className='image1'></div>
                         <div className='image2' style={{ opacity: '0.2' }}>
                         </div>
-                        <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        {/* <span className='indicator'>Specific</span>
+                        <span className='indicator'>Broad</span> */}
                     </div>
 
                 </div>

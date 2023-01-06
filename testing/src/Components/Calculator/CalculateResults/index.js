@@ -322,8 +322,8 @@ function CalculateTotal() {
             </div>
             <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
-                <div className='middle_pane_content'>
-                    <div className='steps_pane'>
+                <div className='middle_pane_content row no-gutters'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-0 col-xs-0 col-0'>
                         <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -428,7 +428,7 @@ function CalculateTotal() {
                             </div>
                         </div>
                     </div>
-                    <div className="content_pane">
+                    <div className="content_pane col-lg-6 col-md-9 col-sm-12 col-xs-12 col-12">
                         <div className='step_count'>STEP 4</div>
                         <div className='step_title'>
                             Estimate
@@ -495,11 +495,11 @@ function CalculateTotal() {
                             <Button onClick={handleSubmitQuery}>Submit</Button>
                         </div>
                     </div>
-                    <div className="right_pane">
+                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">
                         <div className="image_1"></div>
                         <div className="image_2"></div>
-                        <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        {/* <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span> */}
                         <div>{metricsTotal}</div>
                     </div>
                 </div>

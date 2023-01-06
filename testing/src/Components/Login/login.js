@@ -18,7 +18,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        const url = 'http://localhost:4000/login';
+        const url = 'http://52.199.164.174:4000/login';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email, password }),

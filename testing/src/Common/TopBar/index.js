@@ -47,7 +47,7 @@ function TopBar() {
     const handleLogout = () => {
         <Link to='/' />
         localStorage.clear();
-        // let url = `http://localhost:4000/logout`;
+        // let url = `http://52.199.164.174:4000/logout`;
         // fetch((url), {
         //     method: 'POST',
         //     headers: {

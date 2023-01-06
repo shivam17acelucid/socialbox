@@ -36,7 +36,7 @@ function CompareInfluencers() {
 
     // const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
     //     setComparedInfluencersData([]);
-    //     const url = `http://localhost:4000/compareInfluencers?influencer1name=${influencer1Name}&influencer2name=${influencer2Name}&influencer3name=${influencer3Name}`;
+    //     const url = `http://52.199.164.174:4000/compareInfluencers?influencer1name=${influencer1Name}&influencer2name=${influencer2Name}&influencer3name=${influencer3Name}`;
     //     fetch(url)
     //         .then((res) => res.json())
     //         .then((data) => {
@@ -52,7 +52,7 @@ function CompareInfluencers() {
     }
 
     const getListData = () => {
-        const url = `http://localhost:4000/getListData/${userId}`;
+        const url = `http://52.199.164.174:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -63,7 +63,7 @@ function CompareInfluencers() {
     }
 
     const addInfluencerToList = (element, elm) => {
-        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${elm.listName}&username=${element.username}`
+        const url = `http://52.199.164.174:4000/addInfluencersToList/${userId}?list=${elm.listName}&username=${element.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -79,7 +79,7 @@ function CompareInfluencers() {
     }
 
     const fetchAllData = () => {
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
+        const url = `http://52.199.164.174:4000/getrelatedinfluencers?inputField`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -188,7 +188,7 @@ function CompareInfluencers() {
 
     const handleCompareInfluencersByParams = () => {
         if (JSON.stringify(params) !== '{}') {
-            const url = `http://localhost:4000/compareInfluencers?${params.influencers}`;
+            const url = `http://52.199.164.174:4000/compareInfluencers?${params.influencers}`;
             fetch(url)
                 .then((res) => {
                     res.json()

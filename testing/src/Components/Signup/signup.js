@@ -19,7 +19,7 @@ function Signup() {
     const navigate = useNavigate();
 
     const handleSignup = () => {
-        const url = `http://localhost:4000/signup`;
+        const url = `http://52.199.164.174:4000/signup`;
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ name, email, password, confirmPassword }),

@@ -319,7 +319,7 @@ function CalculateCost() {
             <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
                 <div className='middle_pane_content row no-gutters'>
-                    <div className='steps_pane col-lg-3 col-md-3 col-sm-2 col-xs-2 col-2'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-0 col-xs-0 col-0'>
                         <div className='steps_pane_part'>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -380,7 +380,7 @@ function CalculateCost() {
                             <div className='cost_value'> ₹ --</div>
                         </div>
                     </div>
-                    <div className='content_pane col-lg-6 col-md-9 col-sm-10 col-xs-10 col-10'>
+                    <div className='content_pane col-lg-6 col-md-9 col-sm-12 col-xs-12 col-12'>
                         <div className='steps_title'>STEP 1</div>
                         <div className='pane_title'>Influencer Stats</div>
                         <div className='filter_content'>

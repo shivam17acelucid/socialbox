@@ -27,6 +27,9 @@ html {
             display: flex;
 
             .steps_pane {
+                @media (max-width: 500px) {
+                    display: none;
+                }
                 // width: 14.375rem;
 
                 .steps_pane_part {
@@ -489,6 +492,9 @@ html {
             }
 
             .right_pane {
+                @media (max-width: 900px) {
+                    display: none;
+                }
 
                 .image1 {
                     background-image: url('../../Assets/Images/calculatebg1.png');
@@ -503,6 +509,7 @@ html {
                     background-image: url('../../Assets/Images/calculate2.png');
                     background-repeat: no-repeat;
                     background-size: contain;
+                    margin-top: 4rem;
                 }
 
                 .indicator {

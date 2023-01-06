@@ -238,9 +238,11 @@ function CalculateFilters() {
 
 
     return (
-        <div className="calculate3_container">
-            <Navbar />
-            <div className='middle_pane_calculate'>
+        <div className="calculate3_container row no-gutters">
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
                 <div className='middle_pane_content'>
                     <div className='steps_pane'>

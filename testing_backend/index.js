@@ -7,7 +7,7 @@ var bodyparser = require("body-parser");
 var cors = require('cors')
 
 require("dotenv").config();
-const Route = require("./Routes/index");
+const Route = require("./routes/index");
 /* middleware */
 app.use(bodyparser.json());
 app.use(express.json());

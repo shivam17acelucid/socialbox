@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 const User = require('../models/user');
-const Username = require('../Models/username');
-const ProfileData = require('../Models/profile_data');
-const InfluencersData = require('../Models/influencer_details');
-const UserInfo = require('../Models/user_info');
+const Username = require('../models/username');
+const ProfileData = require('../models/profile_data');
+const InfluencersData = require('../models/influencer_details');
+const UserInfo = require('../models/user_info');
 const Testing = require('../Models/testing')
 const axios = require('axios');
 

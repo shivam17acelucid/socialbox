@@ -1,4 +1,4 @@
-const InfluencersData = require('../Models/influencer_details');
+const InfluencersData = require('../models/influencer_details');
 const CsvParser = require("json2csv").Parser;
 exports.downloadcsv = (req, res, next) => {
   InfluencersData.find({}).then((objs) => {

@@ -1,5 +1,5 @@
-const CategorizedBasket = require('../../Models/categorised_basket');
-const InfluencersData = require('../../Models/influencer_details');
+const CategorizedBasket = require('../../models/categorised_basket');
+const InfluencersData = require('../../models/influencer_details');
 const path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({

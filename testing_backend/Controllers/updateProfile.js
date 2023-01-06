@@ -1,4 +1,4 @@
-const UserInfo = require('../Models/user_info');
+const UserInfo = require('../models/user_info');
 
 exports.editProfile = (req, res, next) => {
     let { name, email, phone, city, state, pin, designation, company, website, instagramProfile, facebookProfile, linkedInProfile, building, locality, landmark } = req.body;

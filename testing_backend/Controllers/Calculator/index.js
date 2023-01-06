@@ -1,4 +1,4 @@
-const Calculator = require('../../Models/calculator');
+const Calculator = require('../../models/calculator');
 
 exports.setBasicFieldsForReel = (req, res) => {
     let {

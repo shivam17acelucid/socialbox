@@ -389,17 +389,17 @@ function CalculateCost() {
                         </div>
                         <div>
                             <section className="modal_section">
-                                <div className="modal_option">
+                                <div className="modal_option row no-gutters">
                                     <div className="modal_title">Followers Count</div>
                                     <div className="label_slider">Minimum</div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <div className=' row no-gutters justify-content-between'>
                                         {
                                             silderRolled === true ?
-                                                <div className="followers_count_1">{scale1(minRangeFollowers)}</div>
+                                                <div className="followers_count_1 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">{scale1(minRangeFollowers)}</div>
                                                 :
-                                                <div className="followers_count_1">{minRangeFollowers}</div>
+                                                <div className="followers_count_1 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">{minRangeFollowers}</div>
                                         }
-                                        <div style={{ display: 'flex', justifyContent: "flex-end" }}>
+                                        <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                             <Select
                                                 defaultValue={selectedOption}
                                                 onChange={setSelectedOption}

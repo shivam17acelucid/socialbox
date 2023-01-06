@@ -128,7 +128,7 @@ const InfluencersList = () => {
     };
 
     const fetchAllData = () => {
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
+        const url = `http://52.199.164.174:4000/getrelatedinfluencers?inputField`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -526,7 +526,7 @@ const InfluencersList = () => {
     }
 
     const getListData = () => {
-        const url = `http://localhost:4000/getListData/${userId}`;
+        const url = `http://52.199.164.174:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -537,7 +537,7 @@ const InfluencersList = () => {
     }
 
     const handleDownloadData = () => {
-        const url = `http://localhost:4000/downloadcsv`;
+        const url = `http://52.199.164.174:4000/downloadcsv`;
         fetch((url), {
             headers: {
                 'Content-type': 'text/csv; charset=UTF-8',
@@ -580,7 +580,7 @@ const InfluencersList = () => {
             if (eRange.includes('eRange')) {
                 str = eRange.split('=');
                 splitArray = str[1].split('&');
-                const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://52.199.164.174:4000/getFilteredResults?inputField=${inputField}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -595,7 +595,7 @@ const InfluencersList = () => {
             if (eRange.includes('followerRange')) {
                 follString = eRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                const url = `http://52.199.164.174:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -613,7 +613,7 @@ const InfluencersList = () => {
             splitArray = str[1].split('&');
             follString = followerRange.split('=')
             splitFollArray = follString[1].split('&')
-            const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            const url = `http://52.199.164.174:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -626,7 +626,7 @@ const InfluencersList = () => {
                 })
         }
         if (!eRange && !followerRange) {
-            const url = `http://localhost:4000/getFilteredResults?inputField=${inputField}`;
+            const url = `http://52.199.164.174:4000/getFilteredResults?inputField=${inputField}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -750,7 +750,7 @@ const InfluencersList = () => {
 
 
     const handleCreateList = (listName) => {
-        const url = `http://localhost:4000/createList/${userId}`
+        const url = `http://52.199.164.174:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName }),
@@ -773,7 +773,7 @@ const InfluencersList = () => {
 
     const handleListClick = (item) => {
         setListClicked(true);
-        const url = `http://localhost:4000/showInfluencersList/${userId}?list=${item.listName}`
+        const url = `http://52.199.164.174:4000/showInfluencersList/${userId}?list=${item.listName}`
         fetch((url))
             .then((data) => data.json())
             .then((response) => {
@@ -782,7 +782,7 @@ const InfluencersList = () => {
     }
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
+        const url = `http://52.199.164.174:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -912,7 +912,7 @@ const InfluencersList = () => {
             string = result.substring(1);
         })
         navigate(`/CompareInfluencers/${string}`)
-        // const url = `http://localhost:4000/compareInfluencers?${string}`;
+        // const url = `http://52.199.164.174:4000/compareInfluencers?${string}`;
         // fetch(url)
         //     .then((res) => {
         //         res.json()

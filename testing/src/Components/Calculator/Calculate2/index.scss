@@ -8,15 +8,14 @@ html {
 }
 
 .calculate_2_container {
-    @media (max-width: 1280px) {
-        overflow-y: scroll;
-        height: 100vh;
-    }
-
     display: flex;
 
     .middle_pane_calculate {
-        flex: 1;
+        @media (max-width: 1280px) {
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
         background: #F8F8F8;
 
         .middle_pane_content {
@@ -28,10 +27,11 @@ html {
             display: flex;
 
             .steps_pane {
-                // width: 14.375rem;
+                @media (max-width: 500px) {
+                    display: none;
+                }
 
                 .steps_pane_part {
-                    // height: 9.5rem;
                     background: #fff;
                     border-left: solid 0.313rem #357AFF;
                     border-radius: 0.063rem;
@@ -161,11 +161,12 @@ html {
                 .steps_pane_part_inactive {
                     // height: 9.5rem;
                     background: #D9D9D9;
-                    padding: 1rem 2.25rem 0.438rem;
+                    // padding: 1rem 2.25rem 0.438rem;
                     border-left: solid 0.313rem #B6B6B6;
                     border-radius: 0.063rem;
                     border-right: solid 0.125rem #D9D9D9;
                     border-bottom: 0.063rem solid #CCCCCC;
+                    padding: 2.25rem 2.25rem;
 
                     .steps_pane_title {
                         font-family: 'Noto Sans';
@@ -288,6 +289,7 @@ html {
                     font-size: 1.5rem;
                     line-height: 2.063rem;
                     color: #000000;
+                    width: 100%;
                 }
 
                 .step_count {
@@ -298,6 +300,7 @@ html {
                     line-height: 1.188rem;
                     color: rgba(0, 0, 0, 0.7);
                     padding-top: 0.5rem;
+                    width: 100%;
                 }
 
                 .step_desc {
@@ -307,7 +310,8 @@ html {
                     font-size: 1rem;
                     line-height: 1.375rem;
                     color: #000000;
-                    width: 22.5rem;
+                    // width: 22.5rem;
+                    width: 100%;
                     padding-top: 1.5rem;
                 }
 
@@ -349,20 +353,27 @@ html {
     }
 
     .right_pane {
-        flex: 1;
-        padding-left: 10rem;
+        @media (max-width: 900px) {
+            display: none;
+        }
+        @media (width: 1024px) {
+            display: none;
+        }
 
         .image1 {
             background-image: url('../../../Assets/Images/step2bg.png');
             height: 45vh;
             background-repeat: no-repeat;
             margin-top: 2rem;
+            background-size: contain;
         }
 
         .image2 {
             height: 25vh;
             background-image: url('../../../Assets/Images/calculate2.png');
             background-repeat: no-repeat;
+            background-size: contain;
+            margin-top: 4rem;
         }
 
         .indicator {
@@ -382,6 +393,8 @@ html {
         flex: 0 0 16.666667%;
         max-width: 12.666667%;
     }
+
+    height: 100vh;
 }
 
 // .col-md-2 {

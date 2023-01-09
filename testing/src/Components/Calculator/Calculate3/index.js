@@ -93,7 +93,16 @@ const regionOptions = [
 ]
 
 const cityOptions = [
-    {}
+    { label: 'Goa', value: 'Goa' },
+    { label: 'Delhi', value: 'Delhi' },
+    { label: 'Telangana', value: 'Telangana' },
+    { label: 'Kerala', value: 'Kerala' },
+    { label: 'Ladakh', value: 'Ladakh' },
+    { label: 'Lakshadweep', value: 'Lakshadweep' },
+    { label: 'MadhyaPradesh', value: 'MadhyaPradesh' },
+    { label: 'Mahārāshtra', value: 'Mahārāshtra' },
+    { label: 'Manipur', value: 'Manipur' },
+    { label: 'Meghālaya', value: 'Meghālaya' },
 ]
 
 function CalculateFilters() {
@@ -230,9 +239,8 @@ function CalculateFilters() {
                     setCityString(str.substring(1))
                 })
             }
-            else if (!city) {
-                setCityString('none')
-            }
+        } else {
+            setCityString('none')
         }
     }, [city])
 

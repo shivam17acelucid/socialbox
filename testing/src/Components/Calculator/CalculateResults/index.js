@@ -29,6 +29,8 @@ function CalculateTotal() {
     const [metricsDemography, setMetricsDemography] = useState(0);
     const [metricsDemographyGender, setMetricsDemographyGender] = useState(0);
     const [metricsDemographyCategory, setMetricsDemographyCategory] = useState(0);
+    const [metricsDemographyCities, setMetricsDemographyCities] = useState(0);
+    const [metricsDemographyRegions, setMetricsDemographyRegions] = useState(0);
     const [metricsTotal, setMetricsTotal] = useState(0);
     const [calculatedCreatorsCount, setCalculatedCreatorsCount] = useState(0);
     const params = useParams();
@@ -280,6 +282,86 @@ function CalculateTotal() {
         }
     }
 
+    const calculateMetricsDemographyCities = () => {
+        if (params.demography.includes('city')) {
+            if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&')[0] === 'none') {
+                setMetricsDemographyCities(0);
+            }
+            else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&')[0] !== 'none') {
+                if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 1) {
+                    setMetricsDemographyCities(10);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 2) {
+                    setMetricsDemographyCities(9);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 3) {
+                    setMetricsDemographyCities(8);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 4) {
+                    setMetricsDemographyCities(7);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 5) {
+                    setMetricsDemographyCities(6);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 6) {
+                    setMetricsDemographyCities(5);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 7) {
+                    setMetricsDemographyCities(4);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 8) {
+                    setMetricsDemographyCities(3);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 === 9) {
+                    setMetricsDemographyCities(2);
+                }
+                else if (params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length - 1 >= 10) {
+                    setMetricsDemographyCities(1);
+                }
+            }
+        }
+    }
+
+    const calculateMetricsDemographyRegions = () => {
+        if (params.demography.includes('region')) {
+            if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&')[0] === 'none') {
+                setMetricsDemographyRegions(0);
+            }
+            else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&')[0] !== 'none') {
+                if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 0) {
+                    setMetricsDemographyRegions(10);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 1) {
+                    setMetricsDemographyRegions(9);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 2) {
+                    setMetricsDemographyRegions(8);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 3) {
+                    setMetricsDemographyRegions(7);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 4) {
+                    setMetricsDemographyRegions(6);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 5) {
+                    setMetricsDemographyRegions(5);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 6) {
+                    setMetricsDemographyRegions(4);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 7) {
+                    setMetricsDemographyRegions(3);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 === 8) {
+                    setMetricsDemographyRegions(2);
+                }
+                else if (params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length - 1 >= 9) {
+                    setMetricsDemographyRegions(1);
+                }
+            }
+        }
+    }
+
     useEffect(() => {
         let follower = params.followerRange.substring(params.followerRange.indexOf('=') + 1).split('&')[1];
         if (follower > 1000 && follower < 10000) {
@@ -312,8 +394,11 @@ function CalculateTotal() {
         calculateMetricsDeliverables();
         calculateMetricsDemographyAgeGender();
         calculateMetricsDemographyCategory();
-        setMetricsTotal(metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory)
-    }, [metricsDeliverable, metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory])
+        calculateMetricsDemographyCities();
+        calculateMetricsDemographyRegions();
+        console.log(metricsDeliverable, metricsBudget, metricsDemographyAge, metricsDemographyGender, metricsDemographyCategory, metricsDemographyCities, metricsDemographyRegions);
+        setMetricsTotal(metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory + metricsDemographyCities + metricsDemographyRegions)
+    }, [metricsDeliverable, metricsBudget, metricsDemographyAge, metricsDemographyGender, metricsDemographyCategory, metricsDemographyCities, metricsDemographyRegions])
 
     return (
         <div className="calculate_4_container row no-gutters">
@@ -396,7 +481,7 @@ function CalculateTotal() {
                             </div>
                             <div className='filter_pane'>
                                 <img src={categoryIcon} />
-                                <div className='filter_value'>
+                                <div className='filter_value' style={{ fontSize: '0.75rem' }}>
                                     {
                                         params.demography.includes('category') ?
                                             (
@@ -411,7 +496,30 @@ function CalculateTotal() {
                                 </div>
                             </div>
                             <div className='filter_pane'>
-                                <img src={locationIcon} /><div className='filter_value'> -- </div>
+                                <img src={locationIcon} /><div className='filter_value' style={{ fontSize: '0.75rem' }}>
+                                    {
+                                        params.demography.includes('region') ?
+                                            (
+                                                params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&')[0] === 'none' ?
+                                                    '--'
+                                                    :
+                                                    params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length + ' Regions'
+                                            )
+                                            :
+                                            null
+                                    },
+                                    {
+                                        params.demography.includes('city') ?
+                                            (
+                                                params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&')[0] === 'none' ?
+                                                    '--'
+                                                    :
+                                                    params.demography.substring(params.demography.indexOf('city')).split('=')[1].split('&').length + ' Cities'
+                                            )
+                                            :
+                                            null
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div className='steps_pane_part' style={{ borderLeft: 'solid 0.313rem #7662DC' }}>

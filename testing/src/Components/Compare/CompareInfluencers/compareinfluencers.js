@@ -345,7 +345,7 @@ function CompareInfluencers() {
                                                 Clear all
                                             </div>
                                             <div className="btn_pane">
-                                                <Button onClick={handleCompareInfluencers}>
+                                                <Button onClick={handleCompareInfluencers} className='compare_influencers_btn'>
                                                     Compare Now
                                                 </Button>
                                                 <Button className="clear_btn">

@@ -249,7 +249,7 @@ function CompareLists() {
                                                 Clear all
                                             </div>
                                             <div className="btn_pane">
-                                                <Button onClick={handleComparelists}>
+                                                <Button onClick={handleComparelists} className='add_list_btn'>
                                                     Compare Now
                                                 </Button>
                                                 <Button className="clear_btn">

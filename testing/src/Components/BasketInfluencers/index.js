@@ -304,19 +304,19 @@ function BasketInfluencers() {
                             Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit
                         </div>
                         <div className='list_category_data'>
-                            <TableContainer component={Paper}>
+                            <TableContainer component={Paper} className='table_paper'>
                                 <Table stickyHeader className="table_container" >
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Name</TableCell>
-                                            <TableCell align="center">Category</TableCell>
-                                            <TableCell align="center">Avg Likes</TableCell>
-                                            <TableCell align="center">Followers</TableCell>
-                                            <TableCell align="center">Average Reach</TableCell>
-                                            <TableCell align="center">Average Comment</TableCell>
-                                            <TableCell align="center">ER</TableCell>
-                                            <TableCell align="center">City</TableCell>
-                                            <TableCell align="center"></TableCell>
+                                    <TableHead className='table_head'>
+                                        <TableRow className='table_row'>
+                                            <TableCell className='table_head_value'>Name</TableCell>
+                                            <TableCell className='table_head_value' align="center">Category</TableCell>
+                                            <TableCell className='table_head_value' align="center">Avg Likes</TableCell>
+                                            <TableCell className='table_head_value' align="center">Followers</TableCell>
+                                            <TableCell className='table_head_value' align="center">Average Reach</TableCell>
+                                            <TableCell className='table_head_value' align="center">Average Comment</TableCell>
+                                            <TableCell className='table_head_value' align="center">ER</TableCell>
+                                            <TableCell className='table_head_value' align="center">City</TableCell>
+                                            <TableCell className='table_head_value' align="center"></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -330,30 +330,30 @@ function BasketInfluencers() {
                                                         influencersData)
                                                 .map((data, index) =>
                                                     <>
-                                                        < TableRow>
-                                                            <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                        <TableRow className='table_body_row'>
+                                                            <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_body_value_1' >
                                                                 {data.full_name}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {NFormatter(data.edge_followed_by.count)}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
                                                             </TableCell>
-                                                            <TableCell align="center">
+                                                            <TableCell className='table_body_value' align="center">
                                                                 {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
                                                             </TableCell>
-                                                            <TableCell align="center">{data.city_name}</TableCell>
-                                                            <TableCell key={index} >
+                                                            <TableCell className='table_body_value' align="center">{data.city_name}</TableCell>
+                                                            <TableCell key={index} className='table_body_value' >
                                                                 <div style={{ display: 'flex', cursor: 'pointer' }}>
                                                                     <img src={CostIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={(e) => { handleCostClicked(data) }} />
                                                                     {
@@ -495,7 +495,7 @@ function BasketInfluencers() {
                                                                                             Clear all
                                                                                         </div>
                                                                                         <div className="btn_pane">
-                                                                                            <Button onClick={handleCompareInfluencers}>
+                                                                                            <Button onClick={handleCompareInfluencers} className='compare_btn'>
                                                                                                 Compare Now
                                                                                             </Button>
                                                                                             <Button className="clear_btn">

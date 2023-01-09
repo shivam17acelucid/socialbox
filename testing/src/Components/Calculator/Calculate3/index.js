@@ -436,7 +436,7 @@ function CalculateFilters() {
                         <div>
                         </div>
                         <div>
-                            <Button onClick={handleNext}>Next</Button>
+                            <Button onClick={handleNext} className='next_btn'>Next</Button>
                         </div>
                     </div>
                     <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">

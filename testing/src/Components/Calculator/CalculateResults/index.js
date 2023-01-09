@@ -600,7 +600,7 @@ function CalculateTotal() {
                             You can change the parameters to update your estimate
                         </div>
                         <div>
-                            <Button onClick={handleSubmitQuery}>Submit</Button>
+                            <Button onClick={handleSubmitQuery} className='submit_btn'>Submit</Button>
                         </div>
                     </div>
                     <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">

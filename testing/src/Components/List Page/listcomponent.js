@@ -649,8 +649,8 @@ function Lists() {
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
                                 <div className='row filterContainer'>
-                                    <Button onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
-                                    <Button onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
+                                    <Button className='test-bg' onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
+                                    <Button className='test-bg' onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?
                                             <section className="modal_section">
@@ -796,7 +796,7 @@ function Lists() {
                                                 </section>
                                                 : null
                                     }
-                                    <Button onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>
+                                    <Button className='test-bg' onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>
 
                                 </div>
                             </div>

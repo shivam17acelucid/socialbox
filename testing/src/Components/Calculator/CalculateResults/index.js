@@ -581,19 +581,19 @@ function CalculateTotal() {
                         <div className="result_pane_2_title">
                             For a tailor-made solution as per your needs, call (+91) 98765 43210, or submit your details for a call later.
                         </div>
-                        <div className="enquiry_form">
-                            <div className="name_pane">
-                                <Input className="enquiry_field" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                                <Input className="enquiry_field" style={{ marginLeft: '0.25rem' }} placeholder="Last Name" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
+                        <div className="enquiry_form row no-gutters">
+                            <div className="name_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                <Input className="enquiry_field col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                <Input className="enquiry_field col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12 last_name" placeholder="Last Name" value={lastName} onChange={(e) => { setLastName(e.target.value) }} />
                             </div>
-                            <div className="email_pane">
-                                <Input className="enquiry_field_2" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                            <div className="email_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                <Input className="enquiry_field_2 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                             </div>
-                            <div className="mobile_pane">
-                                <Input className="enquiry_field_2" placeholder="Phone no" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
+                            <div className="mobile_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                <Input className="enquiry_field_2 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12" placeholder="Phone no" value={phone} onChange={(e) => { setPhone(e.target.value) }} />
                             </div>
-                            <div className="message_pane">
-                                <Input className="enquiry_field_3" placeholder="Message" value={message} onChange={(e) => { setMessage(e.target.value) }} />
+                            <div className="message_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                <Input className="enquiry_field_3 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12" placeholder="Message" value={message} onChange={(e) => { setMessage(e.target.value) }} />
                             </div>
                         </div>
                         <div className="bottom_title">

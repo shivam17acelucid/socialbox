@@ -106,7 +106,10 @@ exports.login = (req, res, next) => {
               }
             );
             user.token = token;
-            res.status(200).json(user);
+            user.save()
+              .then((data) => {
+                res.status(200).json(data);
+              })
           })
           .catch((err) => {
             res.status(502).json({ errors: err });

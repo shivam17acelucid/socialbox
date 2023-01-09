@@ -24,7 +24,7 @@ const ProfileData = () => {
     const userId = localStorage.getItem('id')
 
     const fetchProfiles = () => {
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField=${profilename}`;
+        const url = `http://52.199.164.174:4000/getrelatedinfluencers?inputField=${profilename}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -40,7 +40,7 @@ const ProfileData = () => {
     const handleAddList = () => {
         const data = addToListClicked ? false : true;
         setAddToListClicked(data);
-        const url = `http://localhost:4000/getListData/${userId}`
+        const url = `http://52.199.164.174:4000/getListData/${userId}`
         fetch(url)
             .then((data) => {
                 data.json()
@@ -51,7 +51,7 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
+        const url = `http://52.199.164.174:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -66,9 +66,11 @@ const ProfileData = () => {
     }, []);
 
     return (
-        <div className="profile_container_box">
-            <SideBar />
-            <div style={{ flex: 1 }}>
+        <div className="profile_container_box row no-gutters">
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <SideBar />
+            </div>
+            <div className="col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9">
                 <TopBar />
                 {
                     influencersData.map((data) => {

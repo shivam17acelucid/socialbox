@@ -28,7 +28,7 @@ function MyLists() {
     const navigate = useNavigate();
 
     const handleCreateList = (listName, description, reel, post, story, igtv, swipeup, video) => {
-        const url = `http://localhost:4000/createList/${userId}`
+        const url = `http://52.199.164.174:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeup, video }),
@@ -53,7 +53,7 @@ function MyLists() {
     }
 
     const handleDeleteList = (item) => {
-        const url = `http://localhost:4000/deleteList/${userId}?listName=${item.listName}`;
+        const url = `http://52.199.164.174:4000/deleteList/${userId}?listName=${item.listName}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -67,7 +67,7 @@ function MyLists() {
 
 
     const getListData = () => {
-        const url = `http://localhost:4000/getListData/${userId}`;
+        const url = `http://52.199.164.174:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -87,15 +87,11 @@ function MyLists() {
 
     return (
         <>
-            <div className="headers_title">
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span className="headers">
-                        My Lists
-                    </span>
-                    <span className='add_list_btn' onClick={handleAddPlan}> + Add new</span>
+            <div className="headers_title row">
+                <div className="headers col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
+                    My Lists
                 </div>
-                {/* <div className="add_btn"> */}
-                {/* <div onClick={handleAddPlan} className='addList_btn'> <MdOutlineAddBox />New List</div> */}
+                <div className='add_list_btn col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12' onClick={handleAddPlan}> + Add new</div>
                 {
                     newPlanClicked ?
                         <div className="overlay">
@@ -200,7 +196,6 @@ function MyLists() {
                         </div> :
                         null
                 }
-                {/* </div> */}
             </div>
             <div className="list_content">
                 {
@@ -214,11 +209,11 @@ function MyLists() {
                             <div className='list_desc'>
                                 {item.description}
                             </div>
-                            <div className='list_footer'>
-                                <div className='list_view'>
+                            <div className='list_footer row no-gutters'>
+                                <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                     <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
                                 </div>
-                                <div className='inf_count'>
+                                <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                     {item.influencersData.length} Influencers
                                 </div>
                             </div>

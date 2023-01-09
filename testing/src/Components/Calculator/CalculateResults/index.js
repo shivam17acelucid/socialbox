@@ -34,7 +34,7 @@ function CalculateTotal() {
     const params = useParams();
 
     const handleSubmitQuery = () => {
-        const url = 'http://localhost:4000/submitQuery';
+        const url = 'http://52.199.164.174:4000/submitQuery';
         fetch((url), {
             method: "POST",
             headers: {
@@ -76,7 +76,7 @@ function CalculateTotal() {
     const fetchBasicRates = () => {
         if (params.budget.includes('budget')) {
             let budget = params.budget.substring(params.budget.indexOf('=') + 1)
-            let url = `http://localhost:4000/calculateBudget?followersRange=${followersRange}&budget=${budget}`;
+            let url = `http://52.199.164.174:4000/calculateBudget?followersRange=${followersRange}&budget=${budget}`;
             fetch(url)
                 .then((res) => {
                     res.json()
@@ -88,7 +88,7 @@ function CalculateTotal() {
         }
         else if (params.budget.includes('creators')) {
             let creators = params.budget.substring(params.budget.indexOf('=') + 1);
-            let url = `http://localhost:4000/calculateBudget?followersRange=${followersRange}&creatorsCount=${creators}`;
+            let url = `http://52.199.164.174:4000/calculateBudget?followersRange=${followersRange}&creatorsCount=${creators}`;
             fetch(url)
                 .then((res) => {
                     res.json()
@@ -316,12 +316,14 @@ function CalculateTotal() {
     }, [metricsDeliverable, metricsBudget + metricsDeliverable + metricsDemographyAge + metricsDemographyGender + metricsDemographyCategory])
 
     return (
-        <div className="calculate_4_container">
-            <Navbar />
-            <div className='middle_pane_calculate'>
+        <div className="calculate_4_container row no-gutters">
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
-                <div className='middle_pane_content'>
-                    <div className='steps_pane'>
+                <div className='middle_pane_content row no-gutters'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-0 col-xs-0 col-0'>
                         <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -426,7 +428,7 @@ function CalculateTotal() {
                             </div>
                         </div>
                     </div>
-                    <div className="content_pane">
+                    <div className="content_pane col-lg-6 col-md-9 col-sm-12 col-xs-12 col-12">
                         <div className='step_count'>STEP 4</div>
                         <div className='step_title'>
                             Estimate
@@ -493,11 +495,11 @@ function CalculateTotal() {
                             <Button onClick={handleSubmitQuery}>Submit</Button>
                         </div>
                     </div>
-                    <div className="right_pane">
+                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">
                         <div className="image_1"></div>
                         <div className="image_2"></div>
-                        <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        {/* <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span> */}
                         <div>{metricsTotal}</div>
                     </div>
                 </div>

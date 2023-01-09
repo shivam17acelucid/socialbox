@@ -18,7 +18,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        const url = 'http://localhost:4000/login';
+        const url = 'http://52.199.164.174:4000/login';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email, password }),
@@ -49,9 +49,13 @@ function Login() {
 
 
     return (
-        <div className="login_container">
-            <div className="left_pane">
-                <img src={logo1} className='social_logo' />
+        <div className="login_container row">
+            <div className="left_pane col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+                <div className="row">
+                    <div className="col-lg-3 col-md-5 col-sm-7 col-xs-7 col-7">
+                        <img src={logo1} className='social_logo' />
+                    </div>
+                </div>
                 <div className="welcome_heading">
                     <img src={logo} className='social_logo' />
                 </div>
@@ -83,7 +87,7 @@ function Login() {
                     ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
                 </div>
             </div>
-            <div className="login_right">
+            <div className="login_right col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
                 <div className="right_pane_top">
                     <div className="right_pane_text">
                         <span style={{ display: 'block' }}>Get a brand ambassador</span>

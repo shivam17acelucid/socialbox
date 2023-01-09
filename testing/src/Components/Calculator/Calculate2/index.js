@@ -25,12 +25,14 @@ function CalculateDeliverables() {
     }
 
     return (
-        <div className='calculate_2_container'>
-            <Navbar />
-            <div className='middle_pane_calculate'>
+        <div className='calculate_2_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='middle_pane_calculate col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <Topbar />
-                <div className='middle_pane_content'>
-                    <div className='steps_pane'>
+                <div className='middle_pane_content row no-gutters'>
+                    <div className='steps_pane col-lg-3 col-md-3 col-sm-0 col-xs-0 col-0'>
                         <div className='steps_pane_part_inactive' style={{ borderLeft: 'solid 0.313rem #357AFF' }}>
                             <div className='steps_pane_title'>Step 1</div>
                             <div className='followers_title'>
@@ -98,7 +100,7 @@ function CalculateDeliverables() {
                             <div className='cost_value'> ₹ --</div>
                         </div>
                     </div>
-                    <div className='content_pane'>
+                    <div className='content_pane col-lg-6 col-md-9 col-sm-12 col-xs-12 col-12'>
                         <div className='step_count'>
                             STEP 2
                         </div>
@@ -109,9 +111,9 @@ function CalculateDeliverables() {
                             Set the type and count of deliverables required
                             from each influencer
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Reels</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Reels</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     reels === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -122,9 +124,9 @@ function CalculateDeliverables() {
                                 <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setReels(reels + 1) }}>+</div>
                             </div>
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Static Posts</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Static Posts</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     posts === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -136,9 +138,9 @@ function CalculateDeliverables() {
                                 <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setPosts(posts + 1) }}>+</div>
                             </div>
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Videos</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Videos</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     videos === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -149,9 +151,9 @@ function CalculateDeliverables() {
                                 <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setVideos(videos + 1)}>+</div>
                             </div>
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Stories</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Stories</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     stories === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -162,9 +164,9 @@ function CalculateDeliverables() {
                                 <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => { setStories(stories + 1) }}>+</div>
                             </div>
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Swipeup Stories</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Swipeup Stories</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     swipeupStories === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -176,9 +178,9 @@ function CalculateDeliverables() {
                                 <div style={{ borderLeft: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }} onClick={() => setSwipeupStories(swipeupStories + 1)}>+</div>
                             </div>
                         </div>
-                        <div className='deliverables_box'>
-                            <div>Igtv</div>
-                            <div className='deliverables_value'>
+                        <div className='deliverables_box row no-gutters'>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Igtv</div>
+                            <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     igtv === 0 ?
                                         <div style={{ borderRight: '0.063rem solid RGB(0, 0, 0, 0.5)', width: '2.625rem', textAlign: 'center' }}>-</div>
@@ -193,12 +195,12 @@ function CalculateDeliverables() {
                             <Button onClick={handleNextPage}>Next</Button>
                         </div>
                     </div>
-                    <div className='right_pane'>
+                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0'>
                         <div className='image1'></div>
                         <div className='image2' style={{ opacity: '0.2' }}>
                         </div>
-                        <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span>
+                        {/* <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
+                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span> */}
                     </div>
                 </div>
             </div>

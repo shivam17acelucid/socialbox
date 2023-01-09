@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.scss';
 import TopBar from '../../Common/TopBar/index';
-import SideBar from "../../Common/Sidebar/sidebar";
+import Navbar from "../../Common/Sidebar/sidebar";
 import Profile from '../../Assets/Images/profile.png';
 import { Input } from 'reactstrap';
 import Button from '@mui/material/Button';
@@ -35,7 +35,7 @@ function ProfileSettings() {
     }
 
     const fetchUserDetails = () => {
-        const url = `http://localhost:4000/getUserDetails/${userId}`;
+        const url = `http://52.199.164.174:4000/getUserDetails/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -47,7 +47,7 @@ function ProfileSettings() {
     }
 
     const handleUpdateProfile = () => {
-        const url = `http://localhost:4000/editProfile/${userId}`;
+        const url = `http://52.199.164.174:4000/editProfile/${userId}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -66,9 +66,11 @@ function ProfileSettings() {
 
     if (!isLoading) {
         return (
-            <div className='update_profile_container'>
-                <SideBar />
-                <div className='main_pane'>
+            <div className='update_profile_container row no-gutters'>
+                <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                    <Navbar />
+                </div>
+                <div className='main_pane col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                     <TopBar />
                     <div className='middle_pane'>
                         <div className='pane1_3'>

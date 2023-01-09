@@ -70,7 +70,7 @@ function BasketInfluencers() {
     let autoSuggestedArray = [];
 
     const fetchInfluencers = () => {
-        const url = `http://localhost:4000/showBasketInfluencers?categoryName=${categoryName}`;
+        const url = `http://52.199.164.174:4000/showBasketInfluencers?categoryName=${categoryName}`;
         fetch(url)
             .then((res) => res.json())
             .then((result) => {
@@ -79,7 +79,7 @@ function BasketInfluencers() {
     }
 
     const getListData = () => {
-        const url = `http://localhost:4000/getListData/${userId}`;
+        const url = `http://52.199.164.174:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -108,7 +108,7 @@ function BasketInfluencers() {
     const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://localhost:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
+        const url = `http://52.199.164.174:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -122,7 +122,7 @@ function BasketInfluencers() {
     const filterByFollowersRange = () => {
         setFilterFollowerClicked(true);
         setIsFilterFollowerClicked(false);
-        const url = `http://localhost:4000/followersfilteredBasketData?minFollowers=${minRange}&maxFollowers=${maxRange}&listName=${categoryName}`;
+        const url = `http://52.199.164.174:4000/followersfilteredBasketData?minFollowers=${minRange}&maxFollowers=${maxRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -138,7 +138,7 @@ function BasketInfluencers() {
     const filterCategory = () => {
         setFilterCategoryClicked(true)
         setIsFilterCategoryClicked(false);
-        const url = `http://localhost:4000/filtered_basket_list?listName=${categoryName}&category=${category}`;
+        const url = `http://52.199.164.174:4000/filtered_basket_list?listName=${categoryName}&category=${category}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -154,7 +154,7 @@ function BasketInfluencers() {
     const filterByErRange = () => {
         setFilterErClicked(true);
         setIsFilterErClicked(false);
-        const url = `http://localhost:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
+        const url = `http://52.199.164.174:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -168,7 +168,7 @@ function BasketInfluencers() {
     }
 
     const fetchBasketsName = () => {
-        const url = `http://localhost:4000/showCategorizedBasket`;
+        const url = `http://52.199.164.174:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => res.json())
             .then((response) => {
@@ -252,7 +252,7 @@ function BasketInfluencers() {
     }
 
     const fetchAllData = () => {
-        const url = `http://localhost:4000/getrelatedinfluencers?inputField`;
+        const url = `http://52.199.164.174:4000/getrelatedinfluencers?inputField`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -289,102 +289,20 @@ function BasketInfluencers() {
 
 
     return (
-        <div className='basket_influencers_container'>
-            <Navbar />
-            <div className='basket_influencers_container_content'>
+        <div className='basket_influencers_container row no-gutters'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <Navbar />
+            </div>
+            <div className='basket_influencers_container_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                 <TopBar />
-                <div style={{ display: 'flex' }}>
-                    <div className='middle_pane_lists'>
-                        <div className='list_category_header'>
+                <div className='row no-gutters'>
+                    <div className='middle_pane_lists col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8'>
+                        <div className='list_category_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                             Top {categoryName} Influencers
                         </div>
-                        <div className='list_desc'>
+                        <div className='list_desc col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                             Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit
                         </div>
-                        {/* <div className="filter_bar">
-                            <Button variant="outlined" onClick={handleFollowerFilterClicked}>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                            <Button variant="outlined" onClick={handleCategoryFilterClicked}>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                            <Button variant="outlined" onClick={handleErFilterClicked}>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                            {
-                                isfilterErClicked === true ?
-                                    <section className="modal_section">
-                                        <div className="modal_option">
-                                            <div className='close_btn' onClick={() => setIsFilterErClicked(false)}>X</div>
-                                            <div>Select Engagement Rate Range</div>
-                                            <Input
-                                                placeholder="MinRange"
-                                                className="w-50"
-                                                type="text"
-                                                value={minErRange}
-                                                onChange={(e) => { setMinErrange(e.target.value) }}
-                                            />
-                                            <Input
-                                                placeholder="MaxRange"
-                                                className="w-50"
-                                                type="text"
-                                                value={maxErRange}
-                                                onChange={(e) => { setMaxErRange(e.target.value) }}
-                                            />
-                                            <Button
-                                                color="primary"
-                                                onClick={filterByErRange}
-                                            >
-                                                Filter
-                                            </Button>
-                                        </div>
-                                    </section>
-                                    :
-                                    isfilterCategoryClicked === true ?
-                                        <section className="modal_section">
-                                            <div className="modal_option">
-                                                <div className='close_btn' onClick={() => setIsFilterCategoryClicked(false)}>X</div>
-                                                <div>Add Category</div>
-                                                <Input
-                                                    placeholder="Category"
-                                                    className="w-50"
-                                                    type="text"
-                                                    value={category}
-                                                    onChange={(e) => { setCategory(e.target.value) }}
-                                                />
-                                                <Button
-                                                    color="primary"
-                                                    onClick={filterCategory}
-                                                >
-                                                    Filter
-                                                </Button>
-                                            </div>
-                                        </section>
-                                        :
-                                        isfilterFollowerClicked === true ?
-                                            <section className="modal_section">
-                                                <div className="modal_option">
-                                                    <div className='close_btn' onClick={() => setIsFilterFollowerClicked(false)}>X</div>
-                                                    <div>Select Followers</div>
-                                                    <Input
-                                                        placeholder="MinRange"
-                                                        className="w-50"
-                                                        type="text"
-                                                        value={minRange}
-                                                        onChange={(e) => { setMinrange(e.target.value) }}
-                                                    />
-                                                    <Input
-                                                        placeholder="MaxRange"
-                                                        className="w-50"
-                                                        type="text"
-                                                        value={maxRange}
-                                                        onChange={(e) => { setMaxRange(e.target.value) }}
-                                                    />
-                                                    <Button
-                                                        color="primary"
-                                                        onClick={filterByFollowersRange}
-                                                    >
-                                                        Filter
-                                                    </Button>
-                                                </div>
-                                            </section>
-                                            : null
-                            }
-                        </div> */}
                         <div className='list_category_data'>
                             <TableContainer component={Paper}>
                                 <Table stickyHeader className="table_container" >
@@ -600,7 +518,7 @@ function BasketInfluencers() {
                             </TableContainer>
                         </div>
                     </div>
-                    <div className='side_influencers_bundle'>
+                    <div className='side_influencers_bundle col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
                         <div className='side_list_css'>
                             <div className='select_pane'>
                                 {bundleIconSelected === true ?
@@ -633,11 +551,13 @@ function BasketInfluencers() {
                                             Top Bundles
                                         </div>
                                         {basketData.map((item) =>
-                                            <div className='bundle_box'>
-                                                <img src={`http://localhost:4000/uploads/${item.image}`} className="influencers_image" />
-                                                <div className='bundle_desc'>
-                                                    <div className='bundle_title'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                    <div className='bundle_btn' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                            <div className='bundle_box row no-gutters'>
+                                                <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
+                                                    <img src={`http://52.199.164.174:4000/uploads/${item.image}`} className="influencers_image" />
+                                                </div>
+                                                <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
+                                                    <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                    <div className='bundle_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0' onClick={() => { handleRedirectToBasket(item) }}>View</div>
                                                 </div>
                                             </div>)}
                                     </>

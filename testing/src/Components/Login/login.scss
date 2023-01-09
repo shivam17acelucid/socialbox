@@ -14,15 +14,26 @@ html {
     display: flex;
 
     .left_pane {
-        flex: 1;
+        height: 100vh;
 
         .social_logo {
-            width: 10rem;
             margin-top: 2rem;
             padding-left: 1rem;
         }
 
         .welcome_heading {
+            @media (max-width: 1280px) {
+                padding-top: 1.625rem;
+            }
+
+            @media (max-width: 1000px) {
+                padding-top: 5.625rem;
+            }
+
+            @media (max-width: 460px) {
+                padding-top: 4.625rem;
+            }
+
             display: flex;
             flex-direction: column;
             align-content: center;
@@ -59,6 +70,18 @@ html {
         }
 
         .login_form {
+            @media (max-width: 1280px) {
+                padding-top: 1.625rem;
+            }
+
+            @media (max-width: 1000px) {
+                padding-top: 5.625rem;
+            }
+
+            @media (max-width: 460px) {
+                padding-top: 4.625rem;
+            }
+
             display: flex;
             flex-direction: column;
             align-content: center;
@@ -135,6 +158,10 @@ html {
         }
 
         .signup_footer {
+            @media (max-width: 1280px) {
+                margin-top: 0.8rem;
+            }
+
             margin-top: 1.6rem;
             font-family: 'Inter';
             font-style: normal;
@@ -147,7 +174,6 @@ html {
     }
 
     .login_right {
-        flex: 1;
         height: 100vh;
 
         .right_pane_top {

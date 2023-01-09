@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const User = require('../models/user');
+const User = require('../Models/user');
 const Username = require('../Models/username');
 const ProfileData = require('../Models/profile_data');
 const InfluencersData = require('../Models/influencer_details');

@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const User = require("../models/user");
+const User = require("../Models/user");
 const csv = require("csvtojson");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -649,7 +649,7 @@ function Lists() {
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
                                 <div className='row filterContainer'>
-                                    <Button className='test-bg' onClick={filterByFollowersRange}>Followers count <BsFilterLeft /></Button>
+                                    <Button className='test-bg' onClick={filterByFollowersRange}><span>Followers count </span><BsFilterLeft /></Button>
                                     <Button className='test-bg' onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?

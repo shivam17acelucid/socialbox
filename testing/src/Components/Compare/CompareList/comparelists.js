@@ -47,7 +47,7 @@ function CompareLists() {
 
     const compareList = () => {
         if (JSON.stringify(params) !== '{}') {
-            const url = `http://52.199.164.174:4000/compareUsersLists/${userId}?${params.lists}`;
+            const url = `http://13.234.29.72:4000/compareUsersLists/${userId}?${params.lists}`;
             fetch(url)
                 .then((res) => {
                     res.json()
@@ -77,7 +77,7 @@ function CompareLists() {
     }
 
     const getListData = () => {
-        const url = `http://52.199.164.174:4000/getListData/${userId}`;
+        const url = `http://13.234.29.72:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()

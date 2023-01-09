@@ -16,6 +16,10 @@ app.use(cors())
 app.use("/", Route);
 app.use("/uploads", express.static("./uploads"));
 
+app.get('/', (req, res) => {
+  res.send("Socialbox Backend")
+})
+
 /* mongodb connection */
 mongoose
   .connect(process.env.DATABASE)

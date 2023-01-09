@@ -1,5 +1,5 @@
-const InfluencersData = require('../../models/influencer_details');
-const UserInfo = require('../../models/user_info');
+const InfluencersData = require('../../Models/influencer_details');
+const UserInfo = require('../../Models/user_info');
 
 exports.compareInfluencers = (req, res) => {
     let { influencers } = req.query;

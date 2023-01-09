@@ -1,5 +1,5 @@
-const CategorizedBasket = require('../../models/categorised_basket');
-const UserInfo = require('../../models/user_info');
+const CategorizedBasket = require('../../Models/categorised_basket');
+const UserInfo = require('../../Models/user_info');
 
 exports.compareCategorizedBaskets = (req, res) => {
     let { basket1, basket2, basket3 } = req.query;

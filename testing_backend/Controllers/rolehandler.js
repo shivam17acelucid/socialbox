@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const UserInfo = require("../models/user_info");
+const UserInfo = require("../Models/user_info");
 const { roles } = require("../roles");
 
 exports.grantAccess = function (action, resource) {

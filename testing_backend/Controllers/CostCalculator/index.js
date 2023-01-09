@@ -1,4 +1,4 @@
-const InfluencersData = require('../../models/influencer_details');
+const InfluencersData = require('../../Models/influencer_details');
 
 exports.setCalculateCostForReel = (req, res) => {
     let { minCostPer1kFollowersForReel,

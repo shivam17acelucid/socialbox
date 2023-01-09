@@ -99,7 +99,7 @@ const ProfileData = () => {
                                                     </div> : null
                                             }
                                             <div>
-                                                <Button onClick={handleAddList}><MdAdd />Add To My List</Button>
+                                                <Button onClick={handleAddList} className='add_list_btn'><MdAdd />Add To My List</Button>
                                                 {
                                                     addToListClicked === true ?
                                                         <section className="addList_section" id={data.id}>

@@ -649,7 +649,7 @@ function Lists() {
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>
                                 </div>
                                 <div className='row filterContainer'>
-                                    <Button className='test-bg' onClick={filterByFollowersRange}><span>Followers count </span><BsFilterLeft /></Button>
+                                    <Button className='test-bg' onClick={filterByFollowersRange}>Followers count<BsFilterLeft /></Button>
                                     <Button className='test-bg' onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?
@@ -685,20 +685,14 @@ function Lists() {
                                                         <Button
                                                             color="primary"
                                                             onClick={filterDataByErRange}
+                                                            className='filter_btn'
                                                         >
                                                             Filter
                                                         </Button>
                                                         <Button
                                                             color="primary"
                                                             onClick={handleErFilterClicked}
-                                                            style={{
-                                                                background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
-                                                                fontWeight: 600,
-                                                                fontSize: '0.75rem',
-                                                                lineHeight: '1rem',
-                                                                textAlign: 'center',
-                                                                color: '#595959'
-                                                            }}
+                                                            className='clr_btn'
                                                         >
                                                             Clear
                                                         </Button>
@@ -774,20 +768,14 @@ function Lists() {
                                                             <Button
                                                                 color="primary"
                                                                 onClick={filterDataByFollowersRange}
+                                                                className='filter_btn'
                                                             >
                                                                 Filter
                                                             </Button>
                                                             <Button
                                                                 color="primary"
                                                                 onClick={handleFollowerFilterClicked}
-                                                                style={{
-                                                                    background: '#D7D7D7', borderRadius: '0.188rem', fontFamily: 'Noto Sans', fontStyle: 'normal',
-                                                                    fontWeight: 600,
-                                                                    fontSize: '0.75rem',
-                                                                    lineHeight: '1rem',
-                                                                    textAlign: 'center',
-                                                                    color: '#595959'
-                                                                }}
+                                                                className='clr_btn'
                                                             >
                                                                 Clear
                                                             </Button>
@@ -971,8 +959,8 @@ function Lists() {
                                                         </div>
                                                     </div>
                                                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                                        <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv, swipeUpStory, video) }}>Add</Button>
-                                                        <Button onClick={handleAddPlan}>Cancel</Button>
+                                                        <Button className='add_list_btn' variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv, swipeUpStory, video) }}>Add</Button>
+                                                        <Button className='cancel_btn' onClick={handleAddPlan}>Cancel</Button>
                                                     </div>
                                                 </div>
                                             </div> :
@@ -994,7 +982,7 @@ function Lists() {
                                                 </div>
                                                 <div className='list_footer row no-gutters'>
                                                     <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                                        <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
+                                                        <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
                                                     </div>
                                                     <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                                         {item.influencersData.length} Influencers

@@ -287,7 +287,7 @@ html {
                             margin: 0.75rem;
                         }
 
-                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                        .filter_btn {
                             background: #7662DC;
                             border-radius: 0.188rem;
                             width: 7.75rem;
@@ -299,6 +299,20 @@ html {
                             line-height: 1rem;
                             text-align: center;
                             color: #FFFFFF;
+                            margin-top: 2rem;
+                        }
+
+                        .clr_btn {
+                            background: #D7D7D7;
+                            border-radius: 0.188rem;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 0.75rem;
+                            line-height: 1rem;
+                            text-align: center;
+                            color: #595959;
+                            width: 7.75rem;
                             margin-top: 2rem;
                         }
                     }
@@ -652,7 +666,7 @@ html {
                         }
                     }
 
-                    .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+                    .add_list_btn {
                         margin-top: 1rem;
                         background: #7662DC;
                         border-radius: 0.188rem;
@@ -666,7 +680,7 @@ html {
                         width: 8rem;
                     }
 
-                    .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                    .cancel_btn {
                         margin-top: 1rem;
                         background: #D7D7D7;
                         border-radius: 0.188rem;
@@ -787,7 +801,7 @@ html {
                     align-items: center;
 
                     .list_view {
-                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                        .view_btn {
                             @media (max-width: 1000px) {
                                 font-size: 0.5rem;
                             }

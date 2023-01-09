@@ -61,7 +61,7 @@ function Signup() {
                         <Input className="registeration_fields" placeholder="Company (optional)" value={company} onChange={(e) => { setCompany(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         <Input className="registeration_fields" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
-                        <Button onClick={handleSignup}>Sign up</Button>
+                        <Button onClick={handleSignup} className='signup_btn'>Sign up</Button>
                     </div>
                 </div>
                 <div className="login_link">

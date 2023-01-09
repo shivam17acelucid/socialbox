@@ -82,7 +82,7 @@ function ProfileSettings() {
                                         <div className='avatar_section'>
                                             <div className='avatar_title_modal'>Change Avatar </div>
                                             <div className='btn_pane'>
-                                                <Button style={{ marginLeft: '2.5rem' }}>Select</Button>
+                                                <Button style={{ marginLeft: '2.5rem' }} className='upload_btn'>Select</Button>
                                                 <Button style={{ marginLeft: '2.25rem' }} className="clr_btn " onClick={handleChangeAvatar}>Clear</Button>
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@ function ProfileSettings() {
                                                 />
                                             </div>
                                             <div className='btn_div'>
-                                                <Button onClick={handleUpdateProfile}>Save</Button>
+                                                <Button onClick={handleUpdateProfile} className='save_btn'>Save</Button>
                                                 <Button className='cancel_btn'>Cancel</Button>
                                             </div>
                                         </div>

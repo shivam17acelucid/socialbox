@@ -189,8 +189,8 @@ function MyLists() {
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                    <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }}>Add</Button>
-                                    <Button onClick={handleAddPlan}>Cancel</Button>
+                                    <Button variant="outlined" onClick={() => { handleCreateList(listName, description, reel, post, story, igtv) }} className='add_list_btn'>Add</Button>
+                                    <Button onClick={handleAddPlan} className='cancel_btn'>Cancel</Button>
                                 </div>
                             </div>
                         </div> :
@@ -211,7 +211,7 @@ function MyLists() {
                             </div>
                             <div className='list_footer row no-gutters'>
                                 <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                    <Button onClick={() => { handleRedirectToList(item) }}>View</Button>
+                                    <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
                                 </div>
                                 <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
                                     {item.influencersData.length} Influencers

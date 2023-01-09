@@ -172,7 +172,7 @@ function UserLists() {
                                                 {item.item.listName}
                                             </div>
                                             <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                                <Button onClick={handleEditDeliverables}>Edit</Button>
+                                                <Button onClick={handleEditDeliverables} className='edit_btn'>Edit</Button>
                                             </div>
                                         </div>
                                         <div className='list_desc pl-1 pr-1'>
@@ -288,7 +288,7 @@ function UserLists() {
                                                         </div>
                                                         <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                                             <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, listName, swipeup, video) }} className="update_btn">Update</Button>
-                                                            <Button onClick={handleEditDeliverables}>Cancel</Button>
+                                                            <Button onClick={handleEditDeliverables} className='cancel_btn'>Cancel</Button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -297,44 +297,44 @@ function UserLists() {
                                     </div>
                                 </div>
                                 <div className='table_content'>
-                                    <TableContainer component={Paper}>
+                                    <TableContainer component={Paper} className='table_paper'>
                                         <Table className="table_container" >
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Name</TableCell>
-                                                    <TableCell align="center">Category</TableCell>
-                                                    <TableCell align="center">Followers</TableCell>
-                                                    <TableCell align="center">Engagement</TableCell>
-                                                    <TableCell align="center">Avg Likes</TableCell>
-                                                    <TableCell align="center">Avg Comments</TableCell>
-                                                    <TableCell align="center">Avg Reach</TableCell>
-                                                    <TableCell align="center">Cost</TableCell>
-                                                    <TableCell align="center"></TableCell>
+                                            <TableHead className='table_head'>
+                                                <TableRow className='table_head_row'>
+                                                    <TableCell className='table_head_cell'>Name</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Category</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Followers</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Engagement</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Avg Likes</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Avg Comments</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Avg Reach</TableCell>
+                                                    <TableCell className='table_head_cell' align="center">Cost</TableCell>
+                                                    <TableCell className='table_head_cell' align="center"></TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
                                                 {item.item.influencersData.map((data, index) =>
                                                     < TableRow key={index} >
-                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} >
+                                                        <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_head_value' >
                                                             <div>{data.full_name}</div>
                                                         </TableCell>
-                                                        <TableCell align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {NFormatter(data.edge_followed_by.count)}
                                                         </TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
                                                         </TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
                                                         </TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
                                                         </TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
                                                         </TableCell>
-                                                        <TableCell align="center">
+                                                        <TableCell align="center" className='table_head_value'>
                                                             {
                                                                 NFormatter(
                                                                     (data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
@@ -369,7 +369,7 @@ function UserLists() {
                                                                 )
                                                             }
                                                         </TableCell>
-                                                        <TableCell><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
+                                                        <TableCell className='table_head_value'><MdDelete onClick={() => { handleDeleteList(data) }} /></TableCell>
                                                     </TableRow>
                                                 )}
                                             </TableBody>

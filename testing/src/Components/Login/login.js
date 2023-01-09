@@ -77,7 +77,7 @@ function Login() {
                     />
                     {/* <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} /> */}
                     <span className="form_forgot_text">Forgot Password</span>
-                    <Button onClick={handleLogin}><span className="form_login_btn">Log in</span></Button>
+                    <Button onClick={handleLogin} className='login_btn'>Log in</Button>
                     <div className="social_login_btn">
                         <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                     </div>

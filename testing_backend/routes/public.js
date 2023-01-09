@@ -3,14 +3,14 @@ const router = express.Router();
 const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../Controllers/downloadcsv");
-const { signup, login, logout } = require('../Controllers/authentication/user')
-const { compareInfluencers } = require('../Controllers/comparison/compareinfluencers');
-const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/baskets/index');
-const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/comparison/comparelists')
-const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/costcalculator/index');
+const { signup, login, logout } = require('../Controllers/Authentication/user')
+const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
+const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/Baskets/index');
+const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
+const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/Costcalculator/index');
 const rolehandler = require("../Controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
-const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/calculator/index');
+const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 const { editProfile } = require('../Controllers/updateProfile');
 
 

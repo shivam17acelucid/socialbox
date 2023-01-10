@@ -1,4 +1,4 @@
-const InfluencersData = require('../Models/influencer_details');
+const InfluencersData = require('../../Models/influencer_details');
 
 exports.filterUsers = (req, res) => {
     let { username } = req.body;

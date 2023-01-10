@@ -10,9 +10,6 @@ exports.filterUsers = (req, res) => {
     InfluencersData.find(filter)
         .select({ username: 1, _id: 0 })
         .then((data) => {
-            // data.forEach((item) => {
-            //     usernameArray.push(item.username)
-            // })
             res.json(data)
         })
 }

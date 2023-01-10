@@ -49,9 +49,6 @@ function Lists() {
     const [basketName, setBasketName] = useState([]);
     const [sortingBaskets, setSortingBaskets] = useState(false);
     const [sortedBaskets, setSortedBaskets] = useState([]);
-
-
-    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionIndex, setSuggestionIndex] = useState(0);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
@@ -98,23 +95,6 @@ function Lists() {
         if (!filterErApplied && !filterFollowersApplied) {
             navigate(`/influencerslist/${value}`);
         }
-    }
-
-    const fetchAllData = () => {
-        const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField=`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        res.map((item) => {
-                            autoSuggestedArray.push(item.username)
-                            setAutoSuggestedData(autoSuggestedArray)
-                        })
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
     }
 
     const fetchBasketsName = () => {
@@ -184,7 +164,6 @@ function Lists() {
     useEffect(() => {
         fetchBasketsName();
         getListData();
-        fetchAllData();
     }, []);
 
     useEffect(() => {
@@ -198,12 +177,15 @@ function Lists() {
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        if (query.length > 1) {
-            const filterSuggestions = autoSuggestedData.filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
+        if (query.length > 2) {
+            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions(res)
+                        })
+                })
             setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
@@ -236,7 +218,7 @@ function Lists() {
                                 key={index}
                                 onClick={handleClick}
                             >
-                                {suggestion}
+                                {suggestion.username}
                             </div>
                         );
                     })}

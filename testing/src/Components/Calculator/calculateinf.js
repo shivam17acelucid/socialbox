@@ -404,6 +404,7 @@ function CalculateCost() {
                                                 defaultValue={selectedOption}
                                                 onChange={setSelectedOption}
                                                 options={options}
+                                                className='select_bar'
                                             />
                                         </div>
                                     </div>
@@ -419,6 +420,7 @@ function CalculateCost() {
                                         step={1}
                                         scale={scale1}
                                         valueLabelFormat={numFormatter}
+                                        className='follower_silder'
                                     />
                                     <div style={{ paddingTop: '1.125rem' }}>
                                         <div className="label_slider">Maximum</div>
@@ -445,6 +447,7 @@ function CalculateCost() {
                                         step={1}
                                         scale={scale}
                                         valueLabelFormat={numFormatter}
+                                        className='follower_silder'
                                     />
                                     <div style={{
                                         display: 'flex', justifyContent: 'space-between'

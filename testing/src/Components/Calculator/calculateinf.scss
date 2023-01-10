@@ -12,8 +12,8 @@ html {
 
     .middle_pane_calculate {
         // @media (max-width: 1280px) {
-            overflow-y: scroll;
-            height: 100vh;
+        overflow-y: scroll;
+        height: 100vh;
         // }
 
         background: #F8F8F8;
@@ -357,12 +357,10 @@ html {
                             width: 100%;
                         }
 
-                        .css-b62m3t-container {
+                        .select_bar {
                             @media (max-width: 600px) {
                                 width: 100%;
                             }
-
-                            min-width: 15.313rem;
                         }
 
                         .slider_dropdown {
@@ -392,7 +390,7 @@ html {
                             }
                         }
 
-                        .css-1aznpnh-MuiSlider-root {
+                        .follower_silder {
                             color: #7662DC;
                             border-radius: 0.313rem;
                             margin: 0;

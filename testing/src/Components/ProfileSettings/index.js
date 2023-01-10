@@ -72,9 +72,9 @@ function ProfileSettings() {
                 </div>
                 <div className='main_pane col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
                     <TopBar />
-                    <div className='middle_pane'>
-                        <div className='pane1_3'>
-                            <img src={Profile} />
+                    <div className='middle_pane row no-gutters'>
+                        <div className='pane1_3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3'>
+                            <img src={Profile} style={{ width: '100%' }} />
                             <div className='avatar_title' onClick={handleChangeAvatar}>Change Avatar</div>
                             {
                                 openAvtarModal === true ?
@@ -95,7 +95,7 @@ function ProfileSettings() {
                             userData[0] ?
                                 userData.map((item) =>
                                     <>
-                                        <div className='pane2_3'>
+                                        <div className='pane2_3 col-lg-4 col-md-4 col-sm-9 col-xs-9 col-9'>
                                             <div className='label_1'>Personal Details</div>
                                             <Input
                                                 type='text'
@@ -152,28 +152,32 @@ function ProfileSettings() {
                                                 defaultValue={item.city}
                                                 onChange={(e) => { setCity(e.target.value) }}
                                             />
-                                            <div className='pane2_1'>
-                                                <Input
-                                                    type='text'
-                                                    placeholder='State'
-                                                    className="update_input_fields"
-                                                    defaultValue={item.state}
-                                                    onChange={(e) => { setState(e.target.value) }}
-                                                />
-                                                <Input
-                                                    type='text'
-                                                    placeholder='PIN'
-                                                    className="update_input_fields"
-                                                    defaultValue={item.pin}
-                                                    onChange={(e) => { setPin(e.target.value) }}
-                                                />
+                                            <div className='pane2_1 row no-gutters'>
+                                                <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                                    <Input
+                                                        type='text'
+                                                        placeholder='State'
+                                                        className="update_input_fields"
+                                                        defaultValue={item.state}
+                                                        onChange={(e) => { setState(e.target.value) }}
+                                                    />
+                                                </div>
+                                                <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                                    <Input
+                                                        type='text'
+                                                        placeholder='PIN'
+                                                        className="update_input_fields"
+                                                        defaultValue={item.pin}
+                                                        onChange={(e) => { setPin(e.target.value) }}
+                                                    />
+                                                </div>
                                             </div>
                                             <div className='btn_div'>
                                                 <Button onClick={handleUpdateProfile} className='save_btn'>Save</Button>
                                                 <Button className='cancel_btn'>Cancel</Button>
                                             </div>
                                         </div>
-                                        <div className='pane3_3'>
+                                        <div className='pane3_3 col-lg-4 col-md-4 col-sm-9 col-xs-9 col-9'>
                                             <div className='label_1'>Company</div>
                                             <Input
                                                 type='text'
@@ -219,6 +223,10 @@ function ProfileSettings() {
                                                 defaultValue={item.facebookProfile}
                                                 onChange={(e) => { setFacebookProfile(e.target.value) }}
                                             />
+                                            <div className='btn_div'>
+                                                <Button onClick={handleUpdateProfile} className='save_btn'>Save</Button>
+                                                <Button className='cancel_btn'>Cancel</Button>
+                                            </div>
                                         </div>
                                     </>
                                 )

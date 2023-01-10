@@ -11,10 +11,10 @@ html {
     display: flex;
 
     .middle_pane_calculate {
-        @media (max-width: 1280px) {
+        // @media (max-width: 1280px) {
             overflow-y: scroll;
             height: 100vh;
-        }
+        // }
 
         background: #F8F8F8;
 

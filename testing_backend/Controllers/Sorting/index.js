@@ -8,6 +8,6 @@ exports.filterUsers = (req, res) => {
     }
     InfluencersData.find(filter)
         .then((data) => {
-            res.json(data.username)
+            res.json(data)
         })
 }

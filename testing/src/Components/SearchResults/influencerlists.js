@@ -988,8 +988,8 @@ const InfluencersList = () => {
             </div>
             <div className="search_content_list_panel col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9">
                 <TopBar />
-                <div className="middle_pane">
-                    <div className="input_box_influencer">
+                <div className="middle_pane row no-gutters">
+                    <div className="input_box_influencer col-lg-10 col-md-10 col-sm-10 col-xs-10 col-10">
                         <Input
                             type="text"
                             placeholder='Search for influencers, categories...'
@@ -999,12 +999,22 @@ const InfluencersList = () => {
                         {suggestionsForInputActive && <SuggestionsInfluencer />}
                         <AiOutlineSearch onClick={handleRedirectToResults} />
                     </div>
-                    <div className="filter_bar">
-                        <Button variant="outlined" onClick={handleFollowerFilterClicked} className='filter_btn'>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleCategoryFilterClicked} className='filter_btn'>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={handleErFilterClicked} className='filter_btn'>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
-                        <Button variant="outlined" onClick={showVerified} className='filter_btn'>{showVerifiedInfluencers === true ? 'Back' : 'Registered influencers'}</Button>
-                        <Button variant="outlined" onClick={handleClearAllFilters} className='filter_btn'><AiOutlineClose /><span>Clear all filters</span></Button>
+                    <div className="filter_bar row no-gutters">
+                        <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-4 button_filter">
+                            <Button variant="outlined" onClick={handleFollowerFilterClicked} className='filter_btn'>Followers {isfilterFollowerClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        </div>
+                        <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 col-4 button_filter">
+                            <Button variant="outlined" onClick={handleCategoryFilterClicked} className='filter_btn'>Category {isfilterCategoryClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        </div>
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
+                            <Button variant="outlined" onClick={handleErFilterClicked} className='filter_btn'>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
+                        </div>
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
+                            <Button variant="outlined" onClick={showVerified} className='filter_btn'>{showVerifiedInfluencers === true ? 'Back' : 'Registered influencers'}</Button>
+                        </div>
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
+                            <Button variant="outlined" onClick={handleClearAllFilters} className='filter_btn'><AiOutlineClose /><span>Clear all filters</span></Button>
+                        </div>
                         {
                             isfilterErClicked === true ?
                                 <section className="modal_section">
@@ -1188,7 +1198,7 @@ const InfluencersList = () => {
                                         </section>
                                         : null
                         }
-                        <div className="download_icon">
+                        <div className="download_icon col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4">
                             <a
                                 href={`data:text/csv;charset=utf-8,${(csvData)}`}
                                 download="filename.csv"

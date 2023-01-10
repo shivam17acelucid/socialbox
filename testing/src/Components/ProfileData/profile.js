@@ -75,14 +75,14 @@ const ProfileData = () => {
                 {
                     influencersData.map((data) => {
                         return (
-                            <div className="profile_container">
-                                <div className="profile_header">
-                                    <div style={{ display: 'flex' }}>
-                                        <div className="profile_pic">
+                            <div className="profile_container row no-gutters">
+                                <div className="profile_header col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
+                                    <div className="row no-gutters">
+                                        <div className="profile_pic col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
                                             {/* <img src={data.profile_pic_url_hd} />  */}
-                                            <img src={Testing} />
+                                            <img src={Testing} className='profile_image' />
                                         </div>
-                                        <div className="profile_basic_info">
+                                        <div className="profile_basic_info col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
                                             <div className="profile_name">
                                                 {data.full_name}
                                             </div>
@@ -124,41 +124,41 @@ const ProfileData = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="profile_info_bar">
-                                        <div className="profile_info_bar_collection">
-                                            <div className="detail_box">
+                                    <div className="profile_info_bar row no-gutters">
+                                        <div className="profile_info_bar_collection row no-gutters">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{NFormatter(data.edge_followed_by.count)}</div>
                                                 <span className="labels">Followers</span>
                                             </div>
-                                            <div className="detail_box">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{NFormatter(data.edge_felix_video_timeline.count + data.edge_owner_to_timeline_media.count)}</div>
                                                 <span className="labels">Posts</span>
                                             </div>
-                                            <div className="detail_box">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{data.edge_owner_to_timeline_media['edges'][0].er} %</div>
                                                 <span className="labels">Engagement Rate</span>
                                             </div>
-                                            <div className="detail_box">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}</div>
                                                 <span className="labels">Average Likes</span>
                                             </div>
-                                            <div className="detail_box">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}</div>
                                                 <span className="labels">Average Comment</span>
                                             </div>
-                                            <div className="detail_box">
+                                            <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
                                                 <div className="profile_result_value">{NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}</div>
                                                 <span className="labels">Average Views</span>
                                             </div>
                                         </div>
-                                        <div className="profile_demography">
+                                        <div className="profile_demography row no-gutters">
                                             <div className="demography_title">
                                                 Followers Stats
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="profile_posts">
+                                <div className="profile_posts col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12">
                                     <div className="recent_posts_title">Recent Posts</div>
                                     <div className="image1">
                                         <img src={Testing} className="recent_post_preview" />

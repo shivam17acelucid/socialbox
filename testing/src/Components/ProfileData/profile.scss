@@ -10,6 +10,7 @@ html {
 
     .profile_container {
         display: flex;
+        overflow-y: scroll;
         height: 100vh;
         margin: 0;
         background-color: #FFF;
@@ -20,14 +21,29 @@ html {
             flex-direction: column;
 
             .profile_pic {
-                height: 5rem;
-                width: 5rem;
+                .profile_image {
+                    width: 100%;
+                }
+
+                // width: 5rem;
             }
 
             .profile_basic_info {
-                margin-left: 15rem;
+                @media (max-width: 500px) {
+                    padding-top: 1rem;
+                }
+                // margin-left: 15rem;
+                padding-left: 1rem;
 
                 .profile_username {
+                    @media (max-width: 768px) {
+                        font-size: 0.8rem;
+                    }
+
+                    @media (max-width: 400px) {
+                        font-size: 0.6rem;
+                    }
+
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 500;
@@ -37,6 +53,14 @@ html {
                 }
 
                 .profile_name {
+                    @media (max-width: 768px) {
+                        font-size: 1rem;
+                    }
+
+                    @media (max-width: 400px) {
+                        font-size: 0.8rem;
+                    }
+
                     padding-bottom: 1rem;
                     font-family: 'Noto Sans';
                     font-style: normal;
@@ -47,6 +71,14 @@ html {
                 }
 
                 .profile_user_location {
+                    @media (max-width: 768px) {
+                        font-size: 0.8rem;
+                    }
+
+                    @media (max-width: 400px) {
+                        font-size: 0.6rem;
+                    }
+
                     font-family: 'Noto Sans';
                     font-style: normal;
                     font-weight: 500;
@@ -194,6 +226,10 @@ html {
         }
 
         .profile_posts {
+            @media (max-width: 500px) {
+                padding: 0.1rem;
+            }
+
             padding: 2rem;
             text-align: center;
 

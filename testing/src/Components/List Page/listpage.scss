@@ -438,6 +438,10 @@ html {
                         position: relative;
 
                         .influencers_image {
+                            @media (min-width: 900px) and (max-width: 1500px) {
+                                height: 9.375rem;
+                            }
+
                             text-align: center;
                             position: relative;
                             height: 100%;

@@ -8,7 +8,7 @@ exports.filterUsers = (req, res) => {
         filter = { $or: [{ full_name: { $regex: username, $options: 'i' } }, { username: { $regex: username, $options: 'i' } }, { category_enum: { $regex: username, $options: 'i' } }] }
     }
     InfluencersData.find(filter)
-        .select({ username: 1 })
+        .select({ username: 1, _id: 0 })
         .then((data) => {
             // data.forEach((item) => {
             //     usernameArray.push(item.username)

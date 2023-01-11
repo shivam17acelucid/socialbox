@@ -10,7 +10,6 @@ html {
 .search_container {
     height: 100%;
     margin: 0;
-    background-color: #FFF;
 
     .sidebar {
         height: 100%;
@@ -26,6 +25,7 @@ html {
 
         .middle_pane {
             overflow-y: scroll;
+            overflow-x: hidden;
             height: 100vh;
 
             .input_box_influencer {
@@ -50,8 +50,8 @@ html {
 
                 svg {
                     position: absolute;
-                    // top: 12.5%;
-                    // left: 62%;
+                    right: 2rem;
+                    top: 1.5rem;
                     cursor: pointer;
                 }
             }
@@ -86,9 +86,9 @@ html {
                 .modal_section {
                     position: absolute;
                     z-index: 4;
-                    top: 60%;
-                    left: 27%;
-                    transform: translate(-50%, -50%);
+                    // top: 60%;
+                    // left: 27%;
+                    // transform: translate(-50%, -50%);
                     width: 24rem;
                     border-radius: 0.5rem;
                     background: #FFFFFF;
@@ -128,7 +128,7 @@ html {
                             padding-top: 1rem;
                         }
 
-                        .css-b62m3t-container {
+                        .select_option {
                             min-width: 15.313rem;
                         }
 
@@ -158,30 +158,30 @@ html {
                             }
                         }
 
-                        .css-1aznpnh-MuiSlider-root {
+                        .slider {
                             color: #7662DC;
                             border-radius: 0.313rem;
                             margin: 0;
                             margin-top: 1rem;
-                        }
 
-                        .css-yafthl-MuiSlider-markLabel {
-                            font-size: 0.625rem;
-                        }
+                            .span {
+                                font-size: 0.625rem;
+                            }
 
-                        .css-1eoe787-MuiSlider-markLabel {
-                            font-size: 0.625rem;
-                        }
+                            .MuiSlider-thumb {
+                                background: #FFFFFF;
+                                border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                                box-shadow: 0 0.063rem 0.125rem RGB(0 0 0 / 25%);
+                            }
 
-                        .css-14pt78w-MuiSlider-rail {
-                            background: #D9D9D9;
-                            border-radius: 0.313rem;
-                        }
+                            .MuiSlider-markLabel {
+                                font-size: 0.625rem;
+                            }
 
-                        .css-eg0mwd-MuiSlider-thumb {
-                            background: #FFFFFF;
-                            border: 0.063rem solid RGB(0, 0, 0, 0.2);
-                            box-shadow: 0 0.063rem 0.125rem RGB(0 0 0 / 25%);
+                            .MuiSlider-rail {
+                                background: #D9D9D9;
+                                border-radius: 0.313rem;
+                            }
                         }
 
                         .followers_count {
@@ -208,7 +208,7 @@ html {
                             margin: 0.75rem;
                         }
 
-                        .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+                        .filter_button {
                             background: #7662DC;
                             border-radius: 0.188rem;
                             width: 7.75rem;
@@ -244,7 +244,7 @@ html {
 
             .table_content {
                 padding-left: 0.5rem;
-                padding-right: 0.5rem;
+                width: 100%;
 
                 .table_container {
                     background-color: #FFF;
@@ -302,9 +302,10 @@ html {
                         border-radius: 0.313rem;
                         width: 22.813rem;
                         height: 22.938rem;
-                        top: 40%;
-                        left: 68%;
+                        bottom: 0;
+                        right: 0;
                         padding-bottom: 1rem;
+                        z-index: 4;
 
                         .modal_title {
                             font-family: 'Noto Sans';
@@ -373,8 +374,8 @@ html {
                         border: 0.063rem solid RGB(0, 0, 0, 0.2);
                         box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
                         border-radius: 0.313rem;
-                        top: 50%;
-                        left: 70%;
+                        right: 0;
+                        bottom: 0;
 
                         .addList_option {
                             max-height: 21.375rem;
@@ -420,7 +421,6 @@ html {
                     .compare_section {
                         position: absolute;
                         z-index: 4;
-                        transform: translate(-50%, -50%);
                         background-color: white;
                         padding: 1rem 1.5rem;
                         background: #FFFFFF;
@@ -430,8 +430,8 @@ html {
                         box-sizing: border-box;
                         width: 25rem;
                         min-height: 22.688rem;
-                        top: 72%;
-                        left: 85%;
+                        bottom: 0;
+                        right: 0;
 
                         .close_btn {
                             display: flex;
@@ -574,12 +574,11 @@ html {
     border: 0.063rem solid RGB(0, 0, 0, 0.2);
     box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
     border-radius: 0.313rem;
-    width: 50.5rem;
+    width: 100%;
+    // width: 50.5rem;
     max-height: 15rem;
     position: absolute;
     z-index: 9999;
-    top: 17%;
-    left: 12.2%;
 
     overflow-y: scroll;
 

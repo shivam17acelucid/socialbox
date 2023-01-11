@@ -962,26 +962,28 @@ const InfluencersList = () => {
     const SuggestionsInfluencer = () => {
         return (
             <>
-                <div className="suggestions_influencer">
-                    <div style={{
-                        margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: '1.125rem',
-                        lineHeight: '1rem',
-                        color: 'rgba(0, 0, 0, 0.7)'
-                    }}>Influencers</div>
-                    {suggestions1.map((suggestion, index) => {
-                        return (
-                            <div
-                                className={index === setSuggestionsForInputActive ? "active_influencer" : ""}
-                                key={index}
-                                onClick={handleInfluencerClick}
-                            >
-                                {suggestion.username}
-                            </div>
-                        );
-                    })}
+                <div className="suggestions_influencer row no-gutters">
+                    <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-10">
+                        <div style={{
+                            margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '1.125rem',
+                            lineHeight: '1rem',
+                            color: 'rgba(0, 0, 0, 0.7)'
+                        }}>Influencers</div>
+                        {suggestions1.map((suggestion, index) => {
+                            return (
+                                <div
+                                    className={index === setSuggestionsForInputActive ? "active_influencer" : ""}
+                                    key={index}
+                                    onClick={handleInfluencerClick}
+                                >
+                                    {suggestion.username}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </>
         );
@@ -1036,6 +1038,7 @@ const InfluencersList = () => {
                                             min={0}
                                             max={20}
                                             step={1}
+                                            className='slider'
                                         />
                                         {
                                             silderErRolled === true ?
@@ -1055,6 +1058,7 @@ const InfluencersList = () => {
                                             <Button
                                                 color="primary"
                                                 onClick={filterByErRange}
+                                                className='filter_button'
                                             >
                                                 Filter
                                             </Button>
@@ -1067,7 +1071,10 @@ const InfluencersList = () => {
                                                     fontSize: '0.75rem',
                                                     lineHeight: '1rem',
                                                     textAlign: 'center',
-                                                    color: '#595959'
+                                                    color: '#595959',
+                                                    width: '7.75rem',
+                                                    height: '2.25rem',
+                                                    marginTop: '2rem'
                                                 }}
                                             >
                                                 Clear
@@ -1093,6 +1100,7 @@ const InfluencersList = () => {
                                                 <Button
                                                     color="primary"
                                                     onClick={filterCategory}
+                                                    className='filter_button'
                                                 >
                                                     Filter
                                                 </Button>
@@ -1105,7 +1113,10 @@ const InfluencersList = () => {
                                                         fontSize: '0.75rem',
                                                         lineHeight: '1rem',
                                                         textAlign: 'center',
-                                                        color: '#595959'
+                                                        color: '#595959',
+                                                        width: '7.75rem',
+                                                        height: '2.25rem',
+                                                        marginTop: '2rem'
                                                     }}
                                                 >
                                                     Clear
@@ -1125,6 +1136,7 @@ const InfluencersList = () => {
                                                             defaultValue={selectedOption}
                                                             onChange={setSelectedOption}
                                                             options={options}
+                                                            className='select_option'
                                                         />
                                                     </div>
                                                 </div>
@@ -1140,6 +1152,7 @@ const InfluencersList = () => {
                                                     step={1}
                                                     scale={scale1}
                                                     valueLabelFormat={numFormatter}
+                                                    className='slider'
                                                 />
                                                 <div style={{ paddingTop: '2.25rem' }}>
                                                     <div className="label_slider">Maximum</div>
@@ -1148,6 +1161,7 @@ const InfluencersList = () => {
                                                             defaultValue={selectedOption1}
                                                             onChange={setSelectedOption1}
                                                             options={options1}
+                                                            className='select_option'
                                                         />
                                                     </div>
                                                 </div>
@@ -1163,6 +1177,7 @@ const InfluencersList = () => {
                                                     step={1}
                                                     scale={scale}
                                                     valueLabelFormat={numFormatter}
+                                                    className='slider'
                                                 />
                                                 {
                                                     silderRolled === true ?
@@ -1182,6 +1197,7 @@ const InfluencersList = () => {
                                                     <Button
                                                         color="primary"
                                                         onClick={filterByFollowersRange}
+                                                        className='filter_button'
                                                     >
                                                         Filter
                                                     </Button>
@@ -1194,7 +1210,10 @@ const InfluencersList = () => {
                                                             fontSize: '0.75rem',
                                                             lineHeight: '1rem',
                                                             textAlign: 'center',
-                                                            color: '#595959'
+                                                            color: '#595959',
+                                                            width: '7.75rem',
+                                                            height: '2.25rem',
+                                                            marginTop: '2rem'
                                                         }}
                                                     >
                                                         Clear

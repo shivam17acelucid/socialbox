@@ -25,24 +25,12 @@ function CompareInfluencers() {
     const [suggestionIndex, setSuggestionIndex] = useState(0);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState('');
-    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
-    const [influencer, setInfluencer] = useState([]);
     const [addToCompareClicked, setAddToCompareClicked] = useState(false);
     const [addToCompareData, setAddToCompareData] = useState([]);
     const params = useParams();
     const navigate = useNavigate();
     const userId = localStorage.getItem('id');
     let autoSuggestedArray = [];
-
-    // const handleCompareInfluencers = (influencer1Name, influencer2Name, influencer3Name) => {
-    //     setComparedInfluencersData([]);
-    //     const url = `http://13.234.29.72:4000/compareInfluencers?influencer1name=${influencer1Name}&influencer2name=${influencer2Name}&influencer3name=${influencer3Name}`;
-    //     fetch(url)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setComparedInfluencersData(data);
-    //         })
-    // }
 
 
     const handleAddToListTable = (e) => {
@@ -78,32 +66,18 @@ function CompareInfluencers() {
         navigate(`/profile/${item.username}`)
     }
 
-    const fetchAllData = () => {
-        const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        res.map((item) => {
-                            autoSuggestedArray.push(item.username)
-                            setAutoSuggestedData(autoSuggestedArray)
-                        })
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        if (query.length > 1) {
-            const filterSuggestions = autoSuggestedData.filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
+        if (query.length > 2) {
+            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions(res)
+                        })
+                })
             setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
@@ -111,7 +85,6 @@ function CompareInfluencers() {
     };
 
     const handleClick = (e) => {
-        setInfluencer(e.target.innerText)
         setSuggestions([]);
         setValue('');
         setSuggestionsActive(false);
@@ -121,7 +94,6 @@ function CompareInfluencers() {
                 setAddToCompareData([...addToCompareData, { username: e.target.innerText }])
             }
         }
-        console.log(addToCompareData)
     };
 
     const Suggestions = () => {
@@ -134,7 +106,7 @@ function CompareInfluencers() {
                             key={index}
                             onClick={handleClick}
                         >
-                            {suggestion}
+                            {suggestion.username}
                         </div>
                     );
                 })}
@@ -206,7 +178,6 @@ function CompareInfluencers() {
     useEffect(() => {
         handleCompareInfluencersByParams();
         getListData();
-        fetchAllData();
     }, [params])
 
     return (

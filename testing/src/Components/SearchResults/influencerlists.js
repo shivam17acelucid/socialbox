@@ -809,11 +809,14 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            const filterSuggestions = autoSuggestedData.filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
+            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions(res)
+                        })
+                })
             setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
@@ -844,7 +847,7 @@ const InfluencersList = () => {
                             key={index}
                             onClick={handleClick}
                         >
-                            {suggestion}
+                            {suggestion.username}
                         </div>
                     );
                 })}
@@ -926,11 +929,14 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setInputValue(query);
         if (query.length > 1) {
-            const filterSuggestions = autoSuggestedData.filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions1(filterSuggestions);
+            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions1(res)
+                        })
+                })
             setSuggestionsForInputActive(true);
         } else {
             setSuggestionsForInputActive(false);
@@ -972,7 +978,7 @@ const InfluencersList = () => {
                                 key={index}
                                 onClick={handleInfluencerClick}
                             >
-                                {suggestion}
+                                {suggestion.username}
                             </div>
                         );
                     })}

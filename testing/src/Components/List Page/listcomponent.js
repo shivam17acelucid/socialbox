@@ -202,26 +202,28 @@ function Lists() {
     const Suggestions = () => {
         return (
             <>
-                <div className="suggestions">
-                    <div style={{
-                        margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
-                        fontStyle: 'normal',
-                        fontWeight: 700,
-                        fontSize: '1.125rem',
-                        lineHeight: '1rem',
-                        color: 'rgba(0, 0, 0, 0.7)'
-                    }}>Influencers</div>
-                    {suggestions.map((suggestion, index) => {
-                        return (
-                            <div
-                                className={index === suggestionIndex ? "active" : ""}
-                                key={index}
-                                onClick={handleClick}
-                            >
-                                {suggestion.username}
-                            </div>
-                        );
-                    })}
+                <div className="suggestions row no-gutters">
+                    <div className='col-lg-10 col-md-8 col-sm-6 col-xs-6 col-6'>
+                        <div style={{
+                            margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '1.125rem',
+                            lineHeight: '1rem',
+                            color: 'rgba(0, 0, 0, 0.7)'
+                        }}>Influencers</div>
+                        {suggestions.map((suggestion, index) => {
+                            return (
+                                <div
+                                    className={index === suggestionIndex ? "active" : ""}
+                                    key={index}
+                                    onClick={handleClick}
+                                >
+                                    {suggestion.username}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </>
         );
@@ -635,7 +637,7 @@ function Lists() {
                                     <Button className='test-bg' onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?
-                                            <section className="modal_section">
+                                            <div className="modal_section">
                                                 <div className="modal_option">
                                                     <div>Engagement %</div>
                                                     <Slider
@@ -648,6 +650,7 @@ function Lists() {
                                                         min={0}
                                                         max={20}
                                                         step={1}
+                                                        className='slider'
                                                     />
                                                     {
                                                         silderErRolled === true ?
@@ -680,11 +683,11 @@ function Lists() {
                                                         </Button>
                                                     </div>
                                                 </div>
-                                            </section>
+                                            </div>
                                             :
                                             isfilterFollowerClicked === true ?
-                                                <section className="modal_section">
-                                                    <div className="modal_option">
+                                                <div className="modal_section">
+                                                    <div className="modal_option  row no-gutters">
                                                         <div className="modal_title">Followers Count</div>
                                                         <div>
                                                             <div className="label_slider">Minimum</div>
@@ -693,6 +696,7 @@ function Lists() {
                                                                     defaultValue={selectedOption}
                                                                     onChange={setSelectedOption}
                                                                     options={options}
+                                                                    className='select_option'
                                                                 />
                                                             </div>
                                                         </div>
@@ -708,6 +712,7 @@ function Lists() {
                                                             step={1}
                                                             scale={scale1}
                                                             valueLabelFormat={numFormatter}
+                                                            className='slider'
                                                         />
                                                         <div style={{ paddingTop: '2.25rem' }}>
                                                             <div className="label_slider">Maximum</div>
@@ -731,6 +736,7 @@ function Lists() {
                                                             step={1}
                                                             scale={scale}
                                                             valueLabelFormat={numFormatter}
+                                                            className='slider'
                                                         />
                                                         {
                                                             silderRolled === true ?
@@ -763,7 +769,7 @@ function Lists() {
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                </section>
+                                                </div>
                                                 : null
                                     }
                                     <Button className='test-bg' onClick={handleClearFilters}><AiOutlineClose /><span>Clear all filters</span></Button>

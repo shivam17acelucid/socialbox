@@ -65,8 +65,8 @@
             background-color: #f6f6f6;
             box-shadow: var(--box-shadow-primary);
             cursor: pointer;
-            width: 25%;
-            width: 36.25rem;
+            // width: 25%;
+            // width: 36.25rem;
 
             Label {
                 font-family: 'Noto Sans';
@@ -78,6 +78,10 @@
             }
 
             .input_listname {
+                @media (max-width: 560px) {
+                    width: auto;
+                }
+
                 background: #FFFFFF;
                 border: 0.063rem solid rgba(0, 0, 0, 0.5);
                 border-radius: 0.313rem;
@@ -93,6 +97,10 @@
             }
 
             .input_description {
+                @media (max-width: 560px) {
+                    width: auto;
+                }
+
                 width: 27.313rem;
                 height: 4.688rem;
                 background: #FFFFFF;
@@ -108,6 +116,10 @@
             }
 
             .deliverables_pane_align {
+                @media (max-width: 560px) {
+                    display: block;
+                }
+
                 display: flex;
                 justify-content: flex-start;
 
@@ -116,7 +128,7 @@
                     justify-content: space-between;
                     align-items: center;
                     margin-top: 0.5rem;
-                    margin-left: 1.5rem;
+                    margin-left: 1rem;
 
                     .deliverables_value {
                         display: flex;
@@ -133,6 +145,10 @@
             }
 
             .add_list_btn {
+                @media (max-width: 560px) {
+                    width: auto;
+                }
+
                 margin-top: 1rem;
                 background: #7662DC;
                 border-radius: 0.188rem;
@@ -147,6 +163,10 @@
             }
 
             .cancel_btn {
+                @media (max-width: 560px) {
+                    width: auto;
+                }
+
                 margin-top: 1rem;
                 background: #D7D7D7;
                 border-radius: 0.188rem;
@@ -256,10 +276,12 @@
                 .view_btn {
                     @media (max-width: 1000px) {
                         font-size: 0.5rem;
+                        min-width: 12px;
                     }
 
                     @media (max-width: 460px) {
                         font-size: 0.5rem;
+                        min-width: 12px;
                     }
 
                     background: #7662DC;

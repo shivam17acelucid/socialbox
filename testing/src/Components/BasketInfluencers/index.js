@@ -359,67 +359,69 @@ function BasketInfluencers() {
                                                                     {
                                                                         costModalOpened === true ?
                                                                             costUser === data.username ?
-                                                                                <div className='cost_modal'>
-                                                                                    <div className='modal_title'>Check Cost </div>
-                                                                                    <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Reel</div>
-                                                                                        {
-                                                                                            data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.minTotalCost)} - Rs{NFormatter(data.costFactorReel.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorReel.influencerExactmaxTotalCost)}</div>
-                                                                                        }
+                                                                                <div className='overlay'>
+                                                                                    <div className='cost_modal'>
+                                                                                        <div className='modal_title'>Check Cost </div>
+                                                                                        <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Reel</div>
+                                                                                            {
+                                                                                                data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.minTotalCost)} - Rs{NFormatter(data.costFactorReel.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorReel.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorReel.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Post</div>
+                                                                                            {
+                                                                                                data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.minTotalCost)} - Rs{NFormatter(data.costFactorPosts.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorPosts.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Story</div>
+                                                                                            {
+                                                                                                data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.minTotalCost)} - Rs{NFormatter(data.costFactorStories.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorStories.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Igtv</div>
+                                                                                            {
+                                                                                                data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.minTotalCost)} - Rs{NFormatter(data.costFactorIgtv.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorIgtv.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Swipeup Stories</div>
+                                                                                            {
+                                                                                                data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
+                                                                                                    <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorSwipeUp.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='cost_box'>
+                                                                                            <div>Videos</div>
+                                                                                            {
+                                                                                                data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.minTotalCost)} - Rs{NFormatter(data.costFactorVideo.maxTotalCost)}</div>
+                                                                                                    :
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorVideo.influencerExactmaxTotalCost)}</div>
+                                                                                            }
+                                                                                        </div>
+                                                                                        <div className='modal_footer'>
+                                                                                            To check a more accurate estimate, please contact +91 98765 43210
+                                                                                        </div>
+                                                                                        <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
                                                                                     </div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Post</div>
-                                                                                        {
-                                                                                            data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.minTotalCost)} - Rs{NFormatter(data.costFactorPosts.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorPosts.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorPosts.influencerExactmaxTotalCost)}</div>
-                                                                                        }
-                                                                                    </div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Story</div>
-                                                                                        {
-                                                                                            data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.minTotalCost)} - Rs{NFormatter(data.costFactorStories.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorStories.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorStories.influencerExactmaxTotalCost)}</div>
-                                                                                        }
-                                                                                    </div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Igtv</div>
-                                                                                        {
-                                                                                            data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.minTotalCost)} - Rs{NFormatter(data.costFactorIgtv.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorIgtv.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorIgtv.influencerExactmaxTotalCost)}</div>
-                                                                                        }
-                                                                                    </div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Swipeup Stories</div>
-                                                                                        {
-                                                                                            data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
-                                                                                                <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data.costFactorSwipeUp.minTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorSwipeUp.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorSwipeUp.influencerExactmaxTotalCost)}</div>
-                                                                                        }
-                                                                                    </div>
-                                                                                    <div className='cost_box'>
-                                                                                        <div>Videos</div>
-                                                                                        {
-                                                                                            data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.minTotalCost)} - Rs{NFormatter(data.costFactorVideo.maxTotalCost)}</div>
-                                                                                                :
-                                                                                                <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorVideo.influencerExactmaxTotalCost)}</div>
-                                                                                        }
-                                                                                    </div>
-                                                                                    <div className='modal_footer'>
-                                                                                        To check a more accurate estimate, please contact +91 98765 43210
-                                                                                    </div>
-                                                                                    <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
                                                                                 </div>
                                                                                 : null
                                                                             :
@@ -429,23 +431,25 @@ function BasketInfluencers() {
                                                                     {addToListTableClicked === true ?
                                                                         [data].map((item) =>
                                                                             item.username == rowClickedData ?
-                                                                                <section className="addList_section" id={data.id}>
-                                                                                    <div className="addList_option">
-                                                                                        <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
-                                                                                        <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
-                                                                                        <div className="section_list_title">
-                                                                                            Select the list to which you want to add the
-                                                                                            influencer.
+                                                                                <div className='overlay'>
+                                                                                    <section className="addList_section" id={data.id}>
+                                                                                        <div className="addList_option">
+                                                                                            <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
+                                                                                            <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
+                                                                                            <div className="section_list_title">
+                                                                                                Select the list to which you want to add the
+                                                                                                influencer.
+                                                                                            </div>
+                                                                                            <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
+                                                                                                {listData.map((item) =>
+                                                                                                    <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                        {item.listName}
+                                                                                                    </div>
+                                                                                                )}
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
-                                                                                            {listData.map((item) =>
-                                                                                                <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                                    {item.listName}
-                                                                                                </div>
-                                                                                            )}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </section>
+                                                                                    </section>
+                                                                                </div>
                                                                                 : null
                                                                         )
 

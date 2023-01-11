@@ -116,125 +116,151 @@ html {
                     }
                 }
 
-                .cost_modal {
-                    position: absolute;
-                    background: #FFFFFF;
-                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
-                    box-shadow: 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-                    border-radius: 0.313rem;
-                    width: 22.813rem;
-                    height: 26rem;
-                    top: 40%;
-                    left: 55%;
-                    padding-bottom: 1rem;
+                .overlay {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    z-index: 1;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    cursor: pointer;
 
-                    .modal_title {
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 1rem;
-                        line-height: 1.375rem;
-                        padding: 1rem 1.5rem;
-                        color: #000000;
-                    }
+                    .cost_modal {
+                        position: absolute;
+                        background: #FFFFFF;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                        box-shadow: 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+                        border-radius: 0.313rem;
+                        // width: 22.813rem;
+                        height: 26rem;
+                        bottom: 0;
+                        right: 0;
+                        padding-bottom: 1rem;
 
-                    .modal_desc,
-                    .cost_box {
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 0.875rem;
-                        line-height: 1.188rem;
-                        padding: 0 1.5rem;
-                        color: rgba(0, 0, 0, 0.7);
-                    }
-
-                    .cost_box {
-                        display: flex;
-                        padding: 0.5rem 1.5rem;
-
-                        .cost_value {
-                            padding-left: 4rem;
-                        }
-                    }
-
-                    .modal_footer {
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 0.875rem;
-                        line-height: 1.188rem;
-                        padding: 0 1.5rem;
-                        color: rgba(0, 0, 0, 0.7);
-                        padding: 1.5rem 1.5rem 0;
-
-                    }
-
-                    .close_btn {
-                        background: #D7D7D7;
-                        border-radius: 0.188rem;
-                        font-family: 'Noto Sans';
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 0.75rem;
-                        line-height: 1rem;
-                        text-align: center;
-                        color: #595959;
-                        width: 7.75rem;
-                        height: 2rem;
-                        margin: 1rem 1.5rem;
-                    }
-                }
-
-                .addList_section {
-                    max-height: 21.875rem;
-                    position: absolute;
-                    z-index: 4;
-                    padding: 0.75rem;
-                    background: #FFFFFF;
-                    border: 0.063rem solid RGB(0, 0, 0, 0.2);
-                    box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
-                    border-radius: 0.313rem;
-                    top: 50%;
-                    left: 70%;
-
-                    .addList_option {
-                        max-height: 21.375rem;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                        padding: 0.625rem;
-                        border-radius: 0.5rem;
-                        cursor: pointer;
-
-                        .section_dropdown_header {
+                        .modal_title {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
                             font-size: 1rem;
                             line-height: 1.375rem;
+                            padding: 1rem 1.5rem;
                             color: #000000;
                         }
 
-                        .section_list_title {
+                        .modal_desc,
+                        .cost_box {
                             font-family: 'Noto Sans';
                             font-style: normal;
                             font-weight: 500;
                             font-size: 0.875rem;
                             line-height: 1.188rem;
+                            padding: 0 1.5rem;
                             color: rgba(0, 0, 0, 0.7);
-                            margin-top: 0.5rem;
                         }
 
-                        .list_options {
-                            font-family: 'Inter';
+                        .cost_box {
+                            display: flex;
+                            padding: 0.5rem 1.5rem;
+
+                            .cost_value {
+                                padding-left: 4rem;
+                            }
+                        }
+
+                        .modal_footer {
+                            font-family: 'Noto Sans';
                             font-style: normal;
-                            font-weight: 400;
-                            font-size: 1rem;
+                            font-weight: 500;
+                            font-size: 0.875rem;
                             line-height: 1.188rem;
-                            color: rgba(0, 0, 0, 0.8);
-                            padding-top: 0.5rem;
-                            padding-bottom: 0.5rem;
+                            padding: 0 1.5rem;
+                            color: rgba(0, 0, 0, 0.7);
+                            padding: 1.5rem 1.5rem 0;
+
+                        }
+
+                        .close_btn {
+                            background: #D7D7D7;
+                            border-radius: 0.188rem;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 0.75rem;
+                            line-height: 1rem;
+                            text-align: center;
+                            color: #595959;
+                            width: 7.75rem;
+                            height: 2rem;
+                            margin: 1rem 1.5rem;
+                        }
+                    }
+                }
+
+                .overlay {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    z-index: 1;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    cursor: pointer;
+
+                    .addList_section {
+                        max-height: 21.875rem;
+                        position: absolute;
+                        z-index: 4;
+                        padding: 0.75rem;
+                        background: #FFFFFF;
+                        border: 0.063rem solid RGB(0, 0, 0, 0.2);
+                        box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
+                        border-radius: 0.313rem;
+                        bottom: 0;
+                        right: 0;
+
+                        .addList_option {
+                            max-height: 21.375rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            padding: 0.625rem;
+                            border-radius: 0.5rem;
+                            cursor: pointer;
+
+                            .section_dropdown_header {
+                                font-family: 'Noto Sans';
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 1rem;
+                                line-height: 1.375rem;
+                                color: #000000;
+                            }
+
+                            .section_list_title {
+                                font-family: 'Noto Sans';
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 0.875rem;
+                                line-height: 1.188rem;
+                                color: rgba(0, 0, 0, 0.7);
+                                margin-top: 0.5rem;
+                            }
+
+                            .list_options {
+                                font-family: 'Inter';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 1rem;
+                                line-height: 1.188rem;
+                                color: rgba(0, 0, 0, 0.8);
+                                padding-top: 0.5rem;
+                                padding-bottom: 0.5rem;
+                            }
                         }
                     }
                 }

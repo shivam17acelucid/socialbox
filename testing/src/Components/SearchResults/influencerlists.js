@@ -1455,7 +1455,7 @@ const InfluencersList = () => {
                                     }
                                 </TableBody>
                                 <TableFooter>
-                                    <TableRow>
+                                    <TableRow className="table_foot_row">
                                         <TablePagination
                                             rowsPerPageOptions={[7, 14, { label: 'All', value: -1 }]}
                                             colSpan={3}
@@ -1471,9 +1471,8 @@ const InfluencersList = () => {
                                             onPageChange={handleChangePage}
                                             onRowsPerPageChange={handleChangeRowsPerPage}
                                             ActionsComponent={TablePaginationActions}
+                                            className='table_footer_values'
                                         />
-                                        {/* <BiFirstPage size={30} onClick={handleChangePageToFirst} className='pointer' />
-                                            <BiLastPage size={30} className='pointer' /> */}
                                     </TableRow>
                                 </TableFooter>
                             </Table>

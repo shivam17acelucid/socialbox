@@ -640,31 +640,25 @@ exports.getFilteredResults = (req, res) => {
             flag.push(data)
             if (flag[0].length > 0) {
                 array.push(data)
-                if (minFollowers && maxFollowers) {
+                if (minFollowers && maxFollowers && minEr && maxEr) {
                     array.forEach((item) => {
                         item.forEach((response) => {
-                            if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
-                                filter.push(response)
+                            if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers && response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                result.push(response)
                             }
                         })
                     })
-                    if (minEr && maxEr) {
-                        if (filter = []) {
-                            res.json([])
-                        }
-                        filter.forEach((data) => {
-                            if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
-                                result.push(data)
+                }
+                else if (minFollowers && maxFollowers && !minEr && !maxEr) {
+                    array.forEach((item) => {
+                        item.forEach((response) => {
+                            if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
+                                result.push(response)
                             }
                         })
-                    }
-                    else {
-                        filter.forEach((data) => {
-                            result.push(data)
-                        })
-                    }
+                    })
                 }
-                else if (minEr && maxEr) {
+                else if (!minFollowers && !maxFollowers && minEr && maxEr) {
                     array.forEach((data) => {
                         data.forEach((response) => {
                             if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
@@ -677,12 +671,16 @@ exports.getFilteredResults = (req, res) => {
                     result.push(data)
                 }
                 {
-                    result.length > 1 ?
-                        res.json(result)
-                        :
-                        result.map((item) =>
-                            res.json(item)
-                        )
+                    if (result >= 1) {
+                        result.length > 1 ?
+                            res.json(result)
+                            :
+                            result.map((item) =>
+                                res.json(item)
+                            )
+                    } else {
+                        res.json(result);
+                    }
                 }
             }
             else {
@@ -690,28 +688,25 @@ exports.getFilteredResults = (req, res) => {
                     .select({ username: 1, _id: 0, edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, city_name: 1, category_enum: 1, costFactorPosts: 1, costFactorReel: 1, costFactorStories: 1, costFactorVideo: 1, costFactorIgtv: 1, costFactorSwipeUp: 1, full_name: 1, profile_pic_url_hd: 1 })
                     .then((data) => {
                         array.push(data)
-                        if (minFollowers && maxFollowers) {
+                        if (minFollowers && maxFollowers && minEr && maxEr) {
                             array.forEach((item) => {
                                 item.forEach((response) => {
-                                    if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
-                                        filter.push(response)
+                                    if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers && response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
+                                        result.push(response)
                                     }
                                 })
                             })
-                            if (minEr && maxEr) {
-                                filter.forEach((data) => {
-                                    if (data.edge_owner_to_timeline_media.edges[0].er > minEr && data.edge_owner_to_timeline_media.edges[0].er < maxEr) {
-                                        result.push(data)
+                        }
+                        else if (minFollowers && maxFollowers && !minEr && !maxEr) {
+                            array.forEach((item) => {
+                                item.forEach((response) => {
+                                    if (response.edge_followed_by.count > minFollowers && response.edge_followed_by.count < maxFollowers) {
+                                        result.push(response)
                                     }
                                 })
-                            }
-                            else {
-                                filter.forEach((data) => {
-                                    result.push(data)
-                                })
-                            }
+                            })
                         }
-                        else if (minEr && maxEr) {
+                        else if (!minFollowers && !maxFollowers && minEr && maxEr) {
                             array.forEach((data) => {
                                 data.forEach((response) => {
                                     if (response.edge_owner_to_timeline_media.edges[0].er > minEr && response.edge_owner_to_timeline_media.edges[0].er < maxEr) {
@@ -724,13 +719,16 @@ exports.getFilteredResults = (req, res) => {
                             result.push(data)
                         }
                         {
-                            result.length > 1 ?
-                                res.json(result)
-                                :
-
-                                result.map((item) =>
-                                    res.json(item)
-                                )
+                            if (result >= 1) {
+                                result.length > 1 ?
+                                    res.json(result)
+                                    :
+                                    result.map((item) =>
+                                        res.json(item)
+                                    )
+                            } else {
+                                res.json(result);
+                            }
                         }
                     })
             }

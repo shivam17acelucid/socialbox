@@ -537,7 +537,7 @@ const InfluencersList = () => {
     }
 
     const handleDownloadData = () => {
-        const url = `http://13.234.29.72:4000/downloadcsv`;
+        const url = `http://13.234.29.72:4000/downloadcsv?inputField=${inputField}`;
         fetch((url), {
             headers: {
                 'Content-type': 'text/csv; charset=UTF-8',
@@ -644,6 +644,7 @@ const InfluencersList = () => {
         fetchAllData();
         fetchProfiles();
         getListData();
+        handleDownloadData();
     }, [redirectedResult]);
 
     useEffect(() => {

@@ -668,7 +668,10 @@ exports.getFilteredResults = (req, res) => {
                     })
                 }
                 else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
-                    result.push(data)
+                    data.forEach((item) => {
+                        result.push(item)
+                    })
+                    // result.push(data)
                 }
                 {
                     if (result >= 1) {
@@ -716,7 +719,10 @@ exports.getFilteredResults = (req, res) => {
                             })
                         }
                         else if (!minFollowers && !maxFollowers && !minEr && !maxEr) {
-                            result.push(data)
+                            data.forEach((item) => {
+                                result.push(item)
+                            })
+                            // result.push(data)
                         }
                         {
                             if (result >= 1) {

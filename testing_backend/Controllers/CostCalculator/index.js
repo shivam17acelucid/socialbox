@@ -26,6 +26,7 @@ exports.setCalculateCostForReel = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorReel: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorReel.influencerExactminTotalCost || !item.costFactorReel.influencerExactmaxTotalCost) {
@@ -76,6 +77,7 @@ exports.setCalculateCostForPosts = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorPosts: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorPosts.influencerExactminTotalCost || !item.costFactorPosts.influencerExactmaxTotalCost) {
@@ -126,6 +128,7 @@ exports.setCalculateCostForIgtv = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorIgtv: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorIgtv.influencerExactminTotalCost || !item.costFactorIgtv.influencerExactmaxTotalCost) {
@@ -176,6 +179,7 @@ exports.setCalculateCostForStories = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorStories: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorStories.influencerExactminTotalCost || !item.costFactorStories.influencerExactmaxTotalCost) {
@@ -226,6 +230,7 @@ exports.setCalculateCostForSwipeupStories = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorSwipeUp: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorSwipeUp.influencerExactminTotalCost || !item.costFactorSwipeUp.influencerExactmaxTotalCost) {
@@ -276,6 +281,7 @@ exports.setCalculateCostForVideos = (req, res) => {
     let array = [];
 
     InfluencersData.find()
+        .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, costFactorVideo: 1, })
         .then((data) => {
             data.forEach((item) => {
                 if (!item.costFactorVideo.influencerExactminTotalCost || !item.costFactorVideo.influencerExactmaxTotalCost) {

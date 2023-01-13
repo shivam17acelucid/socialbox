@@ -24,7 +24,7 @@ const ProfileData = () => {
     const userId = localStorage.getItem('id')
 
     const fetchProfiles = () => {
-        const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField=${profilename}`;
+        const url = `http://13.234.29.72:4000/getProfileOfInfluencer?inputField=${profilename}`;
         fetch(url)
             .then((data) => {
                 data.json()

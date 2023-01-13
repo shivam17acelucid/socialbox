@@ -12,6 +12,7 @@ import LikeIcon from '../../../Assets/Images/likeIcon.png'
 import CommentIcon from '../../../Assets/Images/commentIcon.png'
 import ER from '../../../Assets/Images/er.png'
 import ViewIcon from '../../../Assets/Images/viewIcon.png'
+import Loader from '../../../Common/Loader';
 
 function CompareLists() {
 

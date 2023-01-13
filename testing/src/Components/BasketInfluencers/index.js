@@ -24,7 +24,8 @@ import ListIcon from '../../Assets/Images/listicon.png';
 import CostIcon from '../../Assets/Images/costicon.png';
 import CompareIcon from '../../Assets/Images/compareicon.png';
 import MyLists from '../MyLists';
-import Sport from '../../Assets/Images/sport.jpg'
+import Sport from '../../Assets/Images/sport.jpg';
+import Loader from '../../Common/Loader/index';
 
 
 function BasketInfluencers() {
@@ -556,16 +557,24 @@ function BasketInfluencers() {
                                         <div className='sidebar_header'>
                                             Top Bundles
                                         </div>
-                                        {basketData.map((item) =>
-                                            <div className='bundle_box row no-gutters'>
-                                                <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
-                                                    <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                        {
+                                            basketData[0] ?
+                                                basketData.map((item) =>
+                                                    <div className='bundle_box row no-gutters'>
+                                                        <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
+                                                            <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                        </div>
+                                                        <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
+                                                            <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
+                                                            <div className='bundle_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0' onClick={() => { handleRedirectToBasket(item) }}>View</div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                                :
+                                                <div className='inline_loader'>
+                                                    <Loader />
                                                 </div>
-                                                <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
-                                                    <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>
-                                                    <div className='bundle_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0' onClick={() => { handleRedirectToBasket(item) }}>View</div>
-                                                </div>
-                                            </div>)}
+                                        }
                                     </>
                             }
                         </div>

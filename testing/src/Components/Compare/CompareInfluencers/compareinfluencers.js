@@ -13,6 +13,7 @@ import CommentIcon from '../../../Assets/Images/commentIcon.png'
 import ER from '../../../Assets/Images/er.png'
 import ViewIcon from '../../../Assets/Images/viewIcon.png'
 import { AiOutlineClose } from 'react-icons/ai';
+import Loader from '../../../Common/Loader';
 
 function CompareInfluencers() {
 

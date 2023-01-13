@@ -13,6 +13,7 @@ import TopBar from '../../Common/TopBar';
 import Sport from '../../Assets/Images/sport.jpg'
 import Slider from '@mui/material/Slider';
 import Select from 'react-select';
+import Loader from '../../Common/Loader/index'
 const options = [
     { value: 'Nano(1K-10K Followers)', label: 'Nano(1K-10K Followers)' },
     { value: 'Micro(10K-50K Followers)', label: 'Micro(10K-50K Followers)' },
@@ -792,50 +793,55 @@ function Lists() {
                                 </div>
                                 <div className='influencers_basket row'>
                                     {
-                                        sortingBaskets === true ?
-                                            sortedBaskets.map((item) =>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
-                                                    <div className='influencers_basket_box row'>
-                                                        <div className='influencers_image col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5'>
-                                                            <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
-                                                        </div>
-                                                        <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
-                                                            <div className='influencers_category_header'>
-                                                                Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
-                                                            </div>
-                                                            <div className='basket_p'>
-                                                                Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
-                                                            </div>
-                                                            <div className='influencers_footer_btn'>
-                                                                <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                            :
-                                            basketData.map((item) =>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
-                                                    <div className='influencers_basket_box row'>
-                                                        <div className='col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 pl-0 pr-0'>
-                                                            <div className='influencers_image' >
+                                        basketData[0] ?
+                                            sortingBaskets === true ?
+                                                sortedBaskets.map((item) =>
+                                                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
+                                                        <div className='influencers_basket_box row'>
+                                                            <div className='influencers_image col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5'>
                                                                 <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
                                                             </div>
-                                                        </div>
-                                                        <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
-                                                            <div className='influencers_category_header'>
-                                                                Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
-                                                            </div>
-                                                            <div className='basket_p'>
-                                                                Boost your marketing campaigns with ...
-                                                            </div>
-                                                            <div className='influencers_footer_btn'>
-                                                                <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                            <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
+                                                                <div className='influencers_category_header'>
+                                                                    Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                                                </div>
+                                                                <div className='basket_p'>
+                                                                    Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                                                </div>
+                                                                <div className='influencers_footer_btn'>
+                                                                    <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )
+                                                )
+                                                :
+                                                basketData.map((item) =>
+                                                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
+                                                        <div className='influencers_basket_box row'>
+                                                            <div className='col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 pl-0 pr-0'>
+                                                                <div className='influencers_image' >
+                                                                    <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                                </div>
+                                                            </div>
+                                                            <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
+                                                                <div className='influencers_category_header'>
+                                                                    Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
+                                                                </div>
+                                                                <div className='basket_p'>
+                                                                    Boost your marketing campaigns with ...
+                                                                </div>
+                                                                <div className='influencers_footer_btn'>
+                                                                    <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            :
+                                            <div className='inline_loader'>
+                                                <Loader />
+                                            </div>
                                     }
                                 </div>
                             </div>
@@ -958,26 +964,31 @@ function Lists() {
                                 </div>
                                 <div className="list_content">
                                     {
-                                        listData.map((item) =>
-                                            <div className="list_content_inner">
-                                                <div className="list_head">
-                                                    <span className='list_name'>{item.listName}</span>
-                                                    {item.influencersCount}
-                                                    <MdDelete onClick={() => { handleDeleteList(item) }} />
-                                                </div>
-                                                <div className='list_desc'>
-                                                    {item.description}
-                                                </div>
-                                                <div className='list_footer row no-gutters'>
-                                                    <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                                        <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
+                                        listData[0] ?
+                                            listData.map((item) =>
+                                                <div className="list_content_inner">
+                                                    <div className="list_head">
+                                                        <span className='list_name'>{item.listName}</span>
+                                                        {item.influencersCount}
+                                                        <MdDelete onClick={() => { handleDeleteList(item) }} />
                                                     </div>
-                                                    <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                                        {item.influencersData.length} Influencers
+                                                    <div className='list_desc'>
+                                                        {item.description}
+                                                    </div>
+                                                    <div className='list_footer row no-gutters'>
+                                                        <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                                            <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
+                                                        </div>
+                                                        <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                                            {item.influencersData.length} Influencers
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            )
+                                            :
+                                            <div className='inline_loader'>
+                                                <Loader />
                                             </div>
-                                        )
                                     }
                                 </div>
                             </>

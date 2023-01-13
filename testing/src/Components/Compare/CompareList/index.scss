@@ -333,6 +333,13 @@ html {
     }
 }
 
+.inline_loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .col-lg-2 {
     @media (min-width: 992px) {
         -ms-flex: 0 0 16.666667%;

@@ -6,6 +6,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { MdOutlineArrowDropUp, MdDelete } from 'react-icons/md';
 import { useNavigate } from "react-router-dom";
 import { RiSubtractFill, RiAddFill } from 'react-icons/ri';
+import Loader from '../../Common/Loader/index';
 
 function MyLists() {
 
@@ -199,26 +200,31 @@ function MyLists() {
             </div>
             <div className="list_content">
                 {
-                    listData.map((item) =>
-                        <div className="list_content_inner">
-                            <div className="list_head">
-                                <span className='list_name'>{item.listName}</span>
-                                {item.influencersCount}
-                                <MdDelete onClick={() => { handleDeleteList(item) }} />
-                            </div>
-                            <div className='list_desc'>
-                                {item.description}
-                            </div>
-                            <div className='list_footer row no-gutters'>
-                                <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                    <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
+                    listData[0] ?
+                        listData.map((item) =>
+                            <div className="list_content_inner">
+                                <div className="list_head">
+                                    <span className='list_name'>{item.listName}</span>
+                                    {item.influencersCount}
+                                    <MdDelete onClick={() => { handleDeleteList(item) }} />
                                 </div>
-                                <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
-                                    {item.influencersData.length} Influencers
+                                <div className='list_desc'>
+                                    {item.description}
+                                </div>
+                                <div className='list_footer row no-gutters'>
+                                    <div className='list_view col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                        <Button onClick={() => { handleRedirectToList(item) }} className='view_btn'>View</Button>
+                                    </div>
+                                    <div className='inf_count col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>
+                                        {item.influencersData.length} Influencers
+                                    </div>
                                 </div>
                             </div>
+                        )
+                        :
+                        <div className='inline_loader'>
+                            <Loader />
                         </div>
-                    )
                 }
             </div>
         </>

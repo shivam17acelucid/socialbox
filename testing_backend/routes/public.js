@@ -3,7 +3,7 @@ const router = express.Router();
 const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../Controllers/downloadcsv");
-const { signup, login, logout } = require('../Controllers/Authentication/user')
+const { signup, login, logout, adminLogin } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
@@ -18,6 +18,7 @@ const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
+router.post('/adminLogin', adminLogin);
 router.get('/searchbyhashtag', hashtag)
 router.get('/searchbyusername', username)
 // router.get('/searchtopusers', topsearch)

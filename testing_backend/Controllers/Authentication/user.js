@@ -134,3 +134,63 @@ exports.logout = (req, res, next) => {
     }
   });
 };
+
+exports.adminLogin = (req, res, next) => {
+  let { email, password } = req.body;
+  let errors = [];
+  if (!email) {
+    errors.push({ email: "email required" });
+  }
+  if (!emailRegxp) {
+    errors.push({ email: "invalid email" });
+  }
+  if (!password) {
+    errors.push({ password: "password required" });
+  }
+  if (errors.length > 0) {
+    return res.status(422).json({ errors: errors });
+  }
+  UserInfo.findOne({ email: email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ errors: [{ user: "User not found" }] });
+      } else {
+        bcrypt
+          .compare(password, user.password)
+          .then((match) => {
+            if (!match) {
+              return res
+                .status(404)
+                .json({ errors: [{ password: "Incorrect Password" }] });
+            } else {
+              if (user.role === "admin" || user.role === "superAdmin") {
+                const token = jwt.sign(
+                  { userId: user._id },
+                  process.env.TOKEN,
+                  {
+                    expiresIn: "3d",
+                  }
+                );
+                user.token = token;
+                user.save()
+                  .then((result) => {
+                    res
+                      .status(200).json(result)
+                  })
+              } else {
+                res
+                  .status(502)
+                  .json("You Are Not Allowed to Access this Route");
+              }
+            }
+          })
+          .catch((err) => {
+            res.status(502).json({ errors: err });
+            console.log(err);
+          });
+      }
+    })
+    .catch((err) => {
+      res.status(502).json({ errors: err });
+    });
+};

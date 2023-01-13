@@ -70,7 +70,7 @@ function CompareInfluencers() {
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        if (query.length > 2) {
+        if (query.length > 1) {
             let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {

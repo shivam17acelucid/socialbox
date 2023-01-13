@@ -12,7 +12,7 @@ const rolehandler = require("../Controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 const { editProfile } = require('../Controllers/updateProfile');
-const { filterUsers } = require('../Controllers/Sorting/index');
+const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
 
 
 router.post("/signup", signup);
@@ -68,4 +68,5 @@ router.post('/setBasicFieldsForVideos', setBasicFieldsForVideos)
 router.get('/calculateBudget', calculateBudget)
 router.put('/editProfile/:id', editProfile)
 router.get('/filterUsers', filterUsers)
+router.get('/getProfileOfInfluencer', getProfileOfInfluencer)
 module.exports = router;

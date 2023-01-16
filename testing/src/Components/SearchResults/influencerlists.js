@@ -130,28 +130,12 @@ const InfluencersList = () => {
     //     setPage(0);
     // };
 
-    const fetchAllData = () => {
-        const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField`;
-        fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        res.map((item) => {
-                            autoSuggestedArray.push(item.username)
-                            setAutoSuggestedData(autoSuggestedArray)
-                        })
-                    })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
     const showVerified = () => {
         const data = showVerifiedInfluencers ? false : true;
         setShowVerifiedInfluencers(data);
         let arr = [];
         influencersData.forEach((data) => {
+            console.log(data);
             if (data.is_verified === true) {
                 arr.push(data)
                 setVerifiedInfluencers(arr)
@@ -620,7 +604,7 @@ const InfluencersList = () => {
             splitArray = str[1].split('&');
             follString = followerRange.split('=')
             splitFollArray = follString[1].split('&')
-            const url = `http://13.234.29.72:4000/getFilteredResults/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -652,7 +636,6 @@ const InfluencersList = () => {
     }
 
     useEffect(() => {
-        fetchAllData();
         fetchProfiles();
         getListData();
         handleDownloadData();

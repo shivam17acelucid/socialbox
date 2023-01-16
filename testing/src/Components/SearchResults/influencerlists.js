@@ -563,6 +563,79 @@ const InfluencersList = () => {
         let follString = '';
         let splitArray;
         let splitFollArray;
+        if (inputField === undefined) {
+            inputField = '';
+            if (eRange && !followerRange) {
+                if (eRange.includes('eRange')) {
+                    str = eRange.split('=');
+                    splitArray = str[1].split('&');
+                    const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                    fetch(url)
+                        .then((data) => {
+                            data.json()
+                                .then((res) => {
+                                    setInfluencersData(res.result)
+                                    setTotalPages(res.totalPages)
+                                    setTotalDataLength(res.totalDataLength)
+                                })
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                }
+                if (eRange.includes('followerRange')) {
+                    follString = eRange.split('=')
+                    splitFollArray = follString[1].split('&')
+                    const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                    fetch(url)
+                        .then((data) => {
+                            data.json()
+                                .then((res) => {
+                                    setInfluencersData(res.result)
+                                    setTotalPages(res.totalPages)
+                                    setTotalDataLength(res.totalDataLength)
+                                })
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                }
+            }
+            if (eRange && followerRange) {
+                str = eRange.split('=');
+                splitArray = str[1].split('&');
+                follString = followerRange.split('=')
+                splitFollArray = follString[1].split('&')
+                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                fetch(url)
+                    .then((data) => {
+                        data.json()
+                            .then((res) => {
+                                setInfluencersData(res.result)
+                                setTotalPages(res.totalPages)
+                                setTotalDataLength(res.totalDataLength)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+            if (!eRange && !followerRange) {
+                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+                fetch(url)
+                    .then((data) => {
+                        data.json()
+                            .then((res) => {
+                                setInfluencersData(res.result)
+                                setTotalPages(res.totalPages)
+                                setTotalDataLength(res.totalDataLength)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        }
         if (eRange && !followerRange) {
             if (eRange.includes('eRange')) {
                 str = eRange.split('=');

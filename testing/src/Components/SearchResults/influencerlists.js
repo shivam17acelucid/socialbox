@@ -111,6 +111,9 @@ const InfluencersList = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [categoryFilteredData, setCategoryFilteredData] = useState([])
+    const [offset, setOffset] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalDataLength, setTotalDataLength] = useState(0);
 
     let { inputField, eRange, followerRange } = useParams();
     let navigate = useNavigate();
@@ -118,14 +121,14 @@ const InfluencersList = () => {
     const userId = localStorage.getItem('id');
     let autoSuggestedArray = [];
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+    // const handleChangePage = (event, newPage) => {
+    //     setPage(newPage);
+    // };
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+    // const handleChangeRowsPerPage = (event) => {
+    //     setRowsPerPage(parseInt(event.target.value, 10));
+    //     setPage(0);
+    // };
 
     const fetchAllData = () => {
         const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField`;
@@ -580,12 +583,14 @@ const InfluencersList = () => {
             if (eRange.includes('eRange')) {
                 str = eRange.split('=');
                 splitArray = str[1].split('&');
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
                             .then((res) => {
-                                setInfluencersData(res)
+                                setInfluencersData(res.result)
+                                setTotalPages(res.totalPages)
+                                setTotalDataLength(res.totalDataLength)
                             })
                     })
                     .catch((err) => {
@@ -595,12 +600,14 @@ const InfluencersList = () => {
             if (eRange.includes('followerRange')) {
                 follString = eRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
                             .then((res) => {
-                                setInfluencersData(res)
+                                setInfluencersData(res.result)
+                                setTotalPages(res.totalPages)
+                                setTotalDataLength(res.totalDataLength)
                             })
                     })
                     .catch((err) => {
@@ -613,12 +620,14 @@ const InfluencersList = () => {
             splitArray = str[1].split('&');
             follString = followerRange.split('=')
             splitFollArray = follString[1].split('&')
-            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            const url = `http://13.234.29.72:4000/getFilteredResults/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
             fetch(url)
                 .then((data) => {
                     data.json()
                         .then((res) => {
-                            setInfluencersData(res)
+                            setInfluencersData(res.result)
+                            setTotalPages(res.totalPages)
+                            setTotalDataLength(res.totalDataLength)
                         })
                 })
                 .catch((err) => {
@@ -626,12 +635,14 @@ const InfluencersList = () => {
                 })
         }
         if (!eRange && !followerRange) {
-            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}`;
+            const url = `http://13.234.29.72:4000/getRelatedInfluencers?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
             fetch(url)
                 .then((data) => {
                     data.json()
                         .then((res) => {
-                            setInfluencersData(res)
+                            setInfluencersData(res.result)
+                            setTotalPages(res.totalPages)
+                            setTotalDataLength(res.totalDataLength)
                         })
                 })
                 .catch((err) => {
@@ -645,7 +656,7 @@ const InfluencersList = () => {
         fetchProfiles();
         getListData();
         handleDownloadData();
-    }, [redirectedResult]);
+    }, [redirectedResult, offset]);
 
     useEffect(() => {
         getListData();
@@ -858,18 +869,22 @@ const InfluencersList = () => {
 
     function TablePaginationActions(count) {
         const handleFirstPageButtonClick = (event) => {
+            setOffset(0);
             setPage(0);
         };
 
         const handleBackButtonClick = (event) => {
+            setOffset((prev) => prev - 7);
             setPage(page - 1);
         };
 
         const handleNextButtonClick = (event) => {
-            setPage(page + 1);
+            setOffset((prev) => prev + 7);
+            setPage(page + 1)
         };
 
         const handleLastPageButtonClick = (event) => {
+            setOffset(totalDataLength - 7)
             setPage(Math.max(0, Math.ceil(count.count / rowsPerPage) - 1));
         };
 
@@ -1254,19 +1269,13 @@ const InfluencersList = () => {
                                     {
                                         (rowsPerPage > 0
                                             ?
-                                            filterFollowerClicked === true ?
-                                                followersRangeBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            filterCategoryClicked === true ?
+                                                categoryFilteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                 :
-                                                filterErClicked === true ?
-                                                    erBasedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                showVerifiedInfluencers === true ?
+                                                    verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                     :
-                                                    filterCategoryClicked === true ?
-                                                        categoryFilteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                                        :
-                                                        showVerifiedInfluencers === true ?
-                                                            verifiedInfluencers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                                            :
-                                                            influencersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                    influencersData
                                             : influencersData
                                         )
                                             .map((data, index) => (
@@ -1418,8 +1427,8 @@ const InfluencersList = () => {
                                                                                             addToCompareData.length > 0 ?
                                                                                                 <>
                                                                                                     {/* <div className="added_influencer">
-                                                                                                                {addToCompareData[0].username} <span><AiOutlineClose onClick={() => { setAddToCompareData([]) }} /></span>
-                                                                                                            </div> */}
+                                                                                                            {addToCompareData[0].username} <span><AiOutlineClose onClick={() => { setAddToCompareData([]) }} /></span>
+                                                                                                        </div> */}
                                                                                                     {
                                                                                                         addToCompareData.map((data) =>
                                                                                                             <div className="added_influencer">
@@ -1460,7 +1469,7 @@ const InfluencersList = () => {
                                         <TablePagination
                                             rowsPerPageOptions={[7, 14, { label: 'All', value: -1 }]}
                                             colSpan={3}
-                                            count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterErClicked === true ? erBasedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : filterFollowerClicked === true ? followersRangeBasedInfluencers.length : influencersData.length}
+                                            count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : totalDataLength}
                                             rowsPerPage={rowsPerPage}
                                             page={page}
                                             SelectProps={{
@@ -1469,8 +1478,8 @@ const InfluencersList = () => {
                                                 },
                                                 native: true,
                                             }}
-                                            onPageChange={handleChangePage}
-                                            onRowsPerPageChange={handleChangeRowsPerPage}
+                                            // onPageChange={handleChangePage}
+                                            // onRowsPerPageChange={handleChangeRowsPerPage}
                                             ActionsComponent={TablePaginationActions}
                                             className='table_footer_values'
                                         />

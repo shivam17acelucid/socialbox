@@ -635,7 +635,7 @@ const InfluencersList = () => {
                 })
         }
         if (!eRange && !followerRange) {
-            const url = `http://13.234.29.72:4000/getRelatedInfluencers?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
             fetch(url)
                 .then((data) => {
                     data.json()

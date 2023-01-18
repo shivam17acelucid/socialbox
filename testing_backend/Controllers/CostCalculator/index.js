@@ -315,44 +315,48 @@ exports.setInfluencerCost = (req, res) => {
     let costFactorSwipeUp = {};
     let costFactorVideo = {};
 
-    if (minTotalPostCost) {
+    if (minTotalPostCost && minTotalPostCost !== 0) {
         costFactorPosts.influencerExactminTotalCost = minTotalPostCost;
     }
-    if (maxTotalPostCost) {
+    if (maxTotalPostCost && maxTotalPostCost !== 0) {
         costFactorPosts.influencerExactmaxTotalCost = maxTotalPostCost;
     }
-    if (minTotalReelCost) {
+    if (minTotalReelCost && minTotalReelCost !== 0) {
         costFactorReel.influencerExactminTotalCost = minTotalReelCost;
     }
-    if (maxTotalReelCost) {
+    if (maxTotalReelCost && maxTotalReelCost !== 0) {
         costFactorReel.influencerExactmaxTotalCost = maxTotalReelCost;
     }
-    if (minTotalStoryCost) {
+    if (minTotalStoryCost && minTotalStoryCost !== 0) {
         costFactorStories.influencerExactminTotalCost = minTotalStoryCost;
     }
-    if (maxTotalStoryCost) {
+    if (maxTotalStoryCost && maxTotalStoryCost !== 0) {
         costFactorStories.influencerExactmaxTotalCost = maxTotalStoryCost;
     }
-    if (minTotalIgtvCost) {
+    if (minTotalIgtvCost && minTotalIgtvCost !== 0) {
         costFactorIgtv.influencerExactminTotalCost = minTotalIgtvCost;
     }
-    if (maxTotalIgtvCost) {
+    if (maxTotalIgtvCost && maxTotalIgtvCost !== 0) {
         costFactorIgtv.influencerExactmaxTotalCost = maxTotalIgtvCost;
     }
-    if (minTotalSwipeUpCost) {
+    if (minTotalSwipeUpCost && minTotalSwipeUpCost !== 0) {
         costFactorSwipeUp.influencerExactminTotalCost = minTotalSwipeUpCost;
     }
-    if (maxTotalStoryCost) {
-        costFactorSwipeUp.influencerExactmaxTotalCost = maxTotalStoryCost;
+    if (maxTotalSwipeUpCost && maxTotalSwipeUpCost !== 0) {
+        costFactorSwipeUp.influencerExactmaxTotalCost = maxTotalSwipeUpCost;
     }
-    if (minTotalVideoCost) {
+    if (minTotalVideoCost && minTotalVideoCost !== 0) {
         costFactorVideo.influencerExactminTotalCost = minTotalVideoCost;
     }
-    if (maxTotalIgtvCost) {
+    if (maxTotalIgtvCost && maxTotalIgtvCost !== 0) {
         costFactorVideo.influencerExactmaxTotalCost = maxTotalVideoCost;
     }
 
     InfluencersData.findOne({ username: username })
+        .select({
+            username: 1, costFactorPosts: 1, costFactorReel: 1, costFactorIgtv: 1, costFactorStories: 1,
+            costFactorSwipeUp: 1, costFactorVideo: 1
+        })
         .then((data) => {
             if (minTotalPostCost || maxTotalPostCost) {
                 data.costFactorPosts = costFactorPosts;

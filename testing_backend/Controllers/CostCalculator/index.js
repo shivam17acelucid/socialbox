@@ -11,16 +11,14 @@ exports.setCalculateCostForReel = (req, res) => {
 
     let costFactor = {};
 
-    if (minCostPer1kFollowersForReel && maxCostper1KFollowersForReel && minCostPer1kFollowersForReel !== null && maxCostper1KFollowersForReel !== null) {
+    if (minCostPer1kFollowersForReel && maxCostper1KFollowersForReel) {
         costFactor.minCostPer1kFollowersForReel = minCostPer1kFollowersForReel;
         costFactor.maxCostper1KFollowersForReel = maxCostper1KFollowersForReel;
     }
 
-    if (minCostPerLikeForReel && maxCostperLikeForReel && minCostPerLikeForReel !== null && maxCostperLikeForReel !== null) {
+    if (minCostPerLikeForReel && maxCostperLikeForReel && minCostPerCommentForReel && maxCostperCommentForReel) {
         costFactor.minCostPerLikeForReel = minCostPerLikeForReel;
         costFactor.maxCostperLikeForReel = maxCostperLikeForReel;
-    }
-    if (minCostPerCommentForReel && maxCostperCommentForReel && minCostPerCommentForReel !== null && maxCostperCommentForReel !== null) {
         costFactor.minCostPerCommentForReel = minCostPerCommentForReel;
         costFactor.maxCostperCommentForReel = maxCostperCommentForReel;
     }

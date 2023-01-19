@@ -348,7 +348,7 @@ exports.setInfluencerCost = (req, res) => {
     if (minTotalVideoCost && minTotalVideoCost !== 0) {
         costFactorVideo.influencerExactminTotalCost = minTotalVideoCost;
     }
-    if (maxTotalIgtvCost && maxTotalIgtvCost !== 0) {
+    if (maxTotalVideoCost && maxTotalVideoCost !== 0) {
         costFactorVideo.influencerExactmaxTotalCost = maxTotalVideoCost;
     }
 

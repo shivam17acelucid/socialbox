@@ -13,6 +13,7 @@ const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 const { editProfile } = require('../Controllers/updateProfile');
 const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
+const { uploadcreatorcsv, uploadData, updateCreatorsDetails } = require('../Controllers/UploadCreatorCsv/index');
 
 
 router.post("/signup", signup);
@@ -70,4 +71,6 @@ router.get('/calculateBudget', calculateBudget)
 router.put('/editProfile/:id', editProfile)
 router.get('/filterUsers', filterUsers)
 router.get('/getProfileOfInfluencer', getProfileOfInfluencer)
+router.post('/uploadcreatorcsv', uploadData, uploadcreatorcsv);
+router.put('/updateCreatorsDetails', uploadData, updateCreatorsDetails)
 module.exports = router;

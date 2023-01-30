@@ -147,6 +147,21 @@ let influencersDataSchema = new Schema(
             influencerExactminTotalCost: Number,
             influencerExactmaxTotalCost: Number,
         },
+        final_category: {
+            type: String,
+        },
+        contact: {
+            type: Number,
+        },
+        final_email: {
+            type: String,
+        },
+        dob: {
+            type: String,
+        },
+        gender: {
+            type: String,
+        }
     },
     {
         timestamps: true,

@@ -48,6 +48,7 @@ function UserLists() {
     const [basketData, setBasketData] = useState([]);
     const [changeBasket, setChangeBasket] = useState(false);
     const [userRestored, setUserRestored] = useState(false);
+    const [allDeletedInfluencersCleared, setAllDeletedInfluencersCleared] = useState(false);
 
     let { listname } = useParams();
 
@@ -136,6 +137,22 @@ function UserLists() {
             })
     }
 
+    const handleClearAllDeletedInfluencers = () => {
+        const url = `http://13.234.29.72:4000/clearDeletedInfluencersFromList/${userId}?listName=${listname}`;
+        fetch((url), {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+            .then((data) => {
+                data.json()
+                    .then((result) => {
+                        setAllDeletedInfluencersCleared(!allDeletedInfluencersCleared)
+                    })
+            })
+    }
+
     useEffect(() => {
         handleListClick();
         fetchBasketsName();
@@ -148,7 +165,7 @@ function UserLists() {
 
     useEffect(() => {
         handleListClick();
-    }, [isDataDeleted, userRestored]);
+    }, [isDataDeleted, userRestored, allDeletedInfluencersCleared]);
 
     useEffect(() => {
         listname = listName;
@@ -436,6 +453,9 @@ function UserLists() {
                                                 <div className='delete_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>Recently Deleted</div>
                                                 <div className='delete_content col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
                                                     Deleted influencers will be retained for 30 days in the bin. After 30 days they will be permanently deleted.
+                                                </div>
+                                                <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 clear_all_btn' style={{ textAlign: 'right' }} onClick={handleClearAllDeletedInfluencers}>
+                                                    Clear all
                                                 </div>
                                                 <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 col-8'>
                                                     <div className='row  justify-content-center'>

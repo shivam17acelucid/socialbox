@@ -345,6 +345,25 @@ html {
 
             }
 
+            .clear_all_btn {
+                @media (max-width: 1000px) {
+                    font-size: 0.5rem;
+                }
+
+                @media (max-width: 460px) {
+                    font-size: 0.5rem;
+                }
+
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 0.8rem;
+                line-height: 1rem;
+                color: #007DA8;
+                padding-right: 3rem;
+                cursor: pointer;
+            }
+
             .deleted_box {
                 padding: 1rem 2.5rem;
                 margin: 1rem 1rem;

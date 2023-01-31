@@ -40,18 +40,17 @@ exports.hashtag = (req, res, next) => {
                         id_array.push({ ownerID: element.node.owner.id })
                     }
                 })
-                console.log(id_array);
                 finalResult.push(id_array);
-                // User.insertMany(id_array)
-                //     .then((result) => {
-                //         res.json({
-                //             success: 'true',
-                //             result
-                //         })
-                //     })
-                //     .catch((err) => {
-                //         console.log(err)
-                //     })
+                User.insertMany(id_array)
+                    .then((result) => {
+                        // res.json({
+                        //     success: 'true',
+                        //     result
+                        // })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
                 if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
                     max_id = data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor;
                     let url_change = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id}`;
@@ -76,19 +75,17 @@ exports.hashtag = (req, res, next) => {
                     arr.push({ ownerID: element.node.owner.id });
                 }
             });
-            console.log(arr);
             finalResult.push(arr);
-            // User.insertMany(arr)
-            //     .then((result) => {
-            //         // res.json({
-            //         //     success: 'true',
-            //         //     result
-            //         // })
-            //         console.log(result)
-            //     })
-            //     .catch((err) => {
-            //         console.log(err)
-            //     })
+            User.insertMany(arr)
+                .then((result) => {
+                    // res.json({
+                    //     success: 'true',
+                    //     result
+                    // })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
             if (data['data']['hashtag']['edge_hashtag_to_media']['page_info'].has_next_page === true) {
                 max_id = data['data']['hashtag']['edge_hashtag_to_media']['page_info'].end_cursor;
                 second_url = `https://i.instagram.com/api/v1/tags/logged_out_web_info/?tag_name=${tagname}&max_id=${max_id}`;
@@ -846,4 +843,20 @@ exports.getFilteredResults = (req, res) => {
                 }
             })
     })
+}
+
+exports.clearDeletedInfluencersFromList = (req, res) => {
+    let { listName } = req.query;
+    UserInfo.findById(req.params.id)
+        .then((data) => {
+            data.list.forEach((item) => {
+                if (item.listName === listName) {
+                    item.deletedInfluencers = [];
+                }
+            })
+            data.save()
+                .then((item) => {
+                    res.json(item)
+                })
+        })
 }

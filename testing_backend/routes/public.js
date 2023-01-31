@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults } = require('../Controllers/testing');
+const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults, clearDeletedInfluencersFromList } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../Controllers/downloadcsv");
 const { signup, login, logout, adminLogin } = require('../Controllers/Authentication/user')
@@ -13,7 +13,7 @@ const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 const { editProfile } = require('../Controllers/updateProfile');
 const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
-const { uploadcreatorcsv, uploadData, updateCreatorsDetails } = require('../Controllers/UploadCreatorCsv/index');
+const { uploadcreatorcsv, uploadData, updateCreatorsDetails, testingproxies } = require('../Controllers/UploadCreatorCsv/index');
 
 
 router.post("/signup", signup);
@@ -73,4 +73,6 @@ router.get('/filterUsers', filterUsers)
 router.get('/getProfileOfInfluencer', getProfileOfInfluencer)
 router.post('/uploadcreatorcsv', uploadData, uploadcreatorcsv);
 router.put('/updateCreatorsDetails', uploadData, updateCreatorsDetails)
+router.put('/clearDeletedInfluencersFromList/:id', clearDeletedInfluencersFromList);
+router.get('/testingproxies', testingproxies)
 module.exports = router;

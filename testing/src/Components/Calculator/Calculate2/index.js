@@ -197,8 +197,8 @@ function CalculateDeliverables() {
                     </div>
                     <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0'>
                         <div className='image1'></div>
-                        <div className='image2' style={{ opacity: '0.2' }}>
-                        </div>
+                        {/* <div className='image2' style={{ opacity: '0.2' }}>
+                        </div> */}
                         {/* <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>
                         <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span> */}
                     </div>

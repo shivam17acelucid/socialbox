@@ -9,6 +9,7 @@ import locationIcon from '../../../Assets/Images/locationIcon.png';
 import { Input } from 'reactstrap';
 import Button from '@mui/material/Button';
 import './index.scss';
+import GaugeChart from 'react-gauge-chart';
 
 function CalculateTotal() {
 
@@ -603,12 +604,22 @@ function CalculateTotal() {
                             <Button onClick={handleSubmitQuery} className='submit_btn'>Submit</Button>
                         </div>
                     </div>
-                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">
+                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0 mx-auto">
                         <div className="image_1"></div>
-                        <div className="image_2"></div>
-                        {/* <span className='indicator' style={{ marginLeft: '7.5rem' }}>Specific</span>
-                        <span className='indicator' style={{ marginLeft: '12rem' }}>Broad</span> */}
-                        <div>{metricsTotal}</div>
+                        <div className="image_2">
+                            <GaugeChart id="gauge-chart2"
+                                percent={(metricsTotal / 100)}
+                            />
+                        </div>
+                        <div className="row no-gutters justify-content-center">
+                            {
+                                metricsTotal > 50 ?
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' >Specific</div>
+                                    :
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' >Broad</div>
+                            }
+                            <div className="indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto"> Your Metrics Score is {metricsTotal}</div>
+                        </div>
                     </div>
                 </div>
             </div>

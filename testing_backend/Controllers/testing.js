@@ -161,15 +161,20 @@ exports.profile = (req, res, next) => {
             {
                 arr.forEach((item) => {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
-                    axios.get(url, {
-                        method: 'GET',
-                        agent: proxyAgent,
-                        headers: URLENCODED_HEADER,
-                        mode: 'cors',
-                    })
+                    fetch(url,
+                        {
+                            method: 'GET',
+                            agent: proxyAgent,
+                            headers: URLENCODED_HEADER,
+                            mode: 'cors',
+                        }
+                    )
                         .then((response) => {
-                            console.log(response?.data['data']['user']);
-                            // ProfileData.insertMany([response.data['data']['user']])
+                            response.json()
+                        })
+                        .then((data) => {
+                            console.log(data);
+                            // ProfileData.insertMany([data.data.user])
                             //     .then((result) => {
                             //         // res.json({
                             //         //     success: 'true',

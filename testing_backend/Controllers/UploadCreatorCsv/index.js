@@ -50,7 +50,6 @@ exports.uploadcreatorcsv = (req, res) => {
                         .then((response) => {
                             response.json()
                                 .then((data) => {
-                                    console.log(data.data.user)
                                     ProfileData.insertMany([data.data.user])
                                         .then((result) => {
                                             // res.json({
@@ -127,10 +126,9 @@ exports.updateCreatorsDetails = (req, res) => {
 }
 
 exports.testingproxies = (req, res) => {
-    let { tag } = req.body;
-    console.log(random_number, proxyArray.proxyArray.list[random_number]);
+    let { username } = req.body;
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    fetch(`https://i.instagram.com/api/v1/users/web_profile_info/?username=${tag}`,
+    fetch(`https://i.instagram.com/api/v1/users/web_profile_info/?username=${username}`,
         {
             method: 'GET',
             agent: proxyAgent,
@@ -140,7 +138,15 @@ exports.testingproxies = (req, res) => {
     )
         .then((response) => response.json())
         .then((data) => {
-            res.json({ data })
-            console.log(data.data.user)
+            ProfileData.insertMany([data.data.user])
+                .then((result) => {
+                    // res.json({
+                    //     success: 'true',
+                    //     result: response.data['data']['user']
+                    // })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         })
 }

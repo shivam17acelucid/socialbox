@@ -168,16 +168,17 @@ exports.profile = (req, res, next) => {
                         mode: 'cors',
                     })
                         .then((response) => {
-                            ProfileData.insertMany([response.data['data']['user']])
-                                .then((result) => {
-                                    // res.json({
-                                    //     success: 'true',
-                                    //     result: response.data['data']['user']
-                                    // })
-                                })
-                                .catch((err) => {
-                                    console.log(err)
-                                })
+                            console.log(response?.data['data']['user']);
+                            // ProfileData.insertMany([response.data['data']['user']])
+                            //     .then((result) => {
+                            //         // res.json({
+                            //         //     success: 'true',
+                            //         //     result: response.data['data']['user']
+                            //         // })
+                            //     })
+                            //     .catch((err) => {
+                            //         console.log(err)
+                            //     })
                         })
                 })
             }

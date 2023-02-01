@@ -172,17 +172,16 @@ exports.profile = (req, res, next) => {
                         .then((response) => {
                             response.json()
                                 .then((data) => {
-                                    console.log(data.data.user);
-                                    // ProfileData.insertMany([data.data.user])
-                                    //     .then((result) => {
-                                    //         // res.json({
-                                    //         //     success: 'true',
-                                    //         //     result: response.data['data']['user']
-                                    //         // })
-                                    //     })
-                                    //     .catch((err) => {
-                                    //         console.log(err)
-                                    //     })
+                                    ProfileData.insertMany([data.data.user])
+                                        .then((result) => {
+                                            // res.json({
+                                            //     success: 'true',
+                                            //     result: response.data['data']['user']
+                                            // })
+                                        })
+                                        .catch((err) => {
+                                            console.log(err)
+                                        })
                                 })
                         })
                 })

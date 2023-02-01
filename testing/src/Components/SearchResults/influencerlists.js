@@ -1344,20 +1344,20 @@ const InfluencersList = () => {
                                                             {NFormatter(data.edge_followed_by.count)}
                                                         </TableCell>
                                                         <TableCell className="table_body_value" align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0]?.er)}
                                                         </TableCell>
                                                         <TableCell className="table_body_value" align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0]?.avg_likes)}
                                                         </TableCell>
                                                         <TableCell className="table_body_value" align="center">
-                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                            {NFormatter(data.edge_owner_to_timeline_media['edges'][0]?.avg_comment)}
                                                         </TableCell>
                                                         <TableCell className="table_body_value" align="center">
-                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                            {NFormatter(data.edge_felix_video_timeline['edges'][0]?.averageReelView)}
                                                         </TableCell>
-                                                        <TableCell className="table_body_value" align="center">{data.city_name}</TableCell>
+                                                        <TableCell className="table_body_value" align="center">{data?.city_name}</TableCell>
                                                         {/* <TableCell className="table_body_value" align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell> */}
-                                                        <TableCell className="table_body_value" align="center">{data.category_enum !== null ? data.category_enum.split('_') : null}</TableCell>
+                                                        <TableCell className="table_body_value" align="center">{data.category_enum !== null ? data.category_enum.split('_') : data?.final_category}</TableCell>
                                                         <TableCell className="table_body_value" key={index}>
                                                             <div className="btn_display">
                                                                 <img id={data.id} src={CostIcon} onClick={(e) => { handleCostClicked(data) }} />

@@ -151,31 +151,23 @@ exports.userID = (req, res, next) => {
 }
 
 exports.profile = (req, res, next) => {
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     Username.find()
         .then((response) => {
-            let bigAccount = [];
             let arr = [];
             response.forEach((item) => {
-                arr.push({ follower_count: item.follower_count, username: item.username });
+                arr.push({ username: item.username });
             })
             {
-                arr.forEach(item => {
-                    item.follower_count > '2700000' ?
-                        bigAccount.push(item)
-                        : null
-                })
-                bigAccount.forEach((item) => {
+                arr.forEach((item) => {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     axios.get(url, {
                         method: 'GET',
+                        agent: proxyAgent,
                         headers: URLENCODED_HEADER,
                         mode: 'cors',
                     })
                         .then((response) => {
-                            res.status(200).json({
-                                success: true,
-                                data: response.data
-                            });
                             ProfileData.insertMany([response.data['data']['user']])
                                 .then((result) => {
                                     // res.json({
@@ -189,7 +181,7 @@ exports.profile = (req, res, next) => {
                         })
                 })
             }
-
+            res.json('Fetching..')
         })
         .catch((err) => {
             console.log(err)

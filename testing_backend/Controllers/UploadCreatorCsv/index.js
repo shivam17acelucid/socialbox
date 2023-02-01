@@ -141,7 +141,7 @@ exports.testingproxies = (req, res) => {
                 .then((result) => {
                     res.json({
                         success: 'true',
-                        result: response.data['data']['user']
+                        result: result.data['data']['user']
                     })
                 })
                 .catch((err) => {

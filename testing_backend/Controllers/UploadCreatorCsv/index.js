@@ -31,7 +31,7 @@ const uploads = multer({ storage: storage });
         next();
     };
 exports.uploadcreatorcsv = (req, res) => {
-    const proxyAgent = new HttpsProxyAgent(`http://hwqpgdmn:l412ioe82ka2@${proxyArray.proxyArray.list[random_number]}`)
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     let str = '';
     let splitArr;
     csv()
@@ -41,28 +41,27 @@ exports.uploadcreatorcsv = (req, res) => {
             csvData.forEach((data) => {
                 if (data.handleName !== '') {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;
-                    axios.get(url, {
+                    fetch(url, {
                         method: 'GET',
                         agent: proxyAgent,
                         headers: URLENCODED_HEADER,
                         mode: 'cors',
                     })
                         .then((response) => {
-                            console.log(response.data);
-                            // res.status(200).json({
-                            //     success: true,
-                            //     data: response.data
-                            // });
-                            // ProfileData.insertMany([response.data['data']['user']])
-                            //     .then((result) => {
-                            //         // res.json({
-                            //         //     success: 'true',
-                            //         //     result: response.data['data']['user']
-                            //         // })
-                            //     })
-                            //     .catch((err) => {
-                            //         console.log(err)
-                            //     })
+                            response.json()
+                                .then((data) => {
+                                    console.log(data.data.user)
+                                    ProfileData.insertMany([data.data.user])
+                                        .then((result) => {
+                                            // res.json({
+                                            //     success: 'true',
+                                            //     result: response.data['data']['user']
+                                            // })
+                                        })
+                                        .catch((err) => {
+                                            console.log(err)
+                                        })
+                                })
                         })
                 }
                 // else {
@@ -130,7 +129,7 @@ exports.updateCreatorsDetails = (req, res) => {
 exports.testingproxies = (req, res) => {
     let { tag } = req.body;
     console.log(random_number, proxyArray.proxyArray.list[random_number]);
-    const proxyAgent = new HttpsProxyAgent(`http://hwqpgdmn:l412ioe82ka2@${proxyArray.proxyArray.list[random_number]}`)
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     fetch(`https://i.instagram.com/api/v1/users/web_profile_info/?username=${tag}`,
         {
             method: 'GET',
@@ -142,5 +141,6 @@ exports.testingproxies = (req, res) => {
         .then((response) => response.json())
         .then((data) => {
             res.json({ data })
+            console.log(data.data.user)
         })
 }

@@ -138,7 +138,7 @@ exports.testingproxies = (req, res) => {
         .then((response) => response.json())
         .then((data) => {
             if (data.data.user) {
-                InfluencersData.insertMany([data.data.user])
+                ProfileData.insertMany([data.data.user])
                     .then((result) => {
                         res.json({
                             success: 'true',

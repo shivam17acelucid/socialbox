@@ -12,11 +12,11 @@ exports.downloadcsv = (req, res, next) => {
       let data = [];
 
       objs.forEach((obj) => {
-        const Followers = obj.edge_followed_by.count;
-        const EngagementRate = obj.edge_owner_to_timeline_media.edges[0].er;
-        const avg_likes = obj.edge_owner_to_timeline_media.edges[0].avg_likes;
-        const avg_comment = obj.edge_owner_to_timeline_media.edges[0].avg_comment;
-        const avg_reach = obj.edge_felix_video_timeline.edges[0].averageReelView;
+        const Followers = obj.edge_followed_by.count || "-";
+        const EngagementRate = obj.edge_owner_to_timeline_media.edges[0].er || "-";
+        const avg_likes = obj.edge_owner_to_timeline_media.edges[0].avg_likes || "-";
+        const avg_comment = obj.edge_owner_to_timeline_media.edges[0].avg_comment || "-";
+        const avg_reach = obj.edge_felix_video_timeline.edges[0].averageReelView || "-";
         const city_name = obj.city_name || "null";
         const category_enum = obj.category_enum || "null";
         const { username } = obj;

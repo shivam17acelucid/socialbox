@@ -79,8 +79,8 @@ const ProfileData = () => {
                                 <div className="profile_header col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
                                     <div className="row no-gutters">
                                         <div className="profile_pic col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
-                                            {/* <img src={data.profile_pic_url_hd} />  */}
-                                            <img src={Testing} className='profile_image' />
+                                            <img crossOrigin="anonymous" src={data.profile_pic_url_hd} className='profile_image' />
+                                            {/* <img src={Testing} className='profile_image' /> */}
                                         </div>
                                         <div className="profile_basic_info col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
                                             <div className="profile_name">

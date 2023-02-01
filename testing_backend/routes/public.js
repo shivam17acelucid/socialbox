@@ -74,5 +74,5 @@ router.get('/getProfileOfInfluencer', getProfileOfInfluencer)
 router.post('/uploadcreatorcsv', uploadData, uploadcreatorcsv);
 router.put('/updateCreatorsDetails', uploadData, updateCreatorsDetails)
 router.put('/clearDeletedInfluencersFromList/:id', clearDeletedInfluencersFromList);
-router.get('/testingproxies', testingproxies)
+router.post('/testingproxies', testingproxies)
 module.exports = router;

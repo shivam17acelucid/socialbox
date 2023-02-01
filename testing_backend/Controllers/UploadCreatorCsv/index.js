@@ -37,7 +37,6 @@ exports.uploadcreatorcsv = (req, res) => {
     csv()
         .fromFile(req.file.path)
         .then((csvData) => {
-            console.log(random_number, proxyArray.proxyArray.list[random_number]);
             csvData.forEach((data) => {
                 if (data.handleName !== '') {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;

@@ -40,13 +40,8 @@ exports.hashtag = (req, res, next) => {
                         id_array.push({ ownerID: element.node.owner.id })
                     }
                 })
-                finalResult.push(id_array);
                 User.insertMany(id_array)
                     .then((result) => {
-                        // res.json({
-                        //     success: 'true',
-                        //     result
-                        // })
                     })
                     .catch((err) => {
                         console.log(err)
@@ -57,7 +52,7 @@ exports.hashtag = (req, res, next) => {
                     fetchuntilEnd_cursor_empty(url_change);
                 }
                 else {
-                    res.json(finalResult)
+                    res.json('success')
                 }
                 ids = id_array = [];
             })
@@ -75,13 +70,8 @@ exports.hashtag = (req, res, next) => {
                     arr.push({ ownerID: element.node.owner.id });
                 }
             });
-            finalResult.push(arr);
             User.insertMany(arr)
                 .then((result) => {
-                    // res.json({
-                    //     success: 'true',
-                    //     result
-                    // })
                 })
                 .catch((err) => {
                     console.log(err)
@@ -92,7 +82,7 @@ exports.hashtag = (req, res, next) => {
                 fetchuntilEnd_cursor_empty(second_url);
             }
             else {
-                res.json(finalResult)
+                res.json('success')
             }
             abc = arr = [];
         });

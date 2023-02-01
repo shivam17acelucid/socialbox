@@ -137,15 +137,17 @@ exports.testingproxies = (req, res) => {
     )
         .then((response) => response.json())
         .then((data) => {
-            InfluencersData.insertMany([data.data.user])
-                .then((result) => {
-                    res.json({
-                        success: 'true',
-                        result: result.data['data']['user']
+            if (data.data.user) {
+                InfluencersData.insertMany([data.data.user])
+                    .then((result) => {
+                        res.json({
+                            success: 'true',
+                            result: data.data.user
+                        })
                     })
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
         })
 }

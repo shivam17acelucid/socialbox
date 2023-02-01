@@ -151,7 +151,7 @@ let influencersDataSchema = new Schema(
             type: String,
         },
         contact: {
-            type: Number,
+            type: String,
         },
         final_email: {
             type: String,

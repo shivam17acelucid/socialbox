@@ -174,10 +174,6 @@ exports.profile = (req, res, next) => {
                                 .then((data) => {
                                     ProfileData.insertMany([data.data.user])
                                         .then((result) => {
-                                            // res.json({
-                                            //     success: 'true',
-                                            //     result: response.data['data']['user']
-                                            // })
                                         })
                                         .catch((err) => {
                                             console.log(err)

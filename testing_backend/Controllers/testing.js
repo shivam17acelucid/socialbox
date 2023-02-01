@@ -115,11 +115,6 @@ exports.hashtag = (req, res, next) => {
 
 exports.userID = (req, res, next) => {
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    // let { ownerID } = req.query;
-    // let filter = {};
-    // if (ownerID != null) {
-    //     filter.ownerID = ownerID;
-    // }
     let arr = [];
     User.find({})
         .then((response) => {
@@ -135,21 +130,20 @@ exports.userID = (req, res, next) => {
                     mode: 'cors'
                 }).then((response) => response.json()
                     .then((data) => {
-                        console.log(data.user);
-                        // Username.insertMany([data.user])
-                        //     .then((result) => {
-                        //         // res.status(200).json({
-                        //         //     success: 'true',
-                        //         //     data: result
-                        //         // })
-                        //     })
-                        //     .catch((err) => {
-                        //         console.log(err)
-                        //     })
-                        // res.json('Fetching')
+                        Username.insertMany([data.user])
+                            .then((result) => {
+                                // res.status(200).json({
+                                //     success: 'true',
+                                //     data: result
+                                // })
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
                     })
                 )
             })
+            res.json('Fetching')
         })
         .catch((err) => {
             console.log(err)

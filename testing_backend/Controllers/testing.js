@@ -6,6 +6,8 @@ const InfluencersData = require('../Models/influencer_details');
 const UserInfo = require('../Models/user_info');
 const Testing = require('../Models/testing')
 const axios = require('axios');
+const proxyArray = require('../utils/proxiesArray');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 const URLENCODED_HEADER = {
     'Accept': 'application/json',
@@ -19,6 +21,8 @@ const TAG_API_HEADER = {
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
 }
+
+const random_number = Math.floor(Math.random() * 10);
 
 exports.hashtag = (req, res, next) => {
     let max_id = '';
@@ -110,13 +114,14 @@ exports.hashtag = (req, res, next) => {
 // }
 
 exports.userID = (req, res, next) => {
-    let { ownerID } = req.query;
-    let filter = {};
-    if (ownerID != null) {
-        filter.ownerID = ownerID;
-    }
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
+    // let { ownerID } = req.query;
+    // let filter = {};
+    // if (ownerID != null) {
+    //     filter.ownerID = ownerID;
+    // }
     let arr = [];
-    User.find(filter)
+    User.find({})
         .then((response) => {
             response.forEach((item) => {
                 arr.push(item.ownerID)
@@ -125,22 +130,25 @@ exports.userID = (req, res, next) => {
                 const url = `https://i.instagram.com/api/v1/users/${item}/info/`;
                 fetch(url, {
                     method: 'GET',
+                    agent: proxyAgent,
                     headers: URLENCODED_HEADER,
-                    // headers: TAG_API_HEADER,
                     mode: 'cors'
-                }).then((response) => response.json())
+                }).then((response) => response.json()
                     .then((data) => {
-                        Username.insertMany([data.user])
-                            .then((result) => {
-                                res.status(200).json({
-                                    success: 'true',
-                                    data: result
-                                })
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
-                    });
+                        console.log(data.user);
+                        // Username.insertMany([data.user])
+                        //     .then((result) => {
+                        //         // res.status(200).json({
+                        //         //     success: 'true',
+                        //         //     data: result
+                        //         // })
+                        //     })
+                        //     .catch((err) => {
+                        //         console.log(err)
+                        //     })
+                        // res.json('Fetching')
+                    })
+                )
             })
         })
         .catch((err) => {

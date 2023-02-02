@@ -161,6 +161,9 @@ let influencersDataSchema = new Schema(
         },
         gender: {
             type: String,
+        },
+        final_city: {
+            type: String,
         }
     },
     {

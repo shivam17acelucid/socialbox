@@ -114,7 +114,8 @@ exports.updateCreatorsDetails = (req, res) => {
                                 data.gender = elm.gender,
                                 data.contact = elm.contact,
                                 data.final_email = elm.email,
-                                data.dob = elm.dob
+                                data.dob = elm.dob,
+                                data.final_city = elm.city
                             data.save()
                         }
 

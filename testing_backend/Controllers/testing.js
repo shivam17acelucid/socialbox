@@ -805,7 +805,7 @@ exports.getFilteredResults = (req, res) => {
         InfluencersData.find(filter)
             .limit(limit)
             .skip(skip)
-            .select({ username: 1, _id: 0, edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, city_name: 1, category_enum: 1, costFactorPosts: 1, costFactorReel: 1, costFactorStories: 1, costFactorVideo: 1, costFactorIgtv: 1, costFactorSwipeUp: 1, full_name: 1, profile_pic_url_hd: 1, is_verified: 1 })
+            .select({ username: 1, _id: 0, edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, city_name: 1, category_enum: 1, costFactorPosts: 1, costFactorReel: 1, costFactorStories: 1, costFactorVideo: 1, costFactorIgtv: 1, costFactorSwipeUp: 1, full_name: 1, profile_pic_url_hd: 1, is_verified: 1, final_category: 1, final_city: 1 })
             .then((result) => {
                 flag.push(result)
                 if (flag[0].length > 0) {
@@ -819,7 +819,7 @@ exports.getFilteredResults = (req, res) => {
                         InfluencersData.find()
                             .limit(limit)
                             .skip(skip)
-                            .select({ username: 1, _id: 0, edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, city_name: 1, category_enum: 1, costFactorPosts: 1, costFactorReel: 1, costFactorStories: 1, costFactorVideo: 1, costFactorIgtv: 1, costFactorSwipeUp: 1, full_name: 1, profile_pic_url_hd: 1, is_verified: 1 })
+                            .select({ username: 1, _id: 0, edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, 'edge_felix_video_timeline.edges.averageReelView': 1, 'edge_felix_video_timeline.edges.totalReelView': 1, city_name: 1, category_enum: 1, costFactorPosts: 1, costFactorReel: 1, costFactorStories: 1, costFactorVideo: 1, costFactorIgtv: 1, costFactorSwipeUp: 1, full_name: 1, profile_pic_url_hd: 1, is_verified: 1, final_category: 1, final_city: 1 })
                             .then((result) => {
                                 const currentPage = Math.ceil(skip / limit) + 1;
                                 res.json({ result, totalPages, currentPage, totalDataLength })

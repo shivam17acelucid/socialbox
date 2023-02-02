@@ -1355,8 +1355,7 @@ const InfluencersList = () => {
                                                         <TableCell className="table_body_value" align="center">
                                                             {NFormatter(data.edge_felix_video_timeline['edges'][0]?.averageReelView)}
                                                         </TableCell>
-                                                        <TableCell className="table_body_value" align="center">{data?.city_name}</TableCell>
-                                                        {/* <TableCell className="table_body_value" align="center">{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell> */}
+                                                        <TableCell className="table_body_value" align="center">{data.city_name ? data?.city_name : data?.final_city}</TableCell>
                                                         <TableCell className="table_body_value" align="center">{data.category_enum !== null ? data.category_enum.split('_') : data?.final_category}</TableCell>
                                                         <TableCell className="table_body_value" key={index}>
                                                             <div className="btn_display">

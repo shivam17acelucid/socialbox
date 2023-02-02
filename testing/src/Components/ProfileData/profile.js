@@ -89,14 +89,23 @@ const ProfileData = () => {
                                             <div className="profile_username">
                                                 @{data.username}
                                             </div>
-                                            <div className="profile_user_location">
-                                                {data.city_name}
-                                            </div>
+                                            {
+                                                data.city_name ?
+                                                    <div className="profile_user_location">
+                                                        {data.city_name}
+                                                    </div>
+                                                    :
+                                                    <div className="profile_user_location">
+                                                        {data.final_city}
+                                                    </div>}
                                             {
                                                 data.category_enum ?
                                                     <div className="profile_category">
                                                         {data.category_enum}
-                                                    </div> : null
+                                                    </div> :
+                                                    <div className="profile_category">
+                                                        {data.final_category}
+                                                    </div>
                                             }
                                             <div>
                                                 <Button onClick={handleAddList} className='add_list_btn'><MdAdd />Add To My List</Button>

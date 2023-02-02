@@ -24,7 +24,7 @@ const ProfileData = () => {
     const userId = localStorage.getItem('id')
 
     const fetchProfiles = () => {
-        const url = `http://13.234.29.72:4000/getProfileOfInfluencer?inputField=${profilename}`;
+        const url = `http://65.0.110.147:4000/getProfileOfInfluencer?inputField=${profilename}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -40,7 +40,7 @@ const ProfileData = () => {
     const handleAddList = () => {
         const data = addToListClicked ? false : true;
         setAddToListClicked(data);
-        const url = `http://13.234.29.72:4000/getListData/${userId}`
+        const url = `http://65.0.110.147:4000/getListData/${userId}`
         fetch(url)
             .then((data) => {
                 data.json()
@@ -51,7 +51,7 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://13.234.29.72:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
+        const url = `http://65.0.110.147:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })

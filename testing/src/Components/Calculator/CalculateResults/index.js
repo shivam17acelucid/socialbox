@@ -37,7 +37,7 @@ function CalculateTotal() {
     const params = useParams();
 
     const handleSubmitQuery = () => {
-        const url = 'http://13.234.29.72:4000/submitQuery';
+        const url = 'http://65.0.110.147:4000/submitQuery';
         fetch((url), {
             method: "POST",
             headers: {
@@ -79,7 +79,7 @@ function CalculateTotal() {
     const fetchBasicRates = () => {
         if (params.budget.includes('budget')) {
             let budget = params.budget.substring(params.budget.indexOf('=') + 1)
-            let url = `http://13.234.29.72:4000/calculateBudget?followersRange=${followersRange}&budget=${budget}`;
+            let url = `http://65.0.110.147:4000/calculateBudget?followersRange=${followersRange}&budget=${budget}`;
             fetch(url)
                 .then((res) => {
                     res.json()
@@ -91,7 +91,7 @@ function CalculateTotal() {
         }
         else if (params.budget.includes('creators')) {
             let creators = params.budget.substring(params.budget.indexOf('=') + 1);
-            let url = `http://13.234.29.72:4000/calculateBudget?followersRange=${followersRange}&creatorsCount=${creators}`;
+            let url = `http://65.0.110.147:4000/calculateBudget?followersRange=${followersRange}&creatorsCount=${creators}`;
             fetch(url)
                 .then((res) => {
                     res.json()

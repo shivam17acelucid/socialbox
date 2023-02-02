@@ -513,7 +513,7 @@ const InfluencersList = () => {
     }
 
     const getListData = () => {
-        const url = `http://13.234.29.72:4000/getListData/${userId}`;
+        const url = `http://65.0.110.147:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -524,7 +524,7 @@ const InfluencersList = () => {
     }
 
     const handleDownloadData = () => {
-        const url = `http://13.234.29.72:4000/downloadcsv?inputField=${inputField}`;
+        const url = `http://65.0.110.147:4000/downloadcsv?inputField=${inputField}`;
         fetch((url), {
             headers: {
                 'Content-type': 'text/csv; charset=UTF-8',
@@ -569,7 +569,7 @@ const InfluencersList = () => {
                 if (eRange.includes('eRange')) {
                     str = eRange.split('=');
                     splitArray = str[1].split('&');
-                    const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                    const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                     fetch(url)
                         .then((data) => {
                             data.json()
@@ -586,7 +586,7 @@ const InfluencersList = () => {
                 if (eRange.includes('followerRange')) {
                     follString = eRange.split('=')
                     splitFollArray = follString[1].split('&')
-                    const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                    const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                     fetch(url)
                         .then((data) => {
                             data.json()
@@ -606,7 +606,7 @@ const InfluencersList = () => {
                 splitArray = str[1].split('&');
                 follString = followerRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -621,7 +621,7 @@ const InfluencersList = () => {
                     })
             }
             if (!eRange && !followerRange) {
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+                const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -640,7 +640,7 @@ const InfluencersList = () => {
             if (eRange.includes('eRange')) {
                 str = eRange.split('=');
                 splitArray = str[1].split('&');
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -657,7 +657,7 @@ const InfluencersList = () => {
             if (eRange.includes('followerRange')) {
                 follString = eRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -677,7 +677,7 @@ const InfluencersList = () => {
             splitArray = str[1].split('&');
             follString = followerRange.split('=')
             splitFollArray = follString[1].split('&')
-            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -692,7 +692,7 @@ const InfluencersList = () => {
                 })
         }
         if (!eRange && !followerRange) {
-            const url = `http://13.234.29.72:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+            const url = `http://65.0.110.147:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -818,7 +818,7 @@ const InfluencersList = () => {
 
 
     const handleCreateList = (listName) => {
-        const url = `http://13.234.29.72:4000/createList/${userId}`
+        const url = `http://65.0.110.147:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName }),
@@ -841,7 +841,7 @@ const InfluencersList = () => {
 
     const handleListClick = (item) => {
         setListClicked(true);
-        const url = `http://13.234.29.72:4000/showInfluencersList/${userId}?list=${item.listName}`
+        const url = `http://65.0.110.147:4000/showInfluencersList/${userId}?list=${item.listName}`
         fetch((url))
             .then((data) => data.json())
             .then((response) => {
@@ -850,7 +850,7 @@ const InfluencersList = () => {
     }
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://13.234.29.72:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
+        const url = `http://65.0.110.147:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -877,7 +877,7 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            let url = `http://65.0.110.147:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -987,7 +987,7 @@ const InfluencersList = () => {
             string = result.substring(1);
         })
         navigate(`/CompareInfluencers/${string}`)
-        // const url = `http://13.234.29.72:4000/compareInfluencers?${string}`;
+        // const url = `http://65.0.110.147:4000/compareInfluencers?${string}`;
         // fetch(url)
         //     .then((res) => {
         //         res.json()
@@ -1001,7 +1001,7 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setInputValue(query);
         if (query.length > 1) {
-            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            let url = `http://65.0.110.147:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()

@@ -29,7 +29,7 @@ function MyLists() {
     const navigate = useNavigate();
 
     const handleCreateList = (listName, description, reel, post, story, igtv, swipeup, video) => {
-        const url = `http://13.234.29.72:4000/createList/${userId}`
+        const url = `http://65.0.110.147:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeup, video }),
@@ -54,7 +54,7 @@ function MyLists() {
     }
 
     const handleDeleteList = (item) => {
-        const url = `http://13.234.29.72:4000/deleteList/${userId}?listName=${item.listName}`;
+        const url = `http://65.0.110.147:4000/deleteList/${userId}?listName=${item.listName}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -68,7 +68,7 @@ function MyLists() {
 
 
     const getListData = () => {
-        const url = `http://13.234.29.72:4000/getListData/${userId}`;
+        const url = `http://65.0.110.147:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()

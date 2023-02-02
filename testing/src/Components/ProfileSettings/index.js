@@ -35,7 +35,7 @@ function ProfileSettings() {
     }
 
     const fetchUserDetails = () => {
-        const url = `http://13.234.29.72:4000/getUserDetails/${userId}`;
+        const url = `http://65.0.110.147:4000/getUserDetails/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -47,7 +47,7 @@ function ProfileSettings() {
     }
 
     const handleUpdateProfile = () => {
-        const url = `http://13.234.29.72:4000/editProfile/${userId}`;
+        const url = `http://65.0.110.147:4000/editProfile/${userId}`;
         fetch((url), {
             method: 'PUT',
             headers: {

@@ -60,7 +60,7 @@ function UserLists() {
     }
 
     const handleRestore = (data) => {
-        const url = `http://13.234.29.72:4000/addInfluencersToList/${userId}?list=${listname}&username=${data.username}`
+        const url = `http://65.0.110.147:4000/addInfluencersToList/${userId}?list=${listname}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -76,7 +76,7 @@ function UserLists() {
 
 
     const handleListClick = () => {
-        const url = `http://13.234.29.72:4000/showInfluencersList/${userId}?list=${listname}`
+        const url = `http://65.0.110.147:4000/showInfluencersList/${userId}?list=${listname}`
         fetch((url))
             .then((data) => data.json())
             .then((response) => {
@@ -85,7 +85,7 @@ function UserLists() {
     }
 
     const handleDeleteList = (data) => {
-        const url = `http://13.234.29.72:4000/deleteInfluencersFromList/${userId}`
+        const url = `http://65.0.110.147:4000/deleteInfluencersFromList/${userId}`
         fetch((url), {
             method: 'PUT',
             body: JSON.stringify({ listname, username: data.username }),
@@ -103,7 +103,7 @@ function UserLists() {
 
     const handleUpdateDeliverables = (reel, post, story, igtv, listName, swipeup, video) => {
         let newListName = listName;
-        const url = `http://13.234.29.72:4000/editDeliverables/${userId}?listName=${listname}`
+        const url = `http://65.0.110.147:4000/editDeliverables/${userId}?listName=${listname}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ reel, post, story, igtv, swipeup, video, description, newListName }),
@@ -129,7 +129,7 @@ function UserLists() {
         navigate(`/basketInfluencers/${item.categoryName}`);
     }
     const fetchBasketsName = () => {
-        const url = `http://13.234.29.72:4000/showCategorizedBasket`;
+        const url = `http://65.0.110.147:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => res.json())
             .then((response) => {
@@ -138,7 +138,7 @@ function UserLists() {
     }
 
     const handleClearAllDeletedInfluencers = () => {
-        const url = `http://13.234.29.72:4000/clearDeletedInfluencersFromList/${userId}?listName=${listname}`;
+        const url = `http://65.0.110.147:4000/clearDeletedInfluencersFromList/${userId}?listName=${listname}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -493,7 +493,7 @@ function UserLists() {
                                                         {basketData.map((item) =>
                                                             <div className='bundle_box row no-gutters'>
                                                                 <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
-                                                                    <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                                    <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="influencers_image" />
                                                                 </div>
                                                                 <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
                                                                     <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>

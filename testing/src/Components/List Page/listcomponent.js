@@ -99,7 +99,7 @@ function Lists() {
     }
 
     const fetchBasketsName = () => {
-        const url = `http://13.234.29.72:4000/showCategorizedBasket`;
+        const url = `http://65.0.110.147:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => res.json())
             .then((response) => {
@@ -112,7 +112,7 @@ function Lists() {
     }
 
     const handleCreateList = (listName, description, reel, post, story, igtv, swipeUpStory, video) => {
-        const url = `http://13.234.29.72:4000/createList/${userId}`
+        const url = `http://65.0.110.147:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeUpStory, video }),
@@ -138,7 +138,7 @@ function Lists() {
     }
 
     const handleDeleteList = (item) => {
-        const url = `http://13.234.29.72:4000/deleteList/${userId}?listName=${item.listName}`;
+        const url = `http://65.0.110.147:4000/deleteList/${userId}?listName=${item.listName}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -152,7 +152,7 @@ function Lists() {
 
 
     const getListData = () => {
-        const url = `http://13.234.29.72:4000/getListData/${userId}`;
+        const url = `http://65.0.110.147:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -179,7 +179,7 @@ function Lists() {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 2) {
-            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            let url = `http://65.0.110.147:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -799,7 +799,7 @@ function Lists() {
                                                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
                                                         <div className='influencers_basket_box row'>
                                                             <div className='influencers_image col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5'>
-                                                                <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                                <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="influencers_image" />
                                                             </div>
                                                             <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
                                                                 <div className='influencers_category_header'>
@@ -821,7 +821,7 @@ function Lists() {
                                                         <div className='influencers_basket_box row'>
                                                             <div className='col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 pl-0 pr-0'>
                                                                 <div className='influencers_image' >
-                                                                    <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                                    <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="influencers_image" />
                                                                 </div>
                                                             </div>
                                                             <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>

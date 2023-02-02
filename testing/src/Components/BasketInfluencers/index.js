@@ -71,7 +71,7 @@ function BasketInfluencers() {
     let autoSuggestedArray = [];
 
     const fetchInfluencers = () => {
-        const url = `http://13.234.29.72:4000/showBasketInfluencers?categoryName=${categoryName}`;
+        const url = `http://65.0.110.147:4000/showBasketInfluencers?categoryName=${categoryName}`;
         fetch(url)
             .then((res) => res.json())
             .then((result) => {
@@ -80,7 +80,7 @@ function BasketInfluencers() {
     }
 
     const getListData = () => {
-        const url = `http://13.234.29.72:4000/getListData/${userId}`;
+        const url = `http://65.0.110.147:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -109,7 +109,7 @@ function BasketInfluencers() {
     const handleErFilterClicked = () => setIsFilterErClicked(value => !value);
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://13.234.29.72:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
+        const url = `http://65.0.110.147:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -123,7 +123,7 @@ function BasketInfluencers() {
     const filterByFollowersRange = () => {
         setFilterFollowerClicked(true);
         setIsFilterFollowerClicked(false);
-        const url = `http://13.234.29.72:4000/followersfilteredBasketData?minFollowers=${minRange}&maxFollowers=${maxRange}&listName=${categoryName}`;
+        const url = `http://65.0.110.147:4000/followersfilteredBasketData?minFollowers=${minRange}&maxFollowers=${maxRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -139,7 +139,7 @@ function BasketInfluencers() {
     const filterCategory = () => {
         setFilterCategoryClicked(true)
         setIsFilterCategoryClicked(false);
-        const url = `http://13.234.29.72:4000/filtered_basket_list?listName=${categoryName}&category=${category}`;
+        const url = `http://65.0.110.147:4000/filtered_basket_list?listName=${categoryName}&category=${category}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -155,7 +155,7 @@ function BasketInfluencers() {
     const filterByErRange = () => {
         setFilterErClicked(true);
         setIsFilterErClicked(false);
-        const url = `http://13.234.29.72:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
+        const url = `http://65.0.110.147:4000/erfilteredBasketData?minEr=${minErRange}&maxEr=${maxErRange}&listName=${categoryName}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -169,7 +169,7 @@ function BasketInfluencers() {
     }
 
     const fetchBasketsName = () => {
-        const url = `http://13.234.29.72:4000/showCategorizedBasket`;
+        const url = `http://65.0.110.147:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => res.json())
             .then((response) => {
@@ -253,7 +253,7 @@ function BasketInfluencers() {
     }
 
     const fetchAllData = () => {
-        const url = `http://13.234.29.72:4000/getrelatedinfluencers?inputField`;
+        const url = `http://65.0.110.147:4000/getrelatedinfluencers?inputField`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -562,7 +562,7 @@ function BasketInfluencers() {
                                                 basketData.map((item) =>
                                                     <div className='bundle_box row no-gutters'>
                                                         <div className='col-lg-5 col-md-5 col-sm-12 col-xs-12 col-12' style={{ overflow: 'hidden' }}>
-                                                            <img src={`http://13.234.29.72:4000/uploads/${item.image}`} className="influencers_image" />
+                                                            <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="influencers_image" />
                                                         </div>
                                                         <div className='bundle_desc col-lg-7 col-md-7 col-sm-12 col-xs-12 col-12'>
                                                             <div className='bundle_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 pl-0 pr-0'>Top {item.basketInfluencersCount} {item.categoryName} Influencers</div>

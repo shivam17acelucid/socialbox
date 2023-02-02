@@ -95,17 +95,24 @@ const ProfileData = () => {
                                                         {data.city_name}
                                                     </div>
                                                     :
-                                                    <div className="profile_user_location">
-                                                        {data.final_city}
-                                                    </div>}
+                                                    data.final_city ?
+                                                        <div className="profile_user_location">
+                                                            {data.final_city}
+                                                        </div>
+                                                        :
+                                                        null
+                                            }
                                             {
                                                 data.category_enum ?
                                                     <div className="profile_category">
                                                         {data.category_enum}
                                                     </div> :
-                                                    <div className="profile_category">
-                                                        {data.final_category}
-                                                    </div>
+                                                    data.final_category ?
+                                                        <div className="profile_category">
+                                                            {data.final_category}
+                                                        </div>
+                                                        :
+                                                        null
                                             }
                                             <div>
                                                 <Button onClick={handleAddList} className='add_list_btn'><MdAdd />Add To My List</Button>

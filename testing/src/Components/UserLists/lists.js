@@ -101,27 +101,53 @@ function UserLists() {
             })
     }
 
-    const handleUpdateDeliverables = (reel, post, story, igtv, listName, swipeup, video) => {
-        let newListName = listName;
-        const url = `http://65.0.110.147:4000/editDeliverables/${userId}?listName=${listname}`
-        fetch((url), {
-            method: 'POST',
-            body: JSON.stringify({ reel, post, story, igtv, swipeup, video, description, newListName }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        })
-            .then((res) => {
-                setIsDeliverablesEdited(true)
-                handleEditDeliverables();
-                navigate(`/userLists/${newListName}`)
-                // setListName('');
-                setDescription('');
-                setReel(reel);
-                setPost(post);
-                setStory(story);
-                setIgtv(igtv);
+    const handleUpdateDeliverables = (reel, post, story, igtv, swipeup, video) => {
+        if (listName !== '') {
+            let newListName = listName;
+            const url = `http://65.0.110.147:4000/editDeliverables/${userId}?listName=${listname}`
+            fetch((url), {
+                method: 'POST',
+                body: JSON.stringify({ reel, post, story, igtv, swipeup, video, description, newListName }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
             })
+                .then((res) => {
+                    setIsDeliverablesEdited(true)
+                    handleEditDeliverables();
+                    navigate(`/userLists/${newListName}`)
+                    setDescription('');
+                    setReel(reel);
+                    setPost(post);
+                    setStory(story);
+                    setIgtv(igtv);
+                    setSwipeup(swipeup);
+                    setVideo(video);
+                })
+        }
+        else if (listName === '') {
+            let newListName = listname;
+            const url = `http://65.0.110.147:4000/editDeliverables/${userId}?listName=${listname}`
+            fetch((url), {
+                method: 'POST',
+                body: JSON.stringify({ reel, post, story, igtv, swipeup, video, description, newListName }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            })
+                .then((res) => {
+                    setIsDeliverablesEdited(true)
+                    handleEditDeliverables();
+                    navigate(`/userLists/${newListName}`)
+                    setDescription('');
+                    setReel(reel);
+                    setPost(post);
+                    setStory(story);
+                    setIgtv(igtv);
+                    setSwipeup(swipeup);
+                    setVideo(video);
+                })
+        }
     }
 
     const handleRedirectToBasket = (item) => {
@@ -168,7 +194,6 @@ function UserLists() {
     }, [isDataDeleted, userRestored, allDeletedInfluencersCleared]);
 
     useEffect(() => {
-        listname = listName;
         handleListClick();
     }, [isDeliverablesEdited]);
 
@@ -306,7 +331,7 @@ function UserLists() {
                                                                 </div>
                                                             </div>
                                                             <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                                                <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, listName, swipeup, video) }} className="update_btn">Update</Button>
+                                                                <Button onClick={() => { handleUpdateDeliverables(reel, post, story, igtv, swipeup, video) }} className="update_btn">Update</Button>
                                                                 <Button onClick={handleEditDeliverables} className='cancel_btn'>Cancel</Button>
                                                             </div>
                                                         </div>

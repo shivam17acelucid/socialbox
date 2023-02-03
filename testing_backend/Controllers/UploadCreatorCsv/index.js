@@ -147,22 +147,22 @@ exports.testingproxies = (req, res) => {
         .then((response) => response.json())
         .then((data) => {
             if (data.data.user) {
-                uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${item.username}/${item.username}_profile_image.png`, 'socialbox-bckt', item)
+                uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                     .then((data) => {
                         console.log("File saved!")
                     })
                     .catch((error) => console.log(error));
-                uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${item.username}/${item.username}_recent_image.png`, 'socialbox-bckt', item)
+                uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
                     .then((data) => {
                         console.log("File saved!")
                     })
                     .catch((error) => console.log(error));
-                uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${item.username}/${item.username}_recent_image.png`, 'socialbox-bckt', item)
+                uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
                     .then((data) => {
                         console.log("File saved!")
                     })
                     .catch((error) => console.log(error));
-                uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${item.username}/${item.username}_recent_image.png`, 'socialbox-bckt', item)
+                uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
                     .then((data) => {
                         console.log("File saved!")
                     })

@@ -137,16 +137,18 @@ exports.userID = (req, res, next) => {
                     mode: 'cors'
                 }).then((response) => response.json()
                     .then((data) => {
-                        Username.insertMany([data.user])
-                            .then((result) => {
-                                // res.status(200).json({
-                                //     success: 'true',
-                                //     data: result
-                                // })
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
+                        if (data.user) {
+                            Username.insertMany([data.user])
+                                .then((result) => {
+                                    // res.status(200).json({
+                                    //     success: 'true',
+                                    //     data: result
+                                    // })
+                                })
+                                .catch((err) => {
+                                    console.log(err)
+                                })
+                        }
                     })
                 )
             })

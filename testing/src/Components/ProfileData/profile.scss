@@ -14,6 +14,7 @@ html {
         height: 100vh;
         margin: 0;
         background-color: #FFF;
+        padding-bottom: 2rem;
 
         .profile_header {
             padding: 2rem;
@@ -23,6 +24,7 @@ html {
             .profile_pic {
                 .profile_image {
                     width: 100%;
+                    border-radius: 50%;
                 }
 
                 // width: 5rem;
@@ -32,6 +34,7 @@ html {
                 @media (max-width: 500px) {
                     padding-top: 1rem;
                 }
+
                 // margin-left: 15rem;
                 padding-left: 1rem;
 
@@ -247,7 +250,8 @@ html {
                 display: flex;
 
                 .recent_post_preview {
-                    height: 10rem;
+                    height: 8rem;
+                    border-radius: 50%;
                 }
 
                 .like_comment_view_box {

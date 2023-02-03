@@ -79,7 +79,7 @@ const ProfileData = () => {
                                 <div className="profile_header col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
                                     <div className="row no-gutters">
                                         <div className="profile_pic col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
-                                            <img crossOrigin="anonymous" src={data.profile_pic_url_hd} className='profile_image' />
+                                            <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_profile_image.png`} className='profile_image' />
                                             {/* <img src={Testing} className='profile_image' /> */}
                                         </div>
                                         <div className="profile_basic_info col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
@@ -177,8 +177,7 @@ const ProfileData = () => {
                                 <div className="profile_posts col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12">
                                     <div className="recent_posts_title">Recent Posts</div>
                                     <div className="image1">
-                                        <img src={Testing} className="recent_post_preview" />
-                                        {/* <img src={data.edge_owner_to_timeline_media.edges[1].node.display_url} /> */}
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_recent_image_1.png`} className="recent_post_preview" />
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
                                                 <img src={LikeIcon} />
@@ -195,8 +194,8 @@ const ProfileData = () => {
                                         </div>
                                     </div>
                                     <div className="image1">
-                                        <img src={Testing} className="recent_post_preview" />
-                                        {/* <img src={data.edge_owner_to_timeline_media.edges[2].node.display_url} /> */}
+                                        {/* <img src={Testing} className="recent_post_preview" /> */}
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_recent_image_2.png`} className="recent_post_preview" />
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
                                                 <img src={LikeIcon} />
@@ -213,8 +212,8 @@ const ProfileData = () => {
                                         </div>
                                     </div>
                                     <div className="image1">
-                                        <img src={Testing} className="recent_post_preview" />
-                                        {/* <img src={data.edge_owner_to_timeline_media.edges[3].node.display_url} /> */}
+                                        {/* <img src={Testing} className="recent_post_preview" /> */}
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_recent_image_3.png`} className="recent_post_preview" />
                                         <div className="like_comment_view_box">
                                             <div className="value_box">
                                                 <img src={LikeIcon} />

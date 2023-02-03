@@ -198,14 +198,19 @@ function CompareInfluencers() {
                                 </div>
                                 <div className='profile_name' onClick={() => { redirectToProfile(item) }}>{item.full_name}</div>
                                 <div className='profile_username'>@{item.username}</div>
-                                <div className='profile_location'>{item.city_name}</div>
+                                <div className='profile_location'>{item.city_name ? item.city_name : item.final_city}</div>
                                 {
                                     item.category_enum ?
-
                                         <div style={{ padding: '0.75rem' }}>
                                             <div className='profile_category'>{item.category_enum}</div>
                                         </div>
-                                        : null
+                                        :
+                                        item.final_category ?
+                                            <div style={{ padding: '0.75rem' }}>
+                                                <div className='profile_category'>{item.final_category}</div>
+                                            </div>
+                                            :
+                                            null
                                 }
                                 <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
                                 <div className='like_comment_box'>

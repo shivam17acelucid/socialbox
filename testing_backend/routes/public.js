@@ -14,6 +14,7 @@ const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, 
 const { editProfile } = require('../Controllers/updateProfile');
 const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
 const { uploadcreatorcsv, uploadData, updateCreatorsDetails, testingproxies } = require('../Controllers/UploadCreatorCsv/index');
+const { getImageUrls } = require('../Controllers/Image/index')
 
 
 router.post("/signup", signup);
@@ -74,5 +75,6 @@ router.get('/getProfileOfInfluencer', getProfileOfInfluencer)
 router.post('/uploadcreatorcsv', uploadData, uploadcreatorcsv);
 router.put('/updateCreatorsDetails', uploadData, updateCreatorsDetails)
 router.put('/clearDeletedInfluencersFromList/:id', clearDeletedInfluencersFromList);
-router.post('/testingproxies', testingproxies)
+router.post('/testingproxies', testingproxies);
+router.get('/getImageUrls', getImageUrls);
 module.exports = router;

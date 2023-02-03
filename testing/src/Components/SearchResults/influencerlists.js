@@ -1414,10 +1414,10 @@ const InfluencersList = () => {
                                                                                 <div className='cost_box'>
                                                                                     <div>Videos</div>
                                                                                     {
-                                                                                        data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
-                                                                                            <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.minTotalCost)} - Rs{NFormatter(data.costFactorVideo.maxTotalCost)}</div>
+                                                                                        data.costFactorVideo?.minTotalCost || data?.costFactorVideo?.minTotalCost ?
+                                                                                            <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.minTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.maxTotalCost)}</div>
                                                                                             :
-                                                                                            <div className='cost_value'>: Rs{NFormatter(data.costFactorVideo.influencerExactminTotalCost)} - Rs{NFormatter(data.costFactorVideo.influencerExactmaxTotalCost)}</div>
+                                                                                            <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.influencerExactmaxTotalCost)}</div>
                                                                                     }
                                                                                 </div>
                                                                                 <div className='modal_footer'>

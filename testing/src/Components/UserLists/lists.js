@@ -360,56 +360,56 @@ function UserLists() {
                                                     {item.item.influencersData.map((data, index) =>
                                                         < TableRow key={index} >
                                                             <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_head_value' >
-                                                                <div>{data.full_name}</div>
+                                                                <div>{data?.full_name}</div>
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
                                                             <TableCell align="center" className='table_head_value'>
-                                                                {NFormatter(data.edge_followed_by.count)}
+                                                                {NFormatter(data?.edge_followed_by.count)}
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>
-                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].er)}
+                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.er)}
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>
-                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}
+                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_likes)}
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>
-                                                                {NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}
+                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_comment)}
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>
-                                                                {NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}
+                                                                {NFormatter(data?.edge_felix_video_timeline['edges'][0]?.averageReelView)}
                                                             </TableCell>
                                                             <TableCell align="center" className='table_head_value'>
                                                                 {
                                                                     NFormatter(
-                                                                        (data.costFactorReel.minTotalCost || data.costFactorReel.minTotalCost ?
-                                                                            (data.costFactorReel.minTotalCost * item.item.deliverables[0].reel)
+                                                                        (data?.costFactorReel?.minTotalCost || data?.costFactorReel?.minTotalCost ?
+                                                                            (data?.costFactorReel?.minTotalCost * item?.item?.deliverables[0]?.reel)
                                                                             :
-                                                                            (data.costFactorReel.influencerExactminTotalCost * item.item.deliverables[0].reel))
+                                                                            (data?.costFactorReel?.influencerExactminTotalCost * item?.item?.deliverables[0]?.reel))
                                                                         +
-                                                                        (data.costFactorPosts.minTotalCost || data.costFactorPosts.minTotalCost ?
-                                                                            (data.costFactorPosts.minTotalCost * item.item.deliverables[1].post)
+                                                                        (data?.costFactorPosts?.minTotalCost || data?.costFactorPosts?.minTotalCost ?
+                                                                            (data?.costFactorPosts?.minTotalCost * item?.item?.deliverables[1]?.post)
                                                                             :
-                                                                            (data.costFactorPosts.influencerExactminTotalCost * item.item.deliverables[1].post))
+                                                                            (data?.costFactorPosts?.influencerExactminTotalCost * item?.item?.deliverables[1]?.post))
                                                                         +
-                                                                        (data.costFactorStories.minTotalCost || data.costFactorStories.minTotalCost ?
-                                                                            (data.costFactorStories.minTotalCost * item.item.deliverables[2].story)
+                                                                        (data?.costFactorStories?.minTotalCost || data?.costFactorStories?.minTotalCost ?
+                                                                            (data?.costFactorStories?.minTotalCost * item?.item?.deliverables[2]?.story)
                                                                             :
-                                                                            (data.costFactorStories.influencerExactminTotalCost * item.item.deliverables[2].story))
+                                                                            (data?.costFactorStories?.influencerExactminTotalCost * item?.item?.deliverables[2]?.story))
                                                                         +
-                                                                        (data.costFactorIgtv.minTotalCost || data.costFactorIgtv.minTotalCost ?
-                                                                            (data.costFactorIgtv.minTotalCost * item.item.deliverables[3].igtv)
+                                                                        (data?.costFactorIgtv?.minTotalCost || data?.costFactorIgtv?.minTotalCost ?
+                                                                            (data?.costFactorIgtv?.minTotalCost * item?.item?.deliverables[3]?.igtv)
                                                                             :
-                                                                            (data.costFactorIgtv.influencerExactminTotalCost * item.item.deliverables[3].igtv))
+                                                                            (data?.costFactorIgtv?.influencerExactminTotalCost * item?.item?.deliverables[3]?.igtv))
                                                                         +
-                                                                        (data.costFactorSwipeUp.minTotalCost || data.costFactorSwipeUp.minTotalCost ?
-                                                                            (data.costFactorSwipeUp.minTotalCost * item.item.deliverables[4].swipeup)
+                                                                        (data?.costFactorSwipeUp?.minTotalCost || data?.costFactorSwipeUp?.minTotalCost ?
+                                                                            (data?.costFactorSwipeUp?.minTotalCost * item?.item?.deliverables[4]?.swipeup)
                                                                             :
-                                                                            (data.costFactorSwipeup.influencerExactminTotalCost * item.item.deliverables[4].swipeup))
+                                                                            (data?.costFactorSwipeup?.influencerExactminTotalCost * item?.item?.deliverables[4]?.swipeup))
                                                                         +
-                                                                        (data.costFactorVideo.minTotalCost || data.costFactorVideo.minTotalCost ?
-                                                                            (data.costFactorVideo.minTotalCost * item.item.deliverables[5].video)
+                                                                        (data?.costFactorVideo?.minTotalCost || data?.costFactorVideo?.minTotalCost ?
+                                                                            (data?.costFactorVideo?.minTotalCost * item?.item?.deliverables[5]?.video)
                                                                             :
-                                                                            (data.costFactorVideo.influencerExactminTotalCost * item.item.deliverables[5].video))
+                                                                            (data?.costFactorVideo?.influencerExactminTotalCost * item?.item?.deliverables[5]?.video))
                                                                     )
                                                                 }
                                                             </TableCell>

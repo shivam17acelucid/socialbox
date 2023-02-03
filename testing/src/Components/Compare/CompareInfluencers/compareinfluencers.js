@@ -193,7 +193,8 @@ function CompareInfluencers() {
                         comparedInfluencersData.map((item) =>
                             <div className='results'>
                                 <div className='profile_container'>
-                                    <img src={Testing} className='image' />
+                                    <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_profile_image.png`} className='image' />
+                                    {/* <img src={Testing} className='image' /> */}
                                 </div>
                                 <div className='profile_name' onClick={() => { redirectToProfile(item) }}>{item.full_name}</div>
                                 <div className='profile_username'>@{item.username}</div>
@@ -208,12 +209,12 @@ function CompareInfluencers() {
                                 }
                                 <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_likes)}</span></div>
-                                    <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].avg_comment)}</span></div>
+                                    <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span></div>
+                                    <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span></div>
                                 </div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[0].averageReelView)}</span></div>
-                                    <div className='profile_comment'><img src={ER} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[0].er)}</span></div>
+                                    <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span></div>
+                                    <div className='profile_comment'><img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span></div>
                                 </div>
                                 <div className='list_remove_pane'>
                                     <div onClick={() => { handleAddToListTable(item) }}>+Add to my List</div>
@@ -245,7 +246,7 @@ function CompareInfluencers() {
                                 <div className='recent_posts'>
                                     <div className='recent_posts_title'>Recent Posts</div>
                                     <div className='recent_post_box'>
-                                        <img src={Testing} />
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_1.png`} />
                                         <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
@@ -253,7 +254,7 @@ function CompareInfluencers() {
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
-                                        <img src={Testing} />
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_2.png`} />
                                         <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
@@ -261,7 +262,7 @@ function CompareInfluencers() {
                                         </div>
                                     </div>
                                     <div className='recent_post_box'>
-                                        <img src={Testing} />
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_3.png`} />
                                         <div style={{ paddingLeft: '0.5rem' }}>
                                             <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
                                             <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>

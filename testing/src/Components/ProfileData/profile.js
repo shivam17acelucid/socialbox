@@ -151,19 +151,19 @@ const ProfileData = () => {
                                                 <span className="labels">Posts</span>
                                             </div>
                                             <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
-                                                <div className="profile_result_value">{data.edge_owner_to_timeline_media['edges'][0].er} %</div>
+                                                <div className="profile_result_value">{data?.edge_owner_to_timeline_media['edges'][0]?.er} %</div>
                                                 <span className="labels">Engagement Rate</span>
                                             </div>
                                             <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
-                                                <div className="profile_result_value">{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_likes)}</div>
+                                                <div className="profile_result_value">{NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_likes)}</div>
                                                 <span className="labels">Average Likes</span>
                                             </div>
                                             <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
-                                                <div className="profile_result_value">{NFormatter(data.edge_owner_to_timeline_media['edges'][0].avg_comment)}</div>
+                                                <div className="profile_result_value">{NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_comment)}</div>
                                                 <span className="labels">Average Comment</span>
                                             </div>
                                             <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
-                                                <div className="profile_result_value">{NFormatter(data.edge_felix_video_timeline['edges'][0].averageReelView)}</div>
+                                                <div className="profile_result_value">{NFormatter(data?.edge_felix_video_timeline['edges'][0]?.averageReelView)}</div>
                                                 <span className="labels">Average Views</span>
                                             </div>
                                         </div>

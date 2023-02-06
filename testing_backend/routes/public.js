@@ -7,7 +7,7 @@ const { signup, login, logout, adminLogin } = require('../Controllers/Authentica
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
 const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
-const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos } = require('../Controllers/CostCalculator/index');
+const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos, getBasicRate } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../Controllers/rolehandler");
 const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
@@ -77,4 +77,5 @@ router.put('/updateCreatorsDetails', uploadData, updateCreatorsDetails)
 router.put('/clearDeletedInfluencersFromList/:id', clearDeletedInfluencersFromList);
 router.post('/testingproxies', testingproxies);
 router.get('/getImageUrls', getImageUrls);
+router.get('/getBasicRate', getBasicRate)
 module.exports = router;

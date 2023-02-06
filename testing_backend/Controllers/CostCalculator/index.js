@@ -1,4 +1,5 @@
 const InfluencersData = require('../../Models/influencer_details');
+const BasicCost = require('../../Models/basiccost');
 
 exports.setCalculateCostForReel = (req, res) => {
     let { minCostPer1kFollowersForReel,
@@ -24,6 +25,24 @@ exports.setCalculateCostForReel = (req, res) => {
     }
 
     let array = [];
+
+    BasicCost.findOne({ minCostPer1kFollowersForReel })
+        .then((data) => {
+            if (data) {
+                data.costFactorReel = costFactor
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorReel: costFactor,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
 
     InfluencersData.find()
         .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, costFactorReel: 1, })
@@ -73,6 +92,26 @@ exports.setCalculateCostForPosts = (req, res) => {
         costFactorPost.minCostPerCommentForPosts = minCostPerCommentForPosts;
         costFactorPost.maxCostperCommentForPosts = maxCostperCommentForPosts;
     }
+
+
+    BasicCost.findOne({ minCostPer1kFollowersForPosts })
+        .then((data) => {
+            if (data) {
+                data.costFactorPosts = costFactorPost
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorPosts: costFactorPost,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
+
 
     let array = [];
 
@@ -124,6 +163,24 @@ exports.setCalculateCostForIgtv = (req, res) => {
         costFactorIgtv.minCostPerCommentForIgtv = minCostPerCommentForIgtv;
         costFactorIgtv.maxCostperCommentForIgtv = maxCostperCommentForIgtv;
     }
+
+    BasicCost.findOne({ minCostPer1kFollowersForIgtv })
+        .then((data) => {
+            if (data) {
+                data.costFactorIgtv = costFactorIgtv
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorIgtv: costFactorIgtv,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
 
     let array = [];
 
@@ -178,6 +235,24 @@ exports.setCalculateCostForStories = (req, res) => {
 
     let array = [];
 
+    BasicCost.findOne({ minCostPer1kFollowersForStory })
+        .then((data) => {
+            if (data) {
+                data.costFactorStories = costFactorStories
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorStories: costFactorStories,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
+
     InfluencersData.find()
         .select({ edge_followed_by: 1, 'edge_owner_to_timeline_media.edges.avg_likes': 1, 'edge_owner_to_timeline_media.edges.avg_comment': 1, 'edge_owner_to_timeline_media.edges.er': 1, costFactorStories: 1, })
         .then((data) => {
@@ -227,6 +302,23 @@ exports.setCalculateCostForSwipeupStories = (req, res) => {
         costFactorSwipeUp.maxCostperCommentForSwipeUpStory = maxCostperCommentForSwipeUpStory;
     }
 
+    BasicCost.findOne({ minCostPer1kFollowersForSwipeUpStory })
+        .then((data) => {
+            if (data) {
+                data.costFactorSwipeUp = costFactorSwipeUp
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorSwipeUp: costFactorSwipeUp,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
     let array = [];
 
     InfluencersData.find()
@@ -277,6 +369,24 @@ exports.setCalculateCostForVideos = (req, res) => {
         costFactorVideo.minCostPerCommentForVideo = minCostPerCommentForVideo;
         costFactorVideo.maxCostperCommentForVideo = maxCostperCommentForVideo;
     }
+
+    BasicCost.findOne({ minCostPer1kFollowersForVideo })
+        .then((data) => {
+            if (data) {
+                data.costFactorVideo = costFactorVideo
+                data.save()
+                    .then((result) => {
+                    })
+            }
+            else {
+                const abc = new BasicCost({
+                    costFactorVideo: costFactorVideo,
+                })
+                abc.save()
+                    .then((result) => {
+                    })
+            }
+        })
 
     let array = [];
 
@@ -377,6 +487,13 @@ exports.setInfluencerCost = (req, res) => {
                 data.costFactorVideo = costFactorVideo
             }
             data.save();
+            res.json(data)
+        })
+}
+
+exports.getBasicRate = (req, res) => {
+    BasicCost.find({})
+        .then((data) => {
             res.json(data)
         })
 }

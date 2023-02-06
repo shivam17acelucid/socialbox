@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './sidebar.scss';
 import { Link } from 'react-router-dom';
 import { SidebarData } from "./sidebardata";
@@ -10,14 +10,33 @@ import logo from '../../Assets/Images/logo.png';
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
-    // const [expandCompare, setExpandCompare] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
 
-    const showSidebar = () => setSidebar(!sidebar);
-    // const showExpandedMenu = (item) => {
-    //     if (item.title === 'Compare') {
-    //         setExpandCompare(!expandCompare);
-    //     }
-    // }
+    const showSidebar = () => {
+        if (isMobile) {
+            setSidebar(true)
+        }
+        else if (!isMobile) {
+            setSidebar(false)
+        }
+    }
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+    useEffect(() => {
+        showSidebar()
+    }, [width])
+
+    const isMobile = width <= 700;
 
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
@@ -28,7 +47,7 @@ function Navbar() {
                             <FaIcons.FaBars onClick={showSidebar} />
                         </Link>
                     </div> */}
-                    <img src={logo} className='logo' />
+                    <img src={logo} className={isMobile ? 'logo_hide' : 'logo'} />
                     <ul className="nav-menu-items">
                         {
                             SidebarData.map((item, index) => {
@@ -43,26 +62,7 @@ function Navbar() {
                                                 <Link to={item.path}>
                                                     {item.icon}
                                                     <span
-                                                    // onClick={() => showExpandedMenu(item)}
                                                     >{item.title}</span>
-                                                    {/* {item.title === 'Compare' ? 
-                                                    <span onClick={() => showExpandedMenu(item)} className='sideicon'>{expandCompare === true ? <AiFillCaretDown /> : <AiFillCaretRight />}</span> : null} */}
-                                                    {/* {
-                                                    // expandCompare === true ?
-                                                    //     item.title === 'Compare' ?
-                                                            [item].map((data) =>
-                                                                data.children.map((result) =>
-                                                                    <Link to={result.path} className='nav-nested' >
-                                                                        <span 
-                                                                        // onClick={() => showExpandedMenu(item)}
-                                                                        >{result.title}</span>
-                                                                    </Link>
-                                                                )
-
-                                                            ) 
-                                                            // :
-                                                            // null : null
-                                                            } */}
                                                 </Link>
                                         }
 

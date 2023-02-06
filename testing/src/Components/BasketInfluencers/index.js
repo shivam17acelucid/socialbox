@@ -291,10 +291,10 @@ function BasketInfluencers() {
 
     return (
         <div className='basket_influencers_container row no-gutters'>
-            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-2'>
                 <Navbar />
             </div>
-            <div className='basket_influencers_container_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
+            <div className='basket_influencers_container_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-10'>
                 <TopBar />
                 <div className='row no-gutters'>
                     <div className='middle_pane_lists col-lg-9 col-md-8 col-sm-8 col-xs-8 col-8'>

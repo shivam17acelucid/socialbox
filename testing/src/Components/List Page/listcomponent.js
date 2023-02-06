@@ -610,10 +610,10 @@ function Lists() {
     return (
         <>
             <div className='list_container row no-gutters'>
-                <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+                <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-2'>
                     <Navbar />
                 </div>
-                <div className='lists_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9'>
+                <div className='lists_content col-lg-10 col-sm-10 col-md-10 col-xs-10 col-10'>
                     <div className='row no-gutters'>
                         <div className='col-lg-12 col-sm-12 col-md-12 col-xs-12 col-12 '>
                             <TopBar />

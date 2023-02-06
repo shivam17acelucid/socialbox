@@ -1063,10 +1063,10 @@ const InfluencersList = () => {
 
     return (
         <div className="search_container row no-gutters">
-            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-3'>
+            <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-2'>
                 <Navbar />
             </div>
-            <div className="search_content_list_panel col-lg-10 col-sm-10 col-md-10 col-xs-10 col-9">
+            <div className="search_content_list_panel col-lg-10 col-sm-10 col-md-10 col-xs-10 col-10">
                 <TopBar />
                 <div className="middle_pane row no-gutters">
                     <div className="input_box_influencer col-lg-10 col-md-10 col-sm-10 col-xs-10 col-10">

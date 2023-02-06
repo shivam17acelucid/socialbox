@@ -7,6 +7,7 @@ html {
 
 .profile_container_box {
     display: flex;
+    height: 100vh;
 
     .profile_container {
         display: flex;
@@ -253,6 +254,7 @@ html {
                     height: 8rem;
                     width: 8rem;
                     border-radius: 50%;
+                    object-fit: contain;
                 }
 
                 .like_comment_view_box {
@@ -344,3 +346,9 @@ html {
 //         max-width: 87.333333%;
 //     }
 // }
+.inline_loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

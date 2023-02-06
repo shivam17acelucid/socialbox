@@ -54,23 +54,24 @@ function Signup() {
                 <div className="signup_form row">
                     <div className="signup_header col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Sign up</div>
                     <div className="signup_title col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Let's Get Started with your free trial</div>
-                    <div className="input_boxes">
-                        <Input className="registeration_fields" placeholder="Name" value={name} onChange={(e) => { setName(e.target.value) }} />
-                        <Input className="registeration_fields" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                        <Input className="registeration_fields" placeholder="Mobile (optional)" value={mobile} onChange={(e) => { setMobile(e.target.value) }} />
-                        <Input className="registeration_fields" placeholder="Company (optional)" value={company} onChange={(e) => { setCompany(e.target.value) }} />
-                        <Input className="registeration_fields" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                        <Input className="registeration_fields" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
-                        <Button onClick={handleSignup} className='signup_btn'>Sign up</Button>
-                    </div>
+
                 </div>
-                <div className="login_link">
+                <div className="input_boxes row no-gutters">
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Name" value={name} onChange={(e) => { setName(e.target.value) }} />
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Mobile (optional)" value={mobile} onChange={(e) => { setMobile(e.target.value) }} />
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Company (optional)" value={company} onChange={(e) => { setCompany(e.target.value) }} />
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                    <Button onClick={handleSignup} className='signup_btn'>Sign up</Button>
+                </div>
+                <div className="login_link col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     Already have an Account? <span onClick={handleLogin} style={{ cursor: 'pointer' }}>Log in</span>
                 </div>
-                <div className="social_login_btn">
+                <div className="social_login_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                 </div>
-                <div className="signup_footer">
+                <div className="signup_footer col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
                 </div>
             </div>

@@ -484,7 +484,7 @@ function CalculateCost() {
                             <Button onClick={handleNextPage} className='next_btn'>Next</Button>
                         </div>
                     </div>
-                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0'>
+                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0' style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
                         <div className='image1'></div>
                         {/* <div className='image2' style={{ opacity: '0.2' }}>
                         </div> */}

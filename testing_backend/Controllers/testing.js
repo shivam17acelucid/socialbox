@@ -160,6 +160,9 @@ exports.userID = (req, res, next) => {
 }
 
 exports.profile = (req, res, next) => {
+    let avg_like = 0;
+    let avg_comment = 0;
+    let engagementRate = 0;
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     Username.find()
         .then((response) => {
@@ -182,32 +185,41 @@ exports.profile = (req, res, next) => {
                             response.json()
                                 .then((data) => {
                                     if (data.data.user) {
-                                        uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
-                                            .then((data) => {
-                                                console.log("File saved!")
-                                            })
-                                            .catch((error) => console.log(error));
-                                        uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                            .then((data) => {
-                                                console.log("File saved!")
-                                            })
-                                            .catch((error) => console.log(error));
-                                        uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                            .then((data) => {
-                                                console.log("File saved!")
-                                            })
-                                            .catch((error) => console.log(error));
-                                        uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                            .then((data) => {
-                                                console.log("File saved!")
-                                            })
-                                            .catch((error) => console.log(error));
-                                        ProfileData.insertMany([data.data.user])
-                                            .then((result) => {
-                                            })
-                                            .catch((err) => {
-                                                console.log(err)
-                                            })
+                                        let edges = data.data.user?.edge_owner_to_timeline_media?.edges;
+                                        edges.forEach((item) => {
+                                            avg_like += Math.trunc(item?.node?.edge_liked_by.count / 12);
+                                            avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
+                                            engagementRate = (data.edge_followed_by.count / (avg_like + avg_comment)) / 100;
+                                            engagementRate = Math.round(engagementRate * 100) / 100
+                                        })
+                                        if (engagementRate <= 2) {
+                                            uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
+                                                .then((data) => {
+                                                    console.log("File saved!")
+                                                })
+                                                .catch((error) => console.log(error));
+                                            uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                                .then((data) => {
+                                                    console.log("File saved!")
+                                                })
+                                                .catch((error) => console.log(error));
+                                            uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                                .then((data) => {
+                                                    console.log("File saved!")
+                                                })
+                                                .catch((error) => console.log(error));
+                                            uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                                .then((data) => {
+                                                    console.log("File saved!")
+                                                })
+                                                .catch((error) => console.log(error));
+                                            ProfileData.insertMany([data.data.user])
+                                                .then((result) => {
+                                                })
+                                                .catch((err) => {
+                                                    console.log(err)
+                                                })
+                                        }
                                     }
                                 })
                         })

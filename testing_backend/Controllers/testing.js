@@ -459,18 +459,18 @@ exports.getInfluencersDetails = (req, res) => {
     let array = [];
     let city_name = '';
     let totalReelView = 0;
+    let averageReelView = 0;
     ProfileData.find({})
         .then((result) => {
             result.forEach((data) => {
                 let edges = data?.edge_felix_video_timeline?.edges;
-                let averageReelView = 0;
                 edges.forEach((res) => {
                     averageReelView += Math.trunc(res.node.video_view_count / 12);
                     totalReelView += res?.node?.video_view_count;
                 })
                 avg_likes = 0;
                 avg_comment = 0;
-                noOfPosts = data?.edge_owner_to_timeline_media.edges;
+                noOfPosts = data?.edge_owner_to_timeline_media?.edges;
                 noOfPosts.forEach((item) => {
                     avg_likes += Math.trunc(item?.node?.edge_liked_by.count / 12);
                     avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);

@@ -464,10 +464,10 @@ exports.getInfluencersDetails = (req, res) => {
         .then((result) => {
             result.forEach((data) => {
                 let edges = data?.edge_felix_video_timeline?.edges;
-                edges.forEach((res) => {
-                    averageReelView += Math.trunc(res.node.video_view_count / 12);
-                    totalReelView += res?.node?.video_view_count;
-                })
+                // edges.forEach((res) => {
+                //     averageReelView += Math.trunc(res.node.video_view_count / 12);
+                //     totalReelView += res?.node?.video_view_count;
+                // })
                 avg_likes = 0;
                 avg_comment = 0;
                 noOfPosts = data?.edge_owner_to_timeline_media?.edges;
@@ -478,7 +478,7 @@ exports.getInfluencersDetails = (req, res) => {
                     engagementRate = Number(engagementRate.toFixed(2))
                 });
                 noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
-                edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
+                // edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
                 array.push(data)
             })
             // array.forEach((item) => {

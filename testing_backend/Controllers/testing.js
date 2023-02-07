@@ -189,10 +189,12 @@ exports.profile = (req, res, next) => {
                                         edges.forEach((item) => {
                                             avg_like += Math.trunc(item?.node?.edge_liked_by.count / 12);
                                             avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
-                                            engagementRate = (data.edge_followed_by.count / (avg_like + avg_comment)) / 100;
-                                            engagementRate = Math.round(engagementRate * 100) / 100
+                                            engagementRate = ((avg_like + avg_comment) / item.edge_followed_by.count) * 100;
+                                            engagementRate = engagementRate.toString();
+                                            engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
+                                            engagementRate = Number(engagementRate)
                                         })
-                                        if (engagementRate <= 2) {
+                                        if (engagementRate >= 5 && avg_like > 5000) {
                                             uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
@@ -474,7 +476,7 @@ exports.getInfluencersDetails = (req, res) => {
                     avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
                     engagementRate = ((avg_likes + avg_comment) / data.edge_followed_by.count) * 100;
                     engagementRate = engagementRate.toString();
-                    engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + val + 1);
+                    engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
                     engagementRate = Number(engagementRate)
                 });
                 noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })

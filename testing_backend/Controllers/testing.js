@@ -452,14 +452,14 @@ exports.filteredByErInfluencersData = (req, res) => {
 }
 
 exports.getInfluencersDetails = (req, res) => {
-    // let avg_likes = 0;
-    // let avg_comment = 0;
-    // let engagementRate = 0;
-    // let noOfPosts = [];
-    // let array = [];
-    // let city_name = '';
-    // let totalReelView = 0;
-    // let averageReelView = 0;
+    let avg_likes = 0;
+    let avg_comment = 0;
+    let engagementRate = 0;
+    let noOfPosts = [];
+    let array = [];
+    let city_name = '';
+    let totalReelView = 0;
+    let averageReelView = 0;
     ProfileData.find()
         .select({
             username: 1, full_name: 1, is_verified: 1, edge_followed_by: 1, edge_follow: 1, category_enum: 1,

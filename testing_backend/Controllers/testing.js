@@ -452,55 +452,54 @@ exports.filteredByErInfluencersData = (req, res) => {
 }
 
 exports.getInfluencersDetails = (req, res) => {
-    console.log("hey");
-    // ProfileData.find()
-    //     .then((result) => {
-    //         let avg_likes = 0;
-    //         let avg_comment = 0;
-    //         let engagementRate = 0;
-    //         let noOfPosts = [];
-    //         let array = [];
-    //         let city_name = '';
-    //         let totalReelView = 0;
-    //         result.forEach((data) => {
-    //             let edges = data?.edge_felix_video_timeline?.edges;
-    //             let averageReelView = 0;
-    //             edges.forEach((res) => {
-    //                 averageReelView += Math.trunc(res.node.video_view_count / 12);
-    //                 totalReelView += res?.node?.video_view_count;
-    //             })
-    //             avg_likes = 0;
-    //             avg_comment = 0;
-    //             noOfPosts = data?.edge_owner_to_timeline_media.edges;
-    //             noOfPosts.forEach((item) => {
-    //                 avg_likes += Math.trunc(item?.node?.edge_liked_by.count / 12);
-    //                 avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
-    //                 engagementRate = ((avg_likes + avg_comment) / data.edge_followed_by.count) * 100;
-    //                 engagementRate = Number(engagementRate.toFixed(2))
-    //             });
-    //             noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
-    //             edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
-    //             array.push(data)
-    //         })
-    //         array.forEach((item) => {
-    //             Username.find({ follower_count: { $gte: 1000 } })
-    //                 .then((result) => {
-    //                     result.forEach((data) => {
-    //                         if (data.username.includes(item.username)) {
-    //                             city_name = data.city_name;
-    //                         }
-    //                     })
-    //                     item.city_name = city_name;
-    //                     InfluencersData.insertMany([item])
-    //                         .then((result) => {
-    //                             console.log(result);
-    //                         })
-    //                         .catch((err) => {
-    //                             console.log(err)
-    //                         })
-    //                 })
-    //         })
-    //     })
+    ProfileData.find({})
+        .then((result) => {
+            let avg_likes = 0;
+            let avg_comment = 0;
+            let engagementRate = 0;
+            let noOfPosts = [];
+            let array = [];
+            let city_name = '';
+            let totalReelView = 0;
+            result.forEach((data) => {
+                let edges = data?.edge_felix_video_timeline?.edges;
+                let averageReelView = 0;
+                edges.forEach((res) => {
+                    averageReelView += Math.trunc(res.node.video_view_count / 12);
+                    totalReelView += res?.node?.video_view_count;
+                })
+                avg_likes = 0;
+                avg_comment = 0;
+                noOfPosts = data?.edge_owner_to_timeline_media.edges;
+                noOfPosts.forEach((item) => {
+                    avg_likes += Math.trunc(item?.node?.edge_liked_by.count / 12);
+                    avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
+                    engagementRate = ((avg_likes + avg_comment) / data.edge_followed_by.count) * 100;
+                    engagementRate = Number(engagementRate.toFixed(2))
+                });
+                noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
+                edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
+                array.push(data)
+            })
+            array.forEach((item) => {
+                Username.find({ follower_count: { $gte: 1000 } })
+                    .then((result) => {
+                        result.forEach((data) => {
+                            if (data.username.includes(item.username)) {
+                                city_name = data.city_name;
+                            }
+                        })
+                        item.city_name = city_name;
+                        InfluencersData.insertMany([item])
+                            .then((result) => {
+                                console.log(result);
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+                    })
+            })
+        })
 }
 
 exports.createList = (req, res, next) => {

@@ -511,6 +511,7 @@ exports.getInfluencersDetails = (req, res) => {
                             })
                     })
             })
+            res.json('fetching.....')
         })
 }
 

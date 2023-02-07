@@ -190,9 +190,7 @@ exports.profile = (req, res, next) => {
                                             avg_like += Math.trunc(item?.node?.edge_liked_by.count / 12);
                                             avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
                                             engagementRate = ((avg_like + avg_comment) / item.edge_followed_by.count) * 100;
-                                            engagementRate = engagementRate.toString();
-                                            engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
-                                            engagementRate = Number(engagementRate)
+                                            engagementRate = Number(engagementRate.toFixed(2))
                                         })
                                         if (engagementRate >= 5 && avg_like > 5000) {
                                             uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)

@@ -494,9 +494,7 @@ exports.getInfluencersDetails = (req, res) => {
                         item.city_name = city_name;
                         InfluencersData.insertMany([item])
                             .then((result) => {
-                                res.json({
-                                    result
-                                })
+                                console.log(result);
                             })
                             .catch((err) => {
                                 console.log(err)

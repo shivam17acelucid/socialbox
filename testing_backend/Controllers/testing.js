@@ -462,7 +462,7 @@ exports.getInfluencersDetails = (req, res) => {
     let averageReelView = 0;
     ProfileData.find({})
         .then((result) => {
-            console.log(result);
+            console.log(result, "hey");
             // result.forEach((data) => {
             //     let edges = data?.edge_felix_video_timeline?.edges;
             //     edges.forEach((res) => {

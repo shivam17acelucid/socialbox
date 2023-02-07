@@ -464,9 +464,11 @@ exports.getInfluencersDetails = (req, res) => {
         .select({
             username: 1, full_name: 1, is_verified: 1, edge_followed_by: 1, edge_follow: 1, category_enum: 1,
             'edge_owner_to_timeline_media.edges.node.edge_liked_by': 1,
+            'edge_owner_to_timeline_media.edges.node.edge_media_to_comment': 1,
             'edge_owner_to_timeline_media.edges.node.video_view_count': 1,
             'edge_owner_to_timeline_media.edges.node.taken_at_timestamp': 1,
             'edge_felix_video_timeline.edges.node.edge_liked_by': 1,
+            'edge_felix_video_timeline.edges.node.edge_media_to_comment': 1,
             'edge_felix_video_timeline.edges.node.video_view_count': 1,
             'edge_felix_video_timeline.edges.node.taken_at_timestamp': 1,
             external_url: 1,

@@ -1,7 +1,14 @@
 const CategorizedBasket = require('../../Models/categorised_basket');
 const InfluencersData = require('../../Models/influencer_details');
+const fs = require('fs')
 const path = require("path");
 const multer = require("multer");
+const AWS = require('aws-sdk')
+const s3 = new AWS.S3({
+    accessKeyId: 'AKIA4XZUBRXORIFBE4YG',
+    secretAccessKey: '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',
+    region: "ap-south-1",
+})
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "uploads/");
@@ -49,6 +56,16 @@ exports.addImageToBasket = (req, res) => {
             data.image = req.file.filename;
             data.save()
                 .then((response) => {
+                    // const imagePath = req.file.filename
+                    // const blob = fs.readFileSync(imagePath)
+                    // // s3.upload({
+                    // //     Bucket: 'socialbox-bckt',
+                    // //     Key: `Basket/${categoryName}/image.png`,
+                    // //     ACL: 'public-read',
+                    // //     Body: blob,
+                    // // }).promise().catch(err => {
+                    // //     console.log(err)
+                    // // })
                     res.status(200).json(response)
                 })
         })

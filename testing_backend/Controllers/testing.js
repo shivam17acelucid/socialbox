@@ -500,7 +500,7 @@ exports.getInfluencersDetails = (req, res) => {
             // //                 })
             // //         })
             // // })
-            res.json(result)
+            res.json("hey")
         })
 }
 

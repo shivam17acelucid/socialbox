@@ -199,22 +199,22 @@ exports.profile = (req, res, next) => {
                                             engagementRate = Number(engagementRate);
                                         })
                                         if (engagementRate >= 5 && avg_like > 5000) {
-                                            uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
+                                            uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user?.username}/${data.data.user?.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
                                                 })
                                                 .catch((error) => console.log(error));
-                                            uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                            uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user?.username}/${data.data.user?.username}_recent_image_1.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
                                                 })
                                                 .catch((error) => console.log(error));
-                                            uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                            uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user?.username}/${data.data.user?.username}_recent_image_2.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
                                                 })
                                                 .catch((error) => console.log(error));
-                                            uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                                            uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user?.username}/${data.data.user?.username}_recent_image_3.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
                                                 })
@@ -229,7 +229,6 @@ exports.profile = (req, res, next) => {
                                     }
                                 })
                         })
-
                 })
             }
             // res.json('Fetching..')
@@ -247,7 +246,7 @@ const uploadFileToS3 = (url, bucket, key, item) => {
                 {
                     Bucket: 'socialbox-bckt',
                     Body: data,
-                    Key: `Images/${item.username}/${item.username}_profile_image.png`,
+                    Key: `Images/${item?.username}/${item?.username}_profile_image.png`,
                 };
                 return s3.putObject(params).promise();
             });
@@ -262,7 +261,7 @@ const uploadRecentPosts_1_ToS3 = (url, bucket, key, item) => {
                 {
                     Bucket: 'socialbox-bckt',
                     Body: data,
-                    Key: `Images/${item.username}/${item.username}_recent_image_1.png`,
+                    Key: `Images/${item?.username}/${item?.username}_recent_image_1.png`,
                 };
                 return s3.putObject(params).promise();
             });
@@ -277,7 +276,7 @@ const uploadRecentPosts_2_ToS3 = (url, bucket, key, item) => {
                 {
                     Bucket: 'socialbox-bckt',
                     Body: data,
-                    Key: `Images/${item.username}/${item.username}_recent_image_2.png`,
+                    Key: `Images/${item?.username}/${item?.username}_recent_image_2.png`,
                 };
                 return s3.putObject(params).promise();
             });
@@ -292,7 +291,7 @@ const uploadRecentPosts_3_ToS3 = (url, bucket, key, item) => {
                 {
                     Bucket: 'socialbox-bckt',
                     Body: data,
-                    Key: `Images/${item.username}/${item.username}_recent_image_3.png`,
+                    Key: `Images/${item?.username}/${item?.username}_recent_image_3.png`,
                 };
                 return s3.putObject(params).promise();
             });

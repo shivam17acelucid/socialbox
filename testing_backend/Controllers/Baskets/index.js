@@ -5,8 +5,8 @@ const path = require("path");
 const multer = require("multer");
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA4XZUBRXOWT5XUK7G',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIA4XZUBRXOTHIMRBWP',
+    secretAccessKey: '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',
     region: "ap-south-1",
 })
 const storage = multer.memoryStorage();

@@ -476,6 +476,8 @@ exports.getInfluencersDetails = (req, res) => {
         })
         .then((result) => {
             result.forEach((data) => {
+                totalReelView = 0;
+                averageReelView = 0;
                 let edges = data?.edge_felix_video_timeline?.edges;
                 edges.forEach((res) => {
                     averageReelView += Math.trunc(res.node?.video_view_count / 12);

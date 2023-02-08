@@ -188,8 +188,8 @@ exports.profile = (req, res, next) => {
                                         let edges = data.data.user?.edge_owner_to_timeline_media?.edges;
                                         edges.forEach((item) => {
                                             avg_like += Math.trunc(item?.node?.edge_liked_by.count / 12);
-                                            avg_comment += Math.trunc(item?.node?.edge_media_to_comment.count / 12);
-                                            engagementRate = ((avg_like + avg_comment) / item.edge_followed_by.count) * 100;
+                                            avg_comment += Math.trunc(item?.node?.edge_media_to_comment?.count / 12);
+                                            engagementRate = ((avg_like + avg_comment) / data.data.user?.edge_followed_by?.count) * 100;
                                             engagementRate = Number(engagementRate.toFixed(2))
                                         })
                                         if (engagementRate >= 5 && avg_like > 5000) {
@@ -223,9 +223,10 @@ exports.profile = (req, res, next) => {
                                     }
                                 })
                         })
+
                 })
             }
-            res.json('Fetching..')
+            // res.json('Fetching..')
         })
         .catch((err) => {
             console.log(err)

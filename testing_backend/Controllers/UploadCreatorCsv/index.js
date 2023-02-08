@@ -38,6 +38,7 @@ const uploads = multer({ storage: storage });
     };
 exports.uploadcreatorcsv = (req, res) => {
     const proxyAgent = new HttpsProxyAgent(`http://${process.env.PROXY}`)
+    console.log(process.env.PROXY);
     let str = '';
     let splitArr;
     csv()

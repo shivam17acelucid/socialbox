@@ -2,7 +2,7 @@ const InfluencersData = require('../../Models/influencer_details');
 const fetch = require('node-fetch');
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA4XZUBRXORIFBE4YG',
+    accessKeyId: 'AKIA4XZUBRXOWT5XUK7G',
     secretAccessKey: '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',
     region: "ap-south-1",
 })

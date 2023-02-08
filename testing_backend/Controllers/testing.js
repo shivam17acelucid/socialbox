@@ -185,12 +185,18 @@ exports.profile = (req, res, next) => {
                             response.json()
                                 .then((data) => {
                                     if (data.data.user) {
+                                        avg_like = 0;
+                                        avg_comment = 0;
+                                        engagementRate = 0;
                                         let edges = data.data.user?.edge_owner_to_timeline_media?.edges;
                                         edges.forEach((item) => {
                                             avg_like += Math.trunc(item?.node?.edge_liked_by.count / 12);
                                             avg_comment += Math.trunc(item?.node?.edge_media_to_comment?.count / 12);
                                             engagementRate = ((avg_like + avg_comment) / data.data.user?.edge_followed_by?.count) * 100;
-                                            engagementRate = Number(engagementRate.toFixed(2))
+                                            // engagementRate = Number(engagementRate.toFixed(2))
+                                            engagementRate = engagementRate.toString();
+                                            engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
+                                            engagementRate = Number(engagementRate);
                                         })
                                         if (engagementRate >= 5 && avg_like > 5000) {
                                             uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)

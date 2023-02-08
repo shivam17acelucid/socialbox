@@ -121,7 +121,7 @@ exports.hashtag = (req, res, next) => {
 // }
 
 exports.userID = (req, res, next) => {
-    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
+    const proxyAgent = new HttpsProxyAgent(`http://${process.env.PROXY}`)
     let arr = [];
     User.find({})
         .then((response) => {
@@ -163,7 +163,7 @@ exports.profile = (req, res, next) => {
     let avg_like = 0;
     let avg_comment = 0;
     let engagementRate = 0;
-    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
+    const proxyAgent = new HttpsProxyAgent(`http://${process.env.PROXY}`)
     Username.find()
         .then((response) => {
             let arr = [];

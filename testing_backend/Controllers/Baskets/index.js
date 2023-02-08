@@ -9,19 +9,21 @@ const s3 = new AWS.S3({
     secretAccessKey: 'C9TR8yeIEybk0DU80EvDq3JyXwEDxyVjOKHHLljj',
     region: "ap-south-1",
 })
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "uploads/");
-    },
-    filename: function (req, file, cb) {
-        let ext = path.extname(file.originalname);
-        cb(null, Date.now() + ext);
-    },
-});
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "uploads/");
+//     },
+//     filename: function (req, file, cb) {
+//         let ext = path.extname(file.originalname);
+//         cb(null, Date.now() + ext);
+//     },
+// });
 
-const upload = multer({
-    storage: storage,
-});
+// const upload = multer({
+//     storage: storage,
+// });
 
 (module.exports.upload = upload.single("image")),
     (req, res, next) => {
@@ -53,20 +55,20 @@ exports.addImageToBasket = (req, res) => {
 
     CategorizedBasket.findOne({ categoryName: categoryName })
         .then((data) => {
-            data.image = req.file.filename;
+            data.image = req.file.originalname;
             data.save()
                 .then((response) => {
-                    // const imagePath = req.file.filename
-                    // const blob = fs.readFileSync(imagePath)
-                    // // s3.upload({
-                    // //     Bucket: 'socialbox-bckt',
-                    // //     Key: `Basket/${categoryName}/image.png`,
-                    // //     ACL: 'public-read',
-                    // //     Body: blob,
-                    // // }).promise().catch(err => {
-                    // //     console.log(err)
-                    // // })
-                    res.status(200).json(response)
+                    // const imagePath = req.file.originalname
+                    const blob = fs.readFileSync(req.file.buffer.data)
+                    // s3.upload({
+                    //     Bucket: 'socialbox-bckt',
+                    //     Key: `Basket/${categoryName}/image.png`,
+                    //     ACL: 'public-read',
+                    //     Body: blob,
+                    // }).promise().catch(err => {
+                    //     console.log(err)
+                    // })
+                    res.status(200).json(blob)
                 })
         })
 

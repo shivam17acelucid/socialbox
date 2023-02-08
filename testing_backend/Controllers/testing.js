@@ -231,7 +231,7 @@ exports.profile = (req, res, next) => {
                         })
                 })
             }
-            // res.json('Fetching..')
+            res.json('Fetching..')
         })
         .catch((err) => {
             console.log(err)

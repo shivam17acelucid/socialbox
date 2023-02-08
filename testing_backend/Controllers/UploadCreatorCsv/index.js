@@ -37,8 +37,7 @@ const uploads = multer({ storage: storage });
         next();
     };
 exports.uploadcreatorcsv = (req, res) => {
-    const proxyAgent = new HttpsProxyAgent(`http://${process.env.PROXY}`)
-    console.log(process.env.PROXY);
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     let str = '';
     let splitArr;
     csv()
@@ -152,7 +151,7 @@ exports.updateCreatorsDetails = (req, res) => {
 
 exports.testingproxies = (req, res) => {
     let { username } = req.body;
-    const proxyAgent = new HttpsProxyAgent(`http://${process.env.PROXY}`)
+    const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     fetch(`https://i.instagram.com/api/v1/users/web_profile_info/?username=${username}`,
         {
             method: 'GET',

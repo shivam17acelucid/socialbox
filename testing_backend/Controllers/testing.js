@@ -565,7 +565,10 @@ exports.getInfluencersDetails = (req, res) => {
             //             console.log(err)
             //         })
             // })
-            res.json('fetching.....')
+            ProfileData.find({ isAdded: true })
+                .then((fetchedData) => {
+                    res.json(`items added ${fetchedData.length} - ${result.length}`)
+                })
         })
 }
 

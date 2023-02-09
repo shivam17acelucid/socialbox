@@ -271,7 +271,10 @@ exports.profile = (req, res, next) => {
                 }
             })
             // }
-            res.json('Fetching..')
+            Username.find({ isFetched: true })
+                .then((fetchedData) => {
+                    res.json(`items added ${fetchedData.length} - ${response.length}`)
+                })
         })
         .catch((err) => {
             console.log(err)

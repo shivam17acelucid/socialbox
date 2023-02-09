@@ -524,7 +524,7 @@ exports.getInfluencersDetails = (req, res) => {
         })
         .then((result) => {
             result.forEach((data) => {
-                console.log(data.isAdded);
+                console.log(data);
                 // if (data.isAdded === false) {
                 //     console.log(data);
                 //     // totalReelView = 0;

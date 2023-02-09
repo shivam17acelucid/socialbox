@@ -190,8 +190,7 @@ exports.userID = (req, res, next) => {
             })
             User.find({ isFetched: true })
                 .then((fetchedData) => {
-                    fetchedLength = fetchedData.length();
-                    res.json(`items added ${fetchedLength} - ${response.length}`)
+                    res.json(`items added ${fetchedData.length} - ${response.length}`)
                 })
         })
         .catch((err) => {

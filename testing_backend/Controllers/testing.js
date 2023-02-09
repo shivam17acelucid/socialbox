@@ -160,10 +160,11 @@ exports.hashtag = (req, res, next) => {
 // }
 
 exports.userID = (req, res, next) => {
+    let fetchedLength = 0;
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
     User.find({})
         .then((response) => {
-            response.forEach((item, i) => {
+            response.forEach((item) => {
                 if (item.isFetched === false) {
                     const url = `https://i.instagram.com/api/v1/users/${item.ownerID}/info/`;
                     fetch(url, {
@@ -178,10 +179,6 @@ exports.userID = (req, res, next) => {
                                 item.save();
                                 Username.insertMany([data.user])
                                     .then((result) => {
-                                        // res.status(200).json({
-                                        //     success: 'true',
-                                        //     data: result
-                                        // })
                                     })
                                     .catch((err) => {
                                         console.log(err)
@@ -191,7 +188,11 @@ exports.userID = (req, res, next) => {
                     )
                 }
             })
-            res.json('Fetching')
+            User.find({ isFetched: true })
+                .then((fetchedData) => {
+                    fetchedLength = fetchedData.length();
+                    res.json(`items added ${fetchedLength} - ${response.length}`)
+                })
         })
         .catch((err) => {
             console.log(err)
@@ -504,7 +505,7 @@ exports.getInfluencersDetails = (req, res) => {
     let city_name = '';
     let totalReelView = 0;
     let averageReelView = 0;
-    ProfileData.find()
+    ProfileData.find({ isAdded: false })
         .select({
             username: 1, full_name: 1, is_verified: 1, edge_followed_by: 1, edge_follow: 1, category_enum: 1,
             'edge_owner_to_timeline_media.edges.node.edge_liked_by': 1,
@@ -542,26 +543,26 @@ exports.getInfluencersDetails = (req, res) => {
                 });
                 noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
                 edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
-                array.push(data)
-            })
-            array.forEach((item) => {
-                Username.find({ follower_count: { $gte: 1000 } })
+                InfluencersData.insertMany([data])
                     .then((result) => {
-                        result.forEach((data) => {
-                            if (data.username.includes(item.username)) {
-                                city_name = data.city_name;
-                            }
-                        })
-                        item.city_name = city_name;
-                        InfluencersData.insertMany([item])
-                            .then((result) => {
-                                console.log(result);
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
+                        data.isAdded = true;
+                        data.save()
+                        console.log(result);
                     })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+                // array.push(data)
             })
+            // array.forEach((item) => {
+            //     InfluencersData.insertMany([item])
+            //         .then((result) => {
+            //             console.log(result);
+            //         })
+            //         .catch((err) => {
+            //             console.log(err)
+            //         })
+            // })
             res.json('fetching.....')
         })
 }

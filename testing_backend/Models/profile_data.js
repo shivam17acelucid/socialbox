@@ -75,6 +75,10 @@ let profileDataSchema = new Schema(
         edge_media_collections: {
             type: Object,
         },
+        isAdded: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true,

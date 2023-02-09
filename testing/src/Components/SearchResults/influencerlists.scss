@@ -249,6 +249,13 @@ html {
                 .table_container {
                     background-color: #FFF;
 
+                    .inline_loader {
+                        position: absolute;
+                        top: 60%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+
                     .table_row {
                         background-color: #FFF !important;
                     }

@@ -192,7 +192,7 @@ exports.userID = (req, res, next) => {
                     )
                 }
             })
-            res.json(`items added ${fetchedData.length} - ${response.length}`)
+            res.json(`items added ${fetchedLength} - ${response.length}`)
         })
         .catch((err) => {
             console.log(err)

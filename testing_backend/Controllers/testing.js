@@ -546,15 +546,16 @@ exports.getInfluencersDetails = (req, res) => {
                     });
                     noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
                     edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
-                    InfluencersData.insertMany([data])
-                        .then((result) => {
-                            data.isAdded = true;
-                            data.save()
-                            console.log(result);
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
+                    console.log(data);
+                    // InfluencersData.insertMany([data])
+                    //     .then((result) => {
+                    //         data.isAdded = true;
+                    //         data.save()
+                    //         console.log(result);
+                    //     })
+                    //     .catch((err) => {
+                    //         console.log(err)
+                    //     })
                 }
                 // array.push(data)
             })

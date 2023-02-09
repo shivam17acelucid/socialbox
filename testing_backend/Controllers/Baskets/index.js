@@ -9,8 +9,7 @@ const s3 = new AWS.S3({
     secretAccessKey: 'cjldw/kYOEWJWw11FgR/5rsBI7m+7ruvPzSzfIZ7',
     region: "ap-south-1",
 })
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'uploads/' });
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
 //         cb(null, "uploads/");
@@ -56,19 +55,18 @@ exports.addImageToBasket = (req, res) => {
     CategorizedBasket.findOne({ categoryName: categoryName })
         .then((data) => {
             data.image = req.file.originalname;
+            const fileStream = fs.createReadStream(req.file.path)
+            s3.upload({
+                Bucket: 'socialbox-bckt',
+                Key: `Basket/${categoryName}/image.png`,
+                ACL: 'public-read',
+                Body: fileStream,
+            }).promise()
             data.save()
                 .then((response) => {
-                    // const imagePath = req.file.originalname
-                    const blob = fs.readFileSync(req.file.buffer.data)
-                    // s3.upload({
-                    //     Bucket: 'socialbox-bckt',
-                    //     Key: `Basket/${categoryName}/image.png`,
-                    //     ACL: 'public-read',
-                    //     Body: blob,
-                    // }).promise().catch(err => {
-                    //     console.log(err)
-                    // })
-                    res.status(200).json(blob)
+                    res.json(response)
+                }).catch(err => {
+                    console.log(err)
                 })
         })
 

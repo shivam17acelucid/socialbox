@@ -241,6 +241,12 @@ exports.profile = (req, res, next) => {
                                             uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user?.username}/${data.data.user?.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
+                                                    ProfileData.insertMany([data.data.user])
+                                                        .then((result) => {
+                                                        })
+                                                        .catch((err) => {
+                                                            console.log(err)
+                                                        })
                                                 })
                                                 .catch((error) => console.log(error));
                                             uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user?.username}/${data.data.user?.username}_recent_image_1.png`, 'socialbox-bckt', data.data.user)
@@ -258,12 +264,6 @@ exports.profile = (req, res, next) => {
                                                     console.log("File saved!")
                                                 })
                                                 .catch((error) => console.log(error));
-                                            ProfileData.insertMany([data.data.user])
-                                                .then((result) => {
-                                                })
-                                                .catch((err) => {
-                                                    console.log(err)
-                                                })
                                         }
                                     }
                                 })

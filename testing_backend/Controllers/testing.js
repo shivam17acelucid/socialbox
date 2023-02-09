@@ -183,16 +183,15 @@ exports.userID = (req, res, next) => {
                                     .catch((err) => {
                                         console.log(err)
                                     })
-                                User.find({ isFetched: true })
-                                    .then((fetchedData) => {
-                                        fetchedLength = fetchedData.length;
-                                    })
                             }
                         })
                     )
                 }
             })
-            res.json(`items added ${fetchedLength} - ${response.length}`)
+            User.find({ isFetched: true })
+                .then((fetchedData) => {
+                    res.json(`items added ${fetchedData.length} - ${response.length}`)
+                })
         })
         .catch((err) => {
             console.log(err)

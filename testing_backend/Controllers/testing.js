@@ -20,7 +20,7 @@ const URLENCODED_HEADER = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla / 5.0(iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/ 605.1.15(KHTML, like Gecko) Mobile / 15E148 Instagram 105.0.0.11.118(iPhone11, 8; iOS 12_3_1; en_US; en - US; scale = 2.00; 828x1792; 165586599)',
-    'Cookie': 'sessionid=55174935431:oUkeyOkjSTHOai:11:AYcCQRGAQW0_XSTcjaz7XHUgRoXj6weyCzi_8MCzew'
+    // 'Cookie': 'sessionid=55174935431:oUkeyOkjSTHOai:11:AYcCQRGAQW0_XSTcjaz7XHUgRoXj6weyCzi_8MCzew'
 }
 const TAG_API_HEADER = {
     'Accept': 'application/json',
@@ -120,37 +120,76 @@ exports.hashtag = (req, res, next) => {
 
 // }
 
+// exports.userID = (req, res, next) => {
+//     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
+//     let arr = [];
+//     User.find({})
+//         .then((response) => {
+//             response.forEach((item) => {
+//                 arr.push(item.ownerID)
+//             })
+//             arr.forEach((item) => {
+//                 const url = `https://i.instagram.com/api/v1/users/${item}/info/`;
+//                 fetch(url, {
+//                     method: 'GET',
+//                     agent: proxyAgent,
+//                     headers: URLENCODED_HEADER,
+//                     mode: 'cors'
+//                 }).then((response) => response.json()
+//                     .then((data) => {
+//                         if (data.user) {
+//                             Username.insertMany([data.user])
+//                                 .then((result) => {
+//                                     // res.status(200).json({
+//                                     //     success: 'true',
+//                                     //     data: result
+//                                     // })
+//                                 })
+//                                 .catch((err) => {
+//                                     console.log(err)
+//                                 })
+//                         }
+//                     })
+//                 )
+//             })
+//             res.json('Fetching')
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// }
+
 exports.userID = (req, res, next) => {
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    let arr = [];
     User.find({})
         .then((response) => {
-            response.forEach((item) => {
-                arr.push(item.ownerID)
-            })
-            arr.forEach((item) => {
-                const url = `https://i.instagram.com/api/v1/users/${item}/info/`;
-                fetch(url, {
-                    method: 'GET',
-                    agent: proxyAgent,
-                    headers: URLENCODED_HEADER,
-                    mode: 'cors'
-                }).then((response) => response.json()
-                    .then((data) => {
-                        if (data.user) {
-                            Username.insertMany([data.user])
-                                .then((result) => {
-                                    // res.status(200).json({
-                                    //     success: 'true',
-                                    //     data: result
-                                    // })
-                                })
-                                .catch((err) => {
-                                    console.log(err)
-                                })
-                        }
-                    })
-                )
+            response.forEach((item, i) => {
+                if (item.isFetched === false) {
+                    const url = `https://i.instagram.com/api/v1/users/${item.ownerID}/info/`;
+                    fetch(url, {
+                        method: 'GET',
+                        agent: proxyAgent,
+                        headers: URLENCODED_HEADER,
+                        mode: 'cors'
+                    }).then((response) => response.json()
+                        .then((data) => {
+                            if (data.user) {
+                                item.isFetched = true;
+                                item.save();
+                                Username.insertMany([data.user])
+                                    .then((result) => {
+                                        // res.status(200).json({
+                                        //     success: 'true',
+                                        //     data: result
+                                        // })
+                                    })
+                                    .catch((err) => {
+                                        console.log(err)
+                                    })
+                            }
+                        })
+                    )
+                }
             })
             res.json('Fetching')
         })
@@ -158,6 +197,7 @@ exports.userID = (req, res, next) => {
             console.log(err)
         })
 }
+
 
 exports.profile = (req, res, next) => {
     let avg_like = 0;
@@ -168,10 +208,7 @@ exports.profile = (req, res, next) => {
         .then((response) => {
             let arr = [];
             response.forEach((item) => {
-                arr.push({ username: item.username });
-            })
-            {
-                arr.forEach((item) => {
+                if (item.isFetched === false) {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     fetch(url,
                         {
@@ -185,6 +222,8 @@ exports.profile = (req, res, next) => {
                             response.json()
                                 .then((data) => {
                                     if (data.data.user) {
+                                        item.isFetched = true;
+                                        item.save()
                                         avg_like = 0;
                                         avg_comment = 0;
                                         engagementRate = 0;
@@ -229,8 +268,9 @@ exports.profile = (req, res, next) => {
                                     }
                                 })
                         })
-                })
-            }
+                }
+            })
+            // }
             res.json('Fetching..')
         })
         .catch((err) => {

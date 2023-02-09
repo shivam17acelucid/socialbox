@@ -51,6 +51,10 @@ let usernameSchema = new Schema(
         whatsapp_number: {
             type: Number,
         },
+        isFetched: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true,

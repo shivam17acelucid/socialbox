@@ -5,6 +5,10 @@ let userSchema = new Schema(
     ownerID: {
       type: String,
       unique: true,
+    },
+    isFetched: {
+      type: Boolean,
+      default: false
     }
   },
   {

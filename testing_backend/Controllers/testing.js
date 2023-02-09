@@ -521,6 +521,7 @@ exports.getInfluencersDetails = (req, res) => {
             'edge_felix_video_timeline.count': 1,
             'edge_felix_video_timeline.edges.node.taken_at_timestamp': 1,
             external_url: 1,
+            isAdded: 1,
         })
         .then((result) => {
             result.forEach((data) => {

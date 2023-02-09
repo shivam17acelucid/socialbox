@@ -821,7 +821,7 @@ function Lists() {
                                                         <div className='influencers_basket_box row'>
                                                             <div className='col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 pl-0 pr-0'>
                                                                 <div className='influencers_image' >
-                                                                    <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="influencers_image" />
+                                                                    <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Basket/${item.categoryName}/image.png`} className="influencers_image" />
                                                                 </div>
                                                             </div>
                                                             <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>

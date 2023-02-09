@@ -222,8 +222,8 @@ exports.profile = (req, res, next) => {
                             response.json()
                                 .then((data) => {
                                     if (data.data.user) {
-                                        item.isFetched = true;
-                                        item.save()
+                                        // item.isFetched = true;
+                                        // item.save()
                                         avg_like = 0;
                                         avg_comment = 0;
                                         engagementRate = 0;

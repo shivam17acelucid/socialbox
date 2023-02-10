@@ -500,6 +500,10 @@ html {
                     display: none;
                 }
 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
                 .image1 {
                     background-image: url('../../Assets/Images/calculatebg1.png');
                     height: 45%;

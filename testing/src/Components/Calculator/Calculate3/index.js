@@ -415,7 +415,7 @@ function CalculateFilters() {
                                 />
                                 {/* <Input className="filter_field" /> */}
                             </div>
-                            <div className="pane_3_filter" style={{ marginTop: '3rem' }}>
+                            <div className="pane_3_filter" style={{ marginTop: '5rem' }}>
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Cities</label>
                                 <MySelect
@@ -438,7 +438,7 @@ function CalculateFilters() {
                             <Button onClick={handleNext} className='next_btn'>Next</Button>
                         </div>
                     </div>
-                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0">
                         <div className="image_1"></div>
                         {/* <div className="image_2"></div> */}
                         {/* <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>

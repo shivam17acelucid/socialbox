@@ -12,8 +12,8 @@ html {
 
     .middle_pane_calculate {
         // @media (max-width: 1280px) {
-            overflow-y: scroll;
-            height: 100vh;
+        overflow-y: scroll;
+        height: 100vh;
         // }
 
         background: #F8F8F8;
@@ -395,12 +395,23 @@ html {
                             margin-left: 1rem;
                         }
 
+                        // .filter_field_select > div {
+                        //     max-height: 8rem;
+                        //     overflow: hidden;
+                        // }
+
                         .filter_field_select {
                             background: #FFFFFF;
                             border-radius: 0.313rem;
                             width: 15rem;
                             height: 1.5rem;
                             margin-left: 1rem;
+                        }
+
+                        .filter_field_select>div {
+                            div:nth-child(1) {
+                                max-height: 6rem !important;
+                            }
                         }
                     }
                 }
@@ -417,7 +428,7 @@ html {
                     color: #FFFFFF;
                     width: 7.75rem;
                     height: 2.25rem;
-                    margin-top: 3rem;
+                    margin-top: 5rem;
                     cursor: pointer;
                 }
             }
@@ -430,6 +441,10 @@ html {
                 @media (width: 1024px) {
                     display: none;
                 }
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
 
                 .image_1 {
                     background-image: url('../../../Assets/Images/step3bg.png');
@@ -463,13 +478,6 @@ html {
 
 }
 
-.css-13cymwt-control {
-    max-height: 4rem;
-
-    .css-3w2yfm-ValueContainer {
-        max-height: 4rem;
-    }
-}
 
 .col-lg-2 {
     @media (min-width: 992px) {

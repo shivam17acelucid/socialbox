@@ -12,8 +12,8 @@ html {
 
     .middle_pane_calculate {
         // @media (max-width: 1280px) {
-            overflow-y: scroll;
-            height: 100vh;
+        overflow-y: scroll;
+        height: 100vh;
         // }
 
         background: #F8F8F8;
@@ -356,9 +356,14 @@ html {
         @media (max-width: 900px) {
             display: none;
         }
+
         @media (width: 1024px) {
             display: none;
         }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .image1 {
             background-image: url('../../../Assets/Images/step2bg.png');

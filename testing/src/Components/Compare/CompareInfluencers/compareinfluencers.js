@@ -212,14 +212,50 @@ function CompareInfluencers() {
                                             :
                                             null
                                 }
-                                <div className='profile_followers'><HiOutlineUser />{NFormatter(item.edge_followed_by.count)}</div>
-                                <div className='like_comment_box'>
-                                    <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span></div>
-                                    <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span></div>
+                                <div className='profile_followers'>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <HiOutlineUser />
+                                        {NFormatter(item.edge_followed_by.count)}
+                                    </div>
+                                    <div className='descr_title' style={{ marginLeft: '1rem' }}>
+                                        Followers
+                                    </div>
                                 </div>
                                 <div className='like_comment_box'>
-                                    <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span></div>
-                                    <div className='profile_comment'><img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span></div>
+                                    <div className='profile_like'>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span>
+                                        </div>
+                                        <div className='descr_title'>
+                                            Average Likes
+                                        </div>
+                                    </div>
+                                    <div className='profile_comment'>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
+                                        </div>
+                                        <div className='descr_title'>
+                                            Average Comment
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='like_comment_box'>
+                                    <div className='profile_like'>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
+                                        </div>
+                                        <div className='descr_title'>
+                                            Average View
+                                        </div>
+                                    </div>
+                                    <div className='profile_comment'>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
+                                        </div>
+                                        <div className='descr_title'>
+                                            Engagement Rate
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className='list_remove_pane'>
                                     <div onClick={() => { handleAddToListTable(item) }}>+Add to my List</div>

@@ -90,6 +90,7 @@ html {
             .profile_followers {
                 padding: 0.625rem 1rem;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 font-family: 'Noto Sans';
@@ -110,10 +111,12 @@ html {
                 display: flex;
                 justify-content: space-evenly;
                 padding: 0.625rem;
+                align-items: center;
 
                 .profile_like {
                     display: flex;
                     align-items: center;
+                    flex-direction: column;
 
                     span {
                         font-family: 'Noto Sans';
@@ -136,6 +139,7 @@ html {
                 .profile_comment {
                     display: flex;
                     align-items: center;
+                    flex-direction: column;
 
                     span {
                         font-family: 'Noto Sans';
@@ -177,8 +181,10 @@ html {
                     border: 0.063rem solid RGB(0, 0, 0, 0.2);
                     box-shadow: 0.125rem 0.25rem 0.25rem RGB(0 0 0 / 25%);
                     border-radius: 0.313rem;
-                    top: 60%;
-                    left: 15%;
+                    // top: 60%;
+                    // left: 15%;
+                    bottom: 0;
+                    right: 0;
 
                     .addList_option {
                         max-height: 21.375rem;
@@ -188,6 +194,7 @@ html {
                         padding: 0.625rem;
                         border-radius: 0.5rem;
                         cursor: pointer;
+                        padding-bottom: 5rem;
 
                         .section_dropdown_header {
                             font-family: 'Noto Sans';
@@ -503,3 +510,13 @@ html {
 //         max-width: 87.333333%;
 //     }
 // }
+
+.descr_title {
+    color: rgba(0, 0, 0, .4);
+    font-family: Noto Sans;
+    font-size: .625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: .875rem;
+    margin-top: 0.5rem;
+}

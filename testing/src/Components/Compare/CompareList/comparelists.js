@@ -39,7 +39,7 @@ function CompareLists() {
             string = result.substring(1);
             {
                 JSON.stringify(params) !== '{}' ?
-                    navigate(`/CompareLists/${params.lists}${result}`)
+                    navigate(`/CompareLists/${result}`)
                     :
                     navigate(`/CompareLists/${string}`)
             }

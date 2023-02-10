@@ -153,7 +153,7 @@ const ProfileData = () => {
                                                     <span className="labels">Posts</span>
                                                 </div>
                                                 <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">
-                                                    <div className="profile_result_value">{data?.edge_owner_to_timeline_media['edges'][0]?.er} %</div>
+                                                    <div className="profile_result_value">{data?.edge_owner_to_timeline_media['edges'][0]?.er}%</div>
                                                     <span className="labels">Engagement Rate</span>
                                                 </div>
                                                 <div className="detail_box col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6">

@@ -23,7 +23,7 @@ import checkbundleselected from '../../Assets/Images/checkbundleselected.png';
 import ListIcon from '../../Assets/Images/listicon.png';
 import CostIcon from '../../Assets/Images/costicon.png';
 import CompareIcon from '../../Assets/Images/compareicon.png';
-import MyLists from '../MyLists';
+import MyLists from '../MyLists/index';
 import Sport from '../../Assets/Images/sport.jpg';
 import Loader from '../../Common/Loader/index';
 
@@ -64,6 +64,7 @@ function BasketInfluencers() {
     const [addToCompareData, setAddToCompareData] = useState([]);
     const [costModalOpened, setCostModalOpened] = useState(false);
     const [costUser, setCostUser] = useState('');
+    const [mainLoader, setMainLoader] = useState(false);
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
@@ -71,11 +72,13 @@ function BasketInfluencers() {
     let autoSuggestedArray = [];
 
     const fetchInfluencers = () => {
+        setMainLoader(true);
         const url = `http://65.0.110.147:4000/showBasketInfluencers?categoryName=${categoryName}`;
         fetch(url)
             .then((res) => res.json())
             .then((result) => {
                 setInfluencersData(result)
+                setMainLoader(false);
             })
     }
 
@@ -322,203 +325,208 @@ function BasketInfluencers() {
                                     </TableHead>
                                     <TableBody>
                                         {
-                                            (filterErClicked === true ?
-                                                erBasedInfluencers :
-                                                filterCategoryClicked === true ?
-                                                    categoryBasedInfluencers :
-                                                    filterFollowerClicked === true ?
-                                                        followersRangeBasedInfluencers :
-                                                        influencersData)
-                                                .map((data, index) =>
-                                                    <>
-                                                        <TableRow className='table_body_row'>
-                                                            <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_body_value_1' >
-                                                                {data?.full_name}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_likes)}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {NFormatter(data?.edge_followed_by.count)}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {NFormatter(data?.edge_felix_video_timeline['edges'][0]?.averageReelView)}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_comment)}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">
-                                                                {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.er)}
-                                                            </TableCell>
-                                                            <TableCell className='table_body_value' align="center">{data.city_name}</TableCell>
-                                                            <TableCell key={index} className='table_body_value' >
-                                                                <div style={{ display: 'flex', cursor: 'pointer' }}>
-                                                                    <img src={CostIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={(e) => { handleCostClicked(data) }} />
-                                                                    {
-                                                                        costModalOpened === true ?
-                                                                            costUser === data.username ?
-                                                                                <div className='overlay'>
-                                                                                    <div className='cost_modal'>
-                                                                                        <div className='modal_title'>Check Cost </div>
-                                                                                        <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Reel</div>
-                                                                                            {
-                                                                                                data?.costFactorReel?.minTotalCost || data?.costFactorReel?.minTotalCost ?
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorReel?.minTotalCost)} - Rs{NFormatter(data?.costFactorReel?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorReel?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorReel?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Post</div>
-                                                                                            {
-                                                                                                data?.costFactorPosts?.minTotalCost || data?.costFactorPosts?.minTotalCost ?
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorPosts?.minTotalCost)} - Rs{NFormatter(data?.costFactorPosts?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorPosts?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorPosts?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Story</div>
-                                                                                            {
-                                                                                                data?.costFactorStories?.minTotalCost || data?.costFactorStories?.minTotalCost ?
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorStories?.minTotalCost)} - Rs{NFormatter(data?.costFactorStories?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorStories?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorStories?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Igtv</div>
-                                                                                            {
-                                                                                                data?.costFactorIgtv?.minTotalCost || data?.costFactorIgtv?.minTotalCost ?
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorIgtv?.minTotalCost)} - Rs{NFormatter(data?.costFactorIgtv?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorIgtv?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorIgtv?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Swipeup Stories</div>
-                                                                                            {
-                                                                                                data?.costFactorSwipeUp?.minTotalCost || data?.costFactorSwipeUp?.minTotalCost ?
-                                                                                                    <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data?.costFactorSwipeUp?.minTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='cost_box'>
-                                                                                            <div>Videos</div>
-                                                                                            {
-                                                                                                data?.costFactorVideo?.minTotalCost || data?.costFactorVideo?.minTotalCost ?
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.minTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.maxTotalCost)}</div>
-                                                                                                    :
-                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.influencerExactmaxTotalCost)}</div>
-                                                                                            }
-                                                                                        </div>
-                                                                                        <div className='modal_footer'>
-                                                                                            To check a more accurate estimate, please contact +91 98765 43210
-                                                                                        </div>
-                                                                                        <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
-                                                                                    </div>
-                                                                                </div>
-                                                                                : null
-                                                                            :
-                                                                            null
-                                                                    }
-                                                                    <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} />
-                                                                    {addToListTableClicked === true ?
-                                                                        [data].map((item) =>
-                                                                            item.username == rowClickedData ?
-                                                                                <div className='overlay'>
-                                                                                    <section className="addList_section" id={data.id}>
-                                                                                        <div className="addList_option">
-                                                                                            <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
-                                                                                            <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
-                                                                                            <div className="section_list_title">
-                                                                                                Select the list to which you want to add the
-                                                                                                influencer.
-                                                                                            </div>
-                                                                                            <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
-                                                                                                {listData.map((item) =>
-                                                                                                    <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
-                                                                                                        {item.listName}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </section>
-                                                                                </div>
-                                                                                : null
-                                                                        )
-
-                                                                        : null}
-                                                                    <img src={CompareIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={() => handleAddToCompare(data)} />
-                                                                    {
-                                                                        addToCompareClicked === true ?
-
-                                                                            [data].map((item) =>
-                                                                                <div className='overlay'>
-                                                                                    <div className="compare_section">
-                                                                                        <div className="close_btn"><AiOutlineClose onClick={() => handleAddToCompare()} /></div>
-                                                                                        <div className="compare_headers">
-                                                                                            Add to Compare
-                                                                                        </div>
-                                                                                        <div className="compare_title">
-                                                                                            Select the influencer(s) from results to
-                                                                                            add to the selection you want to compare. You may
-                                                                                            compare upto four influencers.
-                                                                                        </div>
-                                                                                        <input
-                                                                                            type="text"
-                                                                                            value={value}
-                                                                                            onChange={handleChange}
-                                                                                            className="compare_input"
-                                                                                        />
-                                                                                        {suggestionsActive && <Suggestions />}
-                                                                                        <div className="influencers_box">
-                                                                                            <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                            influencersData[0] ?
+                                                (filterErClicked === true ?
+                                                    erBasedInfluencers :
+                                                    filterCategoryClicked === true ?
+                                                        categoryBasedInfluencers :
+                                                        filterFollowerClicked === true ?
+                                                            followersRangeBasedInfluencers :
+                                                            influencersData)
+                                                    .map((data, index) =>
+                                                        <>
+                                                            <TableRow className='table_body_row'>
+                                                                <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_body_value_1' style={{ cursor: 'pointer' }}>
+                                                                    {data?.full_name}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {data.category_enum !== null ? data.category_enum.length > 12 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_likes)}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {NFormatter(data?.edge_followed_by.count)}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {NFormatter(data?.edge_felix_video_timeline['edges'][0]?.averageReelView)}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.avg_comment)}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">
+                                                                    {NFormatter(data?.edge_owner_to_timeline_media['edges'][0]?.er)}
+                                                                </TableCell>
+                                                                <TableCell className='table_body_value' align="center">{data.city_name}</TableCell>
+                                                                <TableCell key={index} className='table_body_value' >
+                                                                    <div style={{ display: 'flex', cursor: 'pointer' }}>
+                                                                        <img src={CostIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={(e) => { handleCostClicked(data) }} />
+                                                                        {
+                                                                            costModalOpened === true ?
+                                                                                costUser === data.username ?
+                                                                                    <div className='overlay'>
+                                                                                        <div className='cost_modal'>
+                                                                                            <div className='modal_title'>Check Cost </div>
+                                                                                            <div className='modal_desc'>The estimated cost for the influencer is as follows,</div>
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Reel</div>
                                                                                                 {
-                                                                                                    addToCompareData.length > 0 ?
-                                                                                                        <>
-                                                                                                            {/* <div className="added_influencer">
-                                                                                                                {addToCompareData[0].username} <span><AiOutlineClose onClick={() => { setAddToCompareData([]) }} /></span>
-                                                                                                            </div> */}
-                                                                                                            {
-                                                                                                                addToCompareData.map((data) =>
-                                                                                                                    <div className="added_influencer">
-                                                                                                                        {data.username}<span><AiOutlineClose onClick={() => { handleRemoveInfluencer(data) }} /></span>
-                                                                                                                    </div>
-                                                                                                                )
-                                                                                                            }
-                                                                                                        </>
-                                                                                                        : null
+                                                                                                    data?.costFactorReel?.minTotalCost || data?.costFactorReel?.minTotalCost ?
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorReel?.minTotalCost)} - Rs{NFormatter(data?.costFactorReel?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorReel?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorReel?.influencerExactmaxTotalCost)}</div>
                                                                                                 }
                                                                                             </div>
-                                                                                            <div onClick={() => setAddToCompareData([])} className="clear_all">
-                                                                                                Clear all
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Post</div>
+                                                                                                {
+                                                                                                    data?.costFactorPosts?.minTotalCost || data?.costFactorPosts?.minTotalCost ?
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorPosts?.minTotalCost)} - Rs{NFormatter(data?.costFactorPosts?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorPosts?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorPosts?.influencerExactmaxTotalCost)}</div>
+                                                                                                }
                                                                                             </div>
-                                                                                            <div className="btn_pane">
-                                                                                                <Button onClick={handleCompareInfluencers} className='compare_btn'>
-                                                                                                    Compare Now
-                                                                                                </Button>
-                                                                                                <Button className="clear_btn">
-                                                                                                    Compare Later
-                                                                                                </Button>
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Story</div>
+                                                                                                {
+                                                                                                    data?.costFactorStories?.minTotalCost || data?.costFactorStories?.minTotalCost ?
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorStories?.minTotalCost)} - Rs{NFormatter(data?.costFactorStories?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorStories?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorStories?.influencerExactmaxTotalCost)}</div>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Igtv</div>
+                                                                                                {
+                                                                                                    data?.costFactorIgtv?.minTotalCost || data?.costFactorIgtv?.minTotalCost ?
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorIgtv?.minTotalCost)} - Rs{NFormatter(data?.costFactorIgtv?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorIgtv?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorIgtv?.influencerExactmaxTotalCost)}</div>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Swipeup Stories</div>
+                                                                                                {
+                                                                                                    data?.costFactorSwipeUp?.minTotalCost || data?.costFactorSwipeUp?.minTotalCost ?
+                                                                                                        <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data?.costFactorSwipeUp?.minTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactmaxTotalCost)}</div>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <div className='cost_box'>
+                                                                                                <div>Videos</div>
+                                                                                                {
+                                                                                                    data?.costFactorVideo?.minTotalCost || data?.costFactorVideo?.minTotalCost ?
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.minTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.maxTotalCost)}</div>
+                                                                                                        :
+                                                                                                        <div className='cost_value'>: Rs{NFormatter(data?.costFactorVideo?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorVideo?.influencerExactmaxTotalCost)}</div>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <div className='modal_footer'>
+                                                                                                To check a more accurate estimate, please contact +91 98765 43210
+                                                                                            </div>
+                                                                                            <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    : null
+                                                                                :
+                                                                                null
+                                                                        }
+                                                                        <img src={ListIcon} id={data.id} onClick={() => { handleAddToListTable(data) }} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} />
+                                                                        {addToListTableClicked === true ?
+                                                                            [data].map((item) =>
+                                                                                item.username == rowClickedData ?
+                                                                                    <div className='overlay'>
+                                                                                        <section className="addList_section" id={data.id}>
+                                                                                            <div className="addList_option">
+                                                                                                <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
+                                                                                                <div onClick={() => setNewPlanClicked(true)} className='section_dropdown_header'>Add To List</div>
+                                                                                                <div className="section_list_title">
+                                                                                                    Select the list to which you want to add the
+                                                                                                    influencer.
+                                                                                                </div>
+                                                                                                <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
+                                                                                                    {listData.map((item) =>
+                                                                                                        <div className="list_options" onClick={() => { addInfluencerToList(data, item) }}>
+                                                                                                            {item.listName}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </section>
+                                                                                    </div>
+                                                                                    : null
+                                                                            )
+
+                                                                            : null}
+                                                                        <img src={CompareIcon} style={{ marginLeft: '0.625rem', marginRight: '0.625rem' }} onClick={() => handleAddToCompare(data)} />
+                                                                        {
+                                                                            addToCompareClicked === true ?
+
+                                                                                [data].map((item) =>
+                                                                                    <div className='overlay'>
+                                                                                        <div className="compare_section">
+                                                                                            <div className="close_btn"><AiOutlineClose onClick={() => handleAddToCompare()} /></div>
+                                                                                            <div className="compare_headers">
+                                                                                                Add to Compare
+                                                                                            </div>
+                                                                                            <div className="compare_title">
+                                                                                                Select the influencer(s) from results to
+                                                                                                add to the selection you want to compare. You may
+                                                                                                compare upto four influencers.
+                                                                                            </div>
+                                                                                            <input
+                                                                                                type="text"
+                                                                                                value={value}
+                                                                                                onChange={handleChange}
+                                                                                                className="compare_input"
+                                                                                            />
+                                                                                            {suggestionsActive && <Suggestions />}
+                                                                                            <div className="influencers_box">
+                                                                                                <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                                                                                    {
+                                                                                                        addToCompareData.length > 0 ?
+                                                                                                            <>
+                                                                                                                {/* <div className="added_influencer">
+                                                                                                                {addToCompareData[0].username} <span><AiOutlineClose onClick={() => { setAddToCompareData([]) }} /></span>
+                                                                                                            </div> */}
+                                                                                                                {
+                                                                                                                    addToCompareData.map((data) =>
+                                                                                                                        <div className="added_influencer">
+                                                                                                                            {data.username}<span><AiOutlineClose onClick={() => { handleRemoveInfluencer(data) }} /></span>
+                                                                                                                        </div>
+                                                                                                                    )
+                                                                                                                }
+                                                                                                            </>
+                                                                                                            : null
+                                                                                                    }
+                                                                                                </div>
+                                                                                                <div onClick={() => setAddToCompareData([])} className="clear_all">
+                                                                                                    Clear all
+                                                                                                </div>
+                                                                                                <div className="btn_pane">
+                                                                                                    <Button onClick={handleCompareInfluencers} className='compare_btn'>
+                                                                                                        Compare Now
+                                                                                                    </Button>
+                                                                                                    <Button className="clear_btn">
+                                                                                                        Compare Later
+                                                                                                    </Button>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            )
-                                                                            : null
-                                                                    }
-                                                                </div>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </>
-                                                )
+                                                                                )
+                                                                                : null
+                                                                        }
+                                                                    </div>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </>
+                                                    )
+                                                :
+                                                <div className='inline_loader'>
+                                                    <Loader />
+                                                </div>
                                         }
                                     </TableBody>
                                 </Table>

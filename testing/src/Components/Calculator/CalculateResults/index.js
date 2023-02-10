@@ -504,7 +504,7 @@ function CalculateTotal() {
                                                 params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&')[0] === 'none' ?
                                                     '--'
                                                     :
-                                                    params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length + ' Regions'
+                                                    params.demography.substring(params.demography.indexOf('region')).split('=')[1].split('&').length + ' State'
                                             )
                                             :
                                             null
@@ -580,7 +580,7 @@ function CalculateTotal() {
                             </div>
                         </div>
                         <div className="result_pane_2_title">
-                            For a tailor-made solution as per your needs, call (+91) 98765 43210, or submit your details for a call later.
+                            For a tailor-made solution as per your needs,<div> call (+91) 98765 43210, or submit your details for a call later.</div>
                         </div>
                         <div className="enquiry_form row no-gutters">
                             <div className="name_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
@@ -606,19 +606,20 @@ function CalculateTotal() {
                     </div>
                     <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0 mx-auto">
                         <div className="image_1"></div>
+                        <div className="row no-gutters justify-content-center metrics_score">{metricsTotal}%</div>
                         <div className="image_2">
-                            <GaugeChart id="gauge-chart2"
+                            <GaugeChart id="gauge-chart2" className="abc"
                                 percent={(metricsTotal / 100)}
                             />
                         </div>
                         <div className="row no-gutters justify-content-center">
+                            <div className="indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto"> Your Metric Score</div>
                             {
                                 metricsTotal > 50 ?
-                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' >Specific</div>
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 1rem' }} >Specific</div>
                                     :
-                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' >Broad</div>
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 1rem' }} >Broad</div>
                             }
-                            <div className="indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto"> Your Metrics Score is {metricsTotal}</div>
                         </div>
                     </div>
                 </div>

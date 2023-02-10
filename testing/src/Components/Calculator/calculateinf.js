@@ -462,12 +462,12 @@ function CalculateCost() {
                                 required for marketing
                             </div>
                             <div style={{ paddingTop: '0.75rem' }}>
-                                <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} style={{ cursor: 'pointer' }} />
+                                <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} style={{ cursor: 'pointer' }} disabled={isInfluencerChecked ? true : false} />
                                 <label>Budegt (INR)</label>
                                 <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' type='number' value={budget} onChange={(e) => setBudget(e.target.value)} disabled={isInfluencerChecked === true ? true : false} /></span>
                             </div>
                             <div style={{ paddingTop: '0.75rem' }}>
-                                <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} style={{ cursor: 'pointer' }} />
+                                <Input type='checkbox' value={isInfluencerChecked} onChange={() => setIsInfluencerChecked(!isInfluencerChecked)} style={{ cursor: 'pointer' }} disabled={isChecked ? true : false} />
                                 <label>No of influencers</label>
                                 <span><Input className='input_box' type='number' value={creatorsCount} onChange={(e) => { setCreatorsCount(e.target.value) }} disabled={isChecked === true ? true : false} /></span>
                             </div>
@@ -484,7 +484,7 @@ function CalculateCost() {
                             <Button onClick={handleNextPage} className='next_btn'>Next</Button>
                         </div>
                     </div>
-                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0' style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                    <div className='right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <div className='image1'></div>
                         {/* <div className='image2' style={{ opacity: '0.2' }}>
                         </div> */}

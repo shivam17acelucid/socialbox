@@ -55,21 +55,20 @@ const categoryOptions = [
 
 const regionOptions = [
     { label: 'AndhraPradesh', value: 'AndhraPradesh' },
-    { label: 'Rajasthan', value: 'Rajasthan' },
     { label: 'Andaman&NicobarIslands', value: 'Andaman&NicobarIslands' },
-    { label: 'ArunāchalPradesh', value: 'ArunāchalPradesh' },
+    { label: 'ArunachalPradesh', value: 'ArunachalPradesh' },
     { label: 'Assam', value: 'Assam' },
-    { label: 'Bihār', value: 'Bihār' },
-    { label: 'Chandīgarh', value: 'Chandīgarh' },
-    { label: 'Chhattīsgarh', value: 'Chhattīsgarh' },
-    { label: 'Dādra&NagarHaveli', value: 'Dādra&NagarHaveli' },
-    { label: 'TamilNādu', value: 'TamilNādu' },
-    { label: 'Karnātaka', value: 'Karnātaka' },
-    { label: 'Haryāna', value: 'Haryāna' },
-    { label: 'Jhārkhand', value: 'Jhārkhand' },
-    { label: 'Jammu&Kashmīr', value: 'Jammu&Kashmīr' },
-    { label: 'HimāchalPradesh', value: 'HimāchalPradesh' },
-    { label: 'Gujarāt', value: 'Gujarāt' },
+    { label: 'Bihar', value: 'Bihar' },
+    { label: 'Chandigarh', value: 'Chandigarh' },
+    { label: 'Chhattisgarh', value: 'Chhattisgarh' },
+    { label: 'Dadra&NagarHaveli', value: 'Dadra&NagarHaveli' },
+    { label: 'TamilNadu', value: 'TamilNadu' },
+    { label: 'Karnataka', value: 'Karnataka' },
+    { label: 'Haryana', value: 'Haryana' },
+    { label: 'Jharkhand', value: 'Jharkhand' },
+    { label: 'Jammu&Kashmir', value: 'Jammu&Kashmir' },
+    { label: 'HimachalPradesh', value: 'HimachalPradesh' },
+    { label: 'Gujarat', value: 'Gujarat' },
     { label: 'Goa', value: 'Goa' },
     { label: 'Delhi', value: 'Delhi' },
     { label: 'Telangana', value: 'Telangana' },
@@ -77,32 +76,32 @@ const regionOptions = [
     { label: 'Ladakh', value: 'Ladakh' },
     { label: 'Lakshadweep', value: 'Lakshadweep' },
     { label: 'MadhyaPradesh', value: 'MadhyaPradesh' },
-    { label: 'Mahārāshtra', value: 'Mahārāshtra' },
+    { label: 'Maharashtra', value: 'Maharashtra' },
     { label: 'Manipur', value: 'Manipur' },
-    { label: 'Meghālaya', value: 'Meghālaya' },
+    { label: 'Meghalaya', value: 'Meghalaya' },
     { label: 'Mizoram', value: 'Mizoram' },
-    { label: 'Nāgāland', value: 'Nāgāland' },
+    { label: 'Nagaland', value: 'Nagaland' },
     { label: 'Odisha(Orissa)', value: 'Odisha(Orissa)' },
     { label: 'Puducherry(Pondicherry)', value: 'Puducherry(Pondicherry)' },
+    { label: 'Rajasthan', value: 'Rajasthan' },
     { label: 'Punjab', value: 'Punjab' },
     { label: 'Sikkim', value: 'Sikkim' },
     { label: 'Tripura', value: 'Tripura' },
-    { label: 'Uttarākhand(Uttaranchal)', value: 'Uttarākhand(Uttaranchal)' },
+    { label: 'Uttarakhand(Uttaranchal)', value: 'Uttarakhand(Uttaranchal)' },
     { label: 'UttarPradesh', value: 'UttarPradesh' },
     { label: 'Westbengal', value: 'Westbengal' },
 ]
 
 const cityOptions = [
-    { label: 'Goa', value: 'Goa' },
     { label: 'Delhi', value: 'Delhi' },
     { label: 'Telangana', value: 'Telangana' },
     { label: 'Kerala', value: 'Kerala' },
     { label: 'Ladakh', value: 'Ladakh' },
     { label: 'Lakshadweep', value: 'Lakshadweep' },
     { label: 'MadhyaPradesh', value: 'MadhyaPradesh' },
-    { label: 'Mahārāshtra', value: 'Mahārāshtra' },
+    { label: 'Maharashtra', value: 'Maharashtra' },
     { label: 'Manipur', value: 'Manipur' },
-    { label: 'Meghālaya', value: 'Meghālaya' },
+    { label: 'Meghalaya', value: 'Meghalaya' },
 ]
 
 function CalculateFilters() {
@@ -402,7 +401,7 @@ function CalculateFilters() {
                         <div className="pane_3">
                             <div className="pane_3_filter">
                                 <Input type="checkbox" className="checkbox_input" />
-                                <label>Region</label>
+                                <label>State</label>
                                 <MySelect
                                     isMulti
                                     closeMenuOnSelect={false}
@@ -416,7 +415,7 @@ function CalculateFilters() {
                                 />
                                 {/* <Input className="filter_field" /> */}
                             </div>
-                            <div className="pane_3_filter">
+                            <div className="pane_3_filter" style={{ marginTop: '3rem' }}>
                                 <Input type="checkbox" className="checkbox_input" />
                                 <label>Cities</label>
                                 <MySelect
@@ -439,7 +438,7 @@ function CalculateFilters() {
                             <Button onClick={handleNext} className='next_btn'>Next</Button>
                         </div>
                     </div>
-                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                    <div className="right_pane col-lg-3 col-md-0 col-sm-0 col-xs-0 col-0" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <div className="image_1"></div>
                         {/* <div className="image_2"></div> */}
                         {/* <span className='indicator' style={{ marginLeft: '2.5rem' }}>Specific</span>

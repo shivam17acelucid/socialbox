@@ -392,7 +392,7 @@ html {
                     }
 
                     padding-top: 1rem;
-                    padding-left: 1rem;
+                    // padding-left: 1rem;
 
                     .basket_top {
                         display: flex;
@@ -448,6 +448,7 @@ html {
                             background: #7662DC;
                             color: #FFFFFF;
                             height: 1.625rem;
+                            padding: 1rem 4rem;
 
                             @media (max-width: 1000px) {
                                 min-width: auto !important;

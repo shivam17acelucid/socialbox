@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import '../ProfileData/profile.scss';
 import Button from '@mui/material/Button';
 import NFormatter from "../../Common/NumberFormatter/numFormatter";
@@ -21,6 +21,7 @@ const ProfileData = () => {
     const [newPlanClicked, setNewPlanClicked] = useState(false);
 
     let { profilename } = useParams();
+    let navigate = useNavigate;
 
     const userId = localStorage.getItem('id')
 
@@ -62,6 +63,11 @@ const ProfileData = () => {
             })
     }
 
+    const handleRedirectToInstagram = (data) => {
+        window.open(`https://www.instagram.com/${data.username}/`);
+        // window.location.href = `https://www.instagram.com/${data.username}/`;
+    }
+
     useEffect(() => {
         fetchProfiles();
     }, []);
@@ -85,10 +91,10 @@ const ProfileData = () => {
                                                 {/* <img src={Testing} className='profile_image' /> */}
                                             </div>
                                             <div className="profile_basic_info col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
-                                                <div className="profile_name">
+                                                <div className="profile_name" onClick={() => { handleRedirectToInstagram(data) }}>
                                                     {data.full_name}
                                                 </div>
-                                                <div className="profile_username">
+                                                <div className="profile_username" onClick={() => { handleRedirectToInstagram(data) }}>
                                                     @{data.username}
                                                 </div>
                                                 {

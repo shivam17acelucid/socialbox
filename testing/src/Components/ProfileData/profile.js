@@ -198,13 +198,13 @@ const ProfileData = () => {
                                                     <Tooltip title="Comment">
                                                         <img src={CommentIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[1]?.node.edge_media_to_comment.count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[1]?.node.edge_media_to_comment.count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[1]?.node.edge_media_to_comment.count) : '--'}</span>
                                                 </div>
                                                 <div className="value_box">
                                                     <Tooltip title='Views'>
                                                         <img src={ViewIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[1]?.node.video_view_count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[1]?.node.video_view_count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[1]?.node.video_view_count) : '--'}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,13 +222,13 @@ const ProfileData = () => {
                                                     <Tooltip title="Comment">
                                                         <img src={CommentIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[2]?.node?.edge_media_to_comment?.count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[2]?.node?.edge_media_to_comment?.count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[2]?.node?.edge_media_to_comment?.count) : '--'}</span>
                                                 </div>
                                                 <div className="value_box">
                                                     <Tooltip title='Views'>
                                                         <img src={ViewIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[2]?.node?.video_view_count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[2]?.node?.video_view_count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[2]?.node?.video_view_count) : '--'}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -246,13 +246,13 @@ const ProfileData = () => {
                                                     <Tooltip title="Comment">
                                                         <img src={CommentIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[3]?.node?.edge_media_to_comment?.count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[3]?.node?.edge_media_to_comment?.count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[3]?.node?.edge_media_to_comment?.count) : '--'}</span>
                                                 </div>
                                                 <div className="value_box">
                                                     <Tooltip title='Views'>
                                                         <img src={ViewIcon} />
                                                     </Tooltip>
-                                                    <span className="like_comment_value">{NFormatter(data?.edge_owner_to_timeline_media?.edges[3]?.node?.video_view_count)}</span>
+                                                    <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[3]?.node?.video_view_count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[3]?.node?.video_view_count) : '--'}</span>
                                                 </div>
                                             </div>
                                         </div>

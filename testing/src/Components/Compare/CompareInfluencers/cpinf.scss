@@ -33,8 +33,7 @@ html {
         padding: 2rem; //need to find soln
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 100vh;
-        padding-bottom: 5rem;
+        height: 88vh;
 
         .results {
             background: #FFFFFF;
@@ -128,6 +127,7 @@ html {
                 justify-content: space-evenly;
                 padding: 0.625rem;
                 align-items: center;
+                cursor: pointer;
 
                 .profile_like {
                     display: flex;
@@ -291,7 +291,7 @@ html {
         .add_influencers {
             background: #EBEBEB;
             width: 15rem;
-            height: 58rem;
+            height: 100vh;
             border-radius: 0.313rem;
             margin-left: 1rem;
 
@@ -389,8 +389,6 @@ html {
                         width: 19rem;
                         max-height: 9.375rem;
                         overflow-y: scroll;
-                        top: 40%;
-                        left: 6%;
 
                         .active_inf {
                             padding: 0.75rem;

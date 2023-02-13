@@ -14,6 +14,7 @@ import ER from '../../../Assets/Images/er.png'
 import ViewIcon from '../../../Assets/Images/viewIcon.png'
 import { AiOutlineClose } from 'react-icons/ai';
 import Loader from '../../../Common/Loader';
+import Tooltip from '@mui/material/Tooltip';
 
 function CompareInfluencers() {
 
@@ -253,7 +254,7 @@ function CompareInfluencers() {
                                                 <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
                                             </div>
                                             <div className='descr_title'>
-                                                Average Comment
+                                                Average Comments
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +264,7 @@ function CompareInfluencers() {
                                                 <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
                                             </div>
                                             <div className='descr_title'>
-                                                Average View
+                                                Average Views
                                             </div>
                                         </div>
                                         <div className='profile_comment'>
@@ -271,7 +272,7 @@ function CompareInfluencers() {
                                                 <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
                                             </div>
                                             <div className='descr_title'>
-                                                Engagement Rate
+                                                Engagement Rate%
                                             </div>
                                         </div>
                                     </div>
@@ -307,25 +308,61 @@ function CompareInfluencers() {
                                         <div className='recent_post_box'>
                                             <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_1.png`} />
                                             <div style={{ paddingLeft: '0.5rem' }}>
-                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
-                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
-                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[1]?.node.video_view_count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title="Likes">
+                                                        <img src={LikeIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'>
+                                                    <Tooltip title='Comments'>
+                                                        <img src={CommentIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title='Views'>
+                                                        <img src={ViewIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_felix_video_timeline.edges[1]?.node.video_view_count)}</span></div>
                                             </div>
                                         </div>
                                         <div className='recent_post_box'>
                                             <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_2.png`} />
                                             <div style={{ paddingLeft: '0.5rem' }}>
-                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
-                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
-                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[2]?.node.video_view_count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title="Likes">
+                                                        <img src={LikeIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'>
+                                                    <Tooltip title='Comments'>
+                                                        <img src={CommentIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title='Views'>
+                                                        <img src={ViewIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_felix_video_timeline.edges[2]?.node.video_view_count)}</span></div>
                                             </div>
                                         </div>
                                         <div className='recent_post_box'>
                                             <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_3.png`} />
                                             <div style={{ paddingLeft: '0.5rem' }}>
-                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
-                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>
-                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[3]?.node.video_view_count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title="Likes">
+                                                        <img src={LikeIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'>
+                                                    <Tooltip title='Comments'>
+                                                        <img src={CommentIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'>
+                                                    <Tooltip title='Views'>
+                                                        <img src={ViewIcon} />
+                                                    </Tooltip>
+                                                    <span>{NFormatter(item.edge_felix_video_timeline.edges[3]?.node.video_view_count)}</span></div>
                                             </div>
                                         </div>
                                     </div>

@@ -207,11 +207,11 @@ function CompareLists() {
                                 <div className='avg_like'><img src={LikeIcon} />{NFormatter(item.totalAvgLike)}</div>
                                 <div className='detail_label'>Average Likes</div>
                                 <div className='avg_comment'><img src={CommentIcon} />{NFormatter(item.totalAvgComment)}</div>
-                                <div className='detail_label'>Average Comment</div>
+                                <div className='detail_label'>Average Comments</div>
                                 <div className='avg_reach'><img src={ViewIcon} />{NFormatter(item.totalReach)}</div>
                                 <div className='detail_label'>Average Reach</div>
-                                <div className='avg_reach'><img src={ER} />{item.averageEr}</div>
-                                <div className='detail_label_last'>Average ER</div>
+                                <div className='avg_reach'><img src={ER} />{item.averageEr.toFixed(2)}</div>
+                                <div className='detail_label_last'>Average Engagement Rate%</div>
                                 <div className='remove_btn' onClick={() => { handleRemoveComparedList(item) }}>Remove</div>
                             </div>
                         )

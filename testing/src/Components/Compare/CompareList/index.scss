@@ -34,7 +34,7 @@ html {
         padding: 2rem; //need to find soln
         overflow-x: scroll;
         overflow-y: scroll;
-        height: 100vh;
+        height: 88vh;
         padding-bottom: 5rem;
 
         .add_influencers {
@@ -42,6 +42,7 @@ html {
             width: 15rem;
             border-radius: 0.313rem;
             margin-left: 1rem;
+            height: 100vh;
 
             .add_btn {
                 font-family: 'Noto Sans';
@@ -137,8 +138,6 @@ html {
                         width: 19rem;
                         max-height: 9.375rem;
                         overflow-y: scroll;
-                        top: 40%;
-                        left: 6%;
 
                         .active_inf {
                             padding: 0.75rem;

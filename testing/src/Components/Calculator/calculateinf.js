@@ -463,7 +463,7 @@ function CalculateCost() {
                             </div>
                             <div style={{ paddingTop: '0.75rem' }}>
                                 <Input type='checkbox' value={isChecked} onChange={() => setIsChecked(!isChecked)} style={{ cursor: 'pointer' }} disabled={isInfluencerChecked ? true : false} />
-                                <label>Budegt (INR)</label>
+                                <label>Budget (INR)</label>
                                 <span style={{ marginLeft: '2.2rem' }}> ₹ <Input className='input_box' type='number' value={budget} onChange={(e) => setBudget(e.target.value)} disabled={isInfluencerChecked === true ? true : false} /></span>
                             </div>
                             <div style={{ paddingTop: '0.75rem' }}>

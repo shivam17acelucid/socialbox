@@ -487,12 +487,12 @@ function Lists() {
     }
 
     const filterByFollowersRange = () => {
-        setIsFilterFollowerClicked(true);
+        setIsFilterFollowerClicked((value) => !value);
         setFilterFollowersApplied(true)
     }
 
     const filterByErRange = () => {
-        setIsFilterErClicked(true);
+        setIsFilterErClicked((value) => !value);
         setFilterErApplied(true)
     }
 
@@ -635,12 +635,12 @@ function Lists() {
                                 </div>
                                 <div className='row filterContainer'>
                                     <Button className='test-bg' onClick={filterByFollowersRange}>Followers count<BsFilterLeft /></Button>
-                                    <Button className='test-bg' onClick={filterByErRange}>Engagement % <BsFilterLeft /></Button>
+                                    <Button className='test-bg' onClick={filterByErRange}>Engagement Rate % <BsFilterLeft /></Button>
                                     {
                                         isfilterErClicked === true ?
                                             <div className="modal_section">
                                                 <div className="modal_option">
-                                                    <div>Engagement %</div>
+                                                    <div>Engagement Rate %</div>
                                                     <Slider
                                                         value={rangeEr}
                                                         onChange={(e, data) => {

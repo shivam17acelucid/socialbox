@@ -11,6 +11,22 @@ html {
     display: flex;
     background: #F8F8F8;
 
+    .clear_btn_pane {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 2rem;
+
+        .clear_btn {
+            font-family: 'Noto Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: #007DA8;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+    }
 
     .result_pane {
         display: flex;
@@ -519,4 +535,11 @@ html {
     font-weight: 500;
     line-height: .875rem;
     margin-top: 0.5rem;
+}
+
+.inline_loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -350,6 +350,12 @@ html {
                             height: 1.5rem;
                             margin-top: 0.25rem;
                         }
+
+                        .filter_field_select>div {
+                            div:nth-child(1) {
+                                max-height: 6rem !important;
+                            }
+                        }
                     }
                 }
 

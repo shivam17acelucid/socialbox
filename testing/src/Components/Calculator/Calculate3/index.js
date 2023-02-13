@@ -298,7 +298,7 @@ function CalculateFilters() {
                                 </div>
                                 <div className='deliverables_pane'>
                                     <div className='deliverables_value'>{params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0]}</div>
-                                    <div className='deliverables_title'>Igtv</div>
+                                    <div className='deliverables_title'>IGTV</div>
                                 </div>
                             </div>
                         </div>

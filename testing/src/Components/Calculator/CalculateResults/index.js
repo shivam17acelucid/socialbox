@@ -58,16 +58,16 @@ function CalculateTotal() {
     }
 
     const calculateCreatorsCountBasedOnFollowersRange = () => {
-        if (params.budget.substring(params.budget.indexOf('=') + 1) < 10000) {
+        if (params.budget.substring(params.budget.indexOf('=') + 1) <= 10000) {
             setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 2000))
         }
-        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 10000 && params.budget.substring(params.budget.indexOf('=') + 1) < 50000) {
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 10000 && params.budget.substring(params.budget.indexOf('=') + 1) <= 50000) {
             setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 7000))
         }
-        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 50000 && params.budget.substring(params.budget.indexOf('=') + 1) < 100000) {
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 50000 && params.budget.substring(params.budget.indexOf('=') + 1) <= 100000) {
             setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 24500))
         }
-        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 100000 && params.budget.substring(params.budget.indexOf('=') + 1) < 1000000) {
+        else if (params.budget.substring(params.budget.indexOf('=') + 1) > 100000 && params.budget.substring(params.budget.indexOf('=') + 1) <= 1000000) {
             setCalculatedCreatorsCount(Math.floor(params.budget.substring(params.budget.indexOf('=') + 1) / 85750))
         }
         else if (params.budget.substring(params.budget.indexOf('=') + 1) > 1000000) {
@@ -455,7 +455,7 @@ function CalculateTotal() {
                                 </div>
                                 <div className='deliverables_pane'>
                                     <div className='deliverables_value'>{params.deliverables.substring(params.deliverables.indexOf('v=') + 2)[0]}</div>
-                                    <div className='deliverables_title'>Igtv</div>
+                                    <div className='deliverables_title'>IGTV</div>
                                 </div>
                             </div>
                         </div>
@@ -580,7 +580,7 @@ function CalculateTotal() {
                             </div>
                         </div>
                         <div className="result_pane_2_title">
-                            For a tailor-made solution as per your needs,<div> call (+91) 98765 43210, or submit your details for a call later.</div>
+                            For a tailor-made solution as per your needs,<div> call (+91) 9024236599, or submit your details for a call later.</div>
                         </div>
                         <div className="enquiry_form row no-gutters">
                             <div className="name_pane col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
@@ -621,6 +621,7 @@ function CalculateTotal() {
                                     <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 1rem' }} >Broad</div>
                             }
                         </div>
+                        {/* <div></div> */}
                     </div>
                 </div>
             </div>

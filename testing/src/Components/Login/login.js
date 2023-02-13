@@ -69,7 +69,7 @@ function Login() {
                             className="registeration_fields"
                         />
                     </div>
-                    <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                    <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                         <input
                             type={passwordVisible === true ? 'text' : 'password'}
                             placeholder="Password"
@@ -78,8 +78,8 @@ function Login() {
                             className="registeration_fields"
 
                         />
+                        <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} />
                     </div>
-                    {/* <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} /> */}
                     <div className="form_forgot_text col-lg-6 col-md-6 col-sm-6 col-xs-6">Forgot Password</div>
                 </div>
                 <div className="row no-gutters justify-content-center">

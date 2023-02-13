@@ -28,6 +28,7 @@ function CompareInfluencers() {
     const [value, setValue] = useState('');
     const [addToCompareClicked, setAddToCompareClicked] = useState(false);
     const [addToCompareData, setAddToCompareData] = useState([]);
+    const [loader, setLoader] = useState(false);
     const params = useParams();
     const navigate = useNavigate();
     const userId = localStorage.getItem('id');
@@ -160,6 +161,7 @@ function CompareInfluencers() {
 
 
     const handleCompareInfluencersByParams = () => {
+        setLoader(true);
         if (JSON.stringify(params) !== '{}') {
             const url = `http://65.0.110.147:4000/compareInfluencers?${params.influencers}`;
             fetch(url)
@@ -167,13 +169,19 @@ function CompareInfluencers() {
                     res.json()
                         .then((data) => {
                             setComparedInfluencersData(data)
+                            setLoader(false);
                         })
                 })
         }
         else {
             setComparedInfluencersData([])
+            setLoader(false)
         }
 
+    }
+
+    const handleRemoveAllInfluencers = () => {
+        navigate('/CompareInfluencers')
     }
 
     useEffect(() => {
@@ -188,131 +196,141 @@ function CompareInfluencers() {
             </div>
             <div className='col-lg-10 col-sm-10 col-md-10 col-xs-10 col-10'>
                 <Topbar />
+                <div className='clear_btn_pane'>
+                    <div className='clear_all_btn'>
+                        <Button className='clear_btn' onClick={handleRemoveAllInfluencers}>Clear All</Button>
+                    </div>
+                </div>
                 <div className='result_pane'>
                     {
-                        comparedInfluencersData.map((item) =>
-                            <div className='results'>
-                                <div className='profile_container'>
-                                    <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_profile_image.png`} className='image' />
-                                    {/* <img src={Testing} className='image' /> */}
-                                </div>
-                                <div className='profile_name' onClick={() => { redirectToProfile(item) }}>{item.full_name}</div>
-                                <div className='profile_username'>@{item.username}</div>
-                                <div className='profile_location'>{item.city_name ? item.city_name : item.final_city}</div>
-                                {
-                                    item.category_enum ?
-                                        <div style={{ padding: '0.75rem' }}>
-                                            <div className='profile_category'>{item.category_enum}</div>
-                                        </div>
-                                        :
-                                        item.final_category ?
+                        loader === true ?
+                            <div className='inline_loader'>
+                                <Loader />
+                            </div>
+                            :
+                            comparedInfluencersData.map((item) =>
+                                <div className='results'>
+                                    <div className='profile_container'>
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_profile_image.png`} className='image' />
+                                        {/* <img src={Testing} className='image' /> */}
+                                    </div>
+                                    <div className='profile_name' onClick={() => { redirectToProfile(item) }}>{item.full_name}</div>
+                                    <div className='profile_username'>@{item.username}</div>
+                                    <div className='profile_location'>{item.city_name ? item.city_name : item.final_city}</div>
+                                    {
+                                        item.category_enum ?
                                             <div style={{ padding: '0.75rem' }}>
-                                                <div className='profile_category'>{item.final_category}</div>
+                                                <div className='profile_category'>{item.category_enum}</div>
                                             </div>
                                             :
-                                            null
-                                }
-                                <div className='profile_followers'>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <HiOutlineUser />
-                                        {NFormatter(item.edge_followed_by.count)}
-                                    </div>
-                                    <div className='descr_title' style={{ marginLeft: '1rem' }}>
-                                        Followers
-                                    </div>
-                                </div>
-                                <div className='like_comment_box'>
-                                    <div className='profile_like'>
+                                            item.final_category ?
+                                                <div style={{ padding: '0.75rem' }}>
+                                                    <div className='profile_category'>{item.final_category}</div>
+                                                </div>
+                                                :
+                                                null
+                                    }
+                                    <div className='profile_followers'>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span>
+                                            <HiOutlineUser />
+                                            {NFormatter(item.edge_followed_by.count)}
                                         </div>
-                                        <div className='descr_title'>
-                                            Average Likes
-                                        </div>
-                                    </div>
-                                    <div className='profile_comment'>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
-                                        </div>
-                                        <div className='descr_title'>
-                                            Average Comment
+                                        <div className='descr_title' style={{ marginLeft: '1rem' }}>
+                                            Followers
                                         </div>
                                     </div>
-                                </div>
-                                <div className='like_comment_box'>
-                                    <div className='profile_like'>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
+                                    <div className='like_comment_box'>
+                                        <div className='profile_like'>
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span>
+                                            </div>
+                                            <div className='descr_title'>
+                                                Average Likes
+                                            </div>
                                         </div>
-                                        <div className='descr_title'>
-                                            Average View
+                                        <div className='profile_comment'>
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
+                                            </div>
+                                            <div className='descr_title'>
+                                                Average Comment
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className='profile_comment'>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
+                                    <div className='like_comment_box'>
+                                        <div className='profile_like'>
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
+                                            </div>
+                                            <div className='descr_title'>
+                                                Average View
+                                            </div>
                                         </div>
-                                        <div className='descr_title'>
-                                            Engagement Rate
+                                        <div className='profile_comment'>
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
+                                            </div>
+                                            <div className='descr_title'>
+                                                Engagement Rate
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='list_remove_pane'>
-                                    <div onClick={() => { handleAddToListTable(item) }}>+Add to my List</div>
-                                    {addToListTableClicked === true ?
-                                        item.username == resultClickedData ?
-                                            [item].map((elm) =>
-                                                <section className="addList_section" id={item.id}>
-                                                    <div className="addList_option">
-                                                        <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
-                                                        <div className="section_list_title">
-                                                            Select the list to which you want to add the
-                                                            influencer.
+                                    <div className='list_remove_pane'>
+                                        <div onClick={() => { handleAddToListTable(item) }}>+Add to my List</div>
+                                        {addToListTableClicked === true ?
+                                            item.username == resultClickedData ?
+                                                [item].map((elm) =>
+                                                    <section className="addList_section" id={item.id}>
+                                                        <div className="addList_option">
+                                                            <div style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={handleAddToListTable}><AiOutlineClose /></div>
+                                                            <div className="section_list_title">
+                                                                Select the list to which you want to add the
+                                                                influencer.
+                                                            </div>
+                                                            <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
+                                                                {listData.map((element) =>
+                                                                    <div className="list_options" onClick={() => { addInfluencerToList(elm, element) }}>
+                                                                        {element.listName}
+                                                                    </div>
+                                                                )}
+                                                            </div>
                                                         </div>
-                                                        <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
-                                                            {listData.map((element) =>
-                                                                <div className="list_options" onClick={() => { addInfluencerToList(elm, element) }}>
-                                                                    {element.listName}
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            )
+                                                    </section>
+                                                )
 
-                                            : null
-                                        : null}
-                                    <div onClick={() => { handleRemoveComparedInfluencer(item) }}>Remove</div>
+                                                : null
+                                            : null}
+                                        <div onClick={() => { handleRemoveComparedInfluencer(item) }}>Remove</div>
+                                    </div>
+                                    <div className='recent_posts'>
+                                        <div className='recent_posts_title'>Recent Posts</div>
+                                        <div className='recent_post_box'>
+                                            <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_1.png`} />
+                                            <div style={{ paddingLeft: '0.5rem' }}>
+                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[1]?.node.video_view_count)}</span></div>
+                                            </div>
+                                        </div>
+                                        <div className='recent_post_box'>
+                                            <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_2.png`} />
+                                            <div style={{ paddingLeft: '0.5rem' }}>
+                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[2]?.node.video_view_count)}</span></div>
+                                            </div>
+                                        </div>
+                                        <div className='recent_post_box'>
+                                            <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_3.png`} />
+                                            <div style={{ paddingLeft: '0.5rem' }}>
+                                                <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
+                                                <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>
+                                                <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[3]?.node.video_view_count)}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='recent_posts'>
-                                    <div className='recent_posts_title'>Recent Posts</div>
-                                    <div className='recent_post_box'>
-                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_1.png`} />
-                                        <div style={{ paddingLeft: '0.5rem' }}>
-                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_liked_by.count)}</span></div>
-                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[1]?.node.edge_media_to_comment.count)}</span></div>
-                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[1]?.node.video_view_count)}</span></div>
-                                        </div>
-                                    </div>
-                                    <div className='recent_post_box'>
-                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_2.png`} />
-                                        <div style={{ paddingLeft: '0.5rem' }}>
-                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_liked_by.count)}</span></div>
-                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[2]?.node.edge_media_to_comment.count)}</span></div>
-                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[2]?.node.video_view_count)}</span></div>
-                                        </div>
-                                    </div>
-                                    <div className='recent_post_box'>
-                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${item.username}/${item.username}_recent_image_3.png`} />
-                                        <div style={{ paddingLeft: '0.5rem' }}>
-                                            <div className='profile_like'><img src={LikeIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_liked_by.count)}</span></div>
-                                            <div className='profile_comment'><img src={CommentIcon} /><span>{NFormatter(item.edge_owner_to_timeline_media.edges[3]?.node.edge_media_to_comment.count)}</span></div>
-                                            <div className='profile_like'><img src={ViewIcon} /><span>{NFormatter(item.edge_felix_video_timeline.edges[3]?.node.video_view_count)}</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
+                            )
                     }
                     <div className='add_influencers'>
                         <div className='add_btn' onClick={() => handleAddToCompare()}>+</div>

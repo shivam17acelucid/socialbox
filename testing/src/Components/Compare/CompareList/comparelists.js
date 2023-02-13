@@ -157,6 +157,10 @@ function CompareLists() {
         );
     };
 
+    const handleRemoveAllLists = () => {
+        navigate(`/CompareLists`)
+    }
+
     useEffect(() => {
         getListData();
     }, [])
@@ -172,6 +176,11 @@ function CompareLists() {
             </div>
             <div className='col-lg-10 col-sm-10 col-md-10 col-xs-10 col-10'>
                 <TopBar />
+                <div className='clear_btn_pane'>
+                    <div className='clear_all_btn'>
+                        <Button className='clear_btn' onClick={handleRemoveAllLists}>Clear All</Button>
+                    </div>
+                </div>
                 <div className='result_pane'>
                     {
                         comparedlistsData.map((item) =>

@@ -78,7 +78,7 @@ function CalculateDeliverables() {
                                 </div>
                                 <div className='deliverables_pane'>
                                     <div className='deliverables_value'> {igtv}</div>
-                                    <div className='deliverables_title'>Igtv</div>
+                                    <div className='deliverables_title'>IGTV</div>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +179,7 @@ function CalculateDeliverables() {
                             </div>
                         </div>
                         <div className='deliverables_box row no-gutters'>
-                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>Igtv</div>
+                            <div className='col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12'>IGTV</div>
                             <div className='deliverables_value col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12'>
                                 {
                                     igtv === 0 ?

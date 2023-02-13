@@ -22,7 +22,7 @@ const options = [
 
 function CalculateCost() {
     const [budget, setBudget] = useState(0);
-    const [creatorsCount, setCreatorsCount] = useState(0);
+    const [creatorsCount, setCreatorsCount] = useState(1);
     const [isChecked, setIsChecked] = useState(false);
     const [isInfluencerChecked, setIsInfluencerChecked] = useState(false);
     const [error, setError] = useState(false)
@@ -328,7 +328,7 @@ function CalculateCost() {
                             <div className='followers_count'>
                                 Any
                             </div>
-                            <div className='budget_influencers_title'>Budegt / Influencers</div>
+                            <div className='budget_influencers_title'>Budget / Influencers</div>
                             <div className='budget_influencers_value'> -- </div>
                         </div>
                         <div className='steps_pane_part_inactive'>
@@ -358,7 +358,7 @@ function CalculateCost() {
                                 </div>
                                 <div className='deliverables_pane'>
                                     <div className='deliverables_value'> ---</div>
-                                    <div className='deliverables_title'>Igtv</div>
+                                    <div className='deliverables_title'>IGTV</div>
                                 </div>
                             </div>
                         </div>

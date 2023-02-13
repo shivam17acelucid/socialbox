@@ -199,3 +199,16 @@ exports.erfilteredBasketData = (req, res) => {
             return res.json(filter);
         })
 }
+
+exports.deleteBasket = (req, res) => {
+    let categoryName = req.query;
+    CategorizedBasket.findOneAndDelete({ categoryName: categoryName })
+        .then((data) => {
+            if (data) {
+                res.json('Deleted Successfully');
+            }
+            else {
+                res.json('Basket Not Present');
+            }
+        })
+}

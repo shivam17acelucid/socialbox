@@ -171,7 +171,8 @@ exports.userID = (req, res, next) => {
                         method: 'GET',
                         agent: proxyAgent,
                         headers: URLENCODED_HEADER,
-                        mode: 'cors'
+                        mode: 'cors',
+                        rejectUnauthorized: false
                     }).then((response) => response.json()
                         .then((data) => {
                             if (data.user) {

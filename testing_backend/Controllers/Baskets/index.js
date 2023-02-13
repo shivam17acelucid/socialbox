@@ -201,7 +201,7 @@ exports.erfilteredBasketData = (req, res) => {
 }
 
 exports.deleteBasket = (req, res) => {
-    let categoryName = req.query;
+    let { categoryName } = req.query;
     CategorizedBasket.findOneAndDelete({ categoryName: categoryName })
         .then((data) => {
             if (data) {

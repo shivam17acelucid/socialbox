@@ -230,3 +230,12 @@ exports.editDescription = (req, res) => {
             }
         })
 }
+
+exports.showBasketDescription = (req, res) => {
+    let { categoryName } = req.query;
+
+    CategorizedBasket.find({ categoryName })
+        .then((data) => {
+            res.json(data[0].description)
+        })
+}

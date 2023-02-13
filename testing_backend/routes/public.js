@@ -5,7 +5,7 @@ const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../Controllers/downloadcsv");
 const { signup, login, logout, adminLogin } = require('../Controllers/Authentication/user')
 const { compareInfluencers } = require('../Controllers/Comparison/compareinfluencers');
-const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload, deleteBasket } = require('../Controllers/Baskets/index');
+const { createCategorizedBasket, showCategorizedBasket, addInfluencersToBasket, showBasketInfluencers, filtered_basket_list, followersfilteredBasketData, erfilteredBasketData, addImageToBasket, upload, deleteBasket, editDescription } = require('../Controllers/Baskets/index');
 const { compareCategorizedBaskets, compareUsersLists } = require('../Controllers/Comparison/comparelists')
 const { setCalculateCostForReel, setCalculateCostForPosts, setCalculateCostForStories, setCalculateCostForIgtv, setInfluencerCost, setCalculateCostForSwipeupStories, setCalculateCostForVideos, getBasicRate } = require('../Controllers/CostCalculator/index');
 const rolehandler = require("../Controllers/rolehandler");
@@ -79,4 +79,5 @@ router.post('/testingproxies', testingproxies);
 router.get('/getImageUrls', getImageUrls);
 router.get('/getBasicRate', getBasicRate);
 router.put('/deleteBasket', deleteBasket);
+router.put('/editDescription', editDescription);
 module.exports = router;

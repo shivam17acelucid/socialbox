@@ -212,3 +212,21 @@ exports.deleteBasket = (req, res) => {
             }
         })
 }
+
+exports.editDescription = (req, res) => {
+    let { categoryName } = req.query;
+    let { description } = req.body;
+    CategorizedBasket.findOne({ categoryName: categoryName })
+        .then((data) => {
+            if (data) {
+                data.description = description;
+                data.save()
+                    .then((result) => {
+                        res.status(200).json('Edited Successfully');
+                    })
+            }
+            else {
+                res.json('Basket Not Present');
+            }
+        })
+}

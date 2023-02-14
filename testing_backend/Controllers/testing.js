@@ -241,12 +241,6 @@ exports.profile = (req, res, next) => {
                                             uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user?.username}/${data.data.user?.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                                                 .then((data) => {
                                                     console.log("File saved!")
-                                                    ProfileData.insertMany([data.data.user])
-                                                        .then((result) => {
-                                                        })
-                                                        .catch((err) => {
-                                                            console.log(err)
-                                                        })
                                                 })
                                                 .catch((error) => console.log(error));
                                             uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user?.username}/${data.data.user?.username}_recent_image_1.png`, 'socialbox-bckt', data.data.user)
@@ -264,6 +258,34 @@ exports.profile = (req, res, next) => {
                                                     console.log("File saved!")
                                                 })
                                                 .catch((error) => console.log(error));
+                                            ProfileData.findOne({ username: data.data.user.username })
+                                                .then((item) => {
+                                                    if (item) {
+                                                        item.edge_followed_by = data.data.user?.edge_followed_by,
+                                                            item.full_name = data.data.user?.full_name,
+                                                            item.is_verified = data.data.user?.is_verified,
+                                                            item.external_url = data.data.user?.external_url,
+                                                            item.edge_follow = data.data.user?.edge_follow,
+                                                            item.category_enum = data.data.user?.category_enum,
+                                                            item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
+                                                            item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
+                                                            item.edge_media_collections = data.data.user?.edge_media_collections,
+                                                            item.save()
+                                                                .then((response) => {
+                                                                    if (response) {
+                                                                        console.log('Edited');
+                                                                    }
+                                                                })
+                                                    }
+                                                    else {
+                                                        ProfileData.insertMany([data.data.user])
+                                                            .then((result) => {
+                                                            })
+                                                            .catch((err) => {
+                                                                console.log(err)
+                                                            })
+                                                    }
+                                                })
                                         }
                                     }
                                 })
@@ -339,6 +361,107 @@ const uploadRecentPosts_3_ToS3 = (url, bucket, key, item) => {
                 return s3.putObject(params).promise();
             });
         });
+}
+
+exports.getInfluencersDetails = (req, res) => {
+    let avg_likes = 0;
+    let avg_comment = 0;
+    let engagementRate = 0;
+    let noOfPosts = [];
+    let array = [];
+    let city_name = '';
+    let totalReelView = 0;
+    let averageReelView = 0;
+    ProfileData.find()
+        .select({
+            username: 1, full_name: 1, is_verified: 1, edge_followed_by: 1, edge_follow: 1, category_enum: 1,
+            'edge_owner_to_timeline_media.edges.node.edge_liked_by': 1,
+            'edge_owner_to_timeline_media.edges.node.edge_media_to_comment': 1,
+            'edge_owner_to_timeline_media.count': 1,
+            'edge_owner_to_timeline_media.edges.node.video_view_count': 1,
+            'edge_owner_to_timeline_media.edges.node.taken_at_timestamp': 1,
+            'edge_felix_video_timeline.edges.node.edge_liked_by': 1,
+            'edge_felix_video_timeline.edges.node.edge_media_to_comment': 1,
+            'edge_felix_video_timeline.edges.node.video_view_count': 1,
+            'edge_felix_video_timeline.count': 1,
+            'edge_felix_video_timeline.edges.node.taken_at_timestamp': 1,
+            external_url: 1,
+            isAdded: 1,
+        })
+        .then((result) => {
+            result.forEach((data) => {
+                if (data.isAdded === false) {
+                    totalReelView = 0;
+                    averageReelView = 0;
+                    let edges = data?.edge_felix_video_timeline?.edges;
+                    edges.forEach((res) => {
+                        averageReelView += Math.trunc(res.node?.video_view_count / 12);
+                        totalReelView += res?.node?.video_view_count;
+                    })
+                    avg_likes = 0;
+                    avg_comment = 0;
+                    noOfPosts = data?.edge_owner_to_timeline_media?.edges;
+                    noOfPosts.forEach((item) => {
+                        avg_likes += Math.trunc(item?.node?.edge_liked_by?.count / 12);
+                        avg_comment += Math.trunc(item?.node?.edge_media_to_comment?.count / 12);
+                        engagementRate = ((avg_likes + avg_comment) / data.edge_followed_by.count) * 100;
+                        // engagementRate = Number(engagementRate.toFixed(2))
+                        engagementRate = engagementRate.toString();
+                        engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
+                        engagementRate = Number(engagementRate);
+                    });
+                    noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
+                    edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
+                    InfluencersData.findOne({ username: data.username })
+                        .then((item) => {
+                            if (item) {
+                                item.edge_followed_by = data?.edge_followed_by,
+                                    item.full_name = data?.full_name,
+                                    item.is_verified = data?.is_verified,
+                                    item.external_url = data?.external_url,
+                                    item.edge_follow = data?.edge_follow,
+                                    item.category_enum = data?.category_enum,
+                                    item.edge_felix_video_timeline = data?.edge_felix_video_timeline,
+                                    item.edge_owner_to_timeline_media = data?.edge_owner_to_timeline_media,
+                                    item.save()
+                                        .then((response) => {
+                                            if (response) {
+                                                console.log('Edited');
+                                            }
+                                        })
+                            }
+                            else {
+                                InfluencersData.insertMany([data])
+                                    .then((result) => {
+                                        data.isAdded = true;
+                                        data.save()
+                                        console.log(result);
+                                    })
+                                    .catch((err) => {
+                                        console.log(err)
+                                    })
+                            }
+                        })
+                }
+                // array.push(data)
+            })
+            // array.forEach((item) => {
+            //     InfluencersData.insertMany([item])
+            //         .then((result) => {
+            //             console.log(result);
+            //         })
+            //         .catch((err) => {
+            //             console.log(err)
+            //         })
+            // })
+            ProfileData.find({ isAdded: true })
+                .select({
+                    username: 1,
+                })
+                .then((fetchedData) => {
+                    res.json(`items added ${fetchedData.length} - ${result.length}`)
+                })
+        })
 }
 
 exports.username = (req, res, next) => {
@@ -498,85 +621,6 @@ exports.filteredByErInfluencersData = (req, res) => {
         })
 }
 
-exports.getInfluencersDetails = (req, res) => {
-    let avg_likes = 0;
-    let avg_comment = 0;
-    let engagementRate = 0;
-    let noOfPosts = [];
-    let array = [];
-    let city_name = '';
-    let totalReelView = 0;
-    let averageReelView = 0;
-    ProfileData.find()
-        .select({
-            username: 1, full_name: 1, is_verified: 1, edge_followed_by: 1, edge_follow: 1, category_enum: 1,
-            'edge_owner_to_timeline_media.edges.node.edge_liked_by': 1,
-            'edge_owner_to_timeline_media.edges.node.edge_media_to_comment': 1,
-            'edge_owner_to_timeline_media.count': 1,
-            'edge_owner_to_timeline_media.edges.node.video_view_count': 1,
-            'edge_owner_to_timeline_media.edges.node.taken_at_timestamp': 1,
-            'edge_felix_video_timeline.edges.node.edge_liked_by': 1,
-            'edge_felix_video_timeline.edges.node.edge_media_to_comment': 1,
-            'edge_felix_video_timeline.edges.node.video_view_count': 1,
-            'edge_felix_video_timeline.count': 1,
-            'edge_felix_video_timeline.edges.node.taken_at_timestamp': 1,
-            external_url: 1,
-            isAdded: 1,
-        })
-        .then((result) => {
-            result.forEach((data) => {
-                if (data.isAdded === false) {
-                    totalReelView = 0;
-                    averageReelView = 0;
-                    let edges = data?.edge_felix_video_timeline?.edges;
-                    edges.forEach((res) => {
-                        averageReelView += Math.trunc(res.node?.video_view_count / 12);
-                        totalReelView += res?.node?.video_view_count;
-                    })
-                    avg_likes = 0;
-                    avg_comment = 0;
-                    noOfPosts = data?.edge_owner_to_timeline_media?.edges;
-                    noOfPosts.forEach((item) => {
-                        avg_likes += Math.trunc(item?.node?.edge_liked_by?.count / 12);
-                        avg_comment += Math.trunc(item?.node?.edge_media_to_comment?.count / 12);
-                        engagementRate = ((avg_likes + avg_comment) / data.edge_followed_by.count) * 100;
-                        // engagementRate = Number(engagementRate.toFixed(2))
-                        engagementRate = engagementRate.toString();
-                        engagementRate = engagementRate.slice(0, (engagementRate.indexOf(".")) + 2 + 1);
-                        engagementRate = Number(engagementRate);
-                    });
-                    noOfPosts.unshift({ avg_likes: avg_likes, er: engagementRate, avg_comment: avg_comment })
-                    edges.unshift({ averageReelView: averageReelView, totalReelView: totalReelView })
-                    InfluencersData.insertMany([data])
-                        .then((result) => {
-                            data.isAdded = true;
-                            data.save()
-                            console.log(result);
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
-                }
-                // array.push(data)
-            })
-            // array.forEach((item) => {
-            //     InfluencersData.insertMany([item])
-            //         .then((result) => {
-            //             console.log(result);
-            //         })
-            //         .catch((err) => {
-            //             console.log(err)
-            //         })
-            // })
-            ProfileData.find({ isAdded: true })
-                .select({
-                    username: 1,
-                })
-                .then((fetchedData) => {
-                    res.json(`items added ${fetchedData.length} - ${result.length}`)
-                })
-        })
-}
 
 exports.createList = (req, res, next) => {
     let { listName, reel, post, story, igtv, description, swipeup, video } = req.body;

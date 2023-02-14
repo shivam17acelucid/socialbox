@@ -615,9 +615,9 @@ function CalculateTotal() {
                         <div className="row no-gutters justify-content-center">
                             {
                                 metricsTotal > 50 ?
-                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 0.5rem' }} >Your Metric Score: Specific</div>
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 0.5rem' }} >Your Metrix Score: Specific</div>
                                     :
-                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 0.5rem' }} >Your Metric Score: Broad</div>
+                                    <div className='indicator col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto' style={{ marginTop: ' 0.5rem' }} >Your Metrix Score: Broad</div>
                             }
                         </div>
                         <div className="row no-gutters justify-content-center note_box">
@@ -625,10 +625,10 @@ function CalculateTotal() {
                                 Note
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 note_item">
-                                {"Metrics score < 50 : Broad"}
+                                {"Metrix score < 50 : Broad"}
                             </div>
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 note_item">
-                                {"Metrics score > 50 : Specific"}
+                                {"Metrix score > 50 : Specific"}
                             </div>
                         </div>
                     </div>

@@ -236,6 +236,6 @@ exports.showBasketDescription = (req, res) => {
 
     CategorizedBasket.find({ categoryName })
         .then((data) => {
-            res.json(data)
+            res.json(data.description)
         })
 }

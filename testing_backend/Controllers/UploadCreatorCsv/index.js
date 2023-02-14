@@ -76,11 +76,33 @@ exports.uploadcreatorcsv = (req, res) => {
                                                 console.log("File saved!")
                                             })
                                             .catch((error) => console.log(error));
-                                        ProfileData.insertMany([data.data.user])
-                                            .then((result) => {
-                                            })
-                                            .catch((err) => {
-                                                console.log(err)
+                                        ProfileData.findOne({ username: data.data.user.username })
+                                            .then((item) => {
+                                                if (item) {
+                                                    item.edge_followed_by = data.data.user?.edge_followed_by,
+                                                        item.full_name = data.data.user?.full_name,
+                                                        item.is_verified = data.data.user?.is_verified,
+                                                        item.external_url = data.data.user?.external_url,
+                                                        item.edge_follow = data.data.user?.edge_follow,
+                                                        item.category_enum = data.data.user?.category_enum,
+                                                        item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
+                                                        item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
+                                                        item.edge_media_collections = data.data.user?.edge_media_collections,
+                                                        item.save()
+                                                            .then((response) => {
+                                                                if (response) {
+                                                                    console.log('Edited');
+                                                                }
+                                                            })
+                                                }
+                                                else {
+                                                    ProfileData.insertMany([data.data.user])
+                                                        .then((result) => {
+                                                        })
+                                                        .catch((err) => {
+                                                            console.log(err)
+                                                        })
+                                                }
                                             })
                                     }
                                 })

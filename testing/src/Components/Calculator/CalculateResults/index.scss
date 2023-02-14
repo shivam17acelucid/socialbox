@@ -558,3 +558,19 @@ html {
         display: none;
     }
 }
+
+.note_box {
+    margin-top: 1rem;
+    padding: 0.3rem 2rem;
+
+    .note_item {
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 0.875rem;
+        line-height: 1.188rem;
+        color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        padding: 0.4rem 0;
+    }
+}

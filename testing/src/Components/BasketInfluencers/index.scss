@@ -166,8 +166,11 @@ html {
                             display: flex;
                             padding: 0.5rem 1.5rem;
 
+                            div {
+                                min-width: 7rem;
+                            }
                             .cost_value {
-                                padding-left: 4rem;
+                                // padding-left: 4rem;
                             }
                         }
 

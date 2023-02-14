@@ -1413,7 +1413,7 @@ const InfluencersList = () => {
                                                                                             <div>Swipeup Stories</div>
                                                                                             {
                                                                                                 data?.costFactorSwipeUp?.minTotalCost || data?.costFactorSwipeUp?.minTotalCost ?
-                                                                                                    <div className='cost_value' style={{ paddingLeft: '1rem' }}>: Rs{NFormatter(data?.costFactorSwipeUp?.minTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.maxTotalCost)}</div>
+                                                                                                    <div className='cost_value'>: Rs{NFormatter(data?.costFactorSwipeUp?.minTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.maxTotalCost)}</div>
                                                                                                     :
                                                                                                     <div className='cost_value'>: Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactminTotalCost)} - Rs{NFormatter(data?.costFactorSwipeUp?.influencerExactmaxTotalCost)}</div>
                                                                                             }
@@ -1428,7 +1428,7 @@ const InfluencersList = () => {
                                                                                             }
                                                                                         </div>
                                                                                         <div className='modal_footer'>
-                                                                                            To check a more accurate estimate, please contact +91 98765 43210
+                                                                                            To check a more accurate estimate, please contact (+91) 9024236599
                                                                                         </div>
                                                                                         <Button className='close_btn' onClick={handleCostClicked}>Close</Button>
                                                                                     </div>

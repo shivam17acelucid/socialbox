@@ -5,8 +5,8 @@ const path = require("path");
 const multer = require("multer");
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA4XZUBRXO27CDSSFG',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIA4XZUBRXOW22F7QA7',
+    secretAccessKey: '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',
     region: "ap-south-1",
 })
 const upload = multer({ dest: 'uploads/' });

@@ -1166,7 +1166,7 @@ const InfluencersList = () => {
                                             <div>Add Category</div>
                                             <Input
                                                 placeholder="Category"
-                                                className="w-50"
+                                                className="w-50 modal_input"
                                                 type="text"
                                                 value={category}
                                                 onChange={(e) => { setCategory(e.target.value) }}

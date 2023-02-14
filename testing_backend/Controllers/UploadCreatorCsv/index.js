@@ -4,8 +4,8 @@ const csv = require("csvtojson");
 const fetch = require('node-fetch');
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA4XZUBRXOTHIMRBWP',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIA4XZUBRXO27CDSSFG',
+    secretAccessKey: '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',
     region: "ap-south-1",
 })
 const HttpsProxyAgent = require('https-proxy-agent');

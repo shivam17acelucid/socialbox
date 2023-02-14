@@ -234,7 +234,7 @@ exports.editDescription = (req, res) => {
 exports.showBasketDescription = (req, res) => {
     let { categoryName } = req.query;
 
-    CategorizedBasket.findOne({ categoryName })
+    CategorizedBasket.find({ categoryName })
         .then((data) => {
             res.json(data)
         })

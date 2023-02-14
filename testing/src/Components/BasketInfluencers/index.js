@@ -65,6 +65,7 @@ function BasketInfluencers() {
     const [costModalOpened, setCostModalOpened] = useState(false);
     const [costUser, setCostUser] = useState('');
     const [mainLoader, setMainLoader] = useState(false);
+    const [desc, setDesc] = useState('');
 
     let navigate = useNavigate();
     let { categoryName } = useParams();
@@ -255,20 +256,31 @@ function BasketInfluencers() {
         navigate(`/CompareInfluencers/${string}`)
     }
 
-    const fetchAllData = () => {
-        const url = `http://65.0.110.147:4000/getrelatedinfluencers?inputField`;
+    // const fetchAllData = () => {
+    //     const url = `http://65.0.110.147:4000/getrelatedinfluencers?inputField`;
+    //     fetch(url)
+    //         .then((data) => {
+    //             data.json()
+    //                 .then((res) => {
+    //                     res.map((item) => {
+    //                         autoSuggestedArray.push(item.username)
+    //                         setAutoSuggestedData(autoSuggestedArray)
+    //                     })
+    //                 })
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
+
+    const getDescriptionOfBasket = () => {
+        let url = `http://65.0.110.147:4000/showBasketDescription?categoryName=${categoryName}`;
         fetch(url)
-            .then((data) => {
-                data.json()
-                    .then((res) => {
-                        res.map((item) => {
-                            autoSuggestedArray.push(item.username)
-                            setAutoSuggestedData(autoSuggestedArray)
-                        })
+            .then((response) => {
+                response.json()
+                    .then((data) => {
+                        setDesc(data[0].description);
                     })
-            })
-            .catch((err) => {
-                console.log(err)
             })
     }
 
@@ -282,13 +294,15 @@ function BasketInfluencers() {
         fetchInfluencers();
         getListData();
         fetchBasketsName();
+        getDescriptionOfBasket();
     }, [changeBasket]);
 
     useEffect(() => {
         fetchInfluencers();
         getListData();
         fetchBasketsName();
-        fetchAllData();
+        // fetchAllData();
+        getDescriptionOfBasket();
     }, []);
 
 
@@ -305,7 +319,8 @@ function BasketInfluencers() {
                             Top {categoryName} Influencers
                         </div>
                         <div className='list_desc col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
-                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            {console.log(desc)}
+                            {desc ? desc : 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit'}
                         </div>
                         <div className='list_category_data'>
                             <TableContainer component={Paper} className='table_paper'>

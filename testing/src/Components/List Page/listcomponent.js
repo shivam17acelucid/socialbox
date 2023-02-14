@@ -798,15 +798,17 @@ function Lists() {
                                                 sortedBaskets.map((item) =>
                                                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12">
                                                         <div className='influencers_basket_box row'>
-                                                            <div className='influencers_image col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5'>
-                                                                <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Basket/${item.categoryName}/image.png`} className="influencers_image" />
+                                                            <div className='col-lg-5 col-md-5 col-sm-5 col-xs-5 col-5 pl-0 pr-0'>
+                                                                <div className='influencers_image' >
+                                                                    <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Basket/${item.categoryName}/image.png`} className="influencers_image" />
+                                                                </div>
                                                             </div>
                                                             <div className='basket_right_pane col-lg-7 col-md-7 col-sm-7 col-xs-7 col-7'>
                                                                 <div className='influencers_category_header'>
                                                                     Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
                                                                 </div>
                                                                 <div className='basket_p'>
-                                                                    Boost your marketing campaigns with best travel influencers bundle covering top 20 influencers
+                                                                    {item.description ? item.description : 'Boost your marketing campaigns with ...'}
                                                                 </div>
                                                                 <div className='influencers_footer_btn'>
                                                                     <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>
@@ -829,7 +831,7 @@ function Lists() {
                                                                     Top {item.basketInfluencersCount} {item.categoryName} Influencers Bundle
                                                                 </div>
                                                                 <div className='basket_p'>
-                                                                    Boost your marketing campaigns with ...
+                                                                    {item.description ? item.description : 'Boost your marketing campaigns with ...'}
                                                                 </div>
                                                                 <div className='influencers_footer_btn'>
                                                                     <Button onClick={() => handleRedirectToBasket(item)}><span style={{ margin: 0 }}>View</span></Button>

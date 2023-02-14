@@ -190,11 +190,14 @@ function BasketInfluencers() {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            const filterSuggestions = autoSuggestedData.filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().indexOf(query) > -1
-            );
-            setSuggestions(filterSuggestions);
+            let url = `http://65.0.110.147:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions(res)
+                        })
+                })
             setSuggestionsActive(true);
         } else {
             setSuggestionsActive(false);
@@ -225,7 +228,7 @@ function BasketInfluencers() {
                             key={index}
                             onClick={handleClick}
                         >
-                            {suggestion}
+                            {suggestion.username}
                         </div>
                     );
                 })}

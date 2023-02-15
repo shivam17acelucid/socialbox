@@ -11,6 +11,7 @@ const s3 = new AWS.S3({
 const HttpsProxyAgent = require('https-proxy-agent');
 const axios = require('axios');
 const ProfileData = require('../../Models/profile_data');
+const Username = require('../../Models/username');
 const InfluencersData = require('../../Models/influencer_details');
 const proxyArray = require('../../utils/proxiesArray');
 const storage = multer.diskStorage({
@@ -45,145 +46,161 @@ exports.uploadcreatorcsv = (req, res) => {
         .fromFile(req.file.path)
         .then((csvData) => {
             csvData.forEach((data, i) => {
-                if (i > 5) {
-                    if (data.handleName) {
-                        const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;
-                        fetch(url, {
-                            method: 'GET',
-                            agent: proxyAgent,
-                            headers: URLENCODED_HEADER,
-                            mode: 'cors',
+                if (data.handleName) {
+                    Username.findOne({ username: data.handleName })
+                        .then((data) => {
+                            if (data) {
+                                data.username = data.handleName;
+                            }
+                            else {
+                                Username.insertMany(data.handleName)
+                            }
                         })
-                            .then((response) => {
-                                response.json()
-                                    .then((data) => {
-                                        if (data.data.user) {
-                                            uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            ProfileData.findOne({ username: data.data.user.username })
-                                                .then((item) => {
-                                                    if (item) {
-                                                        item.edge_followed_by = data.data.user?.edge_followed_by,
-                                                            item.full_name = data.data.user?.full_name,
-                                                            item.is_verified = data.data.user?.is_verified,
-                                                            item.external_url = data.data.user?.external_url,
-                                                            item.edge_follow = data.data.user?.edge_follow,
-                                                            item.category_enum = data.data.user?.category_enum,
-                                                            item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
-                                                            item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
-                                                            item.edge_media_collections = data.data.user?.edge_media_collections,
-                                                            item.save()
-                                                                .then((response) => {
-                                                                    if (response) {
-                                                                        console.log('Edited');
-                                                                    }
-                                                                })
-                                                    }
-                                                    else {
-                                                        ProfileData.insertMany([data.data.user])
-                                                            .then((result) => {
-                                                            })
-                                                            .catch((err) => {
-                                                                console.log(err)
-                                                            })
-                                                    }
-                                                })
-                                        }
-                                    })
-                            })
+                    // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;
+                    // fetch(url, {
+                    //     method: 'GET',
+                    //     agent: proxyAgent,
+                    //     headers: URLENCODED_HEADER,
+                    //     mode: 'cors',
+                    // })
+                    //     .then((response) => {
+                    //         response.json()
+                    //             .then((data) => {
+                    //                 if (data.data.user) {
+                    //                     uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     ProfileData.findOne({ username: data.data.user.username })
+                    //                         .then((item) => {
+                    //                             if (item) {
+                    //                                 item.edge_followed_by = data.data.user?.edge_followed_by,
+                    //                                     item.full_name = data.data.user?.full_name,
+                    //                                     item.is_verified = data.data.user?.is_verified,
+                    //                                     item.external_url = data.data.user?.external_url,
+                    //                                     item.edge_follow = data.data.user?.edge_follow,
+                    //                                     item.category_enum = data.data.user?.category_enum,
+                    //                                     item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
+                    //                                     item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
+                    //                                     item.edge_media_collections = data.data.user?.edge_media_collections,
+                    //                                     item.save()
+                    //                                         .then((response) => {
+                    //                                             if (response) {
+                    //                                                 console.log('Edited');
+                    //                                             }
+                    //                                         })
+                    //                             }
+                    //                             else {
+                    //                                 ProfileData.insertMany([data.data.user])
+                    //                                     .then((result) => {
+                    //                                     })
+                    //                                     .catch((err) => {
+                    //                                         console.log(err)
+                    //                                     })
+                    //                             }
+                    //                         })
+                    //                 }
+                    //             })
+                    //     })
+                }
+                else {
+                    str = data.instagramhandlelink.substring(data.instagramhandlelink.indexOf('.com/') + 5);
+                    if (str.includes('?')) {
+                        splitArr = str.split('?')
+                        array.unshift({ username: splitArr[0] })
                     }
-                    else {
-                        str = data.instagramhandlelink.substring(data.instagramhandlelink.indexOf('.com/') + 5);
-                        if (str.includes('?')) {
-                            splitArr = str.split('?')
-                            array.unshift({ username: splitArr[0] })
-                        }
-                        else if (str.includes('/')) {
-                            splitArr = str.split('/')
-                            array.unshift({ username: splitArr[0] })
-                        }
-                        const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${array[0].username}`;
-                        fetch(url, {
-                            method: 'GET',
-                            agent: proxyAgent,
-                            headers: URLENCODED_HEADER,
-                            mode: 'cors',
+                    else if (str.includes('/')) {
+                        splitArr = str.split('/')
+                        array.unshift({ username: splitArr[0] })
+                    }
+                    Username.findOne({ username: array[0].username })
+                        .then((data) => {
+                            if (data) {
+                                data.username = data.handleName;
+                            }
+                            else {
+                                Username.insertMany(array[0].username)
+                            }
                         })
-                            .then((response) => {
-                                response.json()
-                                    .then((data) => {
-                                        if (data.data.user) {
-                                            uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
-                                                .then((data) => {
-                                                    console.log("File saved!")
-                                                })
-                                                .catch((error) => console.log(error));
-                                            ProfileData.findOne({ username: data.data.user.username })
-                                                .then((item) => {
-                                                    if (item) {
-                                                        item.edge_followed_by = data.data.user?.edge_followed_by,
-                                                            item.full_name = data.data.user?.full_name,
-                                                            item.is_verified = data.data.user?.is_verified,
-                                                            item.external_url = data.data.user?.external_url,
-                                                            item.edge_follow = data.data.user?.edge_follow,
-                                                            item.category_enum = data.data.user?.category_enum,
-                                                            item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
-                                                            item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
-                                                            item.edge_media_collections = data.data.user?.edge_media_collections,
-                                                            item.save()
-                                                                .then((response) => {
-                                                                    if (response) {
-                                                                        console.log('Edited');
-                                                                    }
-                                                                })
-                                                    }
-                                                    else {
-                                                        ProfileData.insertMany([data.data.user])
-                                                            .then((result) => {
-                                                                console.log('added');
-                                                            })
-                                                            .catch((err) => {
-                                                                console.log(err)
-                                                            })
-                                                    }
-                                                })
-                                        }
-                                    })
-                            })
-                    }
+                    // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${array[0].username}`;
+                    // fetch(url, {
+                    //     method: 'GET',
+                    //     agent: proxyAgent,
+                    //     headers: URLENCODED_HEADER,
+                    //     mode: 'cors',
+                    // })
+                    //     .then((response) => {
+                    //         response.json()
+                    //             .then((data) => {
+                    //                 if (data.data.user) {
+                    //                     uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user.username}/${data.data.user.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_1_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['1']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_2_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['2']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     uploadRecentPosts_3_ToS3(data.data.user?.edge_owner_to_timeline_media?.edges['3']?.node?.display_url, `Images/${data.data.user.username}/${data.data.user.username}_recent_image.png`, 'socialbox-bckt', data.data.user)
+                    //                         .then((data) => {
+                    //                             console.log("File saved!")
+                    //                         })
+                    //                         .catch((error) => console.log(error));
+                    //                     ProfileData.findOne({ username: data.data.user.username })
+                    //                         .then((item) => {
+                    //                             if (item) {
+                    //                                 item.edge_followed_by = data.data.user?.edge_followed_by,
+                    //                                     item.full_name = data.data.user?.full_name,
+                    //                                     item.is_verified = data.data.user?.is_verified,
+                    //                                     item.external_url = data.data.user?.external_url,
+                    //                                     item.edge_follow = data.data.user?.edge_follow,
+                    //                                     item.category_enum = data.data.user?.category_enum,
+                    //                                     item.edge_felix_video_timeline = data.data.user?.edge_felix_video_timeline,
+                    //                                     item.edge_owner_to_timeline_media = data.data.user?.edge_owner_to_timeline_media,
+                    //                                     item.edge_media_collections = data.data.user?.edge_media_collections,
+                    //                                     item.save()
+                    //                                         .then((response) => {
+                    //                                             if (response) {
+                    //                                                 console.log('Edited');
+                    //                                             }
+                    //                                         })
+                    //                             }
+                    //                             else {
+                    //                                 ProfileData.insertMany([data.data.user])
+                    //                                     .then((result) => {
+                    //                                         console.log('added');
+                    //                                     })
+                    //                                     .catch((err) => {
+                    //                                         console.log(err)
+                    //                                     })
+                    //                             }
+                    //                         })
+                    //                 }
+                    //             })
+                    //     })
                 }
             })
             res.json('sucess')

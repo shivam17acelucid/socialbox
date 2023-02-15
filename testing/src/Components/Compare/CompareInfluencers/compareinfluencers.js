@@ -288,7 +288,7 @@ function CompareInfluencers() {
                                                                 Select the list to which you want to add the
                                                                 influencer.
                                                             </div>
-                                                            <div style={{ overflowY: 'scroll', height: '20vh', padding: '0.75rem' }}>
+                                                            <div style={{ overflowY: 'auto', height: '20vh', padding: '0.75rem' }}>
                                                                 {listData.map((element) =>
                                                                     <div className="list_options" onClick={() => { addInfluencerToList(elm, element) }}>
                                                                         {element.listName}
@@ -395,7 +395,7 @@ function CompareInfluencers() {
                                         />
                                         {suggestionsActive && <Suggestions />}
                                         <div className="influencers_box">
-                                            <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                            <div style={{ overflowY: 'auto', height: '20vh' }}>
                                                 {
                                                     addToCompareData.length > 0 ?
                                                         <>

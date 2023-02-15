@@ -240,7 +240,7 @@ function CompareLists() {
                                         />
                                         {suggestionsActive && <Suggestions />}
                                         <div className="influencers_box">
-                                            <div style={{ overflowY: 'scroll', height: '20vh' }}>
+                                            <div style={{ overflowY: 'auto', height: '20vh' }}>
                                                 {
                                                     addToCompareData.length > 0 ?
                                                         <>

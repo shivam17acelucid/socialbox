@@ -11,7 +11,7 @@ const s3 = new AWS.S3({
 const HttpsProxyAgent = require('https-proxy-agent');
 const axios = require('axios');
 const ProfileData = require('../../Models/profile_data');
-const Username = require('../../Models/username');
+const UsernameCsv = require('../../Models/usernamecsv');
 const InfluencersData = require('../../Models/influencer_details');
 const proxyArray = require('../../utils/proxiesArray');
 const storage = multer.diskStorage({
@@ -48,7 +48,7 @@ exports.uploadcreatorcsv = (req, res) => {
             csvData.forEach((data) => {
                 if (data.handleName) {
                     console.log(data.handleName);
-                    // Username.findOne({ username: data.handleName })
+                    // UsernameCsv.findOne({ username: data.handleName })
                     //     .then((data) => {
                     //         if (data) {
                     //             data.username = data.handleName;
@@ -130,7 +130,7 @@ exports.uploadcreatorcsv = (req, res) => {
                         splitArr = str.split('/')
                         array.unshift({ username: splitArr[0] })
                     }
-                    Username.findOne({ username: array[0].username })
+                    UsernameCsv.findOne({ username: array[0].username })
                         .then((data) => {
                             if (data) {
                                 console.log('already present');

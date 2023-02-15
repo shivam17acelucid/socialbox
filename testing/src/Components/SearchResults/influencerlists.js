@@ -1345,7 +1345,10 @@ const InfluencersList = () => {
                                                         <>
                                                             < TableRow key={index} className='table_row_body' >
                                                                 <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className="table_body_value_1" >
-                                                                    <div>{data.full_name}</div>
+                                                                    <div className="profile_view">
+                                                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_profile_image.png`} className='profile_image' />
+                                                                        <div style={{marginLeft: '0.5rem'}}>{data.full_name}</div>
+                                                                    </div>
                                                                 </TableCell>
                                                                 <TableCell className="table_body_value" align="center">
                                                                     {NFormatter(data.edge_followed_by.count)}

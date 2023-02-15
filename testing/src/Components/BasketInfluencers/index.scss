@@ -56,6 +56,8 @@ html {
             .list_category_data {
                 margin-top: 2rem;
                 margin-left: 0.25rem;
+                overflow-y: scroll;
+                height: 70vh;
 
                 .table_paper {
                     background-color: #fff;
@@ -99,6 +101,17 @@ html {
                             line-height: 1.188rem;
                             color: #000000;
                             background: #fff;
+
+                            .profile_view {
+                                display: flex;
+                                align-items: center;
+
+                                img {
+                                    height: 3rem;
+                                    width: 3rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
 
                         .table_body_value {
@@ -109,6 +122,17 @@ html {
                             line-height: 1.188rem;
                             color: #000000;
                             background: #fff;
+
+                            .profile_view {
+                                display: flex;
+                                align-items: center;
+
+                                img {
+                                    height: 3rem;
+                                    width: 3rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
 
                         .table_body_value_1 {
@@ -168,9 +192,6 @@ html {
 
                             div {
                                 min-width: 7rem;
-                            }
-                            .cost_value {
-                                // padding-left: 4rem;
                             }
                         }
 

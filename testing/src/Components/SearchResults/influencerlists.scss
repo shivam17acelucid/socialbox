@@ -281,6 +281,17 @@ html {
                         font-size: 0.875rem;
                         line-height: 1rem;
                         color: rgba(0, 0, 0, 0.5);
+
+                        .profile_view {
+                            display: flex;
+                            align-items: center;
+
+                            img {
+                                height: 3rem;
+                                width: 3rem;
+                                border-radius: 50%;
+                            }
+                        }
                     }
 
                     .table_body_value_1 {
@@ -292,6 +303,17 @@ html {
                         line-height: 1.188rem;
                         color: #000000;
                         cursor: pointer;
+
+                        .profile_view {
+                            display: flex;
+                            align-items: center;
+
+                            img {
+                                height: 3rem;
+                                width: 3rem;
+                                border-radius: 50%;
+                            }
+                        }
                     }
 
                     .table_body_value {
@@ -354,9 +376,6 @@ html {
 
                             div {
                                 min-width: 7rem;
-                            }
-                            .cost_value {
-                                // padding-left: 6rem;
                             }
                         }
 

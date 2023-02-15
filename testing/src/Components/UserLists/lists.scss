@@ -274,6 +274,17 @@ html {
                 svg {
                     cursor: pointer;
                 }
+
+                .profile_view {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 3rem;
+                        width: 3rem;
+                        border-radius: 50%;
+                    }
+                }
             }
         }
 

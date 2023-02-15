@@ -369,7 +369,10 @@ function UserLists() {
                                                         {item.item.influencersData.map((data, index) =>
                                                             < TableRow key={index} >
                                                                 <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className='table_head_value' >
-                                                                    <div style={{ cursor: 'pointer' }}>{data?.full_name}</div>
+                                                                <div className="profile_view">
+                                                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_profile_image.png`} className='profile_image' />
+                                                                        <div style={{ marginLeft: '0.5rem', cursor: 'pointer' }}>{data?.full_name}</div>
+                                                                    </div>
                                                                 </TableCell>
                                                                 <TableCell align="center" className='table_head_value'>{data.category_enum !== null ? data.category_enum.length > 10 ? (data.category_enum.substring(0, 15) + '...') : data.category_enum : null}</TableCell>
                                                                 <TableCell align="center" className='table_head_value'>

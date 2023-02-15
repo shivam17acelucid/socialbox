@@ -393,11 +393,35 @@ html {
                         .active_inf {
                             padding: 0.75rem;
                             cursor: pointer;
+
+                            .sug_user {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img {
+                                    height: 2rem;
+                                    width: 2rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
 
                         .non_active {
                             padding: 0.75rem;
                             cursor: pointer;
+
+                            .sug_user {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img {
+                                    height: 2rem;
+                                    width: 2rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
                     }
 

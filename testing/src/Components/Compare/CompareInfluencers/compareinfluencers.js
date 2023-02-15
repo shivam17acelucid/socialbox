@@ -109,7 +109,10 @@ function CompareInfluencers() {
                             key={index}
                             onClick={handleClick}
                         >
-                            {suggestion.username}
+                            <div className='sug_user'>
+                                <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${suggestion.username}/${suggestion.username}_profile_image.png`} className='profile_image' />
+                                <div style={{ marginLeft: '0.5rem' }}>{suggestion.username}</div>
+                            </div>
                         </div>
                     );
                 })}

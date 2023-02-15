@@ -916,7 +916,10 @@ const InfluencersList = () => {
                             key={index}
                             onClick={handleClick}
                         >
-                            {suggestion.username}
+                            <div className='sug_user'>
+                                <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${suggestion.username}/${suggestion.username}_profile_image.png`} className='profile_image' />
+                                <div style={{ marginLeft: '0.5rem' }}>{suggestion.username}</div>
+                            </div>
                         </div>
                     );
                 })}
@@ -1347,7 +1350,7 @@ const InfluencersList = () => {
                                                                 <TableCell component="th" scope="row" key={data.username} onClick={() => redirectProfile(data)} className="table_body_value_1" >
                                                                     <div className="profile_view">
                                                                         <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_profile_image.png`} className='profile_image' />
-                                                                        <div style={{marginLeft: '0.5rem'}}>{data.full_name}</div>
+                                                                        <div style={{ marginLeft: '0.5rem' }}>{data.full_name}</div>
                                                                     </div>
                                                                 </TableCell>
                                                                 <TableCell className="table_body_value" align="center">

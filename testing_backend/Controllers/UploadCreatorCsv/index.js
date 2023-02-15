@@ -45,7 +45,7 @@ exports.uploadcreatorcsv = (req, res) => {
         .fromFile(req.file.path)
         .then((csvData) => {
             csvData.forEach((data, i) => {
-                if (i === 0) {
+                if (i > 5) {
                     if (data.handleName) {
                         const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;
                         fetch(url, {

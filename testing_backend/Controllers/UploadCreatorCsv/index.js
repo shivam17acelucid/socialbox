@@ -47,15 +47,16 @@ exports.uploadcreatorcsv = (req, res) => {
         .then((csvData) => {
             csvData.forEach((data, i) => {
                 if (data.handleName) {
-                    Username.findOne({ username: data.handleName })
-                        .then((data) => {
-                            if (data) {
-                                data.username = data.handleName;
-                            }
-                            else {
-                                Username.insertMany(data.handleName)
-                            }
-                        })
+                    console.log(data.handleName);
+                    // Username.findOne({ username: data.handleName })
+                    //     .then((data) => {
+                    //         if (data) {
+                    //             data.username = data.handleName;
+                    //         }
+                    //         else {
+                    //             Username.insertMany(data.handleName)
+                    //         }
+                    //     })
                     // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${data.handleName}`;
                     // fetch(url, {
                     //     method: 'GET',
@@ -129,15 +130,16 @@ exports.uploadcreatorcsv = (req, res) => {
                         splitArr = str.split('/')
                         array.unshift({ username: splitArr[0] })
                     }
-                    Username.findOne({ username: array[0].username })
-                        .then((data) => {
-                            if (data) {
-                                data.username = data.handleName;
-                            }
-                            else {
-                                Username.insertMany(array[0].username)
-                            }
-                        })
+                    console.log(array[0].username);
+                    // Username.findOne({ username: array[0].username })
+                    //     .then((data) => {
+                    //         if (data) {
+                    //             data.username = data.handleName;
+                    //         }
+                    //         else {
+                    //             Username.insertMany(array[0].username)
+                    //         }
+                    //     })
                     // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${array[0].username}`;
                     // fetch(url, {
                     //     method: 'GET',

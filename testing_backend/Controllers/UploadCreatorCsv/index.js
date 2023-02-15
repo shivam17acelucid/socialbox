@@ -113,7 +113,7 @@ exports.fetchCsvUsernames = (req, res, next) => {
                 }
             })
             // }
-            Username.find({ isFetched: true })
+            UsernameCsv.find({ isFetched: true })
                 .then((fetchedData) => {
                     res.json(`items added ${fetchedData.length} - ${response.length}`)
                 })

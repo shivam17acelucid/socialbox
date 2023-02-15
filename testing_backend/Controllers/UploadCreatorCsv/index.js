@@ -172,6 +172,7 @@ exports.uploadcreatorcsv = (req, res) => {
                                                 else {
                                                     ProfileData.insertMany([data.data.user])
                                                         .then((result) => {
+                                                            console.log(result);
                                                         })
                                                         .catch((err) => {
                                                             console.log(err)

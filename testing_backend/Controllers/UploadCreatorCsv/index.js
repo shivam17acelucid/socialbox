@@ -130,17 +130,16 @@ exports.uploadcreatorcsv = (req, res) => {
                         splitArr = str.split('/')
                         array.unshift({ username: splitArr[0] })
                     }
-                    console.log(array[0].username);
-                    // Username.findOne({ username: array[0].username })
-                    //     .then((data) => {
-                    //         if (data) {
-                    //             console.log('already present');
-                    //         }
-                    //         else {
-                    //             // Username.insertMany(array[0].username)
-                    //             console.log(array[0].username);
-                    //         }
-                    //     })
+                    Username.findOne({ username: array[0].username })
+                        .then((data) => {
+                            if (data) {
+                                console.log('already present');
+                            }
+                            else {
+                                // Username.insertMany(array[0].username)
+                                console.log(array[0].username);
+                            }
+                        })
                     // const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${array[0].username}`;
                     // fetch(url, {
                     //     method: 'GET',

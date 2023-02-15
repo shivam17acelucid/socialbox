@@ -31,8 +31,8 @@ html {
     .result_pane {
         display: flex;
         padding: 2rem; //need to find soln
-        overflow-x: scroll;
-        overflow-y: scroll;
+        overflow-x: auto;
+        overflow-y: auto;
         height: 88vh;
 
         .results {
@@ -388,7 +388,7 @@ html {
                         z-index: 9999;
                         width: 19rem;
                         max-height: 9.375rem;
-                        overflow-y: scroll;
+                        overflow-y: auto;
 
                         .active_inf {
                             padding: 0.75rem;

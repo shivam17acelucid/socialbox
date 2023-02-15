@@ -24,7 +24,7 @@ html {
 
 
         .middle_pane {
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
             height: 100vh;
 
@@ -245,7 +245,7 @@ html {
             }
 
             .table_paper {
-                overflow-y: scroll;
+                overflow-y: auto;
                 height: 68vh;
                 color: rgba(0, 0, 0, 0.87);
                 -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -517,7 +517,7 @@ html {
                             z-index: 9999;
                             width: 19rem;
                             max-height: 9.375rem;
-                            overflow-y: scroll;
+                            overflow-y: auto;
                             top: 40%;
                             left: 6%;
 
@@ -628,7 +628,7 @@ html {
     position: absolute;
     z-index: 9999;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .active_influencer {
         margin-left: 1rem;

@@ -94,7 +94,7 @@ html {
                         position: absolute;
                         z-index: 9999;
                         top: 100%;
-                        overflow-y: scroll;
+                        overflow-y: auto;
 
                         .active {
                             @media (max-width: 1000px) {
@@ -380,7 +380,7 @@ html {
                 }
 
                 padding-left: 2rem;
-                overflow-y: scroll;
+                overflow-y: auto;
                 height: 74vh;
                 padding-bottom: 2rem;
                 overflow-x: hidden;
@@ -435,7 +435,7 @@ html {
                         overflow-y: hidden;
 
                         @media (max-width: 768px) {
-                            overflow-x: scroll;
+                            overflow-x: auto;
                         }
 
                         .button_list {
@@ -590,7 +590,7 @@ html {
         // max-width: 20rem;
         background: #FBFBFB;
         border: 0.063rem solid rgba(0, 0, 0, 0.2);
-        overflow-y: scroll;
+        overflow-y: auto;
         height: 93vh;
         overflow-x: hidden;
 

@@ -56,8 +56,8 @@ html {
             .list_category_data {
                 margin-top: 2rem;
                 margin-left: 0.25rem;
-                overflow-y: scroll;
-                height: 70vh;
+                overflow-y: auto;
+                height: 65vh;
 
                 .table_paper {
                     background-color: #fff;
@@ -359,7 +359,7 @@ html {
                             z-index: 9999;
                             width: 19rem;
                             max-height: 9.375rem;
-                            overflow-y: scroll;
+                            overflow-y: auto;
 
                             .active_inf {
                                 padding: 0.75rem;
@@ -437,7 +437,7 @@ html {
         }
 
         .side_influencers_bundle {
-            overflow-y: scroll;
+            overflow-y: auto;
             height: 92vh;
             width: 100%;
             box-shadow: 0 0 0.25rem 0 #edecf4;

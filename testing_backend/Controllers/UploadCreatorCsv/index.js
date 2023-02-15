@@ -56,7 +56,7 @@ exports.fetchCsvUsernames = (req, res, next) => {
                         .then((response) => {
                             response.json()
                                 .then((data) => {
-                                    if (data.data.user) {
+                                    if (data.data.user && data.data.user.edge_owner_to_timeline_media.edges['0'].node.display_url && data.data.user.edge_owner_to_timeline_media.edges['1'].node.display_url, data.data.user.edge_owner_to_timeline_media.edges['2'].node.display_url) {
                                         item.isFetched = true;
                                         item.save()
                                         uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user?.username}/${data.data.user?.username}_profile_image.png`, 'socialbox-bckt', data.data.user)

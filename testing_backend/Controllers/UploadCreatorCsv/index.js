@@ -108,40 +108,41 @@ exports.uploadcreatorcsv = (req, res) => {
                                 })
                         })
                 }
-                // else {
-                //     str = data.instagramhandlelink.substring(data.instagramhandlelink.indexOf('.com/') + 5);
-                //     if (str.includes('?')) {
-                //         splitArr = str.split('?')
-                //         csvData.unshift({ username: splitArr[0] })
-                //     }
-                //     else if (str.includes('/')) {
-                //         splitArr = str.split('/')
-                //         csvData.unshift({ username: splitArr[0] })
-                //     }
-                //     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${splitArr[0]}`;
-                //     axios.get(url, {
-                //         method: 'GET',
-                //         agent: proxyAgent,
-                //         headers: URLENCODED_HEADER,
-                //         mode: 'cors',
-                //     })
-                //         .then((response) => {
-                //             // res.status(200).json({
-                //             //     success: true,
-                //             //     data: response.data
-                //             // });
-                //             ProfileData.insertMany([response.data['data']['user']])
-                //                 .then((result) => {
-                //                     // res.json({
-                //                     //     success: 'true',
-                //                     //     result: response.data['data']['user']
-                //                     // })
-                //                 })
-                //                 .catch((err) => {
-                //                     console.log(err)
-                //                 })
-                //         })
-                // }
+                else {
+                    str = data.instagramhandlelink.substring(data.instagramhandlelink.indexOf('.com/') + 5);
+                    if (str.includes('?')) {
+                        splitArr = str.split('?')
+                        csvData.unshift({ username: splitArr[0] })
+                    }
+                    else if (str.includes('/')) {
+                        splitArr = str.split('/')
+                        csvData.unshift({ username: splitArr[0] })
+                    }
+                    const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${splitArr[0]}`;
+                    console.log(url);
+                    // axios.get(url, {
+                    //     method: 'GET',
+                    //     agent: proxyAgent,
+                    //     headers: URLENCODED_HEADER,
+                    //     mode: 'cors',
+                    // })
+                    //     .then((response) => {
+                    //         // res.status(200).json({
+                    //         //     success: true,
+                    //         //     data: response.data
+                    //         // });
+                    //         ProfileData.insertMany([response.data['data']['user']])
+                    //             .then((result) => {
+                    //                 // res.json({
+                    //                 //     success: 'true',
+                    //                 //     result: response.data['data']['user']
+                    //                 // })
+                    //             })
+                    //             .catch((err) => {
+                    //                 console.log(err)
+                    //             })
+                    //     })
+                }
             })
             res.json('sucess')
         });

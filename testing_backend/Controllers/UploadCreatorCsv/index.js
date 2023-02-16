@@ -203,11 +203,15 @@ exports.uploadcreatorcsv = (req, res) => {
                 }
                 else {
                     str = data.instagramhandlelink.substring(data.instagramhandlelink.indexOf('.com/') + 5);
-                    if (str.includes('?')) {
+                    if (str.includes('?') && !str.includes('/')) {
                         splitArr = str.split('?')
                         array.unshift({ username: splitArr[0] })
                     }
-                    else if (str.includes('/')) {
+                    else if (str.includes('/') && !str.includes('?')) {
+                        splitArr = str.split('/')
+                        array.unshift({ username: splitArr[0] })
+                    }
+                    else if (str.includes('/') && str.includes('?')) {
                         splitArr = str.split('/')
                         array.unshift({ username: splitArr[0] })
                     }

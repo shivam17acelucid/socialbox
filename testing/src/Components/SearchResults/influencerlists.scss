@@ -662,10 +662,22 @@ html {
         line-height: 1.188rem;
         color: rgba(0, 0, 0, 0.7);
         cursor: pointer;
+
+        .sug_user {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+            }
+        }
     }
 
     div {
-        margin-left: 1rem;
+        margin-left: 0.5rem;
         font-family: 'Noto Sans';
         font-style: normal;
         font-weight: 500;
@@ -673,8 +685,20 @@ html {
         line-height: 1.188rem;
         color: rgba(0, 0, 0, 0.7);
         cursor: pointer;
-        padding: 1rem;
+        padding: 0.2rem 0rem;
         padding-left: 0;
+
+        .sug_user {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+            }
+        }
     }
 }
 

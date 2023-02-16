@@ -107,7 +107,7 @@ html {
                                 padding-left: 0.1rem;
                             }
 
-                            margin-left: 1rem;
+                            margin-left: 0.5rem;
                             padding: 1rem;
                             padding-left: 0;
                             font-family: 'Noto Sans';
@@ -117,6 +117,18 @@ html {
                             line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.7);
                             cursor: pointer;
+
+                            .sug_user {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img {
+                                    height: 2rem;
+                                    width: 2rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
 
                         div {
@@ -130,7 +142,7 @@ html {
                                 padding-left: 0.1rem;
                             }
 
-                            margin-left: 1rem;
+                            margin-left: 0.5rem;
                             // padding-left: 1rem;
                             font-family: 'Noto Sans';
                             font-style: normal;
@@ -139,7 +151,19 @@ html {
                             line-height: 1.188rem;
                             color: rgba(0, 0, 0, 0.7);
                             cursor: pointer;
-                            padding-bottom: 1rem;
+                            padding-bottom: 0.4rem;
+
+                            .sug_user {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                img {
+                                    height: 2rem;
+                                    width: 2rem;
+                                    border-radius: 50%;
+                                }
+                            }
                         }
                     }
                 }
@@ -393,7 +417,7 @@ html {
 
                     padding-top: 1rem;
                     // padding-left: 1rem;
-                    
+
 
                     .basket_top {
                         display: flex;

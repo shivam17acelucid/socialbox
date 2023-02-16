@@ -40,7 +40,7 @@ const uploads = multer({ storage: storage });
 exports.fetchCsvUsernames = (req, res, next) => {
     let arr = [];
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    UsernameCsv.find({ isFetched: false })
+    UsernameCsv.find({ isFetched: true })
         .then((response) => {
             response.forEach((item, i) => {
                 if (i < 500) {

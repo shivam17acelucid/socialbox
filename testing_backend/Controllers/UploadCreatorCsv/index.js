@@ -38,12 +38,12 @@ const uploads = multer({ storage: storage });
     };
 
 exports.fetchCsvUsernames = (req, res, next) => {
+    let arr = [];
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    UsernameCsv.find()
+    UsernameCsv.find({ isFetched: false })
         .then((response) => {
-            let arr = [];
             response.forEach((item, i) => {
-                if (item.isFetched === false) {
+                if (i < 50) {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     fetch(url,
                         {
@@ -112,7 +112,6 @@ exports.fetchCsvUsernames = (req, res, next) => {
                         })
                 }
             })
-            // }
             UsernameCsv.find({ isFetched: true })
                 .then((fetchedData) => {
                     res.json(`items added ${fetchedData.length} - ${response.length}`)

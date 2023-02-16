@@ -45,7 +45,7 @@ exports.fetchCsvUsernames = (req, res, next) => {
             response.forEach((item, i) => {
                 if (i < 50) {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
-                    console.log(item.username, url);
+                    console.log(item.username);
                     // fetch(url,
                     //     {
                     //         method: 'GET',

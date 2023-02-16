@@ -57,8 +57,6 @@ exports.fetchCsvUsernames = (req, res, next) => {
                             response.json()
                                 .then((data) => {
                                     if (data.data.user) {
-                                        item.isFetched = true;
-                                        item.save()
                                         uploadFileToS3(data.data.user?.profile_pic_url_hd, `Images/${data.data.user?.username}/${data.data.user?.username}_profile_image.png`, 'socialbox-bckt', data.data.user)
                                             .then((data) => {
                                                 console.log("File saved!")
@@ -107,6 +105,8 @@ exports.fetchCsvUsernames = (req, res, next) => {
                                                         })
                                                 }
                                             })
+                                        item.isFetched = true;
+                                        item.save()
                                     }
                                 })
                         })

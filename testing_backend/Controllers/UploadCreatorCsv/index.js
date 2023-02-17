@@ -43,7 +43,7 @@ exports.fetchCsvUsernames = (req, res, next) => {
     UsernameCsv.find({ isFetched: false })
         .then((response) => {
             response.forEach((item, i) => {
-                if (i < 500) {
+                if (i < 250) {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     fetch(url,
                         {
@@ -107,6 +107,13 @@ exports.fetchCsvUsernames = (req, res, next) => {
                                             })
                                         item.isFetched = true;
                                         item.save()
+                                    }
+                                    else{
+                                        item.isFetched(true);
+                                        item.save()
+                                        .then((data)=>{
+                                            console.log('Username not exists');
+                                        })
                                     }
                                 })
                         })
@@ -524,13 +531,5 @@ exports.fetchCsvUsernames2 = (req, res, next) => {
         })
         .catch((err) => {
             console.log(err)
-        })
-}
-
-exports.renderAllImages = (req, res) => {
-    InfluencersData.find({})
-        .select({ username: 1 })
-        .then((data) => {
-            res.json(data)
         })
 }

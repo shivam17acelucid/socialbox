@@ -13,7 +13,7 @@ const { submitQuery } = require('../Controllers/enquiry');
 const { setBasicFieldsForReel, setBasicFieldsForPost, setBasicFieldsForStories, setBasicFieldsForSwipeUpStories, setBasicFieldsForVideos, setBasicFieldsForIgtv, calculateBudget } = require('../Controllers/Calculator/index');
 const { editProfile } = require('../Controllers/updateProfile');
 const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
-const { uploadcreatorcsv, uploadData, updateCreatorsDetails, testingproxies, fetchCsvUsernames, fetchCsvUsernames2, renderAllImages } = require('../Controllers/UploadCreatorCsv/index');
+const { uploadcreatorcsv, uploadData, updateCreatorsDetails, testingproxies, fetchCsvUsernames, fetchCsvUsernames2 } = require('../Controllers/UploadCreatorCsv/index');
 const { getImageUrls } = require('../Controllers/Image/index')
 
 
@@ -83,5 +83,4 @@ router.put('/editDescription', editDescription);
 router.get('/showBasketDescription', showBasketDescription);
 router.post('/fetchCsvUsernames', fetchCsvUsernames);
 router.post('/fetchCsvUsernames2', fetchCsvUsernames2);
-router.get('/renderAllImages', renderAllImages);
 module.exports = router;

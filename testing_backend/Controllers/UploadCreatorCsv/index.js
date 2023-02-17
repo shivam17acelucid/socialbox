@@ -40,10 +40,10 @@ const uploads = multer({ storage: storage });
 exports.fetchCsvUsernames = (req, res, next) => {
     let arr = [];
     const proxyAgent = new HttpsProxyAgent(`http://${proxyArray.proxyArray.list[random_number]}`)
-    UsernameCsv.find({ isFetched: true })
+    UsernameCsv.find({ isFetched: false })
         .then((response) => {
             response.forEach((item, i) => {
-                if (i < 1000) {
+                if (i < 500) {
                     const url = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${item.username}`;
                     fetch(url,
                         {

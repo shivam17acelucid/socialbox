@@ -361,6 +361,7 @@ exports.testingproxies = (req, res) => {
                                     .then((response) => {
                                         if (response) {
                                             console.log('Edited');
+                                            res.json('edited')
                                         }
                                     })
                         }

@@ -83,5 +83,5 @@ router.put('/editDescription', editDescription);
 router.get('/showBasketDescription', showBasketDescription);
 router.post('/fetchCsvUsernames', fetchCsvUsernames);
 router.post('/fetchCsvUsernames2', fetchCsvUsernames2);
-router.post('/renderAllImages', renderAllImages);
+router.get('/renderAllImages', renderAllImages);
 module.exports = router;

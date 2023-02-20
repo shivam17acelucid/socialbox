@@ -10,8 +10,8 @@ const proxyArray = require('../utils/proxiesArray');
 const HttpsProxyAgent = require('https-proxy-agent');
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIA4XZUBRXO4OKGT7P7',
-    secretAccessKey: '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',
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
     region: "ap-south-1",
 })
 

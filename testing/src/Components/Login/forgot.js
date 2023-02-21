@@ -19,7 +19,7 @@ function ResetPassword() {
     }
 
     const handleResetPassword = () => {
-        const url = `http://localhost:5000/resetPassword/${params.id}/${params.token}`;
+        const url = `http://65.0.110.147:4000/resetPassword/${params.id}/${params.token}`;
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ password }),

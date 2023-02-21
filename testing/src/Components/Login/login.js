@@ -72,7 +72,7 @@ function Login() {
     }
 
     const handleForgotPassword = () => {
-        const url = 'http://localhost:5000/forgot';
+        const url = 'http://65.0.110.147:4000/forgot';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email }),

@@ -20,9 +20,10 @@ exports.forgot = (req, res, next) => {
     }
     UserInfo.findOne({ email: email }).then((user) => {
         if (!user) {
-            res
-                .status(500)
-                .send({ message: "User With This Mail Adress Is Not Found" });
+            errors.push("User With This Mail Adress Is Not Found");
+            if (errors.length > 0) {
+                return res.status(422).json({ errors: errors });
+            }
         } else {
             user.resetPasswordToken = crypto.randomBytes(20).toString("hex");
             user.resetPasswordExpires = Date.now() + 300000;
@@ -30,7 +31,7 @@ exports.forgot = (req, res, next) => {
             const link1 =
                 `http://localhost:3000/resetPassword/${user._id}/${user.resetPasswordToken}`;
             const msg = {
-                to: 'sagar.panwar@acelucid.com',
+                to: email,
                 from: 'shivam.rawat@acelucid.com',
                 subject: 'Change Pasword',
                 text: `${link1}`,

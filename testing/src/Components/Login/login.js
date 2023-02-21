@@ -47,6 +47,51 @@ function Login() {
         setPasswordVisible(data)
     }
 
+    const handleGoogleLogin = () => {
+        const url = 'http://65.0.110.147:4000/auth/google';
+        fetch((url), {
+            method: 'POST',
+            // body: JSON.stringify({ email }),
+            // headers: {
+            //     'Content-type': 'application/json; charset=UTF-8',
+            // },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const { errors } = data;
+                if (errors) {
+                    console.log(errors)
+                }
+                else {
+                    localStorage.setItem('id', data._id)
+                    localStorage.setItem('name', data.name)
+                    const userId = localStorage.getItem('id');
+                    navigate(`/home/${userId}`);
+                }
+            })
+    }
+
+    const handleForgotPassword = () => {
+        const url = 'http://localhost:5000/forgot';
+        fetch((url), {
+            method: 'POST',
+            body: JSON.stringify({ email }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const { errors } = data;
+                if (errors) {
+                    window.alert(errors)
+                }
+                else {
+                    window.alert('Mail is sent to you')
+                }
+            })
+    }
+
 
     return (
         <div className="login_container row">
@@ -80,7 +125,7 @@ function Login() {
                         />
                         <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} />
                     </div>
-                    <div className="form_forgot_text col-lg-6 col-md-6 col-sm-6 col-xs-6">Forgot Password</div>
+                    <div className="form_forgot_text col-lg-6 col-md-6 col-sm-6 col-xs-6" onClick={handleForgotPassword}>Forgot Password</div>
                 </div>
                 <div className="row no-gutters justify-content-center">
                     <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6">
@@ -89,7 +134,7 @@ function Login() {
                 </div>
                 <div className="row no-gutters justify-content-center">
                     <div className="social_login_btn col-lg-6 col-md-8 col-sm-6 col-xs-6">
-                        <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
+                        <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }} onClick={handleGoogleLogin}>Log in with Google</span>
                     </div>
                 </div>
                 <div className="signup_link col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>

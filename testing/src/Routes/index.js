@@ -15,6 +15,7 @@ const ProfileSettings = React.lazy(() => import("../Components/ProfileSettings/i
 const CalculateDeliverables = React.lazy(() => import('../Components/Calculator/Calculate2/index'));
 const CalculateFilters = React.lazy(() => import('../Components/Calculator/Calculate3/index'));
 const CalculateTotal = React.lazy(()=> import('../Components/Calculator/CalculateResults/index'));
+const ResetPassword = React.lazy(()=> import('../Components/Login/forgot'))
 
 function RouteF() {
 
@@ -29,6 +30,7 @@ function RouteF() {
                     <Route path="/home/:id" element={<Lists />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/" element={<Login />} />
+                    <Route path="/resetPassword/:id/:token" element={<ResetPassword />} />
                     <Route path="/calculate" element={<CalculateCost />} />
                     <Route path="/influencerslist/" element={<InfluencersList />} />
                     <Route path="/influencerslist/:inputField" element={<InfluencersList />} />

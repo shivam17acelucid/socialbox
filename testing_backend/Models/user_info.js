@@ -107,6 +107,12 @@ let userinfoSchema = new Schema(
       type: String,
       trim: true,
     },
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordExpires: {
+      type: Date,
+    },
     createdAt: { type: Date, default: Date.now(), index: { expiresIn: 300 } },
     source: { type: String },
   },

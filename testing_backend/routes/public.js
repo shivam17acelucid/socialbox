@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const { hashtag, username, topsearch, userID, profile, influencer_list, influencer_search, testinnng, getInfluencersDetails, filteredInfluencersData, createList, getListData, addInfluencersToList, showInfluencersInList, filteredByErInfluencersData, deleteInfluencersFromList, editDeliverables, deleteList, getUserDetails, getFilteredResults, clearDeletedInfluencersFromList } = require('../Controllers/testing');
 const { uploadcsv, uploadCsv } = require('../Controllers/uploadcsv')
 const { downloadcsv } = require("../Controllers/downloadcsv");
@@ -15,12 +16,15 @@ const { editProfile } = require('../Controllers/updateProfile');
 const { filterUsers, getProfileOfInfluencer } = require('../Controllers/Sorting/index');
 const { uploadcreatorcsv, uploadData, updateCreatorsDetails, testingproxies, fetchCsvUsernames, fetchCsvUsernames2 } = require('../Controllers/UploadCreatorCsv/index');
 const { getImageUrls } = require('../Controllers/Image/index')
+const { forgot, resetPassword } = require('../Controllers/Authentication/forgot');
 
 
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post('/adminLogin', adminLogin);
+router.post("/forgot", forgot);
+router.post("/resetPassword/:userId/:token", resetPassword);
 router.get('/searchbyhashtag', hashtag)
 router.get('/searchbyusername', username)
 // router.get('/searchtopusers', topsearch)
@@ -83,4 +87,18 @@ router.put('/editDescription', editDescription);
 router.get('/showBasketDescription', showBasketDescription);
 router.post('/fetchCsvUsernames', fetchCsvUsernames);
 router.post('/fetchCsvUsernames2', fetchCsvUsernames2);
+router.get(
+    "/auth/google",
+    passport.authenticate("google", { scope: ["profile", "email"] })
+);
+router.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+        failureRedirect: "/",
+        session: false
+    }),
+    (req, res, next) => {
+        res.redirect("/");
+    }
+);
 module.exports = router;

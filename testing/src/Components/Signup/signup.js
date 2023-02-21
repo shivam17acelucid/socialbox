@@ -14,7 +14,7 @@ function Signup() {
     const [password, setPassword] = useState('');
     const [mobile, setMobile] = useState('');
     const [company, setCompany] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    // const [confirmPassword, setConfirmPassword] = useState('');
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function Signup() {
         const url = `http://65.0.110.147:4000/signup`;
         fetch((url), {
             method: 'POST',
-            body: JSON.stringify({ name, email, password, confirmPassword }),
+            body: JSON.stringify({ name, email, password, company, mobile }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -62,7 +62,7 @@ function Signup() {
                     <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Mobile (optional)" value={mobile} onChange={(e) => { setMobile(e.target.value) }} />
                     <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Company (optional)" value={company} onChange={(e) => { setCompany(e.target.value) }} />
                     <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                    <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                    {/* <Input className="registeration_fields col-lg-6 col-md-10 col-sm-6 col-xs-6" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} /> */}
                     <Button onClick={handleSignup} className='signup_btn'>Sign up</Button>
                 </div>
                 <div className="login_link col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">

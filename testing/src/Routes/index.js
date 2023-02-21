@@ -16,6 +16,7 @@ const CalculateDeliverables = React.lazy(() => import('../Components/Calculator/
 const CalculateFilters = React.lazy(() => import('../Components/Calculator/Calculate3/index'));
 const CalculateTotal = React.lazy(()=> import('../Components/Calculator/CalculateResults/index'));
 const ResetPassword = React.lazy(()=> import('../Components/Login/forgot'))
+const VerifyEmail = React.lazy(()=> import('../Components/Signup/verifyEmail'))
 
 function RouteF() {
 
@@ -29,6 +30,7 @@ function RouteF() {
                 <Routes>
                     <Route path="/home/:id" element={<Lists />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/confirm/:token" element={<VerifyEmail />} />
                     <Route path="/" element={<Login />} />
                     <Route path="/resetPassword/:id/:token" element={<ResetPassword />} />
                     <Route path="/calculate" element={<CalculateCost />} />

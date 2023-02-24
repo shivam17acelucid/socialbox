@@ -49,7 +49,7 @@ exports.signup = (req, res, next) => {
           html: `<h1>Email Confirmation</h1>
           <h2>Hello ${name}</h2>
           <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-          <a href=http://localhost:3000/confirm/${token}> Click here</a>
+          <a href=http://13.234.125.76:3000/confirm/${token}> Click here</a>
           </div>`,
         }
         sgMail
@@ -94,7 +94,7 @@ exports.signup = (req, res, next) => {
                   html: `<h1>Email Confirmation</h1>
                   <h2>Hello ${name}</h2>
                   <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-                  <a href=http://localhost:3000/confirm/${token}> Click here</a>
+                  <a href=http://13.234.125.76:3000/confirm/${token}> Click here</a>
                   </div>`,
                 }
                 sgMail

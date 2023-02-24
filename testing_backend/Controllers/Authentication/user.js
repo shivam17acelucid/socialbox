@@ -44,7 +44,7 @@ exports.signup = (req, res, next) => {
         user.save();
         const msg = {
           to: email,
-          from: 'souvil@thesocialbox.in',
+          from: 'shivam.rawat@acelucid.com',
           subject: 'Verify Email',
           html: `<h1>Email Confirmation</h1>
           <h2>Hello ${name}</h2>
@@ -89,7 +89,7 @@ exports.signup = (req, res, next) => {
               .then((response) => {
                 const msg = {
                   to: email,
-                  from: 'souvil@thesocialbox.in',
+                  from: 'shivam.rawat@acelucid.com',
                   subject: 'Verify Email',
                   html: `<h1>Email Confirmation</h1>
                   <h2>Hello ${name}</h2>

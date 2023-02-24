@@ -13,6 +13,8 @@ import { MdAdd } from 'react-icons/md';
 import { AiOutlineHeart, AiOutlineComment, AiOutlineEye, AiOutlineClose } from 'react-icons/ai';
 import Loader from '../../Common/Loader/index'
 import Tooltip from '@mui/material/Tooltip';
+import Highcharts from "highcharts/highstock";
+import HighchartsReact from "highcharts-react-official";
 
 const ProfileData = () => {
     const [influencersData, setInfluencersData] = useState([]);
@@ -20,6 +22,10 @@ const ProfileData = () => {
     const [listData, setListData] = useState([]);
     const [listInfluencerDetails, setListInfluencerDetails] = useState([]);
     const [newPlanClicked, setNewPlanClicked] = useState(false);
+    const [likeArr, setLikeArr] = useState([]);
+    const [commentArr, setCommentArr] = useState([]);
+    const [viewsArr, setViewsArr] = useState([]);
+    const [likesGrowthRate, setLikesGrowthRate] = useState([]);
 
     let { profilename } = useParams();
     let navigate = useNavigate;
@@ -27,12 +33,26 @@ const ProfileData = () => {
     const userId = localStorage.getItem('id')
 
     const fetchProfiles = () => {
-        const url = `http://65.0.110.147:4000/getProfileOfInfluencer?inputField=${profilename}`;
+        const url = `http://13.127.230.191:4000/getProfileOfInfluencer?inputField=${profilename}`;
         fetch(url)
             .then((data) => {
                 data.json()
                     .then((res) => {
                         setInfluencersData(res)
+                        res[0].edge_owner_to_timeline_media.edges.forEach((item, i) => {
+                            let likeArray = [];
+                            let commentArray = [];
+                            let ViewsArray = [];
+                            if (i > 0) {
+                                likeArray.push(item?.node?.edge_liked_by?.count)
+                                commentArray.push(item?.node?.edge_media_to_comment?.count)
+                                ViewsArray.push(item?.node?.video_view_count)
+                            }
+                            setLikeArr(likeArray)
+                            setCommentArr(commentArray)
+                            setViewsArr(ViewsArray)
+                            // console.log(likeArr, likeArray);
+                        })
                     })
             })
             .catch((err) => {
@@ -43,7 +63,7 @@ const ProfileData = () => {
     const handleAddList = () => {
         const data = addToListClicked ? false : true;
         setAddToListClicked(data);
-        const url = `http://65.0.110.147:4000/getListData/${userId}`
+        const url = `http://13.127.230.191:4000/getListData/${userId}`
         fetch(url)
             .then((data) => {
                 data.json()
@@ -54,7 +74,7 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://65.0.110.147:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
+        const url = `http://13.127.230.191:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -68,6 +88,50 @@ const ProfileData = () => {
         window.open(`https://www.instagram.com/${data.username}/`);
         // window.location.href = `https://www.instagram.com/${data.username}/`;
     }
+
+    const options = {
+        title: {
+            text: "Profile Growth Chart"
+        },
+        yAxis: {
+            title: {
+                text: "Likes"
+            }
+        },
+        xAxis: {
+            title: {
+                text: "Last 12Post"
+            },
+            categories: [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12"
+            ]
+        },
+        series: [
+            {
+                name: 'Likes',
+                data: likeArr,
+            },
+            {
+                name: 'Comment',
+                data: commentArr
+            },
+            {
+                name: 'Views',
+                data: viewsArr
+            }
+        ]
+    };
 
     useEffect(() => {
         fetchProfiles();
@@ -178,7 +242,18 @@ const ProfileData = () => {
                                             </div>
                                             <div className="profile_demography row no-gutters">
                                                 <div className="demography_title">
-                                                    Followers Stats
+                                                    Profile Stats
+                                                </div>
+                                                <div>
+                                                    {
+                                                        likeArr[0] ?
+                                                            <HighchartsReact
+                                                                highcharts={Highcharts}
+                                                                options={options}
+                                                            />
+                                                            :
+                                                            null
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

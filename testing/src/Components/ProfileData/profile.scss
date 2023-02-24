@@ -228,7 +228,7 @@ html {
                 }
 
                 .profile_demography {
-                    padding: 4rem;
+                    padding: 1rem 1rem;
 
                     .demography_title {
                         font-family: 'Noto Sans';
@@ -366,4 +366,7 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.highcharts-credits {
+    display: none;
 }

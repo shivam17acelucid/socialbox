@@ -19,7 +19,7 @@ function Signup() {
     const navigate = useNavigate();
 
     const handleSignup = () => {
-        const url = `http://65.0.110.147:4000/signup`;
+        const url = `http://13.127.230.191:4000/signup`;
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ name, email, password, company, mobile }),

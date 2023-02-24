@@ -1084,6 +1084,7 @@ const InfluencersList = () => {
 
     const handleChangePageValue = () => {
         setOffset(newPage)
+        setPage(newPage / 10)
         setPageValueChoosed(true);
         setInfluencersData([])
     }
@@ -1556,30 +1557,25 @@ const InfluencersList = () => {
                                             }
                                         </TableBody>
                                         <TableFooter>
-                                            {
-                                                pageValueChoosed ?
-                                                    null
-                                                    :
-                                                    <TableRow className="table_foot_row">
-                                                        <TablePagination
-                                                            rowsPerPageOptions={[7]}
-                                                            colSpan={3}
-                                                            count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : totalDataLength}
-                                                            rowsPerPage={rowsPerPage}
-                                                            page={page}
-                                                            SelectProps={{
-                                                                inputProps: {
-                                                                    'aria-label': 'Results per page',
-                                                                },
-                                                                native: true,
-                                                            }}
-                                                            // onPageChange={handleChangePage}
-                                                            // onRowsPerPageChange={handleChangeRowsPerPage}
-                                                            ActionsComponent={TablePaginationActions}
-                                                            className='table_footer_values'
-                                                        />
-                                                    </TableRow>
-                                            }
+                                            <TableRow className="table_foot_row">
+                                                <TablePagination
+                                                    rowsPerPageOptions={[7]}
+                                                    colSpan={3}
+                                                    count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : totalDataLength}
+                                                    rowsPerPage={rowsPerPage}
+                                                    page={page}
+                                                    SelectProps={{
+                                                        inputProps: {
+                                                            'aria-label': 'Results per page',
+                                                        },
+                                                        native: true,
+                                                    }}
+                                                    // onPageChange={handleChangePage}
+                                                    // onRowsPerPageChange={handleChangeRowsPerPage}
+                                                    ActionsComponent={TablePaginationActions}
+                                                    className='table_footer_values'
+                                                />
+                                            </TableRow>
                                         </TableFooter>
                                     </>
                                 </Table>

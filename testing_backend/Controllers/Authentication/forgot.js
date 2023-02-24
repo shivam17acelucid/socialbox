@@ -29,7 +29,7 @@ exports.forgot = (req, res, next) => {
             user.resetPasswordExpires = Date.now() + 300000;
             user.save();
             const link1 =
-                `http://localhost:3000/resetPassword/${user._id}/${user.resetPasswordToken}`;
+                `http://13.127.230.191:3000/resetPassword/${user._id}/${user.resetPasswordToken}`;
             const msg = {
                 to: email,
                 from: 'shivam.rawat@acelucid.com',

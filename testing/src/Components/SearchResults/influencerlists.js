@@ -1322,7 +1322,7 @@ const InfluencersList = () => {
                                         </section>
                                         : null
                         }
-                        <div className="download_icon col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4">
+                        <div className="download_icon col-lg-1 col-md-2 col-sm-2 col-xs-2 col-2">
                             <a
                                 href={`data:text/csv;charset=utf-8,${(csvData)}`}
                                 download="filename.csv"
@@ -1333,7 +1333,7 @@ const InfluencersList = () => {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 input_page">
                             <Input placeholder="Enter Page No" className="input_page_value" value={pageNoValue} onChange={(e) => handleChangeInputPage(e)} />
-                            <Button onClick={handleChangePageValue}>Find</Button>
+                            <Button onClick={handleChangePageValue} className='find_btn'>Find</Button>
                         </div>
                     </div>
                     <div className="table_content">

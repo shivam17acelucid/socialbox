@@ -244,7 +244,7 @@ html {
                 }
 
                 .input_page {
-                    max-width: 3rem;
+                    display: flex;
 
                     .input_page_value {
                         background: #FFFFFF;
@@ -260,6 +260,16 @@ html {
                         max-width: 8rem;
                         height: 2.5rem;
                         padding-left: 1rem;
+                    }
+
+                    .find_btn {
+                        background: #7662dc;
+                        color: #fff;
+                        font-family: Inter;
+                        line-height: 1.188rem;
+                        text-transform: none;
+                        max-height: 2.5rem;
+                        margin-left: 1rem;
                     }
                 }
             }

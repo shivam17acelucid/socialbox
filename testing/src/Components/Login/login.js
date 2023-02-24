@@ -30,7 +30,7 @@ function Login() {
             .then((data) => {
                 const { errors } = data;
                 if (errors) {
-                    console.log(errors)
+                    alert(errors)
                 }
                 else {
                     localStorage.setItem('id', data._id)

@@ -18,7 +18,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        const url = 'http://13.127.230.191:4000/login';
+        const url = 'http://13.234.125.76:4000/login';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email, password }),
@@ -48,7 +48,7 @@ function Login() {
     }
 
     const handleGoogleLogin = () => {
-        const url = 'http://13.127.230.191:4000/auth/google';
+        const url = 'http://13.234.125.76:4000/auth/google';
         fetch((url), {
             method: 'POST',
             // body: JSON.stringify({ email }),
@@ -72,7 +72,7 @@ function Login() {
     }
 
     const handleForgotPassword = () => {
-        const url = 'http://13.127.230.191:4000/forgot';
+        const url = 'http://13.234.125.76:4000/forgot';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email }),

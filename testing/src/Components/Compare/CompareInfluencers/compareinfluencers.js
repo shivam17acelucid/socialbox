@@ -43,7 +43,7 @@ function CompareInfluencers() {
     }
 
     const getListData = () => {
-        const url = `http://13.127.230.191:4000/getListData/${userId}`;
+        const url = `http://13.234.125.76:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -54,7 +54,7 @@ function CompareInfluencers() {
     }
 
     const addInfluencerToList = (element, elm) => {
-        const url = `http://13.127.230.191:4000/addInfluencersToList/${userId}?list=${elm.listName}&username=${element.username}`
+        const url = `http://13.234.125.76:4000/addInfluencersToList/${userId}?list=${elm.listName}&username=${element.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -73,7 +73,7 @@ function CompareInfluencers() {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            let url = `http://13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -167,7 +167,7 @@ function CompareInfluencers() {
     const handleCompareInfluencersByParams = () => {
         setLoader(true);
         if (JSON.stringify(params) !== '{}') {
-            const url = `http://13.127.230.191:4000/compareInfluencers?${params.influencers}`;
+            const url = `http://13.234.125.76:4000/compareInfluencers?${params.influencers}`;
             fetch(url)
                 .then((res) => {
                     res.json()

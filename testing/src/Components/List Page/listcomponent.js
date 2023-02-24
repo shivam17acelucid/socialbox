@@ -99,7 +99,7 @@ function Lists() {
     }
 
     const fetchBasketsName = () => {
-        const url = `http://13.127.230.191:4000/showCategorizedBasket`;
+        const url = `http://13.234.125.76:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => res.json())
             .then((response) => {
@@ -112,7 +112,7 @@ function Lists() {
     }
 
     const handleCreateList = (listName, description, reel, post, story, igtv, swipeUpStory, video) => {
-        const url = `http://13.127.230.191:4000/createList/${userId}`
+        const url = `http://13.234.125.76:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName, description, reel, post, story, igtv, swipeUpStory, video }),
@@ -138,7 +138,7 @@ function Lists() {
     }
 
     const handleDeleteList = (item) => {
-        const url = `http://13.127.230.191:4000/deleteList/${userId}?listName=${item.listName}`;
+        const url = `http://13.234.125.76:4000/deleteList/${userId}?listName=${item.listName}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -152,7 +152,7 @@ function Lists() {
 
 
     const getListData = () => {
-        const url = `http://13.127.230.191:4000/getListData/${userId}`;
+        const url = `http://13.234.125.76:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -179,7 +179,7 @@ function Lists() {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 2) {
-            let url = `http://13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()

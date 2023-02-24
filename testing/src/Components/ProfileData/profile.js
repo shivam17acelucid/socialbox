@@ -33,26 +33,36 @@ const ProfileData = () => {
     const userId = localStorage.getItem('id')
 
     const fetchProfiles = () => {
-        const url = `http://13.127.230.191:4000/getProfileOfInfluencer?inputField=${profilename}`;
+        const url = `http://13.234.125.76:4000/getProfileOfInfluencer?inputField=${profilename}`;
         fetch(url)
             .then((data) => {
                 data.json()
                     .then((res) => {
                         setInfluencersData(res)
+                        let likeArray = [];
+                        let commentArray = [];
+                        let ViewsArray = [];
                         res[0].edge_owner_to_timeline_media.edges.forEach((item, i) => {
-                            let likeArray = [];
-                            let commentArray = [];
-                            let ViewsArray = [];
                             if (i > 0) {
-                                likeArray.push(item?.node?.edge_liked_by?.count)
-                                commentArray.push(item?.node?.edge_media_to_comment?.count)
-                                ViewsArray.push(item?.node?.video_view_count)
+                                if (item?.node?.edge_liked_by?.count) {
+                                    likeArray.push(item?.node?.edge_liked_by?.count)
+                                }
+                                if (item?.node?.edge_media_to_comment?.count) {
+                                    commentArray.push(item?.node?.edge_media_to_comment?.count)
+                                }
+                                if (item?.node?.video_view_count) {
+                                    ViewsArray.push(item?.node?.video_view_count)
+                                }
                             }
-                            setLikeArr(likeArray)
-                            setCommentArr(commentArray)
-                            setViewsArr(ViewsArray)
-                            // console.log(likeArr, likeArray);
                         })
+                        setLikeArr(likeArray)
+                        setCommentArr(commentArray)
+                        setViewsArr(ViewsArray)
+                        let likeGrowthArray = [];
+                        likeArray.forEach((el, i) => {
+                            likeGrowthArray.push(`growth: ${likeArray[i + 1] - el}`);
+                        })
+                        setLikesGrowthRate(likeGrowthArray)
                     })
             })
             .catch((err) => {
@@ -63,7 +73,7 @@ const ProfileData = () => {
     const handleAddList = () => {
         const data = addToListClicked ? false : true;
         setAddToListClicked(data);
-        const url = `http://13.127.230.191:4000/getListData/${userId}`
+        const url = `http://13.234.125.76:4000/getListData/${userId}`
         fetch(url)
             .then((data) => {
                 data.json()
@@ -74,7 +84,7 @@ const ProfileData = () => {
     }
 
     const handleAddInfluencerToList = (data, value) => {
-        const url = `http://13.127.230.191:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
+        const url = `http://13.234.125.76:4000/addInfluencersToList/${userId}?list=${value.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -95,7 +105,7 @@ const ProfileData = () => {
         },
         yAxis: {
             title: {
-                text: "Likes"
+                text: "Likes, Comment, View Count"
             }
         },
         xAxis: {
@@ -245,15 +255,15 @@ const ProfileData = () => {
                                                     Profile Stats
                                                 </div>
                                                 <div>
-                                                    {
-                                                        likeArr[0] ?
-                                                            <HighchartsReact
-                                                                highcharts={Highcharts}
-                                                                options={options}
-                                                            />
-                                                            :
+                                                    {/* {
+                                                        likeArr[0] ? */}
+                                                    <HighchartsReact
+                                                        highcharts={Highcharts}
+                                                        options={options}
+                                                    />
+                                                    {/* :
                                                             null
-                                                    }
+                                                    } */}
                                                 </div>
                                             </div>
                                         </div>

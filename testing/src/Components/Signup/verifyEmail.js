@@ -8,7 +8,7 @@ function VerifyEmail() {
 
     const verify = () => {
         console.log(params);
-        const url = `http://13.127.230.191:4000/verifyEmail?token=${params.token}`;
+        const url = `http://13.234.125.76:4000/verifyEmail?token=${params.token}`;
         fetch((url), {
             method: 'POST',
         })

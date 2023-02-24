@@ -35,7 +35,7 @@ function ProfileSettings() {
     }
 
     const fetchUserDetails = () => {
-        const url = `http://13.127.230.191:4000/getUserDetails/${userId}`;
+        const url = `http://13.234.125.76:4000/getUserDetails/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -47,7 +47,7 @@ function ProfileSettings() {
     }
 
     const handleUpdateProfile = () => {
-        const url = `http://13.127.230.191:4000/editProfile/${userId}`;
+        const url = `http://13.234.125.76:4000/editProfile/${userId}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -75,7 +75,7 @@ function ProfileSettings() {
                     <div className='middle_pane row no-gutters'>
                         <div className='pane1_3 col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3'>
                             <img src={Profile} style={{ width: '100%' }} />
-                            <div className='avatar_title' onClick={handleChangeAvatar}>Change Avatar</div>
+                            {/* <div className='avatar_title' onClick={handleChangeAvatar}>Change Avatar</div>
                             {
                                 openAvtarModal === true ?
                                     <div className='overlay'>
@@ -89,7 +89,7 @@ function ProfileSettings() {
                                     </div>
                                     :
                                     null
-                            }
+                            } */}
                         </div>
                         {
                             userData[0] ?

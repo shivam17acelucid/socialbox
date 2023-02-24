@@ -242,11 +242,29 @@ html {
                     margin-left: 0.75rem;
                     padding-top: 0.313rem;
                 }
+
+                .input_page {
+                    max-width: 3rem;
+
+                    .input_page_value {
+                        background: #FFFFFF;
+                        border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                        border-radius: 0.313rem;
+                        box-sizing: border-box;
+                        font-family: 'Noto Sans';
+                        font-style: italic;
+                        font-weight: 400;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                        color: rgba(0, 0, 0, 0.2);
+                        max-width: 8rem;
+                        height: 2.5rem;
+                        padding-left: 1rem;
+                    }
+                }
             }
 
             .table_paper {
-                overflow-y: auto;
-                height: 68vh;
                 color: rgba(0, 0, 0, 0.87);
                 -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -256,18 +274,11 @@ html {
             }
 
             .table_content {
-                padding-left: 0.5rem;
+                padding: 0 0.5rem;
                 width: 100%;
 
                 .table_container {
                     background-color: #FFF;
-
-                    .inline_loader {
-                        position: absolute;
-                        top: 60%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                    }
 
                     .table_row {
                         background-color: #FFF !important;
@@ -749,3 +760,10 @@ html {
 //         max-width: 87.333333%;
 //     }
 // }
+
+.inline_loader {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

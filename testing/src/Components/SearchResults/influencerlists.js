@@ -52,7 +52,7 @@ const InfluencersList = () => {
 
     const [influencersData, setInfluencersData] = useState([]);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(7);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     const [showVerifiedInfluencers, setShowVerifiedInfluencers] = useState(false);
     const [verifiedInfluencers, setVerifiedInfluencers] = useState([]);
     const [category, setCategory] = useState('');
@@ -115,6 +115,9 @@ const InfluencersList = () => {
     const [offset, setOffset] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [totalDataLength, setTotalDataLength] = useState(0);
+    const [pageNoValue, setPageNoValue] = useState(null);
+    const [pageValueChoosed, setPageValueChoosed] = useState(false)
+    const [newPage, setNewPage] = useState(null);
 
     let { inputField, eRange, followerRange } = useParams();
     let navigate = useNavigate();
@@ -514,7 +517,7 @@ const InfluencersList = () => {
     }
 
     const getListData = () => {
-        const url = `http://13.127.230.191:4000/getListData/${userId}`;
+        const url = `http://13.234.125.76:4000/getListData/${userId}`;
         fetch(url)
             .then((data) => {
                 data.json()
@@ -525,7 +528,7 @@ const InfluencersList = () => {
     }
 
     const handleDownloadData = () => {
-        const url = `http://13.127.230.191:4000/downloadcsv?inputField=${inputField}`;
+        const url = `http://13.234.125.76:4000/downloadcsv?inputField=${inputField}`;
         fetch((url), {
             headers: {
                 'Content-type': 'text/csv; charset=UTF-8',
@@ -570,7 +573,7 @@ const InfluencersList = () => {
                 if (eRange.includes('eRange')) {
                     str = eRange.split('=');
                     splitArray = str[1].split('&');
-                    const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                    const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                     fetch(url)
                         .then((data) => {
                             data.json()
@@ -587,7 +590,7 @@ const InfluencersList = () => {
                 if (eRange.includes('followerRange')) {
                     follString = eRange.split('=')
                     splitFollArray = follString[1].split('&')
-                    const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                    const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                     fetch(url)
                         .then((data) => {
                             data.json()
@@ -607,7 +610,7 @@ const InfluencersList = () => {
                 splitArray = str[1].split('&');
                 follString = followerRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -622,7 +625,7 @@ const InfluencersList = () => {
                     })
             }
             if (!eRange && !followerRange) {
-                const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+                const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -641,7 +644,7 @@ const InfluencersList = () => {
             if (eRange.includes('eRange')) {
                 str = eRange.split('=');
                 splitArray = str[1].split('&');
-                const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+                const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -658,7 +661,7 @@ const InfluencersList = () => {
             if (eRange.includes('followerRange')) {
                 follString = eRange.split('=')
                 splitFollArray = follString[1].split('&')
-                const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
+                const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}`;
                 fetch(url)
                     .then((data) => {
                         data.json()
@@ -678,7 +681,7 @@ const InfluencersList = () => {
             splitArray = str[1].split('&');
             follString = followerRange.split('=')
             splitFollArray = follString[1].split('&')
-            const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
+            const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}&minFollowers=${splitFollArray[0]}&maxFollowers=${splitFollArray[1]}&minEr=${splitArray[0]}&maxEr=${splitArray[1]}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -693,7 +696,7 @@ const InfluencersList = () => {
                 })
         }
         if (!eRange && !followerRange) {
-            const url = `http://13.127.230.191:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
+            const url = `http://13.234.125.76:4000/getFilteredResults?inputField=${inputField}&limit=${rowsPerPage}&skip=${offset}`;
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -819,7 +822,7 @@ const InfluencersList = () => {
 
 
     const handleCreateList = (listName) => {
-        const url = `http://13.127.230.191:4000/createList/${userId}`
+        const url = `http://13.234.125.76:4000/createList/${userId}`
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ listName }),
@@ -842,7 +845,7 @@ const InfluencersList = () => {
 
     const handleListClick = (item) => {
         setListClicked(true);
-        const url = `http://13.127.230.191:4000/showInfluencersList/${userId}?list=${item.listName}`
+        const url = `http://13.234.125.76:4000/showInfluencersList/${userId}?list=${item.listName}`
         fetch((url))
             .then((data) => data.json())
             .then((response) => {
@@ -851,7 +854,7 @@ const InfluencersList = () => {
     }
 
     const addInfluencerToList = (data, item) => {
-        const url = `http://13.127.230.191:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
+        const url = `http://13.234.125.76:4000/addInfluencersToList/${userId}?list=${item.listName}&username=${data.username}`
         fetch((url), {
             method: 'POST',
         })
@@ -878,7 +881,7 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setValue(query);
         if (query.length > 1) {
-            let url = `http://13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -935,19 +938,19 @@ const InfluencersList = () => {
         };
 
         const handleBackButtonClick = (event) => {
-            setOffset((prev) => prev - 7);
+            setOffset((prev) => prev - 10);
             setPage(page - 1);
             setInfluencersData([]);
         };
 
         const handleNextButtonClick = (event) => {
-            setOffset((prev) => prev + 7);
+            setOffset((prev) => prev + 10);
             setPage(page + 1)
             setInfluencersData([]);
         };
 
         const handleLastPageButtonClick = (event) => {
-            setOffset(totalDataLength - 7)
+            setOffset(totalDataLength - 10)
             setPage(Math.max(0, Math.ceil(count.count / rowsPerPage) - 1));
             setInfluencersData([]);
         };
@@ -995,7 +998,7 @@ const InfluencersList = () => {
             string = result.substring(1);
         })
         navigate(`/CompareInfluencers/${string}`)
-        // const url = `http://13.127.230.191:4000/compareInfluencers?${string}`;
+        // const url = `http://13.234.125.76:4000/compareInfluencers?${string}`;
         // fetch(url)
         //     .then((res) => {
         //         res.json()
@@ -1009,7 +1012,7 @@ const InfluencersList = () => {
         const query = e.target.value.toLowerCase();
         setInputValue(query);
         if (query.length > 1) {
-            let url = `http://13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -1071,6 +1074,19 @@ const InfluencersList = () => {
             </>
         );
     };
+
+    const handleChangeInputPage = (e) => {
+        setNewPage(e.target.value * 10);
+        if (e.target.value === '') {
+            setPageValueChoosed(false)
+        }
+    }
+
+    const handleChangePageValue = () => {
+        setOffset(newPage)
+        setPageValueChoosed(true);
+        setInfluencersData([])
+    }
 
     return (
         <div className="search_container row no-gutters">
@@ -1315,24 +1331,28 @@ const InfluencersList = () => {
                                 <AiOutlineDownload size={30} />
                             </a>
                         </div>
+                        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 input_page">
+                            <Input placeholder="Enter Page No" className="input_page_value" value={pageNoValue} onChange={(e) => handleChangeInputPage(e)} />
+                            <Button onClick={handleChangePageValue}>Find</Button>
+                        </div>
                     </div>
                     <div className="table_content">
-                        <TableContainer component={Paper} className='table_paper'>
-                            <Table stickyHeader className="table_container" >
-                                <TableHead className="table_head">
-                                    <TableRow className="table_row">
-                                        <TableCell className="table_head_value">Instagram Profiles</TableCell>
-                                        <TableCell className="table_head_value" align="center">Followers</TableCell>
-                                        <TableCell className="table_head_value" align="center">Engagement</TableCell>
-                                        <TableCell className="table_head_value" align="center">Avg Like</TableCell>
-                                        <TableCell className="table_head_value" align="center">Avg Comment</TableCell>
-                                        <TableCell className="table_head_value" align="center">Avg Reach</TableCell>
-                                        <TableCell className="table_head_value" align="center">City</TableCell>
-                                        <TableCell className="table_head_value" align="center">Category</TableCell>
-                                        <TableCell className="table_head_value" align="center">Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                {influencersData[0] || categoryFilteredData[0] || verifiedInfluencers[0] ?
+                        {influencersData[0] || categoryFilteredData[0] || verifiedInfluencers[0] ?
+                            <TableContainer component={Paper} className='table_paper'>
+                                <Table stickyHeader className="table_container" >
+                                    <TableHead className="table_head">
+                                        <TableRow className="table_row">
+                                            <TableCell className="table_head_value">Instagram Profiles</TableCell>
+                                            <TableCell className="table_head_value" align="center">Followers</TableCell>
+                                            <TableCell className="table_head_value" align="center">Engagement</TableCell>
+                                            <TableCell className="table_head_value" align="center">Avg Like</TableCell>
+                                            <TableCell className="table_head_value" align="center">Avg Comment</TableCell>
+                                            <TableCell className="table_head_value" align="center">Avg Reach</TableCell>
+                                            <TableCell className="table_head_value" align="center">City</TableCell>
+                                            <TableCell className="table_head_value" align="center">Category</TableCell>
+                                            <TableCell className="table_head_value" align="center">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
                                     <>
                                         <TableBody className="table_body">
                                             {
@@ -1536,33 +1556,39 @@ const InfluencersList = () => {
                                             }
                                         </TableBody>
                                         <TableFooter>
-                                            <TableRow className="table_foot_row">
-                                                <TablePagination
-                                                    rowsPerPageOptions={[7, 14, { label: 'All', value: -1 }]}
-                                                    colSpan={3}
-                                                    count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : totalDataLength}
-                                                    rowsPerPage={rowsPerPage}
-                                                    page={page}
-                                                    SelectProps={{
-                                                        inputProps: {
-                                                            'aria-label': 'Results per page',
-                                                        },
-                                                        native: true,
-                                                    }}
-                                                    // onPageChange={handleChangePage}
-                                                    // onRowsPerPageChange={handleChangeRowsPerPage}
-                                                    ActionsComponent={TablePaginationActions}
-                                                    className='table_footer_values'
-                                                />
-                                            </TableRow>
+                                            {
+                                                pageValueChoosed ?
+                                                    null
+                                                    :
+                                                    <TableRow className="table_foot_row">
+                                                        <TablePagination
+                                                            rowsPerPageOptions={[7]}
+                                                            colSpan={3}
+                                                            count={showVerifiedInfluencers === true ? verifiedInfluencers.length : filterCategoryClicked === true ? categoryFilteredData.length : totalDataLength}
+                                                            rowsPerPage={rowsPerPage}
+                                                            page={page}
+                                                            SelectProps={{
+                                                                inputProps: {
+                                                                    'aria-label': 'Results per page',
+                                                                },
+                                                                native: true,
+                                                            }}
+                                                            // onPageChange={handleChangePage}
+                                                            // onRowsPerPageChange={handleChangeRowsPerPage}
+                                                            ActionsComponent={TablePaginationActions}
+                                                            className='table_footer_values'
+                                                        />
+                                                    </TableRow>
+                                            }
                                         </TableFooter>
                                     </>
-                                    :
-                                    <div className='inline_loader'>
-                                        <Loader />
-                                    </div>}
-                            </Table>
-                        </TableContainer>
+                                </Table>
+                            </TableContainer>
+                            :
+                            <div className='inline_loader'>
+                                <Loader />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

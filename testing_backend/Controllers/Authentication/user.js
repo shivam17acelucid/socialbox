@@ -44,7 +44,7 @@ exports.signup = (req, res, next) => {
         user.save();
         const msg = {
           to: email,
-          from: 'shivam.rawat@acelucid.com',
+          from: 'souvil@thesocialbox.in',
           subject: 'Verify Email',
           html: `<h1>Email Confirmation</h1>
           <h2>Hello ${name}</h2>
@@ -89,7 +89,7 @@ exports.signup = (req, res, next) => {
               .then((response) => {
                 const msg = {
                   to: email,
-                  from: 'shivam.rawat@acelucid.com',
+                  from: 'souvil@thesocialbox.in',
                   subject: 'Verify Email',
                   html: `<h1>Email Confirmation</h1>
                   <h2>Hello ${name}</h2>
@@ -142,7 +142,10 @@ exports.login = (req, res, next) => {
   UserInfo.findOne({ email: email })
     .then((user) => {
       if (!user) {
-        return res.status(404).json({ errors: [{ user: "User not found" }] });
+        errors.push("User not found")
+        if (errors.length > 0) {
+          return res.status(422).json({ errors: errors });
+        }
       }
       else if (user && user.status === true) {
         bcrypt
@@ -172,7 +175,10 @@ exports.login = (req, res, next) => {
           });
       }
       else if (user && user.status === false) {
-        return res.status(404).json("Please Verify Email First");
+        errors.push("Please Verify Email First");
+        if (errors.length > 0) {
+          return res.status(422).json({ errors: errors });
+        }
       }
     })
     .catch((err) => {

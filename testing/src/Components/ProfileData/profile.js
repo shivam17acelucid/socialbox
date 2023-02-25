@@ -26,6 +26,8 @@ const ProfileData = () => {
     const [commentArr, setCommentArr] = useState([]);
     const [viewsArr, setViewsArr] = useState([]);
     const [likesGrowthRate, setLikesGrowthRate] = useState([]);
+    const [commentGrowthRate, setCommentGrowthRate] = useState([]);
+    const [viewsGrowthRate, setViewsGrowthRate] = useState([]);
 
     let { profilename } = useParams();
     let navigate = useNavigate;
@@ -59,10 +61,20 @@ const ProfileData = () => {
                         setCommentArr(commentArray)
                         setViewsArr(ViewsArray)
                         let likeGrowthArray = [];
+                        let commentGrowthArray = [];
+                        let viewsGrowthArray = [];
                         likeArray.forEach((el, i) => {
                             likeGrowthArray.push(`growth: ${likeArray[i + 1] - el}`);
                         })
+                        commentArray.forEach((el, i) => {
+                            commentGrowthArray.push(`growth: ${commentArray[i + 1] - el}`);
+                        })
+                        ViewsArray.forEach((el, i) => {
+                            viewsGrowthArray.push(`growth: ${ViewsArray[i + 1] - el}`);
+                        })
                         setLikesGrowthRate(likeGrowthArray)
+                        setCommentGrowthRate(commentGrowthArray)
+                        setViewsGrowthRate(viewsGrowthArray)
                     })
             })
             .catch((err) => {
@@ -105,7 +117,7 @@ const ProfileData = () => {
         },
         yAxis: {
             title: {
-                text: "Likes, Comment, View Count"
+                text: "Likes, Comments, Views Count"
             }
         },
         xAxis: {
@@ -131,6 +143,8 @@ const ProfileData = () => {
             {
                 name: 'Likes',
                 data: likeArr,
+                name2: 'Growth',
+                data2: likesGrowthRate
             },
             {
                 name: 'Comment',

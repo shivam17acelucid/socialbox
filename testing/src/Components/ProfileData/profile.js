@@ -93,11 +93,11 @@ const ProfileData = () => {
                         let abc2 = commentGrowthArray.filter(rate => !isNaN(rate))
                         let abc3 = viewsGrowthArray.filter(rate => !isNaN(rate))
                         let averageGrowth = (abc.reduce((accumulator, currentValue) => accumulator + currentValue,
-                            0) / likeGrowthArray.length) * 100;
+                            0) / likeGrowthArray.length);
                         let averageGrowth1 = (abc2.reduce((accumulator, currentValue) => accumulator + currentValue,
-                            0) / commentGrowthArray.length) * 100;
+                            0) / commentGrowthArray.length);
                         let averageGrowth2 = (abc3.reduce((accumulator, currentValue) => accumulator + currentValue,
-                            0) / viewsGrowthArray.length) * 100;
+                            0) / viewsGrowthArray.length);
                         setAverageLikeGrowthRate(averageGrowth.toFixed(1))
                         setAverageCommentGrowthRate(averageGrowth1.toFixed(1))
                         setAverageViewsGrowthRate(averageGrowth2.toFixed(1))

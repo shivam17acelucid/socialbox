@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './signup.scss';
-import logo from '../../Assets/Images/logo.png'
-import logo1 from '../../Assets/Images/logo1.png'
+import logo from '../../Assets/Images/inflyu1.png'
+import logo1 from '../../Assets/Images/inflyu1.png'
 import { Input } from "reactstrap";
 import Button from '@mui/material/Button';
 import google from '../../Assets/Images/google_logo.png'
@@ -46,8 +46,8 @@ function Signup() {
     return (
         <div className="signup_container row">
             <div className="left_pane col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
-                <div className="row">
-                    <div className="col-lg-3 col-md-5 col-sm-7 col-xs-7 col-7">
+                <div className="row justify-content-center">
+                    <div className="col-lg-3 col-md-5 col-sm-7 col-xs-7 col-7" style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={logo1} className='social_logo' />
                     </div>
                 </div>
@@ -72,7 +72,7 @@ function Signup() {
                     <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                 </div>
                 <div className="signup_footer col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-                    ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
+                    ©︎ 2022 Inflyu. All rights reserved  |  Privacy policy
                 </div>
             </div>
             <div className="right_pane col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">

@@ -529,6 +529,12 @@ function Lists() {
         }
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            searchInfluencers();
+        }
+    }
+
     useEffect(() => {
         if (selectedOption !== null) {
             if (selectedOption.label.includes('Mega(1M + Followers)')) {
@@ -632,6 +638,7 @@ function Lists() {
                                         onChange={handleChange}
                                         placeholder='Search for influencers, categories...'
                                         className='input_search col-lg-10 col-md-8 col-sm-6 col-xs-6 col-6'
+                                        onKeyDown={handleKeyDown}
                                     />
                                     {suggestionsActive && <Suggestions />}
                                     <Button className='button_list' onClick={searchInfluencers}><AiOutlineSearch /></Button>

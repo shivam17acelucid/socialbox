@@ -15,6 +15,8 @@ import Loader from '../../Common/Loader/index'
 import Tooltip from '@mui/material/Tooltip';
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
+import { Input } from "reactstrap";
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const ProfileData = () => {
     const [influencersData, setInfluencersData] = useState([]);
@@ -28,9 +30,14 @@ const ProfileData = () => {
     const [likesGrowthRate, setLikesGrowthRate] = useState([]);
     const [commentGrowthRate, setCommentGrowthRate] = useState([]);
     const [viewsGrowthRate, setViewsGrowthRate] = useState([]);
+    const [inputValue, setInputValue] = useState('');
+    const [redirectedResult, setRedirectedResult] = useState(false);
+    const [suggestionsForInputActive, setSuggestionsForInputActive] = useState(false);
+    const [suggestions1, setSuggestions1] = useState([]);
+    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
 
     let { profilename } = useParams();
-    let navigate = useNavigate;
+    let navigate = useNavigate();
 
     const userId = localStorage.getItem('id')
 
@@ -157,9 +164,82 @@ const ProfileData = () => {
         ]
     };
 
+    const handleRedirectToResults = () => {
+        setAutoSuggestedData([])
+        setRedirectedResult(!redirectedResult);
+        navigate(`/influencerslist/${inputValue}`);
+        setInputValue('');
+        setSuggestions1([]);
+        setSuggestionsForInputActive(false);
+    }
+    const handleInputChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setInputValue(query);
+        if (query.length > 1) {
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions1(res)
+                        })
+                })
+            setSuggestionsForInputActive(true);
+        } else {
+            setSuggestionsForInputActive(false);
+        }
+    }
+
+    const SuggestionsInfluencer = () => {
+        return (
+            <>
+                <div className="suggestions_influencer row no-gutters">
+                    <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-10">
+                        <div style={{
+                            margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '1.125rem',
+                            lineHeight: '1rem',
+                            color: 'rgba(0, 0, 0, 0.7)'
+                        }}>Influencers</div>
+                        {suggestions1.map((suggestion, index) => {
+                            return (
+                                <div
+                                    className={index === setSuggestionsForInputActive ? "active_influencer" : ""}
+                                    key={index}
+                                    onClick={handleInfluencerClick}
+                                >
+                                    <div className='sug_user'>
+                                        <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${suggestion.username}/${suggestion.username}_profile_image.png`} className='profile_image' />
+                                        <div style={{ marginLeft: '0.5rem' }}>{suggestion.username}</div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </>
+        );
+    };
+
+    const handleInfluencerClick = (e) => {
+        navigate(`/profile/${e.target.innerText}`);
+        setSuggestions1([]);
+        setInputValue('');
+        setSuggestionsForInputActive(false);
+        setInfluencersData([])
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleRedirectToResults();
+        }
+    }
+
     useEffect(() => {
         fetchProfiles();
-    }, []);
+    }, [profilename]);
 
     return (
         <div className="profile_container_box row no-gutters">
@@ -174,6 +254,17 @@ const ProfileData = () => {
                             return (
                                 <div className="profile_container row no-gutters">
                                     <div className="profile_header col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
+                                        <div className="input_box_influencer row no-gutters">
+                                            <Input
+                                                type="text"
+                                                placeholder='Search for influencers'
+                                                value={inputValue}
+                                                onChange={handleInputChange}
+                                                onKeyDown={handleKeyDown}
+                                            />
+                                            {suggestionsForInputActive && <SuggestionsInfluencer />}
+                                            <AiOutlineSearch onClick={handleRedirectToResults} />
+                                        </div>
                                         <div className="row no-gutters">
                                             <div className="profile_pic col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
                                                 <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Images/${data.username}/${data.username}_profile_image.png`} className='profile_image' />
@@ -265,9 +356,9 @@ const ProfileData = () => {
                                                 </div>
                                             </div>
                                             <div className="profile_demography row no-gutters">
-                                                <div className="demography_title">
+                                                {/* <div className="demography_title">
                                                     Profile Stats
-                                                </div>
+                                                </div> */}
                                                 <div>
                                                     {/* {
                                                         likeArr[0] ? */}

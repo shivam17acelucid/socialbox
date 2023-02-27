@@ -235,48 +235,58 @@ function CompareInfluencers() {
                                                 null
                                     }
                                     <div className='profile_followers'>
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <HiOutlineUser />
-                                            {NFormatter(item.edge_followed_by.count)}
-                                        </div>
-                                        <div className='descr_title' style={{ marginLeft: '1rem' }}>
+                                        <Tooltip title="Followers">
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <HiOutlineUser />
+                                                {NFormatter(item.edge_followed_by.count)}
+                                            </div>
+                                        </Tooltip>
+                                        {/* <div className='descr_title' style={{ marginLeft: '1rem' }}>
                                             Followers
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className='like_comment_box'>
                                         <div className='profile_like'>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span>
-                                            </div>
-                                            <div className='descr_title'>
+                                            <Tooltip title="Average Likes">
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <img src={LikeIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_likes)}</span>
+                                                </div>
+                                            </Tooltip>
+                                            {/* <div className='descr_title'>
                                                 Average Likes
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className='profile_comment'>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
-                                            </div>
-                                            <div className='descr_title'>
+                                            <Tooltip title="Average Comments">
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <img src={CommentIcon} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.avg_comment)}</span>
+                                                </div>
+                                            </Tooltip>
+                                            {/* <div className='descr_title'>
                                                 Average Comments
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className='like_comment_box'>
                                         <div className='profile_like'>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
-                                            </div>
-                                            <div className='descr_title'>
+                                            <Tooltip title="Average Views">
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <img src={ViewIcon} /><span>{NFormatter(item?.edge_felix_video_timeline?.edges[0]?.averageReelView)}</span>
+                                                </div>
+                                            </Tooltip>
+                                            {/* <div className='descr_title'>
                                                 Average Views
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className='profile_comment'>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
-                                            </div>
-                                            <div className='descr_title'>
+                                            <Tooltip title="Engagement Rate">
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <img src={ER} /><span>{NFormatter(item?.edge_owner_to_timeline_media?.edges[0]?.er)}</span>
+                                                </div>
+                                            </Tooltip>
+                                            {/* <div className='descr_title'>
                                                 Engagement Rate%
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className='list_remove_pane'>

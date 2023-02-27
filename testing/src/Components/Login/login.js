@@ -3,8 +3,8 @@ import './login.scss';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import show from '../../../src/Assets/Images/show.png';
-import logo from '../../../src/Assets/Images/logo.png';
-import logo1 from '../../../src/Assets/Images/logo1.png';
+import logo from '../../../src/Assets/Images/inflyu1.png';
+import logo1 from '../../../src/Assets/Images/inflyu1.png';
 import textbg from '../../Assets/Images/signupbgss.png';
 import google from '../../../src/Assets/Images/google_logo.png';
 
@@ -139,7 +139,7 @@ function Login() {
                 </div>
                 <div className="signup_link col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>
                 <div className="signup_footer col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-                    ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
+                    ©︎ 2022 Inflyu. All rights reserved  |  Privacy policy
                 </div>
             </div>
             <div className="login_right col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">

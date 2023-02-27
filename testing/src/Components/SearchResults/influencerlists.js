@@ -148,7 +148,8 @@ const InfluencersList = () => {
     }
 
     const redirectProfile = (data) => {
-        navigate(`/profile/${data.username}`)
+        window.open(`/profile/${data.username}`)
+        // navigate(`/profile/${data.username}`)
     }
 
     const handleFollowerFilterClicked = () => {
@@ -1089,6 +1090,12 @@ const InfluencersList = () => {
         setInfluencersData([])
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleRedirectToResults();
+        }
+    }
+
     return (
         <div className="search_container row no-gutters">
             <div className='col-lg-2 col-md-2 col-sm-2 col-xs-2  col-2'>
@@ -1103,6 +1110,7 @@ const InfluencersList = () => {
                             placeholder='Search for influencers, categories...'
                             value={inputValue}
                             onChange={handleInputChange}
+                            onKeyDown={handleKeyDown}
                         />
                         {suggestionsForInputActive && <SuggestionsInfluencer />}
                         <AiOutlineSearch onClick={handleRedirectToResults} />

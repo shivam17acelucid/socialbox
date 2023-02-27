@@ -34,12 +34,19 @@ const ProfileData = () => {
     const [redirectedResult, setRedirectedResult] = useState(false);
     const [suggestionsForInputActive, setSuggestionsForInputActive] = useState(false);
     const [suggestions1, setSuggestions1] = useState([]);
-    const [autoSuggestedData, setAutoSuggestedData] = useState([]);
+    const [averageLikeGrowthRate, setAverageLikeGrowthRate] = useState(null);
+    const [averageCommentGrowthRate, setAverageCommentGrowthRate] = useState(null);
+    const [averageViewsGrowthRate, setAverageViewsGrowthRate] = useState(null);
+    const [width, setWidth] = useState(window.innerWidth);
 
     let { profilename } = useParams();
     let navigate = useNavigate();
 
     const userId = localStorage.getItem('id')
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
 
     const fetchProfiles = () => {
         const url = `http://13.234.125.76:4000/getProfileOfInfluencer?inputField=${profilename}`;
@@ -71,17 +78,29 @@ const ProfileData = () => {
                         let commentGrowthArray = [];
                         let viewsGrowthArray = [];
                         likeArray.forEach((el, i) => {
-                            likeGrowthArray.push(`growth: ${likeArray[i + 1] - el}`);
+                            likeGrowthArray.push(((likeArray[i + 1] - el) / el) * 100);
                         })
                         commentArray.forEach((el, i) => {
-                            commentGrowthArray.push(`growth: ${commentArray[i + 1] - el}`);
+                            commentGrowthArray.push(((commentArray[i + 1] - el) / el) * 100);
                         })
                         ViewsArray.forEach((el, i) => {
-                            viewsGrowthArray.push(`growth: ${ViewsArray[i + 1] - el}`);
+                            viewsGrowthArray.push(((ViewsArray[i + 1] - el) / el) * 100);
                         })
                         setLikesGrowthRate(likeGrowthArray)
                         setCommentGrowthRate(commentGrowthArray)
                         setViewsGrowthRate(viewsGrowthArray)
+                        let abc = likeGrowthArray.filter(rate => !isNaN(rate))
+                        let abc2 = commentGrowthArray.filter(rate => !isNaN(rate))
+                        let abc3 = viewsGrowthArray.filter(rate => !isNaN(rate))
+                        let averageGrowth = (abc.reduce((accumulator, currentValue) => accumulator + currentValue,
+                            0) / likeGrowthArray.length) * 100;
+                        let averageGrowth1 = (abc2.reduce((accumulator, currentValue) => accumulator + currentValue,
+                            0) / commentGrowthArray.length) * 100;
+                        let averageGrowth2 = (abc3.reduce((accumulator, currentValue) => accumulator + currentValue,
+                            0) / viewsGrowthArray.length) * 100;
+                        setAverageLikeGrowthRate(averageGrowth.toFixed(1))
+                        setAverageCommentGrowthRate(averageGrowth1.toFixed(1))
+                        setAverageViewsGrowthRate(averageGrowth2.toFixed(1))
                     })
             })
             .catch((err) => {
@@ -150,8 +169,6 @@ const ProfileData = () => {
             {
                 name: 'Likes',
                 data: likeArr,
-                name2: 'Growth',
-                data2: likesGrowthRate
             },
             {
                 name: 'Comment',
@@ -165,7 +182,6 @@ const ProfileData = () => {
     };
 
     const handleRedirectToResults = () => {
-        setAutoSuggestedData([])
         setRedirectedResult(!redirectedResult);
         navigate(`/influencerslist/${inputValue}`);
         setInputValue('');
@@ -239,7 +255,13 @@ const ProfileData = () => {
 
     useEffect(() => {
         fetchProfiles();
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
     }, [profilename]);
+
+    const isMobile = width <= 980;
 
     return (
         <div className="profile_container_box row no-gutters">
@@ -360,16 +382,26 @@ const ProfileData = () => {
                                                     Profile Stats
                                                 </div> */}
                                                 <div>
-                                                    {/* {
-                                                        likeArr[0] ? */}
                                                     <HighchartsReact
                                                         highcharts={Highcharts}
                                                         options={options}
                                                     />
-                                                    {/* :
-                                                            null
-                                                    } */}
                                                 </div>
+                                                {
+                                                    isMobile ?
+                                                        <div className="growth_rates_box">
+                                                            <div className="growth_rate_line">
+                                                                <div><span className="indicator1"></span><span className="title_growth">Average Likes Growth Rate</span></div> <span className="values">{averageLikeGrowthRate}%</span>
+                                                            </div>
+                                                            <div className="growth_rate_line">
+                                                                <div><span className="indicator2"></span><span className="title_growth">Average Comment Growth Rate</span></div> <span className="values">{averageCommentGrowthRate}%</span>
+                                                            </div>
+                                                            <div className="growth_rate_line">
+                                                                <div><span className="indicator3"></span><span className="title_growth">Average Views Growth Rate</span></div> <span className="values">{averageViewsGrowthRate}%</span>
+                                                            </div>
+                                                        </div>
+                                                        : null
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -444,6 +476,17 @@ const ProfileData = () => {
                                                     </Tooltip>
                                                     <span className="like_comment_value">{data?.edge_owner_to_timeline_media?.edges[3]?.node?.video_view_count ? NFormatter(data?.edge_owner_to_timeline_media?.edges[3]?.node?.video_view_count) : '--'}</span>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className="growth_rates_box">
+                                            <div className="growth_rate_line">
+                                                <div><span className="indicator1"></span><span className="title_growth">Average Likes Growth Rate</span></div> <span className="values">{averageLikeGrowthRate}%</span>
+                                            </div>
+                                            <div className="growth_rate_line">
+                                                <div><span className="indicator2"></span><span className="title_growth">Average Comment Growth Rate</span></div> <span className="values">{averageCommentGrowthRate}%</span>
+                                            </div>
+                                            <div className="growth_rate_line">
+                                                <div><span className="indicator3"></span><span className="title_growth">Average Views Growth Rate</span></div> <span className="values">{averageViewsGrowthRate}%</span>
                                             </div>
                                         </div>
                                     </div>

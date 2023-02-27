@@ -266,6 +266,72 @@ html {
                         line-height: 1.688rem;
                         color: #000000;
                     }
+
+                    .growth_rates_box {
+                        padding-top: 1rem;
+                        padding-left: 2rem;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 1rem;
+                        line-height: 1.188rem;
+                        color: rgba(0, 0, 0, 0.6);
+                        cursor: pointer;
+                        display: flex;
+
+                        .growth_rate_line {
+
+                            span {
+                                padding: 0;
+                                margin: 0;
+                            }
+
+                            div {
+                                display: flex;
+                                align-items: center;
+
+                                .title_growth {
+                                    margin: 0;
+                                    padding-top: 0.8rem;
+                                    padding-bottom: 0.25rem;
+                                    padding-left: 1rem;
+                                }
+
+                                .indicator1 {
+                                    height: 1rem;
+                                    width: 1rem;
+                                    background-color: rgb(124, 181, 236);
+                                    margin-top: 0.8rem;
+                                    border-radius: 50%;
+                                }
+
+                                .indicator2 {
+                                    height: 1rem;
+                                    width: 1rem;
+                                    background-color: rgb(67, 67, 72);
+                                    margin-top: 0.8rem;
+                                    border-radius: 50%;
+                                }
+
+                                .indicator3 {
+                                    height: 1rem;
+                                    width: 1rem;
+                                    background-color: rgb(144, 237, 125);
+                                    margin-top: 0.8rem;
+                                    border-radius: 50%;
+                                }
+                            }
+
+                            .values {
+                                padding-left: 2rem;
+                            }
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            // min-width: 8rem;
+                        }
+                    }
                 }
             }
         }
@@ -335,6 +401,74 @@ html {
                             color: #000000;
                         }
                     }
+                }
+            }
+
+            .growth_rates_box {
+                padding-top: 1rem;
+                padding-left: 2rem;
+                font-family: 'Noto Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 1rem;
+                line-height: 1.188rem;
+                color: rgba(0, 0, 0, 0.6);
+                cursor: pointer;
+
+                .growth_rate_line {
+                    @media (max-width: 1000px) {
+                        display: none;
+                    }
+
+                    span {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    div {
+                        display: flex;
+                        align-items: center;
+
+                        .title_growth {
+                            margin: 0;
+                            padding-top: 0.8rem;
+                            padding-bottom: 0.25rem;
+                            padding-left: 1rem;
+                        }
+
+                        .indicator1 {
+                            height: 1rem;
+                            width: 1rem;
+                            background-color: rgb(124, 181, 236);
+                            margin-top: 0.8rem;
+                            border-radius: 50%;
+                        }
+
+                        .indicator2 {
+                            height: 1rem;
+                            width: 1rem;
+                            background-color: rgb(67, 67, 72);
+                            margin-top: 0.8rem;
+                            border-radius: 50%;
+                        }
+
+                        .indicator3 {
+                            height: 1rem;
+                            width: 1rem;
+                            background-color: rgb(144, 237, 125);
+                            margin-top: 0.8rem;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .values {
+                        padding-left: 2rem;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    // min-width: 8rem;
                 }
             }
         }

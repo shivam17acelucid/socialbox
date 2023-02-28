@@ -496,8 +496,7 @@ function BasketInfluencers() {
                                                                                             </div>
                                                                                             <div className="compare_title">
                                                                                                 Select the influencer(s) from results to
-                                                                                                add to the selection you want to compare. You may
-                                                                                                compare upto four influencers.
+                                                                                                add to the selection you want to compare.
                                                                                             </div>
                                                                                             <input
                                                                                                 type="text"

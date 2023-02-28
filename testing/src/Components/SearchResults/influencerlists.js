@@ -1125,9 +1125,9 @@ const InfluencersList = () => {
                         <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
                             <Button variant="outlined" onClick={handleErFilterClicked} className='filter_btn'>Engagement Rate {isfilterErClicked === true ? <MdOutlineArrowDropUp /> : <AiFillCaretDown />}</Button>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
+                        {/* <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
                             <Button variant="outlined" onClick={showVerified} className='filter_btn'>{showVerifiedInfluencers === true ? 'Back' : 'Registered influencers'}</Button>
-                        </div>
+                        </div> */}
                         <div className="col-lg-2 col-md-3 col-sm-4 col-xs-4 col-4 button_filter">
                             <Button variant="outlined" onClick={handleClearAllFilters} className='filter_btn'><AiOutlineClose /><span>Clear all filters</span></Button>
                         </div>
@@ -1511,8 +1511,7 @@ const InfluencersList = () => {
                                                                                         </div>
                                                                                         <div className="compare_title">
                                                                                             Select the influencer(s) from results to
-                                                                                            add to the selection you want to compare. You may
-                                                                                            compare upto four influencers.
+                                                                                            add to the selection you want to compare.
                                                                                         </div>
                                                                                         <input
                                                                                             type="text"

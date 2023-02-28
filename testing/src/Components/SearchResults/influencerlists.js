@@ -118,6 +118,7 @@ const InfluencersList = () => {
     const [pageNoValue, setPageNoValue] = useState(null);
     const [pageValueChoosed, setPageValueChoosed] = useState(false)
     const [newPage, setNewPage] = useState(null);
+    const [choosedCategoryArray, setChoosedCategoryArray] = useState(null);
 
     let { inputField, eRange, followerRange } = useParams();
     let navigate = useNavigate();
@@ -133,6 +134,32 @@ const InfluencersList = () => {
     //     setRowsPerPage(parseInt(event.target.value, 10));
     //     setPage(0);
     // };
+
+    const categoryOptions = [
+        { value: 'Art', label: 'Art' },
+        { value: 'Beauty', label: 'Beauty' },
+        { value: 'Bollywood', label: 'Bollywood' },
+        { value: 'Cinema', label: 'Cinema' },
+        { value: 'Comedy', label: 'Comedy' },
+        { value: 'Community Page', label: 'Community Page' },
+        { value: 'Dancer', label: 'Dancer' },
+        { value: 'Education', label: 'Education' },
+        { value: 'Fashion', label: 'Fashion' },
+        { value: 'Fitness', label: 'Fitness' },
+        { value: 'Food', label: 'Food' },
+        { value: 'Lifestyle', label: 'Lifestyle' },
+        { value: 'Makeup', label: 'Makeup' },
+        { value: 'Media', label: 'Media' },
+        { value: 'Model', label: 'Model' },
+        { value: 'Mom', label: 'Mom' },
+        { value: 'Music', label: 'Music' },
+        { value: 'Parenting', label: 'Parenting' },
+        { value: 'Personal Care', label: 'Personal Care' },
+        { value: 'Other', label: 'Other' },
+        { value: 'Sports', label: 'Sports' },
+        { value: 'Tech', label: 'Tech' },
+        { value: 'Travel', label: 'Travel' },
+    ]
 
     const showVerified = () => {
         const data = showVerifiedInfluencers ? false : true;
@@ -420,6 +447,10 @@ const InfluencersList = () => {
                     setCategoryFilteredData(array)
                     setFilterCategoryClicked(true)
                 }
+
+                // else if(data.category_enum.includes(choosedCategoryArray.map((item)=>item))){
+                //     console.log(data.category_enum);
+                // }
             }
         })
     }
@@ -1202,6 +1233,13 @@ const InfluencersList = () => {
                                                 value={category}
                                                 onChange={(e) => { setCategory(e.target.value) }}
                                             />
+                                            <div>
+                                                {
+                                                    categoryOptions.map((item) =>
+                                                        <Button className="category_btn" onClick={()=>{setChoosedCategoryArray(item.value)}}>{item.value}</Button>
+                                                    )
+                                                }
+                                            </div>
                                             <div style={{
                                                 display: 'flex', justifyContent: 'space-between'
                                             }}>
@@ -1224,7 +1262,7 @@ const InfluencersList = () => {
                                                         color: '#595959',
                                                         width: '7.75rem',
                                                         height: '2.25rem',
-                                                        marginTop: '2rem'
+                                                        marginTop: '1.5rem'
                                                     }}
                                                 >
                                                     Clear

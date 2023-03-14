@@ -32,7 +32,7 @@ exports.forgot = (req, res, next) => {
                 `http://13.234.125.76:3000/resetPassword/${user._id}/${user.resetPasswordToken}`;
             const msg = {
                 to: email,
-                from: 'shivam.rawat@acelucid.com',
+                from: 'souvil@thesocialbox.in',
                 subject: 'Change Pasword',
                 text: `${link1}`,
                 html: `${link1}`,
@@ -45,7 +45,7 @@ exports.forgot = (req, res, next) => {
                 .catch((error) => {
                     res.json(error)
                 })
-            res.json(link1);
+            // res.json(link1);
         }
     });
 };
